@@ -17,6 +17,10 @@ class TaskTest extends TestCase
         $this->withoutExceptionHandling();
 //        $this->assertTrue(true);
         //Prepare
+        Task::create([
+            'name'=>'comprar pa',
+            'completed'=> false
+        ]);
 
         //Execute
         $response=$this->get('/tasks');
@@ -26,6 +30,9 @@ class TaskTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee('Tasques');
 //        $this->assertEquals('/tasks',$this);
+
+        //comprovar que es veuen les tasques q hi ha en la bd
+        //preparar la bd a prepare
 
     }
 }
