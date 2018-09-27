@@ -14,9 +14,7 @@
 //controlador tasques
 //TDD-> test driven development
 
-Route::get('/tasks',function (){
-    return view('tasks');
-});
+Route::get('/tasks','TasksController@index');
 
 Route::get('/', function () {
     return view('welcome');
