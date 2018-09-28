@@ -81,7 +81,10 @@
             <h1>Tasques</h1>
             <ul>
             @foreach ($tasks as $task)
-                <li>This is task {{ $task->name }} ~|~ completed : {{ $task->completed }}</li> <button>Completar</button><button>Modificar</button><button>Eliminar</button>
+                <li>This is task {{ $task->name }} ~|~ completed : {{ $task->completed }}</li> <button>Completar</button><button>Modificar</button>
+                    <form action="/tasks/{{$task->id}}">
+                    <button>Eliminar</button>
+                    </form>
             @endforeach
 
             </ul>
