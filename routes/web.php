@@ -15,6 +15,8 @@
 //TDD-> test driven development
 
 Route::get('/tasks','TasksController@index');
+Route::post('/tasks','TasksController@store');
+Route::delete('/tasks/{id}','TasksController@destroy');
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,8 +35,6 @@ Route::get('/prova',function (){
         $prova='hola tt';
         dd($prova);
 //    echo '<h1>Hola mon</h1>';
-
-
 });
 
 Route::redirect('/hola','prova');
