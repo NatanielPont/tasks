@@ -82,11 +82,21 @@
             <ul>
             @foreach ($tasks as $task)
                 <li>This is task {{ $task->name }} ~|~ completed : {{ $task->completed }}</li> <button>Completar</button><button>Modificar</button>
-                    <form action="/tasks/{{$task->id}}"lumne/'
-                    >
+                    <form action="/tasks/{{$task->id}}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
                     <button>Eliminar</button>
                     </form>
             @endforeach
+                {{--@foreach ($tasks as $task)--}}
+                    {{--<li>{{ $task->name }} <button>Completar</button> <button>Modificar</button>--}}
+                        {{--<form action="/tasks/{{ $task->id }}" method="POST">--}}
+                            {{--@csrf--}}
+                            {{--{{ method_field('DELETE') }}--}}
+                            {{--<button>Eliminar</button>--}}
+                        {{--</form>--}}
+                    {{--</li>--}}
+                {{--@endforeach--}}
 
             </ul>
 

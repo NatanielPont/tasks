@@ -31,10 +31,20 @@ class TasksController extends Controller
 
     public function destroy(Request $request)
     {
-
-        $task=Task::findOrFail($request->id);
+//        dd($request->id);
+        $task = Task::findOrFail($request->id);
         $task->delete();
+        // Retornar a /tasks
         return redirect()->back();
-        
     }
+
+//    public function destroy(Request $request)
+//    {
+//
+//        $task=Task::findOrFail($request->id);
+//        $task->delete();
+//        return redirect()->back();
+//
+//    }
+
 }
