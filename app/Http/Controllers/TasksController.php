@@ -38,13 +38,34 @@ class TasksController extends Controller
         return redirect()->back();
     }
 
-//    public function destroy(Request $request)
-//    {
-//
-//        $task=Task::findOrFail($request->id);
-//        $task->delete();
-//        return redirect()->back();
-//
-//    }
+    public function update(Request $request)
+    {
+//        dd($request->id);
+
+        //models-eloquent
+        //libreria laravel to work with queryes
+        //ORM->object relational model (Hibernate Java)
+//        dd(Task::find($request->id));
+//        if (!Task::find($request->id)) return response(404,'No he trobat res');
+        $task = Task::findOrFail($request->id);
+        $task->name=$request->name;
+        $task->completed=true;
+        $task->save();
+        return $task;
+
+    }
+
+    public function edit(Request $request)
+    {
+        $task=Task::findOrFail($request->id);
+        return view('task_edit',compact('task'));
+//        return view('task_edit',['task'=>'task']);
+
+    }
+
+
 
 }
+    class CompletedTaskController {
+
+        }

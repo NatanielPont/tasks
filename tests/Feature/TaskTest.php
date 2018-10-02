@@ -21,8 +21,9 @@ class TaskTest extends TestCase
      */
     public function can_show_tasks()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
 //        $this->assertTrue(true);
+        //302 comprovar que es redirecciona
         //Prepare
         Task::create([
             'name'=>'Comprar pa',
@@ -93,25 +94,89 @@ class TaskTest extends TestCase
 
 
     }
+
     /**
      * @test
      */
-    public function cannot_delete_task()
+    public function cannnot_delete_an_unexisting_task()
     {
-        $this->withoutExceptionHandling();
-        //
-
-
-        //2
-        $response=$this->delete('/tasks/1');
+        $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
-//        $response->assertSuccessful();
+    }
 
-        //3
-//        $this->assertDatabaseMissing('tasks',['name'=>'Comprar llet']);
+    /**
+     * @test
+     */
+    public function cannot_edit_an_unexisting_task()
+    {
+//        $this->withoutExceptionHandling();
+        //TDD-> test driven developement
 
+        //preparacio
+
+        //execucio
+        $response=$this->put('/tasks/1',[]);
+
+//        dd($response)->getContent();
+        $response->assertStatus(404);
+
+        //comprovacio
 
 
 
     }
+
+    /**
+     * @test
+     */
+    public function can_edit_a_task_todo_validation()
+    {
+        $this->withoutExceptionHandling();
+        //prep
+        $task=Task::create([
+            'name'=>'prsdfgsd',
+            'completed'=> false
+        ]);
+
+        //2
+        $response=$this->put('/tasks/' . $task->id,$newTask=[
+            'name'=>'Comprar pa',
+            'completed'=> true
+        ]);
+
+        $response->assertSuccessful();
+
+//        $this->assertDatabaseHas('tasks',$newTask);
+//        $this->assertDatabaseMissing('tasks',$task);
+        $task=$task->fresh();
+        $this->assertEquals($task->name,'Comprar pa');
+        $this->assertEquals($task->completed,true);
+
+
+    }
+    /**
+     * @test
+     */
+    public function can_show_edit_form()
+    {
+        // 1
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'completed' => false
+        ]);
+        $response = $this->get('/task_edit/' . $task->id);
+        $response->assertSuccessful();
+        $response->assertSee('Comprar pa');
+    }
+    /**
+     * @test
+     */
+    public function cannot_show_edit_form_unexisting_task()
+    {
+//        $this->withoutExceptionHandling();
+        $response = $this->get('/task_edit/1');
+        $response->assertStatus(404);
+    }
+
+
 }
