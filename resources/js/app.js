@@ -16,6 +16,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('example-component', require('./components/EditableText'));
+Vue.component('example-component', require('./components/Tasks'));
 
 const app = new Vue({
     el: '#app'

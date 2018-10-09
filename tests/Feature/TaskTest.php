@@ -25,18 +25,7 @@ class TaskTest extends TestCase
 //        $this->assertTrue(true);
         //302 comprovar que es redirecciona
         //Prepare
-        Task::create([
-            'name'=>'Comprar pa',
-            'completed'=> true
-        ]);
-        Task::create([
-            'name'=>'Comprar llet',
-            'completed'=> false
-        ]);
-        Task::create([
-            'name'=>'Estudiar php',
-            'completed'=> false
-        ]);
+       create_example_tasks();
 
         //Execute
         $response=$this->get('/tasks');
