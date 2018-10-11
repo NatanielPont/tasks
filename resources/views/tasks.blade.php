@@ -1,51 +1,72 @@
 @extends('layouts.app')
-@section('content')
-    {{--@if (Route::has('login'))--}}
-        {{--<div class="top-right links">--}}
-            {{--@auth--}}
-                {{--<a href="{{ url('/home') }}">Home</a>--}}
-            {{--@else--}}
-                {{--<a href="{{ route('login') }}">Login</a>--}}
-                {{--<a href="{{ route('register') }}">Register</a>--}}
-            {{--@endauth--}}
-        {{--</div>--}}
-    {{--@endif--}}
 
-    <div class="content">
-        <div class="title m-b-md">
-            <h1>Tasques</h1>
-            <ul>
-                @foreach ($tasks as $task)
-                    <li>This is task {{ $task->name }} ~|~ completed : {{ $task->completed }}</li>
-                    <button>Completar</button>
-                    <a href="/task_edit/{{ $task->id }}">
-                        <button>Modificar</button>
-                    </a>
-                    <form action="/tasks/{{$task->id}}" method="POST">
+@section('title')
+    Tasques
+@endsection
+@section('content')
+    <v-card>
+        <v-toolbar color="cyan" dark>
+
+            <v-toolbar-title>Tasques</v-toolbar-title>
+
+        </v-toolbar>
+
+        <v-list>
+
+            <?php foreach ($tasks as $task) : ?>
+
+            <v-list-tile>
+
+                <v-list-tile-avatar>
+                    <img src="https://placeimg.com/100/100/any">
+                </v-list-tile-avatar>
+                @if($task->completed)
+                    <del>{{ $task->name }}</del>
+
+                    <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <button>Eliminar</button>
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
                     </form>
-                @endforeach
-            </ul>
 
-        </div>
-        <div id="formulari">
+                @else
+                    {{ $task->name }}
+
+                    <form action="" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="warning">
+                            <button>Completar</button>
+                        </v-btn>
+                    </form>
+
+                    <v-btn color="info" href="/task_edit/{{ $task->id }}">
+                        <button>Modificar</button>
+                    </v-btn>
+
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
+                    </form>
+                @endif
+            </v-list-tile>
+            <?php endforeach;?>
+
             <form action="/tasks" method="POST">
                 @csrf
-                <input name="name" type="text" placeholder="nova tasca">
-                <button>Afegir</button>
+                <input name="name" type="text" placeholder="Nova tasca" required>
+                <v-btn color="success">
+                    <button>Afegir</button>
+                </v-btn>
             </form>
 
-        </div>
+        </v-list>
 
-        <!--<div class="links">
-            <a href="https://laravel.com/docs">Documentation</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
-        </div>-->
-    </div>
-    @endsection
+    </v-card>
+@endsection

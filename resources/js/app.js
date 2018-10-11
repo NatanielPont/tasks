@@ -6,8 +6,12 @@
  */
 
 require('./bootstrap');
-
+//Es6/Vue/Babel-> imports
 window.Vue = require('vue');
+//window sols en browser objecte global
+Vue.use(require('vuetify'));
+
+//npm install vue,vuetify, treball am sol fitxer
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,9 +20,16 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('example-component', require('./components/EditableText'));
-Vue.component('example-component', require('./components/Tasks'));
+Vue.component('tasks', require('./components/Tasks.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: () => ({
+        drawer: null
+    }),
+    props: {
+        source: String
+    }
+
 });
+
