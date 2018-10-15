@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="tasks" class="tasks">
         <h1>Tasques ({{total}}):</h1>
         <input type="text"
                v-model="newTask" @keyup.enter="add">
@@ -95,7 +95,15 @@
                 this.filter = newFilter
             },
             add() {
-                this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
+                axios.post('/api/v1/tasks',{name: this.newTask}).then((response)=>{
+                this.dataTasks.splice(0,0,{ id:response.data.id,name: this.newTask, completed: false } )
+                    console.log(response);
+
+                    console.log(response.data);
+                    this.dataTasks=response.data
+                }).catch((error)=>{
+                    console.log(error);
+                })
                 this.newTask=''
             },
             remove(task) {
@@ -104,6 +112,20 @@
         },
         created() {
             // console.log('Component Tasks ha estat creat');
+            //si hi a tasks no es fa res else peticio a Api per obtenir tasques/tasks
+            if  (this.tasks==0){
+                // axios.get('/api/v1/tasks')
+                this.dataTasks=axios.get('/api/v1/tasks').then((response)=>{
+                    console.log(response);
+
+                    console.log(response.data);
+                    this.dataTasks=response.data
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            } else {
+                console.log('else')
+            }
         }
     }
 </script>

@@ -35,13 +35,13 @@ Route::get('/about',function (){
 
 Route::view('/contact', 'contact');
 
+//
+//Route::get('/prova',function (){
+//        $prova='hola tt';
+//        dd($prova);
+//});
 
-Route::get('/prova',function (){
-        $prova='hola tt';
-        dd($prova);
-});
-
-Route::redirect('/hola','prova');
+//Route::redirect('/hola','prova');
 
 Route::get('/tasks_vue','TasksVueController@index');
 //index -> list

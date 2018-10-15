@@ -19,22 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 
-Route::get('/v1/tasks',function () {
-    // Connectar-se obtenir tasques
-//    return [
-//      {
-//          'name' => 'Compra pa',
-//          'completed' => false
-//      },
-//      {
-//        'name' => 'Compra llet',
-//          'completed' => false
-//      },
-//      {
-//        'name' => 'Compra pa',
-//          'completed' => false
-//      },
-//    ];
-    return Task::all();
-});
+Route::get('/v1/tasks','Api\TasksController@index'); //browser
+Route::get('/v1/tasks/{task}','Api\TasksController@show'); //read
+Route::delete('/v1/tasks/{task}','Api\TasksController@destroy'); //delete
+Route::post('/v1/tasks','Api\TasksController@store'); //create
+Route::put('/v1/tasks/{task}','Api\TasksController@edit'); //edit
 
