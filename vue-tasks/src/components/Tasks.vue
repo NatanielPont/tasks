@@ -95,8 +95,11 @@
                 this.filter = newFilter
             },
             add() {
+                if  (newTask!=null){
+
                 this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
                 this.newTask=''
+                }
             },
             remove(task) {
                 this.dataTasks.splice(this.dataTasks.indexOf(task),1)

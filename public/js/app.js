@@ -69209,6 +69209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 var filters = {
@@ -69273,15 +69274,54 @@ var filters = {
             this.filter = newFilter;
         },
         add: function add() {
-            this.dataTasks.splice(0, 0, { name: this.newTask, completed: false });
+            var _this = this;
+
+            axios.post('/api/v1/tasks', { name: this.newTask }).then(function (response) {
+                if (_this.newTask != '') {
+
+                    _this.dataTasks.splice(0, 0, { id: response.data.id, name: _this.newTask, completed: false });
+                }
+                // console.log(response);
+
+                // console.log(response.data);
+                // this.dataTasks=response.data
+            }).catch(function (error) {
+                console.log(error);
+            });
             this.newTask = '';
         },
         remove: function remove(task) {
-            this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
-        }
+            var _this2 = this;
+
+            axios.delete('/api/v1/tasks/{task}').then(function (response) {
+                console.log(response);
+
+                console.log(response.data);
+                _this2.dataTasks.splice(_this2.dataTasks.indexOf(task), task.id);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        complet: function complet() {}
     },
     created: function created() {
+        var _this3 = this;
+
         // console.log('Component Tasks ha estat creat');
+        //si hi a tasks no es fa res else peticio a Api per obtenir tasques/tasks
+        if (this.tasks == 0) {
+            // axios.get('/api/v1/tasks')
+            this.dataTasks = axios.get('/api/v1/tasks').then(function (response) {
+                console.log(response);
+
+                console.log(response.data);
+                _this3.dataTasks = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            console.log('else');
+        }
     }
 });
 
@@ -69480,7 +69520,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "tasks", attrs: { id: "tasks" } }, [
     _c("h1", [_vm._v("Tasques (" + _vm._s(_vm.total) + "):")]),
     _vm._v(" "),
     _c("input", {
@@ -69514,6 +69554,8 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("button", { on: { click: _vm.add } }, [_vm._v("Afegir")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.complet } }, [_vm._v("Completar")]),
     _vm._v(" "),
     _c(
       "ul",

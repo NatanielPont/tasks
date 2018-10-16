@@ -12,6 +12,7 @@ class TasksController extends Controller
     public function show(Request $request, Task $task)
     {
 //        dd($request->task);
+        $task=Task::orderBy('created_at','desc')->get();
 
         return $task;
         
@@ -39,10 +40,13 @@ class TasksController extends Controller
 
     }public function edit(Request $request,Task $task)
     {
-//        $task=Task::findOrFail($request->id);
-        $task->fresh();
-//        return view('task_edit',compact('task'));
+        $task->name = $request->name;
+        $task->save();
         return $task;
+////        $task=Task::findOrFail($request->id);
+//        $task->fresh();
+////        return view('task_edit',compact('task'));
+//        return $task;
 
     }
 }
