@@ -144,6 +144,7 @@ export default {
       }).catch((error) => {
         console.log('Error EXECUTED!')
         console.log(error)
+        this.errorMessage = error.data.message
       })
     }
   }
