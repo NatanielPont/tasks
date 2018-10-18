@@ -65,7 +65,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_create_task()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         $response=$this->post('/api/v1/tasks/',[
             'name'=>'Comprar pa',
             'completed'=>false
@@ -116,6 +116,23 @@ class TasksControllerTest extends TestCase
 //        $this->assertEquals($result->completed,true);
 
 
+
+
+    }
+
+
+    /**
+     * @test
+     */
+    public function cannot_create_tasks_without_name()
+    {
+//        $this->withoutExceptionHandling();
+        $response=$this->post('/api/v1/tasks/',[
+            'name'=>''
+        ]);
+        $result=json_decode($response->getContent());
+        //422, codi de fets invalids
+        $response->assertStatus(422);
 
 
     }

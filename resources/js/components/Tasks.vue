@@ -2,13 +2,13 @@
     <div id="tasks" class="tasks">
         <h1>Tasques ({{total}}):</h1>
         <input type="text"
-               v-model="newTask" @keyup.enter="add">
+               v-model="newTask" @keyup.enter="add" name="name">
         <div v-if="errorMessage">
-            Ha succeït un error: {{ errorMessage }}
+            Ha succeit un error: {{ errorMessage }}
 
         </div>
 
-        <button @click="add">Afegir</button>
+        <button @click="add" id="button_add_task">Afegir</button>
         <button @click="complet">Completar</button>
 
         <!--// SINTAX SUGAR-->
@@ -23,11 +23,11 @@
                     ></editable-text>
                 </span>
                 &nbsp;
-                <span @click="remove(task)">&#215;</span>
+                <span :id="'delete_task'+task.id" @click="remove(task)">&#215;</span>
             </li>
         </ul>
 
-        <h3>Filtros:</h3>
+        <h3>Filtres:</h3>
         Activa filter: {{ filter }}
         <ul>
             <li>
@@ -109,13 +109,18 @@ export default {
     },
     add () {
       window.axios.post('/api/v1/tasks', { name: this.newTask }).then((response) => {
-        if (this.newTask != null || this.newTask !== '') {
-          this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
-        }
+        // if (this.newTask != null || this.newTask !== '') {
+        console.log('RESPONSE')
+        console.log(response.data)
+        let task = { id: response.data.id, name: this.newTask, completed: false }
+        console.log('task')
+        console.log(task)
+        this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
+        this.dataTasks = ''
+        // }
         // console.log(response);
 
         // console.log(response.data);
-        // this.dataTasks=response.data
       }).catch((error) => {
         console.log(error)
       })
@@ -139,12 +144,11 @@ export default {
     if (this.tasks.length === 0) {
       // console.log('entra en if')
       window.axios.get('/api/v1/tasks').then((response) => {
-        console.log('AXIOS EXECUTED!')
         this.dataTasks = response.data
       }).catch((error) => {
-        console.log('Error EXECUTED!')
-        console.log(error)
-        this.errorMessage = error.data.message
+        // console.log('Error EXECUTED!')
+        // console.log(error.response.data)
+        this.errorMessage = error.response.data
       })
     }
   }

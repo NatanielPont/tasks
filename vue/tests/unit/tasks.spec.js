@@ -4,6 +4,25 @@ import { mount } from '@vue/test-utils'
 import moxios from 'moxios'
 import Tasks from '../../../resources/js/components/Tasks.vue'
 
+let exampleTasks = [
+  {
+    id: 1,
+    name: 'Comprar pa',
+    completed: false
+  },
+  {
+    id: 2,
+    name: 'Comprar llet',
+    completed: true
+  },
+  {
+    id: 3,
+    name: 'Estudiar PHP',
+    completed: false
+  }
+
+]
+
 describe('Tasks.vue', () => {
   beforeEach(function () {
     moxios.install(global.axios)
@@ -13,47 +32,50 @@ describe('Tasks.vue', () => {
     moxios.uninstall(global.axios)
   })
 
-  it.only('shows_error', () => {
+  it.skip('shows_error', (done) => {
+    //
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 500,
+      response: 'Ui que mal'
+
+    })
+
     // 2 execute
     const wrapper = mount(Tasks)
 
-    wrapper.vm.errorMessage = 'Ui que mal!'
+    // wrapper.vm.errorMessage = 'Ui que mal!'
     // Assertion
-
-    expect(wrapper.text()).contains('Ui que mal!')
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Ha succeit un error: Ui que mal')
+      done()
+    })
   })
 
-  it.skip('not_shows_filters_when_no_tasks', () => {
+  it.skip('not_shows_filters_when_no_tasks', (done) => {
+    // prepare
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 200,
+      response: []
+
+    })
+
     // 2 execute
     const wrapper = mount(Tasks)
+    moxios.wait(() => {
+      expect(wrapper.text()).not.contains('Filtres:')
+      done()
+    })
 
-    wrapper.vm.errorMessage = 'Ui que mal!'
+    // wrapper.vm.errorMessage = 'Ui que mal'
     // Assertion
-
-    expect(wrapper.text()).contains('Filtros:').to.be.false
+    // expect(wrapper.text()).contains('Filtros:').to.be.false
   })
 
   it.skip('shows_filters_when_is_more_than_0_tasks', () => {
     // 2 execute
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: [
-          {
-            id: 1,
-            name: 'Comprar pa',
-            completed: false
-          },
-          {
-            id: 2,
-            name: 'Comprar llet',
-            completed: true
-          },
-          {
-            id: 3,
-            name: 'Estudiar PHP',
-            completed: false
-          }
-        ]
+        tasks: exampleTasks
       }
     })
 
@@ -69,49 +91,27 @@ describe('Tasks.vue', () => {
     // 2 EXECUTE
     const wrapper = mount(Tasks, {
       propsData: {
-        tasks: [
-          {
-            id: 1,
-            name: 'Comprar pa',
-            completed: false
-          },
-          {
-            id: 2,
-            name: 'Comprar llet',
-            completed: true
-          },
-          {
-            id: 3,
-            name: 'Estudiar PHP',
-            completed: false
-          }
-        ]
+        tasks: exampleTasks
       }
     }) // <tasks tasks="[{},{},{}]"></tasks>
-
-    // console.log('AQUI TEXT:')
-    // console.log(wrapper.text())
-    // console.log('AQUI HTML:')
-    // console.log(wrapper.html())
-    // 3 EXPECT
 
     expect(wrapper.text()).contains('Comprar pa')
     expect(wrapper.text()).contains('Comprar llet')
     expect(wrapper.text()).contains('Estudiar PHP')
-
-    // wrapper.vm -> Objecte Vue (vm: View Model)
-    expect(wrapper.vm.dataTasks).to.have.lengthOf(3)
-    expect(wrapper.vm.dataTasks[0].id).equals(1)
-    expect(wrapper.vm.dataTasks[0].name).equals('Comprar pa')
-    expect(wrapper.vm.e[0].completed).equals(false)
-
-    expect(wrapper.vm.dataTasks[1].id).equals(2)
-    expect(wrapper.vm.dataTasks[1].name).equals('Comprar llet')
-    expect(wrapper.vm.dataTasks[1].completed).equals(true)
-
-    expect(wrapper.vm.dataTasks[2].id).equals(3)
-    expect(wrapper.vm.dataTasks[2].name).equals('Estudiar PHP')
-    expect(wrapper.vm.dataTasks[2].completed).equals(false)
+    //
+    // // wrapper.vm -> Objecte Vue (vm: View Model)
+    // expect(wrapper.vm.dataTasks).to.have.lengthOf(3)
+    // expect(wrapper.vm.dataTasks[0].id).equals(1)
+    // expect(wrapper.vm.dataTasks[0].name).equals('Comprar pa')
+    // expect(wrapper.vm.e[0].completed).equals(false)
+    //
+    // expect(wrapper.vm.dataTasks[1].id).equals(2)
+    // expect(wrapper.vm.dataTasks[1].name).equals('Comprar llet')
+    // expect(wrapper.vm.dataTasks[1].completed).equals(true)
+    //
+    // expect(wrapper.vm.dataTasks[2].id).equals(3)
+    // expect(wrapper.vm.dataTasks[2].name).equals('Estudiar PHP')
+    // expect(wrapper.vm.dataTasks[2].completed).equals(false)
   })
 
   it.skip('shows_error_when_api_fails', (done) => {
@@ -132,23 +132,7 @@ describe('Tasks.vue', () => {
     // 1 Prepare (opcional)
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
-      response: [
-        {
-          id: 1,
-          name: 'Comprar pa',
-          completed: false
-        },
-        {
-          id: 2,
-          name: 'Comprar llet',
-          completed: true
-        },
-        {
-          id: 3,
-          name: 'Estudiar PHP',
-          completed: false
-        }
-      ]
+      response: exampleTasks
     })
 
     // 2 Execució
@@ -165,6 +149,59 @@ describe('Tasks.vue', () => {
 
       done()
     })
+  })
+  it.only('add_a_task', (done) => {
+    // prepare
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 200,
+      response: {
+        id: 34,
+        name: 'Comprar lejia',
+        completed: false
+      }
+    })
+
+    // execute
+    const wrapper = mount(Tasks, {
+      propsData: {
+        tasks: exampleTasks
+      }
+    })
+    // input name tasks
+    // console.log(wrapper.find("input[name='name']").html())
+    let inputName = wrapper.find("input[name='name']")
+    console.log('inputname')
+    console.log(wrapper.find("input[name='name']"))
+    inputName.element.value = 'Comprar lejia'
+    inputName.trigger('input')
+    // inputName.trigger('click')
+    let button = wrapper.find('button#button_add_task')
+    button.trigger('click')
+    console.log('Value name')
+    console.log(inputName.element)
+    console.log('text')
+    console.log(wrapper.text())
+
+    // assert
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Comprar lejia')
+      done()
+    })
+  })
+  it.skip('delete_a_task', () => {
+
+  })
+
+  it.skip('add_task_with_enter', () => {
+    // prepare
+
+    // execute
+    const wrapper = mount(Tasks)
+    // input name tasks
+    // console.log(wrapper.find("input[name='name']").html())
+    let inputName = wrapper.find("input[name='name']")
+    inputName.value = 'Comprar lejia'
+    inputName.trigger('input')
   })
 })
 
