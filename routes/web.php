@@ -11,6 +11,10 @@
 |
 */
 
+Auth::routes();
+
+//TODO
+Route::post('/login_alt','Auth\LoginAltController@login');
 
 Route::post('/completed_task','CompletedTaskController@store');
 Route::delete('/completed_task','CompletedTaskController@destroy');
