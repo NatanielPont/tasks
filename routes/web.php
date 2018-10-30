@@ -25,7 +25,6 @@ Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');
 Route::delete('/tasks/{id}','TasksController@destroy');
 Route::put('/tasks/{id}','TasksController@update');
-//Route::view('/task_edit/{id}','/task_edit');
 Route::get('/task_edit/{id}','TasksController@edit');
 
 
@@ -38,14 +37,6 @@ Route::get('/about',function (){
 });
 
 Route::view('/contact', 'contact');
-
-//
-//Route::get('/prova',function (){
-//        $prova='hola tt';
-//        dd($prova);
-//});
-
-//Route::redirect('/hola','prova');
 
 Route::get('/tasks_vue','TasksVueController@index');
 //index -> list
