@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,3 +18,4 @@
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>
+</html>

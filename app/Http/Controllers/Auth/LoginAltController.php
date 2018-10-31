@@ -16,7 +16,7 @@ class LoginAltController
     public function Login(Request $request)
     {
         //TODO-> validation
-        dd('hola');
+//        dd('hola');
         $request->email;
         $request->password;
         //buscar en bd l'susuari i comprovar password

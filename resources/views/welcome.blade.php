@@ -12,8 +12,8 @@
         <v-toolbar class="white">
             <v-toolbar-title> Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="success">Login</v-btn>
-            <v-btn color="error">Register</v-btn>
+            <v-btn color="success" href="/login">Login</v-btn>
+            <v-btn color="error" href="/register">Register</v-btn>
             <v-btn fab dark small color="pink">
                 <v-icon dark>favorite</v-icon>
             </v-btn>

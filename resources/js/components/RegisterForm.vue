@@ -1,5 +1,5 @@
 <template>
-    <v-form action="/login" method="POST">
+    <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">
             <v-toolbar-title>Login form</v-toolbar-title>
         </v-toolbar>
