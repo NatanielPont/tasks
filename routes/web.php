@@ -40,6 +40,7 @@ Route::get('/about',function (){
 Route::view('/contact', 'contact');
 
 Route::get('/tasks_vue','TasksVueController@index');
+Route::get('/tasques','TasquesController@index');
 //index -> list
 //store -> create
 //delete-> destroy
