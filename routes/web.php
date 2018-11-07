@@ -45,3 +45,5 @@ Route::get('/tasques','TasquesController@index');
 //store -> create
 //delete-> destroy
 // edit-> put
+//Tags
+

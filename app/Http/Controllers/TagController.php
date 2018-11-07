@@ -15,6 +15,7 @@ class TagController extends Controller
     public function index()
     {
         //
+        dump('hola');
     }
 
     /**
