@@ -84,9 +84,6 @@ if (!function_exists('grant_mysql_privileges')){
         DB::connection('mysqlroot')->getPdo()->exec($statement);
         $statement = "FLUSH PRIVILEGES";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
-
-
     }
 
 }
