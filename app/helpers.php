@@ -80,13 +80,14 @@ if (!function_exists('create_mysql_user')){
 
 if (!function_exists('grant_mysql_privileges')){
     function grant_mysql_privileges($user, $database=null,$host='localhost'){
+<<<<<<< HEAD
         $statement= "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
+=======
+        $statement = "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
+>>>>>>> 3e6d94f077aa92a8fd602ac04b778426bc9a89c8
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-        $statement= "FLUSH PRIVILEGES";
+        $statement = "FLUSH PRIVILEGES";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
-
-
-
     }
 
 }
