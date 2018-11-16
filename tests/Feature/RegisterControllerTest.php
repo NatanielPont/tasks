@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class LoginControllerTest extends TestCase
+class RegisterControllerTest extends TestCase
 {
     use RefreshDatabase;
     /**

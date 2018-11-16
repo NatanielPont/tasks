@@ -1,14 +1,14 @@
 <template>
     <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">
-            <v-toolbar-title>Login form</v-toolbar-title>
+            <v-toolbar-title>Register form</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
             <v-text-field
                     prepend-icon="person"
                     name="email"
-                    label="Login"
+                    label="mail user"
                     type="text"
                     v-model="dataEmail"
                     :error-messages="emailErrors"
@@ -24,7 +24,9 @@
                           :error-messages="passwordErrors"
                           @input="$v.password.$touch()"
                           @blur="$v.password.$touch()"
-            ></v-text-field>
+            >
+
+            </v-text-field>
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
@@ -39,7 +41,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength } from 'vuelidate/lib/validators'
 export default {
-  name: 'LoginForm',
+  name: 'RegisterForm',
   mixins: [validationMixin],
   validations: {
     dataEmail: { required, email },
