@@ -11,11 +11,12 @@ namespace Tests\Feature\Api;
 
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
 class TasksControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase,CanLogin;
 
     //crud= 'cru'-> create retrieve update delete
     //bread= 'pa'-> browser read edit add delete
@@ -26,11 +27,9 @@ class TasksControllerTest extends TestCase
     public function can_show_a_task()
     {
         $this->withoutExceptionHandling();
+        $this->login('api');
         //http://tasks.test/api/v1
         //Http-> get, post,put, delete
-//        Task:create([
-//            name=>'Comprar pa'
-//    ]);
 
         $task=factory(Task::class)->create(['name'=>'Comprar pa']);
 
@@ -50,6 +49,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_delete_task()
     {
+        $this->login('api');
         $this->withoutExceptionHandling();
         $task=factory(Task::class)->create();
         $response=$this->delete('/api/v1/tasks/'.$task->id);
@@ -65,6 +65,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_create_task()
     {
+        $this->login('api');
 //        $this->withoutExceptionHandling();
         $response=$this->post('/api/v1/tasks/',[
             'name'=>'Comprar pa',
@@ -83,8 +84,19 @@ class TasksControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
+        $this->withoutExceptionHandling();
+        $this->login('api');
         create_example_tasks();
-        
+        $response = $this->json('GET','/api/v1/tasks');
+        $response->assertSuccessful();
+        $result = json_decode($response->getContent());
+        $this->assertCount(3,$result);
+        $this->assertEquals('Comprar pa', $result[0]->name);
+        $this->assertFalse((boolean)$result[0]->completed);
+        $this->assertEquals('comprar llet', $result[1]->name);
+        $this->assertFalse((boolean) $result[1]->completed);
+        $this->assertEquals('Estudiar PHP', $result[2]->name);
+        $this->assertTrue((boolean) $result[2]->completed);
     }
 
     /**
@@ -92,6 +104,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_task()
     {
+        $this->login('api');
         $this->withoutExceptionHandling();
         $task=factory(Task::class)->create([ 'name'=>'prsdfgsd',
             'completed'=> false]);

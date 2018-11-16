@@ -6,7 +6,7 @@
  * Time: 16:15
  */
 
-namespace Tests\Feature\Api;
+namespace Tests\Feature;
 
 
 use App\User;

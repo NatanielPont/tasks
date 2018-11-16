@@ -11,15 +11,16 @@ use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        return Tag::orderBy('created_at','desc')->get();
+    }
+
     //parametres=dependencia
     public function show(Request $request, Tag $tag)
     {
-//        dd('hola');
-        $tag=Tag::orderBy('created_at','desc')->get();
-
         return $tag;
-        
-        
     }
 
     public function destroy(Request $request, Tag $tag)
@@ -30,6 +31,7 @@ class TagsController extends Controller
 
     public function store(StoreTags $request)
     {
+//        dd('hola');
 //        //opcio acceptable
 //        $request->validate([
 //            'name'=>'required'
@@ -42,10 +44,9 @@ class TagsController extends Controller
         return $tag->map();
 
     }
-    public function index()
-    {
 
-    }public function update(StoreTags $request,Tag $tag)
+
+    public function update(StoreTags $request,Tag $tag)
     {
         $tag->name = $request->name;
         $tag->save();

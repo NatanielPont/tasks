@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class TasksController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        return Task::orderBy('created_at')->get();
+    }
     //parametres=dependencia
     public function show(Request $request, Task $task)
     {
@@ -41,10 +46,9 @@ class TasksController extends Controller
         return $task;
 
     }
-    public function index()
-    {
 
-    }public function edit(Request $request,Task $task)
+
+    public function edit(Request $request,Task $task)
     {
         $task->name = $request->name;
         $task->save();
