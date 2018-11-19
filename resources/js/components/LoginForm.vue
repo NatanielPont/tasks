@@ -14,7 +14,9 @@
                     :error-messages="emailErrors"
                     @input="$v.dataEmail.$touch()"
                     @blur="$v.dataEmail.$touch()"
-            ></v-text-field>
+            >
+
+            </v-text-field>
             <v-text-field id="password"
                           prepend-icon="lock"
                           name="password"
@@ -28,14 +30,13 @@
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit" :disabled="$v.$invalid">Login</v-btn>
+
+            <v-btn color="primary" type="submit"  :disabled="$v.$invalid">Login</v-btn>
         </v-card-actions>
     </v-form>
 </template>
 
 <script>
-// import vuelidate from 'vuelidate'
-// validationMixin = vuelidate.validationMixin
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength } from 'vuelidate/lib/validators'
 export default {

@@ -18,15 +18,30 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//Route::post('/login_alt','Auth\LoginAltController@login');
 
-Route::get('/v1/tasks','Api\TasksController@index'); //browser
+Route::middleware('auth:api')->group(function() {
+//    Auth::logout();
 
-Route::get('/v1/tasks/{task}','Api\TasksController@show'); //read
-Route::delete('/v1/tasks/{task}','Api\TasksController@destroy'); //delete
-Route::post('/v1/tasks','Api\TasksController@store'); //create
-Route::put('/v1/tasks/{task}','Api\TasksController@edit'); //edit
-Route::get('/v1/tags','Api\TagsController@show');
-Route::post('/v1/tags','Api\TagsController@store');
-Route::delete('/v1/tags/{tag}','Api\TagsController@destroy');
-Route::put('/v1/tags/{tag}','Api\TagsController@update');
+
+    Route::get('/v1/tasks','Api\TasksController@index'); //browser
+
+    Route::get('/v1/tasks/{task}','Api\TasksController@show'); //read
+    Route::delete('/v1/tasks/{task}','Api\TasksController@destroy'); //delete
+    Route::post('/v1/tasks','Api\TasksController@store'); //create
+    Route::put('/v1/tasks/{task}','Api\TasksController@edit'); //edit
+
+    Route::post('/v1/tags','Api\TagsController@store');
+    Route::get('/v1/tags','Api\TagsController@index');
+    Route::get('/v1/tags/{tag}','Api\TagsController@show');
+    Route::delete('/v1/tags/{tag}','Api\TagsController@destroy');
+    Route::put('/v1/tags/{tag}','Api\TagsController@update');
+
+    Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');
+    Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');
+});
+
 

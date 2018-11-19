@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class LoginControllerTest extends TestCase
+class RegisterControllerTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -30,7 +30,8 @@ class LoginControllerTest extends TestCase
         //2) user create
         //3)login
         //4)Redirect a home
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
+        initialize_roles();
         //prepare
         $this->assertNull(Auth::user());
         $response=$this->post('/register',$user=[

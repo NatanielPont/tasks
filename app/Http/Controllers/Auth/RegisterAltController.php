@@ -17,6 +17,7 @@ class RegisterAltController extends Controller
         $request->password;
         //buscar en bd l'susuari i comprovar password
         $user=User::where('email',$request->email)->first();
+//        dd('hola');
         if (!$user) {
             factory(User::class)->create([
                 'email' => $request->email,
