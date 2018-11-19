@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ShowTasks;
 use App\Http\Requests\StoreTasks;
 use App\Task;
 use Illuminate\Http\Request;
@@ -14,15 +15,19 @@ class TasksController extends Controller
     {
         return Task::orderBy('created_at')->get();
     }
-    //parametres=dependencia
-    public function show(Request $request, Task $task)
+//    //parametres=dependencia
+//    public function show(Request $request, Task $task)
+//    {
+////        dd($request->task);
+//        $task=Task::orderBy('created_at','desc')->get();
+//
+//        return $task;
+//
+//
+//    }
+    public function show(ShowTasks $request, Task $task) // Route Model Binding
     {
-//        dd($request->task);
-        $task=Task::orderBy('created_at','desc')->get();
-
-        return $task;
-        
-        
+        return $task->map();
     }
 
     public function destroy(Request $request, Task $task)

@@ -27,7 +27,9 @@ class TasksControllerTest extends TestCase
     public function can_show_a_task()
     {
         $this->withoutExceptionHandling();
-        $this->login('api');
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.show');
         //http://tasks.test/api/v1
         //Http-> get, post,put, delete
 
@@ -37,12 +39,71 @@ class TasksControllerTest extends TestCase
 //        dd(json_decode($response->getContent()));
         $result=json_decode($response->getContent());
         $response->assertSuccessful();
+//        dd($result);
         $this->assertEquals($task->name,$result->name);
         $this->assertEquals($task->completed,(boolean)$result->completed);
 //        dd($result->name);
 //        dd($response->getContent());
         $response->assertSuccessful();
     }
+    /**
+     * @test
+     */
+    public function regular_user_cannot_show_a_task()
+    {
+        $this->login('api');
+        $task = factory(Task::class)->create();
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        $response->assertStatus(403);
+    }
+
+
+    /**
+     * @test
+     */
+    public function superadmin_can_show_a_task()
+    {
+        $user = $this->login('api');
+        $user->admin = true;
+        $user->save();
+        $task = factory(Task::class)->create();
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals($task->name, $result->name);
+        $this->assertEquals($task->completed, (boolean) $result->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function task_manager_can_show_a_task()
+    {
+        $this->withoutExceptionHandling();
+
+        initialize_roles();
+        $user=$this->login('api');
+        $user->assignRole('TaskManager');
+        //add role taskmanager to user
+        //http://tasks.test/api/v1
+        //Http-> get, post,put, delete
+
+        $task=factory(Task::class)->create(['name'=>'Comprar pa']);
+
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
+        $result = json_decode($response->getContent());
+
+        $response->assertSuccessful();
+//        dd($result);
+        $this->assertEquals($task->name,$result->name);
+        $this->assertEquals($task->completed,(boolean)$result->completed);
+//        dd($result->name);
+//        dd($response->getContent());
+        $response->assertSuccessful();
+    }
+
+
+
 
     /**
      * @test

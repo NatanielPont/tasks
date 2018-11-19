@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Task;
 
 //sufix as + alias;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksControllerTest extends TestCase
 {
     //refresh database
-    use RefreshDatabase;
+    use RefreshDatabase,CanLogin;
 
 
     /**
@@ -48,6 +49,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
+        $this->login('web');
         $this->withoutExceptionHandling();
         $response=$this->post('/tasks',[
             'name'=>'Comprar llet',
