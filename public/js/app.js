@@ -71666,6 +71666,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tasques',
@@ -71678,6 +71680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       deleteDialog: false,
       createDialog: false,
       editDialog: false,
+      taskBeingRemoved: null,
       snackbar: true,
       user: '',
       usersold: ['Sergi Tur', 'Pepe Pardo', 'Maria Delahoz'],
@@ -71688,6 +71691,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         rowsPerPage: 25
       },
       loading: false,
+      creating: false,
+      editing: false,
+      removing: false,
       dataTasks: this.tasks,
       headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'User', value: 'user_id' }, { text: 'Completat', value: 'completed' }, { text: 'Creat', value: 'created_at' }, { text: 'Modificat', value: 'updated_at' }, { text: 'Accions', sortable: false }]
     };
@@ -71712,10 +71718,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     showDestroy: function showDestroy(task) {
       this.deleteDialog = true;
+      this.taskBeingRemoved = task;
     },
-    destroy: function destroy(task) {
-      this.deleteDialog = false;
-      console.log('TODO DELETE TASK ' + task.id);
+    removeTask: function removeTask(task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+    },
+    destroy: function destroy() {
+      var _this = this;
+
+      this.removing = true;
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(function () {
+        // this.refresh() // Problema -> rendiment
+        _this.removeTask(_this.taskBeingRemoved);
+        _this.deleteDialog = false;
+        _this.taskBeingRemoved = null;
+        // TODO showSnackbar
+        _this.removing = false;
+      }).catch(function (error) {
+        console.log(error);
+        // TODO showSnackbar
+        _this.removing = false;
+      });
     },
     showCreate: function showCreate() {
       this.createDialog = true;
@@ -71730,7 +71753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log('TODO SHOW TASK ' + task.id);
     },
     refresh: function refresh() {
-      var _this = this;
+      var _this2 = this;
 
       this.loading = true;
       // setTimeout(() => { this.loading = false }, 5000)
@@ -71738,12 +71761,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // window.axios.get('/api/v1/tasks').then().catch()
       // USERS TASKS O TOTES LES TASQUES?
       window.axios.get('/api/v1/user/tasks').then(function (response) {
+        console.log(response.data);
         // SHOW SNACKBAR MISSATGE OK: 'Les tasques s'han actualitzat correctament
-        _this.dataTasks = response.data;
-        _this.loading = false;
+        _this2.dataTasks = response.data;
+        _this2.loading = false;
       }).catch(function (error) {
         console.log(error);
-        _this.loading = false;
+        _this2.loading = false;
         // SHOW SNACKBAR ERROR TODO
       });
     }
@@ -71811,7 +71835,12 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "error darken-1", flat: "" },
+                      attrs: {
+                        color: "error darken-1",
+                        flat: "",
+                        loading: _vm.removing,
+                        disabled: _vm.removing
+                      },
                       on: { click: _vm.destroy }
                     },
                     [
