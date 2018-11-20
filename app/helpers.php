@@ -253,6 +253,14 @@ if (!function_exists('sample_users')){
 
 }
 
+if (!function_exists('map_collection')){
+    function map_collection($collection){
+
+    }
+
+}
+
+
 
 
 
