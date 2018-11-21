@@ -35,6 +35,7 @@ Route::get('/about',function (){
 Route::view('/contact', 'contact');
 
 Route::get('/tasks_vue','TasksVueController@index');
+Route::get('/tasks_tailwind','TasksTailwindController@index');
 Route::get('/tasques','TasquesController@index');
 Route::get('/home', 'TasksVueController@index');
 // USER TASKS
