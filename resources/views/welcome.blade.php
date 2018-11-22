@@ -35,7 +35,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/pre-made-themes"
+                                href="/home"
                         >
                             Home
                         </v-btn>

@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Complete
     Route::post('/completed_task/{task}', 'CompletedTasksController@store');
-    Route::post('/completed_task/{task}', 'CompletedTasksController@uncomplete');
+//    Route::post('/uncompleted_task/{task}', 'CompletedTasksController@uncomplete');
     //Uncomplete
     Route::delete('/completed_task/{task}', 'CompletedTasksController@destroy');
 

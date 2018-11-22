@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class RegisterControllerTest extends TestCase
+class RegisterAltControllerTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -23,37 +23,33 @@ class RegisterControllerTest extends TestCase
      */
     public function can_register_a_user()
     {
-        //afegir register_alt a fitxer routers/web.php
-        //afegir Controller registerAltController i metode store
-        //dins store
-        //1)objecte request per validacio
-        //2) user create
-        //3)login
-        //4)Redirect a home
         $this->withoutExceptionHandling();
-        initialize_roles();
-        //prepare
+        // Afegir register_alt a fitxer routers/web.php
+        // Afegir Controller RegisterAltController i metode store
+        // Dins del store:
+        // 1) Objecte Request per la validació
+        // 2) User::Create
+        // 3) Login
+        // 4) Redirect a /home
         $this->assertNull(Auth::user());
-        $response=$this->post('/register',$user=[
-            'name'=> 'Lalo',
-            'email'=> 'lalo@gmail.com',
-            'password'=>'secret',
-            'password_confirmation'=> 'secret'
+        // Execution
+        $response = $this->post('/register_alt', $user = [
+            'name' => 'Pepe Pardo Jeans',
+            'email' => 'pepepardo@jeans.com',
+            'password' => 'secret',
+            'password_confirmation' => 'secret'
         ]);
-
         $response->assertStatus(302);
         $response->assertRedirect('/home');
+//        dd(Auth::user());
         $this->assertNotNull(Auth::user());
+        // Comprovat s'ha creat el usuari
         $this->assertEquals($user['email'],Auth::user()->email);
         $this->assertEquals($user['name'],Auth::user()->name);
-//        dd(Auth::user()->password);
         $this->assertTrue(Hash::check($user['password'],Auth::user()->password));
-
-        //assert
+//        $this->assertEquals();
 
 
     }
-
-
 
 }

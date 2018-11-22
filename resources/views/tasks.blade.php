@@ -32,7 +32,8 @@
                     </form>
                     <form action="completed_task/{{ $task->id }}" method="POST">
                         @csrf
-                        {{ method_field('POST') }}
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn color="warning">
                             <button>Uncomplete</button>
                         </v-btn>
