@@ -14,31 +14,36 @@
 Auth::routes();
 
 //TODO
-Route::post('/login_alt','Auth\LoginAltController@login');
-Route::post('/register_alt','Auth\RegisterAltController@register');
+Route::post('/login_alt', 'Auth\LoginAltController@login');
+Route::post('/register_alt', 'Auth\RegisterAltController@register');
 
-Route::middleware(['auth'])->group(function (){
-Route::get('/tasks','TasksController@index');
-Route::post('/tasks','TasksController@store');
-Route::delete('/tasks/{id}','TasksController@destroy');
-Route::put('/tasks/{id}','TasksController@update');
-Route::get('/task_edit/{id}','TasksController@edit');
-
-Route::post('/completed_task','CompletedTaskController@store');
-Route::delete('/completed_task','CompletedTaskController@destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tasks', 'TasksController@index');
+    Route::post('/tasks', 'TasksController@store');
+    Route::delete('/tasks/{id}', 'TasksController@destroy');
+    Route::put('/tasks/{id}', 'TasksController@update');
+    Route::get('/task_edit/{id}', 'TasksController@edit');
 
 
-Route::get('/about',function (){
-    return view('about');
-});
+    //Complete
+    Route::post('/completed_task/{task}', 'CompletedTasksController@store');
+//    Route::post('/uncompleted_task/{task}', 'CompletedTasksController@uncomplete');
+    //Uncomplete
+    Route::delete('/completed_task/{task}', 'CompletedTasksController@destroy');
 
-Route::view('/contact', 'contact');
 
-Route::get('/tasks_vue','TasksVueController@index');
-Route::get('/tasques','TasquesController@index');
-Route::get('/home', 'TasksVueController@index');
+    Route::get('/about', function () {
+        return view('about');
+    });
+
+    Route::view('/contact', 'contact');
+
+    Route::get('/tasks_vue', 'TasksVueController@index');
+    Route::get('/tasks_tailwind', 'TasksTailwindController@index');
+    Route::get('/tasques', 'TasquesController@index');
+    Route::get('/home', 'TasksVueController@index');
 // USER TASKS
-    Route::get('/user/tasks','LoggedUserTasksController@index');
+    Route::get('/user/tasks', 'LoggedUserTasksController@index');
     Route::impersonate();
 
 });
@@ -47,7 +52,6 @@ Route::get('/', function () {
 });
 //TDD-> test driven development
 //controlador tasques
-
 
 
 //index -> list

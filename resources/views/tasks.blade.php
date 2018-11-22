@@ -30,13 +30,20 @@
                             <button>Eliminar</button>
                         </v-btn>
                     </form>
+                    <form action="completed_task/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="warning">
+                            <button>Uncomplete</button>
+                        </v-btn>
+                    </form>
 
                 @else
                     {{ $task->name }}
-
-                    <form action="" method="POST">
+                    <form action="completed_task/{{ $task->id }}" method="POST">
                         @csrf
-                        {{ method_field('PUT') }}
+                        {{ method_field('POST') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn color="warning">
                             <button>Completar</button>

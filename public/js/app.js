@@ -70407,7 +70407,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       drawer: null,
-      items: [{ icon: 'home', text: 'Home', url: '/' }, { icon: 'content_copy', text: 'Tasks', url: '/tasks' }, { icon: 'account_circle', text: 'Contact', url: '/contact' }, { icon: 'donut_large', text: 'About', url: '/about' }, { icon: 'history', text: 'Tasks Vue', url: '/tasks_vue' }, { icon: 'build', text: 'Tasques', url: '/tasques' }, { icon: 'settings', text: 'Settings' }, { icon: 'chat_bubble', text: 'Send feedback' }, { icon: 'help', text: 'Help' }, { icon: 'phonelink', text: 'App downloads' }, { icon: 'keyboard', text: 'Go to the old version' }]
+      drawerRight: null,
+      items: [{ icon: 'home', text: 'Home', url: '/' }, { icon: 'content_copy', text: 'Tasks', url: '/tasks' }, { icon: 'account_circle', text: 'Contact', url: '/contact' }, { icon: 'donut_large', text: 'About', url: '/about' }, { icon: 'history', text: 'Tasks Vue', url: '/tasks_vue' }, { icon: 'history', text: 'Tasks Tailwind', url: '/tasks_tailwind' }, { icon: 'build', text: 'Tasques', url: '/tasques' }, { icon: 'settings', text: 'Settings' },
+      // { icon: 'chat_bubble', text: 'Send feedback' },
+      { icon: 'help', text: 'Help' }]
     };
   }
 });
@@ -70936,7 +70939,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var filters = {
@@ -71004,49 +71019,29 @@ var filters = {
     add: function add() {
       var _this = this;
 
-      window.axios.post('/api/v1/tasks', { name: this.newTask }).then(function (response) {
-        // if (this.newTask != null || this.newTask !== '') {
-        console.log('RESPONSE');
-        console.log(response.data);
-        var task = { id: response.data.id, name: _this.newTask, completed: false };
-        console.log('task');
-        console.log(task);
+      if (this.newTask === '') return;
+      window.axios.post('/api/v1/tasks', {
+        name: this.newTask
+      }).then(function (response) {
         _this.dataTasks.splice(0, 0, { id: response.data.id, name: _this.newTask, completed: false });
-        _this.dataTasks = '';
-        // }
-        // console.log(response);
-
-        // console.log(response.data);
+        _this.newTask = '';
       }).catch(function (error) {
         console.log(error);
       });
-      this.newTask = '';
     },
     remove: function remove(task) {
-      var _this2 = this;
-
-      window.axios.delete('/api/v1/tasks/{task}').then(function (response) {
-        console.log(response);
-
-        console.log(response.data);
-        _this2.dataTasks.splice(_this2.dataTasks.indexOf(task), task.id);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    complet: function complet() {}
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
+    }
   },
   created: function created() {
-    var _this3 = this;
+    var _this2 = this;
 
     if (this.tasks.length === 0) {
-      // console.log('entra en if')
       window.axios.get('/api/v1/tasks').then(function (response) {
-        _this3.dataTasks = response.data;
+        console.log(response.data);
+        _this2.dataTasks = response.data;
       }).catch(function (error) {
-        // console.log('Error EXECUTED!')
-        // console.log(error.response.data)
-        _this3.errorMessage = error.response.data;
+        _this2.errorMessage = error.response.data;
       });
     }
   }
@@ -71121,36 +71116,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'EditableText',
-    data: function data() {
-        return {
-            editing: false,
-            currentText: this.text
-        };
-    },
+  name: 'EditableText',
+  data: function data() {
+    return {
+      editing: false,
+      currentText: this.text
+    };
+  },
 
-    props: {
-        'text': {
-            type: String,
-            required: true
-        }
-    },
-    watch: {
-        text: function text(newText) {
-            this.currentText = this.text;
-        }
-    },
-    // props: ['text'],
-    methods: {
-        edit: function edit() {
-            this.editing = false;
-            //INFORMAR AL PARE
-            this.$emit('edited', this.currentText);
-        }
-    },
-    created: function created() {
-        // console.log('Component EditableText ha estat creat');
+  props: {
+    'text': {
+      type: String,
+      required: true
     }
+  },
+  watch: {
+    text: function text(newText) {
+      this.currentText = this.text;
+    }
+  },
+  // props: ['text'],
+  methods: {
+    edit: function edit() {
+      this.editing = false;
+      // INFORMAR AL PARE
+      this.$emit('edited', this.currentText);
+    }
+  },
+  created: function created() {
+    // console.log('Component EditableText ha estat creat');
+  }
 });
 
 /***/ }),
@@ -71247,140 +71242,246 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tasks", attrs: { id: "tasks" } }, [
-    _c("h1", [_vm._v("Tasques (" + _vm._s(_vm.total) + "):")]),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.newTask,
-          expression: "newTask"
-        }
-      ],
-      attrs: { type: "text", name: "name" },
-      domProps: { value: _vm.newTask },
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
-          }
-          return _vm.add($event)
-        },
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.newTask = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _vm.errorMessage
-      ? _c("div", [
-          _vm._v(
-            "\n        Ha succeit un error: " +
-              _vm._s(_vm.errorMessage) +
-              "\n\n    "
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("button", { attrs: { id: "button_add_task" }, on: { click: _vm.add } }, [
-      _vm._v("Afegir")
-    ]),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.complet } }, [_vm._v("Completar")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.filteredTasks, function(task) {
-        return _c("li", { key: task.id }, [
+  return _c(
+    "v-container",
+    {
+      staticClass: "tasks",
+      attrs: { "grid-list-md": "", "text-xs-center": "", id: "tasks" }
+    },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        [
           _c(
-            "span",
-            {
-              class: { strike: task.completed },
-              attrs: { id: "'task'+task.id" }
-            },
+            "v-flex",
+            { attrs: { xs12: "" } },
             [
-              _c("editable-text", {
-                attrs: { text: task.name },
-                on: {
-                  edited: function($event) {
-                    _vm.editName(task, $event)
-                  }
-                }
-              })
+              _c(
+                "v-card",
+                [
+                  _c(
+                    "v-card-title",
+                    { attrs: { dark: "", color: "primary" } },
+                    [
+                      _c("span", { staticClass: "title" }, [
+                        _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    { staticClass: "px-0" },
+                    [
+                      _c(
+                        "form",
+                        [
+                          _c("v-text-field", {
+                            attrs: { type: "text", name: "name", required: "" },
+                            on: {
+                              keyup: function($event) {
+                                if (
+                                  !("button" in $event) &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.add($event)
+                              }
+                            },
+                            model: {
+                              value: _vm.newTask,
+                              callback: function($$v) {
+                                _vm.newTask = $$v
+                              },
+                              expression: "newTask"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.newTask,
+                                expression: "newTask"
+                              }
+                            ],
+                            attrs: { type: "text", name: "name", required: "" },
+                            domProps: { value: _vm.newTask },
+                            on: {
+                              keyup: function($event) {
+                                if (
+                                  !("button" in $event) &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.add($event)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.newTask = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { id: "button_add_task" },
+                              on: { click: _vm.add }
+                            },
+                            [_vm._v("Afegir")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.errorMessage
+                        ? _c("div", [
+                            _vm._v(
+                              "\n                        Ha succeit un error: " +
+                                _vm._s(_vm.errorMessage) +
+                                "\n                    "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "v-list",
+                        { attrs: { dense: "" } },
+                        _vm._l(_vm.filteredTasks, function(task) {
+                          return _c(
+                            "v-list-tile",
+                            { key: task.id },
+                            [
+                              _c(
+                                "v-list-tile-content",
+                                [
+                                  _c(
+                                    "v-list-tile-title",
+                                    [
+                                      _c("span", {
+                                        class: { strike: task.completed },
+                                        attrs: { id: "task" + task.id }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("editable-text", {
+                                        attrs: { text: task.name },
+                                        on: {
+                                          edited: function($event) {
+                                            _vm.editName(task, $event)
+                                          }
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        })
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.total > 0,
+                              expression: "total > 0"
+                            }
+                          ],
+                          attrs: { id: "filters" }
+                        },
+                        [
+                          _c("h3", [_vm._v("Filtros:")]),
+                          _vm._v(
+                            "\n    Active filter: " +
+                              _vm._s(_vm.filter) +
+                              "\n    "
+                          ),
+                          _c("ul", [
+                            _c("li", [
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.setFilter("all")
+                                    }
+                                  }
+                                },
+                                [_vm._v("Totes")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.setFilter("completed")
+                                    }
+                                  }
+                                },
+                                [_vm._v("Completades")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.setFilter("active")
+                                    }
+                                  }
+                                },
+                                [_vm._v("Pendents")]
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
-          ),
-          _vm._v("\n             \n            "),
-          _c(
-            "span",
-            {
-              attrs: { id: "delete_task" + task.id },
-              on: {
-                click: function($event) {
-                  _vm.remove(task)
-                }
-              }
-            },
-            [_vm._v("×")]
           )
-        ])
-      })
-    ),
-    _vm._v(" "),
-    _c("h3", [_vm._v("Filtres:")]),
-    _vm._v("\n    Activa filter: " + _vm._s(_vm.filter) + "\n    "),
-    _c("ul", [
-      _c("li", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.setFilter("all")
-              }
-            }
-          },
-          [_vm._v("Totes")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.setFilter("completed")
-              }
-            }
-          },
-          [_vm._v("Completades")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.setFilter("active")
-              }
-            }
-          },
-          [_vm._v("Pendents")]
-        )
-      ])
-    ])
-  ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -71665,14 +71766,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Tasques',
   data: function data() {
     return {
+      snackbarMessage: 'Prova',
+      snackbarTimeout: 3000,
+      snackbarColor: 'success',
+      snackbar: false,
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -71681,7 +71783,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       createDialog: false,
       editDialog: false,
       taskBeingRemoved: null,
-      snackbar: true,
       user: '',
       usersold: ['Sergi Tur', 'Pepe Pardo', 'Maria Delahoz'],
       filter: 'Totes',
@@ -71732,14 +71833,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.removeTask(_this.taskBeingRemoved);
         _this.deleteDialog = false;
         _this.taskBeingRemoved = null;
-        // TODO showSnackbar
+        _this.showMessage("S'ha esborrat correctament la tasca");
         _this.removing = false;
       }).catch(function (error) {
-        console.log(error);
-        // TODO showSnackbar
+        _this.showError(error);
         _this.removing = false;
       });
     },
+
+    // SNACKBAR
+    showMessage: function showMessage(message) {
+      this.snackbarMessage = message;
+      this.snackbarColor = 'success';
+      this.snackbar = true;
+    },
+    showError: function showError(error) {
+      this.snackbarMessage = error.message;
+      this.snackbarColor = 'error';
+      this.snackbar = true;
+    },
+
+    // SNACKBAR END
     showCreate: function showCreate() {
       this.createDialog = true;
     },
@@ -72077,7 +72191,7 @@ var render = function() {
       _c(
         "v-snackbar",
         {
-          attrs: { timeout: 3000, color: "success" },
+          attrs: { timeout: _vm.snackbarTimeout, color: _vm.snackbarColor },
           model: {
             value: _vm.snackbar,
             callback: function($$v) {
@@ -72087,7 +72201,7 @@ var render = function() {
           }
         },
         [
-          _vm._v("\n        Això és un snackbar\n        "),
+          _vm._v("\n        " + _vm._s(_vm.snackbarMessage) + "\n        "),
           _c(
             "v-btn",
             {
@@ -72296,7 +72410,11 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("td", {
-                          domProps: { textContent: _vm._s(task.completed) }
+                          domProps: {
+                            textContent: _vm._s(
+                              task.completed ? "Completada" : "Pendent"
+                            )
+                          }
                         }),
                         _vm._v(" "),
                         _c("td", {
@@ -72310,25 +72428,6 @@ var render = function() {
                         _c(
                           "td",
                           [
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: {
-                                  icon: "",
-                                  color: "primary",
-                                  flat: "",
-                                  title: "Mostrar snackbar"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.snackbar = true
-                                  }
-                                }
-                              },
-                              [_c("v-icon", [_vm._v("info")])],
-                              1
-                            ),
-                            _vm._v(" "),
                             _c(
                               "v-btn",
                               {

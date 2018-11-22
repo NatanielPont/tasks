@@ -40,19 +40,17 @@ class TasksController extends Controller
 
     public function update(Request $request)
     {
+//        dd('hola');
+//        abort(302);
 //        dd($request->id);
-
-        //models-eloquent
-        //libreria laravel to work with queryes
-        //ORM->object relational model (Hibernate Java)
+        // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
 //        dd(Task::find($request->id));
-//        if (!Task::find($request->id)) return response(404,'No he trobat res');
+//        if (!Task::find($request->id)) return response(404,'No he trobat');
         $task = Task::findOrFail($request->id);
-        $task->name=$request->name;
-        $task->completed=true;
+        $task->name = $request->name;
+        $task->completed = $request->completed;
         $task->save();
-        return $task;
-
+        return redirect('/tasks');
     }
 
     public function edit(Request $request)

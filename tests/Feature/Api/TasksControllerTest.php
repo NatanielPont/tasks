@@ -145,14 +145,15 @@ class TasksControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         $this->login('api');
         create_example_tasks();
         $response = $this->json('GET','/api/v1/tasks');
+//        dd($response);
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertCount(3,$result);
-        $this->assertEquals('Comprar pa', $result[0]->name);
+        $this->assertEquals('comprar pa', $result[0]->name);
         $this->assertFalse((boolean)$result[0]->completed);
         $this->assertEquals('comprar llet', $result[1]->name);
         $this->assertFalse((boolean) $result[1]->completed);
@@ -166,32 +167,20 @@ class TasksControllerTest extends TestCase
     public function can_edit_task()
     {
         $this->login('api');
-        $this->withoutExceptionHandling();
-        $task=factory(Task::class)->create([ 'name'=>'prsdfgsd',
-            'completed'=> false]);
-
-        $response=$this->put('/api/v1/tasks/' . $task->id,$newTask=[
-            'name'=>'Comprar pa',
-            'completed'=> true
+        $oldTask = factory(Task::class)->create([
+            'name' => 'Comprar llet'
         ]);
-        $result=json_decode($response->getContent());
+        // 2
+        $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
+            'name' => 'Comprar pa'
+        ]);
+        $result = json_decode($response->getContent());
         $response->assertSuccessful();
-//        $response=$this->put('/api/v1/tasks/'.$task->id,$newTask=[
-//            'name'=>'Comprar pa',
-//            'completed'=> true
-//        ]);
-        $task=$task->fresh();
-        $this->assertEquals($result->name,'Comprar pa');
-        $this->assertEquals($result->completed,true);
-
-//        $response->assertSuccessful();
-//        $task->fresh();
-//        $this->assertEquals($result->name,'Comprar pa');
-//        $this->assertEquals($result->completed,true);
-
-
-
-
+        $newTask = $oldTask->refresh();
+        $this->assertNotNull($newTask);
+        $this->assertEquals('Comprar pa',$result->name);
+//        dd($newTask);
+        $this->assertFalse((boolean) $newTask->completed);
     }
 
 
@@ -201,11 +190,11 @@ class TasksControllerTest extends TestCase
     public function cannot_create_tasks_without_name()
     {
 //        $this->withoutExceptionHandling();
-        $response=$this->post('/api/v1/tasks/',[
-            'name'=>''
+        $this->login('api');
+        $oldTask = factory(Task::class)->create();
+        $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
+            'name' => ''
         ]);
-        $result=json_decode($response->getContent());
-        //422, codi de fets invalids
         $response->assertStatus(422);
 
 
