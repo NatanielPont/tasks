@@ -24,15 +24,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::post('/login_alt','Auth\LoginAltController@login');
 
 Route::middleware('auth:api')->group(function() {
-//    Auth::logout();
-
 
     Route::get('/v1/tasks','Api\TasksController@index'); //browser
 
     Route::get('/v1/tasks/{task}','Api\TasksController@show'); //read
     Route::delete('/v1/tasks/{task}','Api\TasksController@destroy'); //delete
     Route::post('/v1/tasks','Api\TasksController@store'); //create
-    Route::put('/v1/tasks/{task}','Api\TasksController@edit'); //edit
+    Route::put('/v1/tasks/{task}','Api\TasksController@update');         // EDIT
+    // Completed tasks -> Estats
+    Route::delete('/v1/completed_task/{task}','Api\CompletedTasksController@destroy');
+    Route::post('/v1/completed_task/{task}','Api\CompletedTasksController@store');
 
     Route::post('/v1/tags','Api\TagsController@store');
     Route::get('/v1/tags','Api\TagsController@index');

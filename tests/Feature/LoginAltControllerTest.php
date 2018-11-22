@@ -25,14 +25,13 @@ class LoginAltControllerTest extends TestCase
         $this->withoutExceptionHandling();
         //
         $user=factory(User::class)->create([
-            'email'=>'provaName@gmail.com'
-//            'password'=>'secret'
+            'email'=>'provaName@gmail.com',
         ]);
         $this->assertNull(Auth::user());
         //
         $response=$this->post('/login_alt',['email'=>$user->email,
             'password'=>'secret']);
-        dd("hola");
+//        dd("hola");
         $response->assertStatus(302);
         $response->assertRedirect('/home');
         $this->assertNotNull(Auth::user());
@@ -47,23 +46,38 @@ class LoginAltControllerTest extends TestCase
      */
     public function cannot_login_an_user_with_incorrect_password()
     {
-        $this->withoutExceptionHandling();
-        //
-        $user=factory(User::class)->create([
-            'email'=>'provaName@gmail.com'
+        $user = factory(User::class)->create([
+            'email' => 'prova@gmail.com'
         ]);
         $this->assertNull(Auth::user());
-
-        //
-        $response=$this->post('/login_alt',['email'=>$user->email,
-            'password'=>'secret']);
+        $response = $this->post('/login_alt',[
+            'email' =>$user->email, //$user->email
+            'password' => 'asdjaskdlasdasd0798asdjh'
+        ]);
         $response->assertStatus(302);
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/');
         $this->assertNull(Auth::user());
-
-        //
-
-
+    }
+    /**
+     * @test
+     */
+    public function cannot_login_an_user_with_incorrect_user()
+    {
+//        $this->withoutExceptionHandling();
+        //1
+        $user = factory(User::class)->create([
+            'email' => 'prova@gmail.com'
+        ]);
+        $this->assertNull(Auth::user());
+        // 2
+        $response = $this->post('/login_alt',[
+            'email' => 'provaasdasdasd@gmail.com', //$user->email
+            'password' => 'secret'
+        ]);
+//        dd($response);
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+        $this->assertNull(Auth::user());
     }
 
 }
