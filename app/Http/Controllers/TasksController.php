@@ -40,7 +40,8 @@ class TasksController extends Controller
 
     public function update(Request $request)
     {
-//        abort(404);
+//        dd('hola');
+//        abort(302);
 //        dd($request->id);
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
 //        dd(Task::find($request->id));
