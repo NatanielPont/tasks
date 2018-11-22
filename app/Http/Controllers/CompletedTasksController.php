@@ -13,6 +13,12 @@ class CompletedTasksController extends Controller
         $task->save();
         return redirect('/tasks');
     }
+    public function uncomplete(Request $request, Task $task)
+    {
+        $task->completed=false;
+        $task->save();
+        return redirect('/tasks');
+    }
     public function destroy(Request $request, Task $task)
     {
         $task->completed=false;

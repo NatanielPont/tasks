@@ -30,6 +30,13 @@
                             <button>Eliminar</button>
                         </v-btn>
                     </form>
+                    <form action="completed_task/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('POST') }}
+                        <v-btn color="warning">
+                            <button>Uncomplete</button>
+                        </v-btn>
+                    </form>
 
                 @else
                     {{ $task->name }}

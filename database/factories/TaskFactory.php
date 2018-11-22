@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 $factory->define(Task::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'completed'=>$faker->boolean,
+        'completed'=>false,
         'user_id'=>'1',
         'description'=>$faker->paragraph(1),
 
