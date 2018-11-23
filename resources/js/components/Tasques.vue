@@ -163,7 +163,7 @@
                                    @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn icon color="error" flat title="Eliminar la tasca"
+                            <v-btn v-if="$can(tasks.destroy)" icon color="error" flat title="Eliminar la tasca"
                                    @click="showDestroy(task)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
@@ -345,6 +345,10 @@ export default {
         this.loading = false
         // SHOW SNACKBAR ERROR TODO
       })
+    },
+    created () {
+      console.log('Usuari logat')
+      console.log(window.laravel_user)
     }
   }
 }
