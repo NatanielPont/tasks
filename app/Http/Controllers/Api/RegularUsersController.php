@@ -11,19 +11,9 @@ use App\Http\Controllers\Controller;
 
 class RegularUsersController extends Controller
 {
-
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     public function index(Request $request)
     {
         // Scopes
         return map_collection(User::regular()->get());
     }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }

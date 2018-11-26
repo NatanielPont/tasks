@@ -63,22 +63,16 @@ class User extends Authenticatable
     {
         return $this->admin;
     }
-    public function map()
+       public function map()
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'gravatar' => $this->gravatar,
-<<<<<<< HEAD
-            'admin'=>(boolean)$this->admin,
-            'roles'=>$this->roles()->pluck('name')->unique()->toArray(),
-            'permissions'=>$this->getAllPermissions()->pluck('name')->unique()->toArray()
-=======
             'admin' => (boolean) $this->admin,
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray()
->>>>>>> master
         ];
     }
     /**
@@ -98,10 +92,4 @@ class User extends Authenticatable
     {
         return $query->where('admin',true);
     }
-<<<<<<< HEAD
 }
-=======
-
-
-}
->>>>>>> master
