@@ -28,7 +28,7 @@
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn color="warning">
-                            <button>Uncomplete</button>
+                            <button>Descompletar</button>
                         </v-btn>
                     </form>
                     <form action="/tasks/{{ $task->id }}" method="POST">
