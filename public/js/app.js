@@ -70423,6 +70423,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // { icon: 'chat_bubble', text: 'Send feedback' },
       { icon: 'help', text: 'Help' }]
     };
+  },
+
+  methods: {
+    impersonate: function impersonate(user) {
+      console.log('IMPERSONATE');
+      console.log('user:');
+      console.log(user);
+      if (user) {
+        window.location.href = '/impersonate/take/' + user;
+      } else {
+        console.log('CACA');
+      }
+    }
   }
 });
 
