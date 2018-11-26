@@ -291,8 +291,7 @@ if (!function_exists('logged_user')){
         dd(Auth::user());
         return json_encode(optional(Auth::user()->map()));
     }
-
-
+}
 
 
 
