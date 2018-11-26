@@ -23,19 +23,19 @@
                 @if($task->completed)
                     <del>{{ $task->name }}</del>
 
-                    <form action="/tasks/{{ $task->id }}" method="POST">
-                        @csrf
-                        {{ method_field('DELETE') }}
-                        <v-btn color="error">
-                            <button>Eliminar</button>
-                        </v-btn>
-                    </form>
                     <form action="completed_task/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn color="warning">
                             <button>Uncomplete</button>
+                        </v-btn>
+                    </form>
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <v-btn color="error">
+                            <button>Eliminar</button>
                         </v-btn>
                     </form>
 
