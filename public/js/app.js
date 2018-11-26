@@ -26445,7 +26445,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(105);
+module.exports = __webpack_require__(112);
 
 
 /***/ }),
@@ -26476,6 +26476,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_UserList__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_UserList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_UserList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserSelect__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_UserSelect__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__plugins_permissions__ = __webpack_require__(111);
+
+
+
 
 
 
@@ -26489,12 +26497,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuetify___default.a);
+window.Vue.use(__WEBPACK_IMPORTED_MODULE_13__plugins_permissions__["a" /* default */]);
 
 window.Vue.component('example-component', __WEBPACK_IMPORTED_MODULE_6__components_ExampleComponent_vue___default.a);
 window.Vue.component('tasks', __WEBPACK_IMPORTED_MODULE_7__components_Tasks_vue___default.a);
 window.Vue.component('tasques', __WEBPACK_IMPORTED_MODULE_8__components_Tasques_vue___default.a);
 window.Vue.component('login-form', __WEBPACK_IMPORTED_MODULE_9__components_LoginForm_vue___default.a);
 window.Vue.component('register-form', __WEBPACK_IMPORTED_MODULE_10__components_RegisterForm_vue___default.a);
+window.Vue.component('user-list', __WEBPACK_IMPORTED_MODULE_11__components_UserList___default.a);
+window.Vue.component('user-select', __WEBPACK_IMPORTED_MODULE_12__components_UserSelect___default.a);
 
 // eslint-disable-next-line no-unused-vars
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
@@ -70412,6 +70423,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // { icon: 'chat_bubble', text: 'Send feedback' },
       { icon: 'help', text: 'Help' }]
     };
+  },
+
+  methods: {
+    impersonate: function impersonate(user) {
+      console.log('IMPERSONATE');
+      console.log('user:');
+      console.log(user);
+      if (user) {
+        window.location.href = '/impersonate/take/' + user;
+      } else {
+        console.log('CACA');
+      }
+    }
   }
 });
 
@@ -73947,6 +73971,470 @@ if (false) {
 
 /***/ }),
 /* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(106)
+/* template */
+var __vue_template__ = __webpack_require__(107)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/UserList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c9e9bf4", Component.options)
+  } else {
+    hotAPI.reload("data-v-3c9e9bf4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'UserList',
+  data: function data() {
+    return {
+      dataUsers: []
+    };
+  },
+
+  props: {
+    users: {
+      type: Array
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    if (this.users) this.dataUsers = this.users;else {
+      window.axios.get('/api/v1/users').then(function (response) {
+        _this.dataUsers = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        // this.$snackbar.showError(error)
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-list",
+    { attrs: { "two-line": "" } },
+    [
+      _vm._l(_vm.dataUsers, function(user) {
+        return [
+          _c(
+            "v-list-tile",
+            [
+              _c(
+                "v-list-tile-avatar",
+                [
+                  _c("v-avatar", { attrs: { title: user.name } }, [
+                    _c("img", { attrs: { src: user.avatar, alt: "avatar" } })
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-content",
+                [
+                  _c("v-list-tile-title", {
+                    domProps: { textContent: _vm._s(user.name) }
+                  }),
+                  _vm._v(" "),
+                  _c("v-list-tile-sub-title", {
+                    domProps: { textContent: _vm._s(user.email) }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider")
+        ]
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3c9e9bf4", module.exports)
+  }
+}
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(109)
+/* template */
+var __vue_template__ = __webpack_require__(110)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/UserSelect.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-55e6c9d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-55e6c9d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'UserSelect',
+  data: function data() {
+    return {
+      dataUsers: [],
+      selectedUser: null
+    };
+  },
+
+  props: {
+    users: {
+      type: Array
+    },
+    url: {
+      type: String,
+      default: '/api/v1/users'
+    },
+    label: {
+      type: String,
+      default: 'Usuaris'
+    }
+  },
+  watch: {
+    selectedUser: function selectedUser(newValue) {
+      this.$emit('selected', newValue);
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    if (this.users) this.dataUsers = this.users;else {
+      window.axios.get(this.url).then(function (response) {
+        _this.dataUsers = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        // this.$snackbar.showError(error)
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("v-autocomplete", {
+    attrs: {
+      items: _vm.dataUsers,
+      "item-value": "id",
+      clearable: "",
+      label: _vm.label
+    },
+    scopedSlots: _vm._u([
+      {
+        key: "selection",
+        fn: function(data) {
+          return [
+            _c(
+              "v-chip",
+              [
+                _c("v-avatar", { attrs: { title: data.item.name } }, [
+                  _c("img", {
+                    attrs: { src: data.item.gravatar, alt: data.item.name }
+                  })
+                ]),
+                _vm._v("\n            " + _vm._s(data.item.name) + "\n        ")
+              ],
+              1
+            )
+          ]
+        }
+      },
+      {
+        key: "item",
+        fn: function(ref) {
+          var user = ref.item
+          return [
+            _c(
+              "v-list-tile-avatar",
+              [
+                _c("v-avatar", { attrs: { title: user.name } }, [
+                  _c("img", { attrs: { src: user.gravatar, alt: "avatar" } })
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "v-list-tile-content",
+              [
+                _c("v-list-tile-title", {
+                  domProps: { textContent: _vm._s(user.name) }
+                }),
+                _vm._v(" "),
+                _c("v-list-tile-sub-title", {
+                  domProps: { textContent: _vm._s(user.email) }
+                })
+              ],
+              1
+            )
+          ]
+        }
+      }
+    ]),
+    model: {
+      value: _vm.selectedUser,
+      callback: function($$v) {
+        _vm.selectedUser = $$v
+      },
+      expression: "selectedUser"
+    }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-55e6c9d2", module.exports)
+  }
+}
+
+/***/ }),
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var disappear = function disappear(el, modifiers) {
+  var hidden = modifiers && modifiers.hidden;
+  var disabled = modifiers && modifiers.disabled;
+  if (hidden) {
+    el.firstElementChild.style.display = 'none';
+    return true;
+  }
+  if (disabled) {
+    el.firstElementChild.disabled = true;
+    return true;
+  }
+  // el.innerHTML = ''
+  el.remove();
+};
+
+var haveRole = function haveRole(role) {
+  if (role == null) return true;
+  if (window.laravel_user && window.laravel_user.admin) return true;
+  var userRoles = window.laravel_user && window.laravel_user.roles;
+  if (userRoles) {
+    if (userRoles.indexOf(role) === -1) return false;else return true;
+  }
+  return false;
+};
+
+var hasRole = function hasRole(role) {
+  return haveRole(role);
+};
+
+var can = function can(permission) {
+  var resource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+  var user = window.laravel_user;
+  if (user && user.admin) return true;
+  var userPermissions = user && user.permissions;
+
+  if (resource instanceof Object) {
+    if (user.id === resource.user_id) {
+      return true;
+    }
+  }
+  if (userPermissions) {
+    if (userPermissions.indexOf(permission) === -1) return false;
+    return true;
+  } else return false;
+};
+
+var cannot = function cannot(permission) {
+  var resource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+  return !can(permission, resource);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install: function install(Vue, options) {
+    // <delete-task-button v-can:delete="task"></delete-task-icon>
+    // <delete-task-button v-can="delete.task"></delete-task-icon>
+    // <delete-task-button v-can.disabled="delete.task"></delete-task-icon>
+    // <delete-task-button v-can.hidden="delete.task"></delete-task-icon>
+
+    Vue.directive('can', {
+      bind: function bind(el, binding, vnode, oldVnode) {
+        var action = binding.arg;
+        var resource = binding.value;
+        var permission = void 0;
+        if (resource instanceof Object) permission = binding.expression + '.' + action;else {
+          if (binding.value === null) return true;
+          permission = binding.value || binding.expression;
+        }
+        if (!can(permission, resource)) disappear(el, binding.modifiers);
+      }
+    });
+    Vue.directive('role', {
+      bind: function bind(el, binding, vnode, oldVnode) {
+        if (binding.value === null) return true;
+        var role = binding.value || binding.expression;
+        if (!haveRole(role)) disappear(el, binding.modifiers);
+      }
+    });
+    // If authorID id is equal to current userId permission is always granted
+    Vue.prototype.$can = can;
+    Vue.prototype.$cannot = cannot;
+    Vue.prototype.$haveRole = haveRole;
+    Vue.prototype.$hasRole = hasRole;
+  }
+});
+
+/***/ }),
+/* 112 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

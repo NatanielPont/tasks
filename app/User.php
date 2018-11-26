@@ -70,9 +70,15 @@ class User extends Authenticatable
             'name' => $this->name,
             'email' => $this->email,
             'gravatar' => $this->gravatar,
+<<<<<<< HEAD
             'admin'=>(boolean)$this->admin,
             'roles'=>$this->roles()->pluck('name')->unique()->toArray(),
             'permissions'=>$this->getAllPermissions()->pluck('name')->unique()->toArray()
+=======
+            'admin' => (boolean) $this->admin,
+            'roles' => $this->roles()->pluck('name')->unique()->toArray(),
+            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray()
+>>>>>>> master
         ];
     }
     /**
@@ -92,4 +98,10 @@ class User extends Authenticatable
     {
         return $query->where('admin',true);
     }
+<<<<<<< HEAD
 }
+=======
+
+
+}
+>>>>>>> master

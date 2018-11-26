@@ -43,6 +43,10 @@ Route::middleware('auth:api')->group(function() {
 
     Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');
     Route::put('/v1/user/tasks/{task}','Api\LoggedUserTasksController@update');
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     // Users
     Route::get('/v1/users','Api\UsersController@index');
     Route::get('/v1/regular_users','Api\RegularUsersController@index');

@@ -253,6 +253,7 @@ if (!function_exists('sample_users')){
     }
 
 }
+<<<<<<< HEAD
 
 if (!function_exists('map_collection')){
     function map_collection($collection){
@@ -260,8 +261,23 @@ if (!function_exists('map_collection')){
             return $item->map();
         });
 
+=======
+// TODO: Crear múltiples usuaris amb diferents
+// TODO: Com gestionar el superadmin
+if (!function_exists('map_collection')) {
+    function map_collection($collection)
+    {
+        return $collection->map(function ($item) {
+            return $item->map();
+        });
     }
-
+}
+if (!function_exists('logged_user')) {
+    function logged_user()
+    {
+        return json_encode(optional(Auth::user())->map());
+>>>>>>> master
+    }
 }
 if (!function_exists('logged_user')){
     function logged_user(){

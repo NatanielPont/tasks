@@ -9,6 +9,10 @@ const disappear = (el, modifiers) => {
     el.firstElementChild.disabled = true
     return true
   }
+<<<<<<< HEAD
+=======
+  // el.innerHTML = ''
+>>>>>>> master
   el.remove()
 }
 
@@ -29,8 +33,11 @@ const hasRole = (role) => {
 
 const can = (permission, resource = null) => {
   const user = window.laravel_user
+<<<<<<< HEAD
   // console.log('user')
   // console.log(user)
+=======
+>>>>>>> master
   if (user && user.admin) return true
   const userPermissions = user && user.permissions
 
@@ -82,4 +89,8 @@ export default {
     Vue.prototype.$haveRole = haveRole
     Vue.prototype.$hasRole = hasRole
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
