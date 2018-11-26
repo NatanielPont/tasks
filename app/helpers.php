@@ -255,6 +255,7 @@ if (!function_exists('sample_users')){
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 if (!function_exists('map_collection')){
     function map_collection($collection){
@@ -268,6 +269,8 @@ if (!function_exists('map_collection')){
 =======
 
 >>>>>>> master
+=======
+>>>>>>> master
 if (!function_exists('map_collection')) {
     function map_collection($collection)
     {
@@ -276,7 +279,6 @@ if (!function_exists('map_collection')) {
         });
     }
 }
-
 if (!function_exists('logged_user')) {
     function logged_user()
     {
@@ -289,7 +291,6 @@ if (!function_exists('logged_user')){
         dd(Auth::user());
         return json_encode(optional(Auth::user()->map()));
     }
-}
 
 
 
