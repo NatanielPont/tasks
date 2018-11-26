@@ -265,8 +265,7 @@ if (!function_exists('logged_user')) {
     {
         return json_encode(optional(Auth::user())->map());
     }
-
-
+}
 
 
 
