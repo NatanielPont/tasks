@@ -252,8 +252,7 @@ if (!function_exists('sample_users')){
     }
 
 }
-// TODO: Crear múltiples usuaris amb diferents
-// TODO: Com gestionar el superadmin
+
 if (!function_exists('map_collection')) {
     function map_collection($collection)
     {
@@ -262,6 +261,7 @@ if (!function_exists('map_collection')) {
         });
     }
 }
+
 if (!function_exists('logged_user')) {
     function logged_user()
     {
