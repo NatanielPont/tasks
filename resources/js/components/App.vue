@@ -21,6 +21,18 @@ export default {
         // { icon: 'keyboard', text: 'Go to the old version' }
       ]
     }
+  },
+  methods: {
+    impersonate (user) {
+      console.log('IMPERSONATE')
+      console.log('user:')
+      console.log(user)
+      if (user) {
+        window.location.href = '/impersonate/take/' + user
+      } else {
+        console.log('CACA')
+      }
+    }
   }
 }
 </script>

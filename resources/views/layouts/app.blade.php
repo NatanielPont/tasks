@@ -93,10 +93,23 @@
                             <li>Nom : {{ Auth::user()->name }}</li>
                             <li>Email : {{ Auth::user()->email }}</li>
                             <li>Admin : {{ Auth::user()->admin }}</li>
+                            <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
+                            <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
                         </ul>
                     </v-flex>
                 </v-layout>
-            </v-card>
+            {{--<v-card>--}}
+                {{--<v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>--}}
+                {{--<v-layout row wrap>--}}
+                    {{--<v-flex xs12>--}}
+                        {{--<ul>--}}
+                            {{--<li>Nom : {{ Auth::user()->name }}</li>--}}
+                            {{--<li>Email : {{ Auth::user()->email }}</li>--}}
+                            {{--<li>Admin : {{ Auth::user()->admin }}</li>--}}
+                        {{--</ul>--}}
+                    {{--</v-flex>--}}
+                {{--</v-layout>--}}
+            {{--</v-card>--}}
             <v-card>
                 <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
@@ -110,7 +123,7 @@
                     @endImpersonating
                     <v-flex xs12>
                         @canImpersonate
-                        {{--<user-select></user-select>--}}
+                        <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
                         @endCanImpersonate
                         @impersonating
                         {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
