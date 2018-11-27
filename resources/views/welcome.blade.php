@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <v-app light>
         <v-toolbar class="white">
             <v-toolbar-title> Tasques </v-toolbar-title>
@@ -121,7 +121,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/pre-made-themes"
+                                href="/home"
                         >
                             Home
                         </v-btn>

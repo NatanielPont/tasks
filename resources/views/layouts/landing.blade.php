@@ -12,7 +12,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
 
 <v-content>
     <v-container fluid fill-height>

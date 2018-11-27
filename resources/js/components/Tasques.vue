@@ -75,10 +75,10 @@
             </v-card>
         </v-dialog>
 
-        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
-            {{ snackbarMessage }}
-            <v-btn dark flat @click="snackbar=false">Tancar</v-btn>
-        </v-snackbar>
+        <!--<v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">-->
+            <!--{{ snackbarMessage }}-->
+            <!--<v-btn dark flat @click="snackbar=false">Tancar</v-btn>-->
+        <!--</v-snackbar>-->
 
         <v-toolbar color="blue darken-3">
             <v-menu>
@@ -156,7 +156,7 @@
                         <td v-text="task.updated_at"></td>
                         <td>
                             <v-btn icon color="primary" flat title="Mostrar la tasca"
-                                   @click="show(task)">
+                                   @click="showMessage()">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
                             <v-btn icon color="success" flat title="Canviar la tasca"
@@ -219,6 +219,7 @@
 </template>
 
 <script>
+// import EventBus from '../eventBus'
 export default {
   name: 'Tasques',
   data () {
@@ -298,6 +299,7 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
+        // EventBus.$emit('showMessage',"S'ha esborrat correctament la tasca")
         this.showMessage("S'ha esborrat correctament la tasca")
         this.removing = false
       }).catch(error => {
@@ -305,17 +307,23 @@ export default {
         this.removing = false
       })
     },
+    showMessage () {
+      this.$snackbar.showMessage('Missatge exemple')
+    },
+    showError () {
+      this.$snackbar.showError('Error exemple')
+    },
     // SNACKBAR
-    showMessage (message) {
-      this.snackbarMessage = message
-      this.snackbarColor = 'success'
-      this.snackbar = true
-    },
-    showError (error) {
-      this.snackbarMessage = error.message
-      this.snackbarColor = 'error'
-      this.snackbar = true
-    },
+    // showMessage (message) {
+    //   this.snackbarMessage = message
+    //   this.snackbarColor = 'success'
+    //   this.snackbar = true
+    // },
+    // showError (error) {
+    //   this.snackbarMessage = error.message
+    //   this.snackbarColor = 'error'
+    //   this.snackbar = true
+    // },
     // SNACKBAR END
     showCreate () {
       this.createDialog = true

@@ -10,7 +10,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TasksControllerTest extends TestCase
+class TagsControllerTest extends TestCase
 {
     //refresh database
     use RefreshDatabase,CanLogin;
@@ -20,21 +20,21 @@ class TasksControllerTest extends TestCase
      * A basic test example.
      * @test
      */
-    public function can_show_tasks()
+    public function can_show_tags()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
 //        $this->assertTrue(true);
         //302 comprovar que es redirecciona
         //Prepare
-       create_example_tasks();
+       create_example_tags();
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.show');
+        $user->givePermissionTo('tags.show');
 //        $this->login();
 
 
         //Execute
-        $response=$this->get('/tasks');
+        $response=$this->get('/tags');
 //        dd($response);
 
         //Assert
@@ -52,18 +52,27 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
+    public function regular_user_cannot_show_tasks()
+    {
+
+
+    }
+
+    /**
+     * @test
+     */
     public function can_store_task()
     {
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.store');
-        $response=$this->post('/tasks',[
+        $user->givePermissionTo('tags.store');
+        $response=$this->post('/tags',[
             'name'=>'Comprar llet',
         ]);
         $response->assertStatus(302);
 //        $response->assertSuccessful();
 
-        $this->assertDatabaseHas('tasks',['name'=>'Comprar llet']);
+        $this->assertDatabaseHas('tags',['name'=>'Comprar llet']);
 
 
 
@@ -82,12 +91,12 @@ class TasksControllerTest extends TestCase
 
 
         //2
-        $response=$this->delete('/tasks/'.$task->id);
+        $response=$this->delete('/tags/'.$task->id);
         $response->assertStatus(302);
 //        $response->assertSuccessful();
 
         //3
-        $this->assertDatabaseMissing('tasks',['name'=>'Comprar llet']);
+        $this->assertDatabaseMissing('tags',['name'=>'Comprar llet']);
 
 
 
@@ -100,7 +109,7 @@ class TasksControllerTest extends TestCase
     public function cannnot_delete_an_unexisting_task()
     {
         $this->login();
-        $response = $this->delete('/tasks/1');
+        $response = $this->delete('/tags/1');
         $response->assertStatus(404);
     }
 
@@ -113,12 +122,12 @@ class TasksControllerTest extends TestCase
     {
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $user->givePermissionTo('tags.update');
         $task = Task::create([
             'name' => 'asdasdasd',
             'completed' => false
         ]);
-        $response = $this->put('/tasks/' . $task->id,$newTask = [
+        $response = $this->put('/tags/' . $task->id,$newTask = [
             'name' => 'Comprar pa',
             'completed' => true
         ]);
@@ -138,14 +147,14 @@ class TasksControllerTest extends TestCase
 //        $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $user->givePermissionTo('tags.update');
         $task= [
             'name'=>'Comprar pa',
             'completed'=> true,
             'description'=>'A',
             'user_id'=>1
         ];
-        $response = $this->put('/tasks/1',$task);
+        $response = $this->put('/tags/1',$task);
         $response->assertStatus(404);
 
     }
@@ -158,7 +167,7 @@ class TasksControllerTest extends TestCase
         $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $user->givePermissionTo('tags.update');
         $task = Task::create( [
             'name'=>'Comprar pa',
             'completed'=> true,
@@ -179,7 +188,7 @@ class TasksControllerTest extends TestCase
         $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $user->givePermissionTo('tags.update');
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }

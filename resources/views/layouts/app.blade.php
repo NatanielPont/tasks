@@ -6,12 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="user" content="{{ logged_user() }}">
+
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <title>@yield('title','Put your title here')</title>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <v-app>
+        <snackbar></snackbar>
+        {{--<v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">--}}
+            {{--{{ snackbarMessage }}--}}
+            {{--<v-btn dark flat @click="snackbar=false">Tancar</v-btn>--}}
+        {{--</v-snackbar>--}}
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
