@@ -27,7 +27,10 @@ class TasksControllerTest extends TestCase
         //302 comprovar que es redirecciona
         //Prepare
        create_example_tasks();
-        $this->login();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.show');
+//        $this->login();
 
 
         //Execute
@@ -51,8 +54,9 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
-        $this->login();
-        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.store');
         $response=$this->post('/tasks',[
             'name'=>'Comprar llet',
         ]);
@@ -107,7 +111,9 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_a_task()
     {
-     $this->login();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
         $task = Task::create([
             'name' => 'asdasdasd',
             'completed' => false
@@ -129,8 +135,17 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_edit_an_unexisting_task()
     {
-        $this->login();
-        $response = $this->put('/tasks/1',[]);
+//        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
+        $task= [
+            'name'=>'Comprar pa',
+            'completed'=> true,
+            'description'=>'A',
+            'user_id'=>1
+        ];
+        $response = $this->put('/tasks/1',$task);
         $response->assertStatus(404);
 
     }
@@ -140,11 +155,17 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_edit_form()
     {
-        $this->login();
-        $task = Task::create([
-            'name' => 'Comprar pa',
-            'completed' => false
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
+        $task = Task::create( [
+            'name'=>'Comprar pa',
+            'completed'=> true,
+            'description'=>'A',
+            'user_id'=>1
         ]);
+//        dd($task);
         $response = $this->get('/task_edit/' . $task->id);
         $response->assertSuccessful();
         $response->assertSee('Comprar pa');
@@ -155,7 +176,10 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_show_edit_form_unexisting_task()
     {
-        $this->login();
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }

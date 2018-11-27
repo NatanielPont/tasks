@@ -14,8 +14,6 @@ class TasksController extends Controller
 
     public function index(Request $request)
     {
-        abort(404);
-
         return map_collection(Task::orderBy('created_at')->get());
     }
     public function show(ShowTasks $request, Task $task) // Route Model Binding
