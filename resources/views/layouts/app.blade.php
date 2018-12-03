@@ -11,6 +11,7 @@
     <meta name="user" content="{{ logged_user() }}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title','Put your title here')</title>
 </head>
 <body>
@@ -141,6 +142,7 @@
                         </v-flex>
                     </v-layout>
                 </v-card>
+                </v-card>
         </v-navigation-drawer>
         <v-toolbar
                 color="indigo"
@@ -173,7 +175,7 @@
     <?php foreach ($tasks as $task) : ?>
 
   $('#create-{{$task->id}}').on('show.bs.modal', function (event) {
-      console.log({{$task->id}});
+      console.log('hola');
     })
     <?php endforeach;?>
 </script>

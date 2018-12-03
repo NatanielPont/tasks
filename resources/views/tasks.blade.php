@@ -71,34 +71,16 @@
                                 {{--</v-btn>--}}
                             {{--</form>--}}
 
-                            <v-btn color="info">
                                 <button name = "submit" value = "Update"  href="#" class="btn btn-primary btn-lg" data-toggle="modal"
                                           data-target="#create-{{$task->id}}"
-                                        data-l>Modificar
+                                        >Modificar
                                 </button>
 
-                            </v-btn>
+
 
                         @endif
                     </v-list-tile>
                     @include('task_edit')
-                        {{--<div class="modal fade" tabindex="-1"  id="create-{{$task->id}}"  role="document" aria-labelledby="create-label" aria-hidden="true">--}}
-                            {{--<div class="modal-dialog">--}}
-                                {{--<div class="modal-content">--}}
-                                    {{--<div class="modal-body" >--}}
-
-                                        {{--<form action="/tasks/{{$task->id}}" method="POST" align="center">--}}
-
-                                            {{--@include('task_edit')--}}
-
-
-                                        {{--</form>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-
-
                     <?php endforeach;?>
 
 
