@@ -142,6 +142,7 @@
                         </v-flex>
                     </v-layout>
                 </v-card>
+                </v-card>
         </v-navigation-drawer>
         <v-toolbar
                 color="indigo"
@@ -171,12 +172,7 @@
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
 <script>
-    <?php foreach ($tasks as $task) : ?>
 
-    $('#create-{{$task->id}}').on('show.bs.modal', function (event) {
-      console.log('hola');
-    })
-    <?php endforeach;?>
 </script>
 </body>
 </html>
