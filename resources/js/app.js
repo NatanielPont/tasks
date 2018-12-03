@@ -32,3 +32,5 @@ window.Vue.component('user-select', UserSelect)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)
+
+

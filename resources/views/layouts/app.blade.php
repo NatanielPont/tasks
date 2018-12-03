@@ -108,8 +108,19 @@
                         </ul>
                     </v-flex>
                 </v-layout>
+                {{--<v-card>--}}
+                {{--<v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>--}}
+                {{--<v-layout row wrap>--}}
+                {{--<v-flex xs12>--}}
+                {{--<ul>--}}
+                {{--<li>Nom : {{ Auth::user()->name }}</li>--}}
+                {{--<li>Email : {{ Auth::user()->email }}</li>--}}
+                {{--<li>Admin : {{ Auth::user()->admin }}</li>--}}
+                {{--</ul>--}}
+                {{--</v-flex>--}}
+                {{--</v-layout>--}}
+                {{--</v-card>--}}
                 <v-card>
-
                     <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
                     <v-layout row wrap>
@@ -130,7 +141,6 @@
                             @endImpersonating
                         </v-flex>
                     </v-layout>
-                </v-card>
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar
@@ -163,7 +173,7 @@
 <script>
     <?php foreach ($tasks as $task) : ?>
 
-  $('#create-{{$task->id}}').on('show.bs.modal', function (event) {
+    $('#create-{{$task->id}}').on('show.bs.modal', function (event) {
       console.log('hola');
     })
     <?php endforeach;?>
