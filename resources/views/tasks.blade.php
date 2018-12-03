@@ -59,18 +59,6 @@
                                     <button>Eliminar</button>
                                 </v-btn>
                             </form>
-
-                            {{--<form action="/task_edit/{{ $task->id }}" method="POST">--}}
-                                {{--@csrf--}}
-                                {{--{{ method_field('GET') }}--}}
-                                {{--<v-btn color="error">--}}
-                                    {{--<button type="submit" name = "submit" value = "Update"  href="#" class="btn btn-primary btn-lg" data-toggle="modal"--}}
-                                     {{--data-target="#create-{{$task->id}}"--}}
-                                    {{--data-l>Modificar--}}
-                                    {{--</button>--}}
-                                {{--</v-btn>--}}
-                            {{--</form>--}}
-
                                 <button name = "submit" value = "Update"  href="#" class="btn btn-primary btn-lg" data-toggle="modal"
                                           data-target="#create-{{$task->id}}"
                                         >Modificar

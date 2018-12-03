@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="/tasks/{{$task->id}}" method="POST" align="center">
+                <form action="/tasks/{{$task->id}}" method="POST">
 
                     @csrf
                     {{ method_field('PUT') }}
