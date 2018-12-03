@@ -81,22 +81,22 @@
 
                         @endif
                     </v-list-tile>
-                    {{--@include('task_edit')--}}
-                        <div class="modal fade" tabindex="-1"  id="create-{{$task->id}}"  role="document" aria-labelledby="create-label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body" >
+                    @include('task_edit')
+                        {{--<div class="modal fade" tabindex="-1"  id="create-{{$task->id}}"  role="document" aria-labelledby="create-label" aria-hidden="true">--}}
+                            {{--<div class="modal-dialog">--}}
+                                {{--<div class="modal-content">--}}
+                                    {{--<div class="modal-body" >--}}
 
-                                        <form action="/tasks/{{$task->id}}" method="POST" align="center">
+                                        {{--<form action="/tasks/{{$task->id}}" method="POST" align="center">--}}
 
-                                            @include('task_edit')
+                                            {{--@include('task_edit')--}}
 
 
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        {{--</form>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
 
                     <?php endforeach;?>
