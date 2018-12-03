@@ -46,6 +46,7 @@ class TasksController extends Controller
     {
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
         $task = Task::findOrFail($request->id);
+        if (($request->name))
         $task->name = $request->name;
         $task->completed = $request->completed;
         $task->save();
@@ -55,9 +56,8 @@ class TasksController extends Controller
 
     public function edit(Request $request)
     {
-//        dd('hola');
-//        if (!Task::findOrFail($request->id)) return abort(404);
         $task=Task::findOrFail($request->id);
+
         return view('task_edit',compact('task'));
 
     }

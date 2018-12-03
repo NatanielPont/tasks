@@ -113,6 +113,7 @@ export default {
     }
   },
   methods: {
+
     editName (task, text) {
       task.name = text
     },

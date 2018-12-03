@@ -10,7 +10,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TasksControllerTest extends TestCase
+class TasquesControllerTest extends TestCase
 {
     //refresh database
     use RefreshDatabase,CanLogin;
@@ -20,7 +20,7 @@ class TasksControllerTest extends TestCase
      * A basic test example.
      * @test
      */
-    public function can_show_tasks()
+    public function can_index_tasques()
     {
         $this->withoutExceptionHandling();
 //        $this->assertTrue(true);
@@ -28,18 +28,52 @@ class TasksControllerTest extends TestCase
         //Prepare
        create_example_tasks();
         initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.show');
+        $user=$this->login('');
+        $user->givePermissionTo('user.tasks.index');
 //        $this->login();
 
 
         //Execute
-        $response=$this->get('/tasks');
+        $response=$this->get('/tasques');
 //        dd($response);
 
         //Assert
         $response->assertSuccessful();
-        $response->assertSee('Tasques');
+//        $response->assertSee('Tasques');
+        $response->assertSee('Comprar pa');
+        $response->assertSee('Comprar llet');
+        $response->assertSee('Estudiar php');
+
+        //comprovar que es veuen les tasques q hi ha en la bd
+        //preparar la bd a prepare
+
+    }
+
+    /**
+     * A basic test example.
+     * @test
+     */
+    public function guest_user_can_index_tasques()
+    {
+        $this->withoutExceptionHandling();
+//        $this->assertTrue(true);
+        //302 comprovar que es redirecciona
+        //Prepare
+        create_example_tasks();
+//        initialize_roles();
+        $user=$this->login('');
+
+//        $user->giveRo('user.tasks.index');
+//        $this->login();
+
+
+        //Execute
+        $response=$this->get('/tasques');
+//        dd($response);
+
+        //Assert
+        $response->assertSuccessful();
+//        $response->assertSee('Tasques');
         $response->assertSee('Comprar pa');
         $response->assertSee('Comprar llet');
         $response->assertSee('Estudiar php');
@@ -52,7 +86,7 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_store_task()
+    public function can_store_tasques()
     {
         initialize_roles();
         $user=$this->login('api');
@@ -171,28 +205,6 @@ class TasksControllerTest extends TestCase
         $response->assertSee('Comprar pa');
 
     }
-
-    /**
-     * @test
-     */
-    public function can_show_edit_form_like_login()
-    {
-        $this->withoutExceptionHandling();
-//        initialize_roles();
-        $user=$this->login('api');
-//        $user->givePermissionTo('tasks.update');
-        $task = Task::create( [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
-        ]);
-//        dd($task);
-        $response = $this->get('/editableForm');
-        $response->assertSuccessful();
-//        $response->assertSee('Comprar pa');
-
-    }
     /**
      * @test
      */
@@ -202,7 +214,7 @@ class TasksControllerTest extends TestCase
         initialize_roles();
         $user=$this->login('api');
         $user->givePermissionTo('tasks.update');
-        $response = $this->get('/task_edit/1');
+        $response = $this->get('/task_edit/1',['name'=>'pep']);
         $response->assertStatus(404);
     }
 

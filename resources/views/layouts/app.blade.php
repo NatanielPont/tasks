@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,8 +18,8 @@
     <v-app>
         <snackbar></snackbar>
         {{--<v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">--}}
-            {{--{{ snackbarMessage }}--}}
-            {{--<v-btn dark flat @click="snackbar=false">Tancar</v-btn>--}}
+        {{--{{ snackbarMessage }}--}}
+        {{--<v-btn dark flat @click="snackbar=false">Tancar</v-btn>--}}
         {{--</v-snackbar>--}}
         <v-navigation-drawer
                 v-model="drawer"
@@ -106,40 +107,40 @@
                         </ul>
                     </v-flex>
                 </v-layout>
-            {{--<v-card>--}}
+                {{--<v-card>--}}
                 {{--<v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>--}}
                 {{--<v-layout row wrap>--}}
-                    {{--<v-flex xs12>--}}
-                        {{--<ul>--}}
-                            {{--<li>Nom : {{ Auth::user()->name }}</li>--}}
-                            {{--<li>Email : {{ Auth::user()->email }}</li>--}}
-                            {{--<li>Admin : {{ Auth::user()->admin }}</li>--}}
-                        {{--</ul>--}}
-                    {{--</v-flex>--}}
+                {{--<v-flex xs12>--}}
+                {{--<ul>--}}
+                {{--<li>Nom : {{ Auth::user()->name }}</li>--}}
+                {{--<li>Email : {{ Auth::user()->email }}</li>--}}
+                {{--<li>Admin : {{ Auth::user()->admin }}</li>--}}
+                {{--</ul>--}}
+                {{--</v-flex>--}}
                 {{--</v-layout>--}}
-            {{--</v-card>--}}
-            <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+                {{--</v-card>--}}
+                <v-card>
+                    <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
-                <v-layout row wrap>
-                    @impersonating
-                    <v-flex xs12>
-                        <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
-                        </v-avatar>
-                    </v-flex>
-                    @endImpersonating
-                    <v-flex xs12>
-                        @canImpersonate
-                        <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
-                        @endCanImpersonate
+                    <v-layout row wrap>
                         @impersonating
-                        {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
-                        <a href="impersonate/leave">Abandonar la suplantació</a>
+                        <v-flex xs12>
+                            <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
+                                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
+                            </v-avatar>
+                        </v-flex>
                         @endImpersonating
-                    </v-flex>
-                </v-layout>
-            </v-card>
+                        <v-flex xs12>
+                            @canImpersonate
+                            <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
+                            @endCanImpersonate
+                            @impersonating
+                            {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
+                            <a href="impersonate/leave">Abandonar la suplantació</a>
+                            @endImpersonating
+                        </v-flex>
+                    </v-layout>
+                </v-card>
         </v-navigation-drawer>
         <v-toolbar
                 color="indigo"
@@ -168,5 +169,13 @@
     </v-app>
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
+<script>
+    <?php foreach ($tasks as $task) : ?>
+
+  $('#create-{{$task->id}}').on('show.bs.modal', function (event) {
+      console.log({{$task->id}});
+    })
+    <?php endforeach;?>
+</script>
 </body>
 </html>
