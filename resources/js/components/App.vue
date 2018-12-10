@@ -4,6 +4,7 @@ export default {
   name: 'App',
   data () {
     return {
+      widthSize: 100,
       drawer: null,
       drawerRight: null,
       items: [
@@ -16,7 +17,7 @@ export default {
         { icon: 'build', text: 'Tasques', url: '/tasques' },
         { icon: 'settings', text: 'Settings' },
         // { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
+        { icon: 'help', text: 'Help' }
         // { icon: 'phonelink', text: 'App downloads' },
         // { icon: 'keyboard', text: 'Go to the old version' }
       ]

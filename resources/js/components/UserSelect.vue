@@ -68,3 +68,8 @@ export default {
   }
 }
 </script>
+<style>
+    .v-input {
+        margin: 25px;
+    }
+</style>
