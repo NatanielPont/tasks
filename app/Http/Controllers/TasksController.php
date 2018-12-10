@@ -50,7 +50,6 @@ class TasksController extends Controller
         $task->name = $request->name;
         $task->completed = $request->completed;
         $task->save();
-
         return redirect('/tasks');
     }
 
