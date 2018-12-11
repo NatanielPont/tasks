@@ -30,4 +30,18 @@ class TasksVueControllerTest extends TestCase{
 //        $response->assertSee('Comprar pa','Comprar llet');
     }
 
+    public function can_add_vue_tasks()
+    {
+        $this->withoutExceptionHandling();
+        $this->login();
+        $response=$this->post('/tasks',[
+            'name'=>'Comprar llet',
+        ]);
+        $response->assertStatus(302);
+//        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('tasks',['name'=>'Comprar llet']);
+
+    }
+
 }

@@ -14,23 +14,24 @@ class TasksController extends Controller
 
     public function index(ShowTasks $request)
     {
-        $tasks=Task::orderBy('created_at','desc')->get();
-        return view('tasks',['tasks'=>$tasks]);
-        
+        $tasks = Task::orderBy('created_at', 'desc')->get();
+        return view('tasks', ['tasks' => $tasks]);
+
     }
 
     public function store(StoreTasks $request)
     {
-
+        if (strlen($request->name) > 20)
+            $request->name = substr($request->name, 0, 20);
         // object Request
         Task::create([
-            'name'=>$request->name,
-            'completed'=>false
+            'name' => $request->name,
+            'completed' => false
         ]);
 
         //Retornar a /tasks
         return redirect('/tasks');
-        
+
     }
 
     public function destroy(Request $request)
@@ -46,8 +47,12 @@ class TasksController extends Controller
     {
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
         $task = Task::findOrFail($request->id);
-        if (($request->name))
-        $task->name = $request->name;
+
+        if ($request->name) {
+            if (strlen($request->name) > 20)
+                $request->name = substr($request->name, 0, 20);
+            $task->name = $request->name;
+        }
         $task->completed = $request->completed;
         $task->save();
         return redirect('/tasks');
@@ -55,12 +60,15 @@ class TasksController extends Controller
 
     public function edit(Request $request)
     {
-        $task=Task::findOrFail($request->id);
-
-        return view('task_edit',compact('task'));
+//        dd('hola '.$request->id);
+        $task = Task::findOrFail($request->id);
+//       if ($task=Task::findOrFail($request->id))
+//        dd('hola'.$task.' id'.$request->id);
+//        if (!$task) return abort(404);
+//        dd('hola');
+        return view('task_edit', compact('task'));
 
     }
-
 
 
 }

@@ -7,6 +7,13 @@
 
                     @csrf
                     {{ method_field('PUT') }}
+                    <v-input
+                            success
+                            label="Click task to Edit"
+                            readonly
+                    >
+                    </v-input>
+                    <br>
                     <input name="name" type="text" value="{{$task->name}}" placeholder="{{$task->name}}" required>
                     Completed:
                     @if ( $task->completed )

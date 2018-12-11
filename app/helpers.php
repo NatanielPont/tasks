@@ -63,6 +63,12 @@ if (!function_exists('create_primary_user')){
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456')),
             ]);
             $user->admin=true;
+              try{
+                  $user->assignRole('TaskManager');
+            }catch (Exception $e){
+                  dd('hola'.$e);
+
+            }
             $user->save();
         }
     }
@@ -111,104 +117,6 @@ if (!function_exists('create_database')){
     }
 }
 
-//other functions
-//if (!function_exists('initialize_roles')){
-//    function initialize_roles(){
-//        try{
-//
-//        //crear roles
-//        $taskManager=Role::create([
-//            'name'=> 'TaskManager'
-//        ]);
-//        } catch (Exception $e){
-//
-//        }
-//        try{
-//
-//        //crear roles
-//        $tasks=Role::create([
-//            'name'=> 'Tasks'
-//        ]);
-//        } catch (Exception $e){
-//
-//        }
-//        try{
-//
-//            //crear permisos
-//            Permission::create([
-//                'name'=> 'tasks.index'
-//            ]);
-//            Permission::create([
-//                'name'=> 'tasks.show'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'tasks.store'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'tasks.update'
-//            ]);
-//            Permission::create([
-//                'name'=> 'tasks.destroy'
-//            ]);
-//            Permission::create([
-//                'name'=> 'tasks.complete'
-//            ]);
-//            Permission::create([
-//                'name'=> 'tasks.uncomplete'
-//            ]);
-//
-//            //users permissions crud tasques users
-//            Permission::create([
-//                'name'=> 'user.tasks.index'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'user.tasks.show'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'user.tasks.store'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'user.tasks.update'
-//            ]);
-//
-//            Permission::create([
-//                'name'=> 'user.tasks.destroy'
-//            ]);
-//        } catch (Exception $e){
-//
-//        }
-//        try{
-//
-//        $taskManager->givePermissionTo('tasks.index');
-//        $taskManager->givePermissionTo('tasks.show');
-//        $taskManager->givePermissionTo('tasks.store');
-//        $taskManager->givePermissionTo('tasks.update');
-//        $taskManager->givePermissionTo('tasks.complete');
-//        $taskManager->givePermissionTo('tasks.uncomplete');
-//        $taskManager->givePermissionTo('tasks.destroy');
-//
-//            $tasks->givePermissionTo('user.task.index');
-//            $tasks->givePermissionTo('user.task.show');
-//            $tasks->givePermissionTo('user.task.store');
-//            $taskManager->givePermissionTo('user.task.complete');
-//            $taskManager->givePermissionTo('user.task.uncomplete');
-//            $tasks->givePermissionTo('user.task.update');
-//        } catch (Exception $e){
-//
-//        }
-//
-//
-//
-//
-//
-//
-//
-//    }
 //}
 if (!function_exists('create_role')) {
     function create_role($role)

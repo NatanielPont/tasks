@@ -27,7 +27,7 @@ class UpdateTasks extends FormRequest
     {
         return [
             //
-//            'name'=> 'required'
+            'name'=> 'required'
         ];
     }
 }

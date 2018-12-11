@@ -175,30 +175,8 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function can_show_edit_form_like_login()
-    {
-        $this->withoutExceptionHandling();
-//        initialize_roles();
-        $user=$this->login('api');
-//        $user->givePermissionTo('tasks.update');
-        $task = Task::create( [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
-        ]);
-//        dd($task);
-        $response = $this->get('/editableForm');
-        $response->assertSuccessful();
-//        $response->assertSee('Comprar pa');
-
-    }
-    /**
-     * @test
-     */
     public function cannot_show_edit_form_unexisting_task()
     {
-        $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
         $user->givePermissionTo('tasks.update');
