@@ -24,10 +24,11 @@ class TasksController extends Controller
         if (strlen($request->name) > 20)
             $request->name = substr($request->name, 0, 20);
         // object Request
-        Task::create([
+        $task=Task::create([
             'name' => $request->name,
             'completed' => false
         ]);
+        dd($task->completed);
 
         //Retornar a /tasks
         return redirect('/tasks');
@@ -60,12 +61,7 @@ class TasksController extends Controller
 
     public function edit(Request $request)
     {
-//        dd('hola '.$request->id);
         $task = Task::findOrFail($request->id);
-//       if ($task=Task::findOrFail($request->id))
-//        dd('hola'.$task.' id'.$request->id);
-//        if (!$task) return abort(404);
-//        dd('hola');
         return view('task_edit', compact('task'));
 
     }

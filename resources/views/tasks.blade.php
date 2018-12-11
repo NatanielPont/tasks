@@ -75,7 +75,7 @@
 
                     <form action="/tasks" method="POST" align="center">
                         @csrf
-                        <input name="name" type="text" placeholder="Nova tasca" required>
+                        <input name="name" type="text" placeholder="Nova tasca (max. 20 ctrs)" required>
                         <v-btn color="success">
                             <button>Afegir</button>
                         </v-btn>
