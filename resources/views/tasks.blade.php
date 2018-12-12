@@ -43,7 +43,13 @@
                             </form>
 
                         @else
-                            {{ $task->name }}
+                            <div style="float:left;margin-left:0;">
+
+                            <h5>{{ $task->name }}</h5>
+                            </div>
+
+
+                        <div class="btn-group" style="float:right;padding-right:0;margin-right: auto" >
                             <form action="completed_task/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('POST') }}
@@ -59,18 +65,21 @@
                                     <button>Eliminar</button>
                                 </v-btn>
                             </form>
-                                <button name = "submit" value = "Update"  href="#" class="btn btn-primary btn-lg" data-toggle="modal"
-                                          data-target="#create-{{$task->id}}"
-                                        >Modificar
+                            <v-btn color="warning" >
+                                <button name="submit" value="Update" href="#"
+                                        data-toggle="modal"
+                                        data-target="#create-{{$task->id}}"
+                                >Modificar
                                 </button>
+                            </v-btn>
 
 
+                        </div>
 
                         @endif
                     </v-list-tile>
                     @include('task_edit')
                     <?php endforeach;?>
-
 
 
                     <form action="/tasks" method="POST" align="center">
@@ -83,7 +92,6 @@
                 </v-list>
             </v-flex>
         </v-layout>
-
 
 
     </v-card>

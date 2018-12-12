@@ -14,10 +14,13 @@ class TasksController extends Controller
 
     public function index(ShowTasks $request)
     {
-        $tasks = Task::orderBy('created_at', 'desc')->get();
+        $tasks = Task::orderBy('created_at', 'asc')->get();
         return view('tasks', ['tasks' => $tasks]);
 
     }
+
+
+
 
     public function store(StoreTasks $request)
     {
@@ -28,7 +31,7 @@ class TasksController extends Controller
             'name' => $request->name,
             'completed' => false
         ]);
-        dd($task->completed);
+//        dd($task->name);
 
         //Retornar a /tasks
         return redirect('/tasks');
