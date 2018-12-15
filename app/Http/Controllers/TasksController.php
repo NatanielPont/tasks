@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ShowTasks;
-use App\Http\Requests\StoreTasks;
-use App\Http\Requests\UpdateTasks;
+use App\Http\Requests\TasksDestroy;
+use App\Http\Requests\TasksShow;
+use App\Http\Requests\TasksStore;
+use App\Http\Requests\TasksUpdate;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class TasksController extends Controller
 {
     //
 
-    public function index(ShowTasks $request)
+    public function index(TasksShow $request)
     {
         $tasks = Task::orderBy('created_at', 'asc')->get();
         return view('tasks', ['tasks' => $tasks]);
@@ -22,10 +23,10 @@ class TasksController extends Controller
 
 
 
-    public function store(StoreTasks $request)
+    public function store(TasksStore $request)
     {
-        if (strlen($request->name) > 20)
-            $request->name = substr($request->name, 0, 20);
+        if (strlen($request->name) > 25)
+            $request->name = substr($request->name, 0, 25);
         // object Request
         $task=Task::create([
             'name' => $request->name,
@@ -38,16 +39,15 @@ class TasksController extends Controller
 
     }
 
-    public function destroy(Request $request)
+    public function destroy(TasksDestroy $request)
     {
-//        dd($request->id);
         $task = Task::findOrFail($request->id);
         $task->delete();
         // Retornar a /tasks
         return redirect()->back();
     }
 
-    public function update(UpdateTasks $request)
+    public function update(TasksUpdate $request)
     {
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
         $task = Task::findOrFail($request->id);
@@ -62,7 +62,7 @@ class TasksController extends Controller
         return redirect('/tasks');
     }
 
-    public function edit(Request $request)
+    public function edit(TasksUpdate $request)
     {
         $task = Task::findOrFail($request->id);
         return view('task_edit', compact('task'));

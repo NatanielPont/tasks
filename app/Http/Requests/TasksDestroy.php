@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateTasks extends FormRequest
+class TasksDestroy extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,10 +14,8 @@ class UpdateTasks extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.update');
-//        return true;
+        return Auth::user()->can('tasks.destroy');
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,8 +24,8 @@ class UpdateTasks extends FormRequest
     public function rules()
     {
         return [
+//            'id'=> 'required'
             //
-            'name'=> 'required'
         ];
     }
 }

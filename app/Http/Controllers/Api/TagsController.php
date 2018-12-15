@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StoreTags;
-use App\Http\Requests\StoreTasks;
+use App\Http\Requests\TagsStore;
+use App\Http\Requests\TasksStore;
 use App\Tag;
 use App\Task;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class TagsController extends Controller
 
     }
 
-    public function store(StoreTags $request)
+    public function store(TagsStore $request)
     {
 //        dd('hola');
 //        //opcio acceptable
@@ -46,7 +46,7 @@ class TagsController extends Controller
     }
 
 
-    public function update(StoreTags $request,Tag $tag)
+    public function update(TagsStore $request, Tag $tag)
     {
         $tag->name = $request->name;
         $tag->save();

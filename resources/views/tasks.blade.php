@@ -43,13 +43,13 @@
                             </form>
 
                         @else
-                            <div style="float:left;margin-left:0;">
+                            <div>
 
                             <h5>{{ $task->name }}</h5>
                             </div>
 
 
-                        <div class="btn-group" style="float:right;padding-right:0;margin-right: auto" >
+                        <div class="btn-group"  >
                             <form action="completed_task/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('POST') }}
@@ -84,7 +84,7 @@
 
                     <form action="/tasks" method="POST" align="center">
                         @csrf
-                        <input name="name" type="text" placeholder="Nova tasca (max. 20 ctrs)" required>
+                        <input name="name" type="text" placeholder="Nova tasca (max. 25 ctrs)" required>
                         <v-btn color="success">
                             <button>Afegir</button>
                         </v-btn>

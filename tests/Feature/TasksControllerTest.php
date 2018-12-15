@@ -75,10 +75,13 @@ class TasksControllerTest extends TestCase
      */
     public function can_delete_task()
     {
-        $this->login();
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login();
+        $user->givePermissionTo('tasks.destroy');
         $this->withoutExceptionHandling();
         //1
-        $task=Task::create(['name'=>'Comprar llet']);
+        $task=Task::create(['id'=>'0','name'=>'Comprar llet']);
 
 
         //2
@@ -99,7 +102,10 @@ class TasksControllerTest extends TestCase
      */
     public function cannnot_delete_an_unexisting_task()
     {
-        $this->login();
+        initialize_roles();
+        $user=$this->login();
+        $user->givePermissionTo('tasks.destroy');
+//        $this->login();
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
@@ -155,7 +161,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_edit_form()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
         $user->givePermissionTo('tasks.update');

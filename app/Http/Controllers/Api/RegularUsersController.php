@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\ShowTasks;
-use App\Http\Requests\StoreTasks;
+use App\Http\Requests\TasksShow;
+use App\Http\Requests\TasksStore;
 use App\Task;
 use App\User;
 use Illuminate\Http\Request;

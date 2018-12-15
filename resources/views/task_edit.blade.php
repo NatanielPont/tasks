@@ -9,7 +9,7 @@
                     {{ method_field('PUT') }}
                     <v-input
                             success
-                            label="Click task to Edit (max. 20 ctrs)"
+                            label="Click name to Edit (max. 25 ctrs)"
                             readonly
                     >
                     </v-input>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\ShowTasks;
-use App\Http\Requests\StoreTasks;
-use App\Http\Requests\UpdateTasks;
+use App\Http\Requests\TasksShow;
+use App\Http\Requests\TasksStore;
+use App\Http\Requests\TasksUpdate;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class TasksController extends Controller
     {
         return map_collection(Task::orderBy('created_at')->get());
     }
-    public function show(ShowTasks $request, Task $task) // Route Model Binding
+    public function show(TasksShow $request, Task $task) // Route Model Binding
     {
 
         return $task->map();
@@ -25,7 +25,7 @@ class TasksController extends Controller
     {
         $task->delete();
     }
-    public function store(StoreTasks $request)
+    public function store(TasksStore $request)
     {
         $task = new Task();
         $task->name = $request->name;
@@ -33,10 +33,11 @@ class TasksController extends Controller
         $task->save();
         return $task->map();
     }
-    public function update(UpdateTasks $request, Task $task)
+    public function update(TasksUpdate $request, Task $task)
     {
 
-//        dd($task->map());
+//        $task = Task::findOrFail($request->name);
+        if ($request->name)
         $task->name = $request->name;
 //        $task->completed=false;
         $task->save();
