@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class TagController extends Controller
     public function index()
     {
         //
-        dump('hola');
+        $tags=map_collection(Tag::orderBy('created_at','desc')->get());
+//        dump('hola');
+        return view('tags',['tags'=>$tags]);
     }
 
     /**

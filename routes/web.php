@@ -11,6 +11,7 @@
 |
 */
 
+
 Auth::routes();
 
 //TODO
@@ -22,7 +23,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tasks', 'TasksController@store');
     Route::delete('/tasks/{id}', 'TasksController@destroy');
     Route::put('/tasks/{id}', 'TasksController@update');
+
+//    Route::get('/editableForm/{id}', 'TasksController@edit');
     Route::get('/task_edit/{id}', 'TasksController@edit');
+//    echo Form::open(array('/task_edit/{id}' => 'TasksController@edit'));
 
 
     //Complete
@@ -45,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
 // USER TASKS
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
     Route::impersonate();
+
+    //TAGS
+    Route::get('/tags','TagsController@index');
 
 });
 Route::get('/', function () {

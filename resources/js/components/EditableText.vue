@@ -35,6 +35,8 @@ export default {
   // props: ['text'],
   methods: {
     edit () {
+      console.log('hola')
+
       this.editing = false
       // INFORMAR AL PARE
       this.$emit('edited', this.currentText)

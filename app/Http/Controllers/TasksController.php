@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TasksDestroy;
+use App\Http\Requests\TasksShow;
+use App\Http\Requests\TasksStore;
+use App\Http\Requests\TasksUpdate;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -9,61 +13,64 @@ class TasksController extends Controller
 {
     //
 
-    public function index()
+    public function index(TasksShow $request)
     {
-        $tasks=Task::orderBy('created_at','desc')->get();
-        return view('tasks',['tasks'=>$tasks]);
-        
+        $tasks = Task::orderBy('created_at', 'asc')->get();
+        return view('tasks', ['tasks' => $tasks]);
+
     }
 
-    public function store(Request $request)
+
+
+
+    public function store(TasksStore $request)
     {
+//        dd('juas juas');
+
+        if (strlen($request->name) > 25)
+            $request->name = substr($request->name, 0, 25);
         // object Request
-        Task::create([
-            'name'=>$request->name,
-            'completed'=>false
+        $task=Task::create([
+            'name' => $request->name,
+            'completed' => false
         ]);
+//        dd($task->name);
 
         //Retornar a /tasks
         return redirect('/tasks');
-        
+
     }
 
-    public function destroy(Request $request)
+    public function destroy(TasksDestroy $request)
     {
-//        dd($request->id);
         $task = Task::findOrFail($request->id);
         $task->delete();
         // Retornar a /tasks
         return redirect()->back();
     }
 
-    public function update(Request $request)
+    public function update(TasksUpdate $request)
     {
-//        dd('hola');
-//        abort(302);
-//        dd($request->id);
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
-//        dd(Task::find($request->id));
-//        if (!Task::find($request->id)) return response(404,'No he trobat');
         $task = Task::findOrFail($request->id);
-        $task->name = $request->name;
+
+        if ($request->name) {
+            if (strlen($request->name) > 20)
+                $request->name = substr($request->name, 0, 20);
+            $task->name = $request->name;
+        }
         $task->completed = $request->completed;
         $task->save();
         return redirect('/tasks');
     }
 
-    public function edit(Request $request)
+    public function edit(TasksUpdate $request)
     {
-        $task=Task::findOrFail($request->id);
-        return view('task_edit',compact('task'));
-//        return view('task_edit',['task'=>'task']);
+        $task = Task::findOrFail($request->id);
+        return view('task_edit', compact('task'));
 
     }
 
 
-
 }
-//    class CompletedTaskController {
-//
-//        }
+

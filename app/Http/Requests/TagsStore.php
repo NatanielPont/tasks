@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class UpdateTasks extends FormRequest
+class TagsStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +13,6 @@ class UpdateTasks extends FormRequest
      */
     public function authorize()
     {
-//        return Auth::user()->isSuperAdmin();
-//        return Auth::user()->can('task.update');
         return true;
     }
 

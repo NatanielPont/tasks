@@ -6,7 +6,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-//use App\Http\Requests\StoreTasks;
+//use App\Http\Requests\TasksStore;
 //use App\Task;
 //use Illuminate\Http\Request;
 //use App\Http\Controllers\Controller;

@@ -4,18 +4,26 @@ export default {
   name: 'App',
   data () {
     return {
+      widthSize: 100,
       drawer: null,
       drawerRight: null,
       items: [
         { icon: 'home', text: 'Home', url: '/' },
         { icon: 'content_copy', text: 'Tasks', url: '/tasks' },
-        { icon: 'account_circle', text: 'Contact', url: '/contact' },
-        { icon: 'donut_large', text: 'About', url: '/about' },
         { icon: 'history', text: 'Tasks Vue', url: '/tasks_vue' },
         { icon: 'history', text: 'Tasks Tailwind', url: '/tasks_tailwind' },
         { icon: 'build', text: 'Tasques', url: '/tasques' },
+        { icon: 'account_circle', text: 'Contact', url: '/contact' },
+        { icon: 'donut_large', text: 'About', url: '/about' },
         { icon: 'settings', text: 'Settings' },
+<<<<<<< HEAD
         { icon: 'help', text: 'Help' }
+=======
+        // { icon: 'chat_bubble', text: 'Send feedback' },
+        { icon: 'help', text: 'Help' }
+        // { icon: 'phonelink', text: 'App downloads' },
+        // { icon: 'keyboard', text: 'Go to the old version' }
+>>>>>>> master
       ]
     }
   },

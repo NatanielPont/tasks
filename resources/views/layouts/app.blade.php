@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,15 +7,22 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<<<<<<< HEAD
     <meta name="user" content="{{ logged_user() }}">
 
+=======
+
+    <meta name="user" content="{{ logged_user() }}">
+>>>>>>> master
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title','Put your title here')</title>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <v-app>
+        <snackbar></snackbar>
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
@@ -101,40 +109,29 @@
                         </ul>
                     </v-flex>
                 </v-layout>
-            {{--<v-card>--}}
-                {{--<v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>--}}
-                {{--<v-layout row wrap>--}}
-                    {{--<v-flex xs12>--}}
-                        {{--<ul>--}}
-                            {{--<li>Nom : {{ Auth::user()->name }}</li>--}}
-                            {{--<li>Email : {{ Auth::user()->email }}</li>--}}
-                            {{--<li>Admin : {{ Auth::user()->admin }}</li>--}}
-                        {{--</ul>--}}
-                    {{--</v-flex>--}}
-                {{--</v-layout>--}}
-            {{--</v-card>--}}
-            <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+                <v-card>
+                    <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
-                <v-layout row wrap>
-                    @impersonating
-                    <v-flex xs12>
-                        <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
-                        </v-avatar>
-                    </v-flex>
-                    @endImpersonating
-                    <v-flex xs12>
-                        @canImpersonate
-                        <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users"></user-select>
-                        @endCanImpersonate
+                    <v-layout row wrap>
                         @impersonating
-                        {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
-                        <a href="impersonate/leave">Abandonar la suplantació</a>
+                        <v-flex xs12>
+                            <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
+                                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
+                            </v-avatar>
+                        </v-flex>
                         @endImpersonating
-                    </v-flex>
-                </v-layout>
-            </v-card>
+                        <v-flex xs12>
+                            @canImpersonate
+                            <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users" v-bind:style="{ padding: 10 }"></user-select>
+                            @endCanImpersonate
+                            @impersonating
+                            {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
+                            <a href="impersonate/leave">Abandonar la suplantació</a>
+                            @endImpersonating
+                        </v-flex>
+                    </v-layout>
+                </v-card>
+                </v-card>
         </v-navigation-drawer>
         <v-toolbar
                 color="indigo"
@@ -163,5 +160,8 @@
     </v-app>
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
+<script>
+
+</script>
 </body>
 </html>

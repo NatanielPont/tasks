@@ -42,10 +42,17 @@ let user = document.head.querySelector('meta[name="user"]')
 
 if (user) {
   // TODO
+<<<<<<< HEAD
   // console.log(user.content)
   window.laravel_user = JSON.parse(user.content)
 } else {
   console.error('Caution: user not found.')
+=======
+  console.log(user.content)
+  window.laravel_user = JSON.parse(user.content)
+} else {
+  console.error('CAUTION!: user not found at HTML meta')
+>>>>>>> master
 }
 
 /**

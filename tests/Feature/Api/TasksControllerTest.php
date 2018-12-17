@@ -126,8 +126,12 @@ class TasksControllerTest extends TestCase
      */
     public function can_create_task()
     {
-        $this->login('api');
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.show');
+//        dd($user);
+        $user->givePermissionTo('tasks.store');
         $response=$this->post('/api/v1/tasks/',[
             'name'=>'Comprar pa',
             'completed'=>false
@@ -153,12 +157,12 @@ class TasksControllerTest extends TestCase
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertCount(3,$result);
-        $this->assertEquals('comprar pa', $result[0]->name);
-        $this->assertFalse((boolean)$result[0]->completed);
-        $this->assertEquals('comprar llet', $result[1]->name);
+        $this->assertEquals('Comprar pa', $result[0]->name);
+        $this->assertTrue((boolean)$result[0]->completed);
+        $this->assertEquals('Comprar llet', $result[1]->name);
         $this->assertFalse((boolean) $result[1]->completed);
-        $this->assertEquals('Estudiar PHP', $result[2]->name);
-        $this->assertTrue((boolean) $result[2]->completed);
+        $this->assertEquals('Estudiar php', $result[2]->name);
+        $this->assertFalse((boolean) $result[2]->completed);
     }
 
     /**
@@ -166,7 +170,9 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_task()
     {
-        $this->login('api');
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);
@@ -189,8 +195,10 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_create_tasks_without_name()
     {
-//        $this->withoutExceptionHandling();
-        $this->login('api');
+        $this->withoutExceptionHandling();
+        initialize_roles();
+        $user=$this->login('api');
+        $user->givePermissionTo('tasks.update');
         $oldTask = factory(Task::class)->create();
         $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
             'name' => ''

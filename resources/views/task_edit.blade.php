@@ -1,26 +1,33 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edita una tasca</title>
-</head>
-<body>
-<h1>Edita una tasca</h1>
-<form action="/tasks/{{$task->id}}" method="POST">
-    @csrf
-    {{ method_field('PUT') }}
-    Name: <input name="name" type="text" value="{{$task->name}}">
-    {{--// CHECKBOX--}}
-    Completed:
-    @if ( $task->completed )
-        <input name="completed" type="checkbox" checked>
-    @else
-        <input name="completed" type="checkbox">
-    @endif
-    <button>Editar</button>
-</form>
-</body>
-</html>
+<div class="modal fade" tabindex="-1" id="create-{{$task->id}}" role="document" aria-labelledby="create-label"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="/tasks/{{$task->id}}" method="POST">
+
+                    @csrf
+                    {{ method_field('PUT') }}
+                    <v-input
+                            success
+                            label="Click name to Edit (max. 25 ctrs)"
+                            readonly
+                    >
+                    </v-input>
+                    <br>
+                    <input name="name" type="text" value="{{$task->name}}" placeholder="{{$task->name}}" required>
+                    Completed:
+                    @if ( $task->completed )
+                        <input name="completed" type="checkbox" checked>
+                    @else
+                        <input name="completed" type="checkbox">
+                    @endif
+                    <v-btn color="info">
+                        <button >Editar
+                        </button>
+
+                    </v-btn>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
