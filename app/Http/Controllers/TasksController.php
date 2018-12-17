@@ -25,6 +25,8 @@ class TasksController extends Controller
 
     public function store(TasksStore $request)
     {
+//        dd('juas juas');
+
         if (strlen($request->name) > 25)
             $request->name = substr($request->name, 0, 25);
         // object Request

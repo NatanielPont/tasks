@@ -23,6 +23,7 @@ class TasksController extends Controller
     }
     public function destroy(Request $request, Task $task)
     {
+//        dd('hola');
         $task->delete();
     }
     public function store(TasksStore $request)
@@ -35,11 +36,16 @@ class TasksController extends Controller
     }
     public function update(TasksUpdate $request, Task $task)
     {
+//        echo $request->name;
+//        dd($request->name);
+//        abort(404);
 
 //        $task = Task::findOrFail($request->name);
         if ($request->name)
         $task->name = $request->name;
-//        $task->completed=false;
+        if ($request->data)
+        $task->name = $request->data;
+        $task->completed=false;
         $task->save();
 //        dd('hola');
         return $task->map();

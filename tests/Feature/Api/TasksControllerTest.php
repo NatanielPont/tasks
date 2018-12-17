@@ -195,7 +195,7 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_create_tasks_without_name()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         initialize_roles();
         $user=$this->login('api');
         $user->givePermissionTo('tasks.update');
