@@ -43,8 +43,7 @@
                                     <v-btn id="button_complete" @click="completeTask(task)" small>
                                         <v-switch
                                                 :label="`Switch : ${task.completed}`"
-                                                v-model="task.completed"
-                                                @change="toggleSwitch"
+                                                v-model="switch1"
                                                 color="yellow"
                                         ></v-switch>
                                         <!--<v-checkbox :id="'check'+task.id"-->
