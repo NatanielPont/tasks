@@ -8,9 +8,12 @@
     <v-card v-cloak>
 
 
-        <v-toolbar color="cyan" dark>
+        <v-toolbar color="cyan" dark class="toolTitle" >
 
-            <v-toolbar-title>Tasques</v-toolbar-title>
+            <v-toolbar-title >Tasques</v-toolbar-title>
+            {{--<v-toolbar-content style="display: block;height: 64px;text-align: center;padding-top: 15px;">--}}
+
+            {{--</v-toolbar-content>--}}
 
         </v-toolbar>
         <v-layout align-center justify-center>
@@ -111,4 +114,12 @@
 
 
 @endsection
+
+<style>
+    .toolTitle > div.v-toolbar__content {
+        display: block;
+        padding-top: 15px;
+        text-align: center;
+    }
+</style>
 

@@ -7,7 +7,7 @@
                         <v-toolbar color="teal" dark class="toolTitle">
                             <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
 
-                            <v-toolbar-title align="center">
+                            <v-toolbar-title >
                                 <span class="title">Tasques ({{total}})</span>
                             </v-toolbar-title>
 
