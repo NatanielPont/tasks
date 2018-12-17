@@ -41,10 +41,16 @@
                                 <v-flex xs7>
                                     <!--<v-card dark color="blue" >-->
                                     <v-btn id="button_complete" @click="completeTask(task)" small>
-                                        <v-checkbox
-                                                :label="`Completada : ${checkbox}`"
-                                                v-model="checkbox"
-                                        ></v-checkbox>
+                                        <v-switch
+                                                :label="`Switch : ${task.completed}`"
+                                                v-model="task.completed"
+                                                @change="toggleSwitch"
+                                                color="yellow"
+                                        ></v-switch>
+                                        <!--<v-checkbox :id="'check'+task.id"-->
+                                                <!--:label="`Completada : ${task.completed}`"-->
+                                                <!--v-model="completed"-->
+                                        <!--&gt;</v-checkbox>-->
                                     </v-btn>
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="orange">edit</v-icon></v-btn>
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
@@ -133,7 +139,8 @@ export default {
       newTask: '',
       dataTasks: this.tasks,
       errorMessage: '',
-      checkbox: true
+      // completed: false,
+      switch1: true
     }
   },
   props: {
@@ -160,12 +167,33 @@ export default {
     }
   },
   methods: {
+    toggleSwitch (task) {
+      if (!task.completed) {
+        this.completeTask(task)
+      }
+    },
     completeTask (task) {
       console.log(task)
       window.axios.post('/api/v1/completed_task/' + task.id, {
         _method: 'post'
       })
         .then((response) => {
+          // response.data = text;
+          // console.log('jardin' + text)
+          // task.name = text
+          //   this.dataTasks = null
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    uncompleteTask (task) {
+      window.axios.post('/api/v1/completed_task/' + task.id, {
+        _method: 'delete'
+      })
+        .then((response) => {
+          // this.dataTasks = null
+          // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
           // response.data = text;
           // console.log('jardin' + text)
           // task.name = text

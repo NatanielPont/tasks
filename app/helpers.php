@@ -248,6 +248,22 @@ if (!function_exists('sample_users')){
         }catch (Exception $e){
 
         }
+        try {
+            $sergitur = factory(User::class)->create([
+                'name' => 'Sergi Tur',
+                'email' => 'sergiturbadenas@gmail.com',
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
+            ]);
+            $sergitur->admin = true;
+            $sergitur->save();
+        } catch (Exception $e) {
+        }
+        Task::create([
+            'name' => 'Tasca Sergi Tur',
+            'completed' => false,
+            'description' => 'Descripció de prova',
+            'user_id' => $sergitur->id
+        ]);
     }
 
 }
