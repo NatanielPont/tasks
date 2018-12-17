@@ -24,30 +24,40 @@
                             <img src="https://placeimg.com/100/100/any">
                         </v-list-tile-avatar>
                         @if($task->completed)
+                            <v-flex xs3>
                             <del>{{ $task->name }}</del>
+                            </v-flex>
+                            <v-flex xs7>
 
-                            <form action="completed_task/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <input type="hidden" name="id" value="{{ $task->id  }}">
-                                <v-btn color="warning">
-                                    <button>Descompletar</button>
-                                </v-btn>
-                            </form>
-                            <form action="/tasks/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <v-btn color="error">
-                                    <button>Eliminar</button>
-                                </v-btn>
-                            </form>
+                                <div class="btn-group"  >
+                                    <form action="completed_task/{{ $task->id }}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                                        <v-btn color="warning">
+                                            <button>Descompletar</button>
+                                        </v-btn>
+                                    </form>
+                                    <form action="/tasks/{{ $task->id }}" method="POST">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <v-btn color="error">
+                                            <button>Eliminar</button>
+                                        </v-btn>
+                                    </form>
+
+
+                                </div>
+                            </v-flex>
+
 
                         @else
-                            <div>
+                            <v-flex xs3>
 
                             <h5>{{ $task->name }}</h5>
-                            </div>
 
+                            </v-flex>
+                            <v-flex xs7>
 
                         <div class="btn-group"  >
                             <form action="completed_task/{{ $task->id }}" method="POST">
@@ -75,6 +85,9 @@
 
 
                         </div>
+                            </v-flex>
+
+
 
                         @endif
                     </v-list-tile>
