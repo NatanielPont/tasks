@@ -116,7 +116,7 @@ var filters = {
   },
   completed: function (tasks) {
     return tasks.filter(function (task) {
-      return task.completed
+      return task.completed == 1
       // NO CAL
       // if (task.completed) return true
       // else return false
@@ -124,7 +124,7 @@ var filters = {
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
-      return !task.completed
+      return task.completed == 0
     })
   }
 }
