@@ -24,34 +24,35 @@
                             <v-list-tile v-for="task in filteredTasks" :key="task.id">
                                 <v-list-tile-content>
                                     <v-list-tile-title>
-                                        <span :id="'task' + task.id" :class="{ strike: task.completed }">
-                                        </span>
+
                                     </v-list-tile-title>
                                 </v-list-tile-content>
-
                                 <v-flex xs3>
                                     <v-card dark color="primary">
+                                        <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
                                                 :text="task.name"
                                                 :data=task
                                                 @edited="editName(task, $event)"
                                         ></editable-text>
+                                        </span>
                                     </v-card>
                                 </v-flex>
+
                                 <v-flex xs7>
                                     <!--<v-card dark color="blue" >-->
+
                                     <v-btn id="button_complete" @click="completeTask(task)" small>
-                                        <v-switch
-                                                :label="`Switch : ${task.completed}`"
-                                                v-model="switch1"
-                                                color="yellow"
-                                        ></v-switch>
-                                        <!--<v-checkbox :id="'check'+task.id"-->
-                                                <!--:label="`Completada : ${task.completed}`"-->
-                                                <!--v-model="completed"-->
-                                        <!--&gt;</v-checkbox>-->
+                                        <div >
+                                            <v-switch
+                                                    :label="`Completar/Descompletar`"
+                                                    :input-value="task.completed==1" @change="task.completed = $event"
+                                            ></v-switch>
+
+                                        </div>
+
                                     </v-btn>
-                                    <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="orange">edit</v-icon></v-btn>
+                                    <v-btn id="button_remove_task" @edited="editName(task, hola)" small><v-icon color="orange">edit</v-icon></v-btn>
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
                                     <!--</v-card>-->
                                 </v-flex>
@@ -139,8 +140,12 @@ export default {
       dataTasks: this.tasks,
       errorMessage: '',
       // completed: false,
-      switch1: true
+      switch1: false
     }
+  },
+  model: {
+    prop: 'inputValue',
+    event: 'change'
   },
   props: {
     tasks: {
@@ -167,35 +172,45 @@ export default {
   },
   methods: {
     toggleSwitch (task) {
-      if (!task.completed) {
-        this.completeTask(task)
-      }
+      return task.completed
+      // if (!task.completed) {
+      //   this.completeTask(task)
+      // }
     },
     completeTask (task) {
       console.log(task)
-      window.axios.post('/api/v1/completed_task/' + task.id, {
-        _method: 'post'
-      })
-        .then((response) => {
+      if (!task.completed) {
+        console.log('hola' + task.completed)
+        this.uncompleteTask(task)
+      } else {
+        console.log('hola2' + task.completed)
+        window.axios.post('/api/v1/completed_task/' + task.id, {
+          _method: 'post'
+        })
+          .then((response) => {
           // response.data = text;
           // console.log('jardin' + text)
           // task.name = text
+            task.completed = true
           //   this.dataTasks = null
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     },
     uncompleteTask (task) {
       window.axios.post('/api/v1/completed_task/' + task.id, {
         _method: 'delete'
       })
         .then((response) => {
+          // console.log('hola')
           // this.dataTasks = null
           // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
           // response.data = text;
           // console.log('jardin' + text)
           // task.name = text
+          task.completed = false
         })
         .catch(function (error) {
           console.log(error)
