@@ -53,7 +53,7 @@
                                         </div>
 
                                     </v-btn>
-                                    <v-btn id="button_remove_task" @click="editName(task, 'hola')" small><v-icon color="orange">edit</v-icon></v-btn>
+                                    <v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
                                     <!--</v-card>-->
                                 </v-flex>

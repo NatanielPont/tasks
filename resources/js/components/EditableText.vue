@@ -4,7 +4,7 @@
             {{ currentText }}
         </span>
         <span v-if="editing" @keyup.esc="resetName"
-              @keyup.enter="edit">
+              @keyup.enter="edit" >
             <input type="text" v-model="currentText">
             <!--// SINTAX SUGAR-->
             <!--<input type="text" :value="currentText" @input="currentText= $event.target.value">-->
