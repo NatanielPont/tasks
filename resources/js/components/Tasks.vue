@@ -34,6 +34,7 @@
                                                 :text="task.name"
                                                 :data=task
                                                 @edited="editName(task, $event)"
+                                                v-on:edited="dateSelectedInChild"
                                         ></editable-text>
                                         </span>
                                     </v-card>
@@ -52,7 +53,7 @@
                                         </div>
 
                                     </v-btn>
-                                    <v-btn id="button_remove_task" @edited="editName(task, hola)" small><v-icon color="orange">edit</v-icon></v-btn>
+                                    <v-btn id="button_remove_task" @click="editName(task, 'hola')" small><v-icon color="orange">edit</v-icon></v-btn>
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
                                     <!--</v-card>-->
                                 </v-flex>
@@ -171,11 +172,14 @@ export default {
     }
   },
   methods: {
-    toggleSwitch (task) {
-      return task.completed
-      // if (!task.completed) {
-      //   this.completeTask(task)
-      // }
+    // toggleSwitch (task) {
+    //   return task.completed
+    //   // if (!task.completed) {
+    //   //   this.completeTask(task)
+    //   // }
+    // },
+    dateSelectedInChild (currentText) {
+      console.log(currentText+'jkhakjhakjha')
     },
     completeTask (task) {
       console.log(task)

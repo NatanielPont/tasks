@@ -3,7 +3,7 @@
         <span v-if="!editing" @dblclick="editing=true">
             {{ currentText }}
         </span>
-        <span v-if="editing" @keyup.esc="editing=false"
+        <span v-if="editing" @keyup.esc="resetName"
               @keyup.enter="edit">
             <input type="text" v-model="currentText">
             <!--// SINTAX SUGAR-->
@@ -18,7 +18,8 @@ export default {
   data () {
     return {
       editing: false,
-      currentText: this.text
+      currentText: this.text,
+      task: this.text
     }
   },
   props: {
@@ -34,6 +35,10 @@ export default {
   },
   // props: ['text'],
   methods: {
+    resetName () {
+      this.editing = false
+      this.currentText = this.task
+    },
     edit () {
       console.log('hola')
 
