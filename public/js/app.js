@@ -71061,6 +71061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -71070,7 +71071,7 @@ var filters = {
   },
   completed: function completed(tasks) {
     return tasks.filter(function (task) {
-      return task.completed;
+      return task.completed == 1;
       // NO CAL
       // if (task.completed) return true
       // else return false
@@ -71078,7 +71079,7 @@ var filters = {
   },
   active: function active(tasks) {
     return tasks.filter(function (task) {
-      return !task.completed;
+      return task.completed == 0;
     });
   }
 };
@@ -71094,10 +71095,14 @@ var filters = {
       dataTasks: this.tasks,
       errorMessage: '',
       // completed: false,
-      switch1: true
+      switch1: false
     };
   },
 
+  model: {
+    prop: 'inputValue',
+    event: 'change'
+  },
   props: {
     tasks: {
       type: Array,
@@ -71122,45 +71127,64 @@ var filters = {
     }
   },
   methods: {
-    toggleSwitch: function toggleSwitch(task) {
-      if (!task.completed) {
-        this.completeTask(task);
-      }
+    // toggleSwitch (task) {
+    //   return task.completed
+    //   // if (!task.completed) {
+    //   //   this.completeTask(task)
+    //   // }
+    // },
+    dateSelectedInChild: function dateSelectedInChild(currentText) {
+      console.log(currentText + 'jkhakjhakjha');
     },
     completeTask: function completeTask(task) {
       console.log(task);
-      window.axios.post('/api/v1/completed_task/' + task.id, {
-        _method: 'post'
-      }).then(function (response) {
-        // response.data = text;
-        // console.log('jardin' + text)
-        // task.name = text
-        //   this.dataTasks = null
-      }).catch(function (error) {
-        console.log(error);
-      });
+      if (!task.completed) {
+        console.log('hola' + task.completed);
+        this.uncompleteTask(task);
+      } else {
+        console.log('hola2' + task.completed);
+        window.axios.post('/api/v1/completed_task/' + task.id, {
+          _method: 'post'
+        }).then(function (response) {
+          // response.data = text;
+          // console.log('jardin' + text)
+          // task.name = text
+          task.completed = true;
+          //   this.dataTasks = null
+        }).catch(function (error) {
+          console.log(error);
+        });
+      }
     },
     uncompleteTask: function uncompleteTask(task) {
       window.axios.post('/api/v1/completed_task/' + task.id, {
         _method: 'delete'
       }).then(function (response) {
+        // console.log('hola')
         // this.dataTasks = null
         // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
         // response.data = text;
         // console.log('jardin' + text)
         // task.name = text
+        task.completed = false;
       }).catch(function (error) {
         console.log(error);
       });
     },
     editName: function editName(task, text) {
       console.log('text ' + text);
+      console.log('text ' + task.name);
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
         data: text,
         _method: 'put'
       }).then(function (response) {
         // response.data = text;
+        if (text.length >= 25) {
+          text = text.substring(0, 25);
+        }
+        console.log('text ' + task.name);
+
         console.log(response.data);
         console.log('jardin' + text);
         task.name = text;
@@ -71283,13 +71307,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditableText',
   data: function data() {
     return {
       editing: false,
-      currentText: this.text
+      currentText: this.text,
+      taskName: this.text
     };
   },
 
@@ -71306,8 +71335,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   // props: ['text'],
   methods: {
+    resetName: function resetName() {
+      this.editing = false;
+      this.currentText = this.taskName;
+    },
     edit: function edit() {
-      console.log('hola');
+      if (this.currentText.length === 0) {
+        this.currentText = this.taskName;
+      }
+      // if ((this.currentText.length) >= 25) {
+      //   this.currentText = this.currentText.substring(0, 25)
+      // }
+      // console.log('hola')
 
       this.editing = false;
       // INFORMAR AL PARE
@@ -71355,7 +71394,7 @@ var render = function() {
                   ) {
                     return null
                   }
-                  _vm.editing = false
+                  return _vm.resetName($event)
                 },
                 function($event) {
                   if (
@@ -71389,8 +71428,21 @@ var render = function() {
                   _vm.currentText = $event.target.value
                 }
               }
-            })
-          ]
+            }),
+            _vm._v(" "),
+            _c(
+              "v-btn",
+              {
+                attrs: { id: "buttonEdit", small: "" },
+                on: { click: _vm.edit }
+              },
+              [_c("v-icon", { attrs: { color: "orange" } }, [_vm._v("edit")])],
+              1
+            ),
+            _vm._v(" "),
+            _c("span", { attrs: { align: "right" } })
+          ],
+          1
         )
       : _vm._e()
   ])
@@ -71451,15 +71503,11 @@ var render = function() {
                           attrs: { color: "teal", dark: "" }
                         },
                         [
-                          _c(
-                            "v-toolbar-title",
-                            { attrs: { align: "center" } },
-                            [
-                              _c("span", { staticClass: "title" }, [
-                                _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
-                              ])
-                            ]
-                          )
+                          _c("v-toolbar-title", [
+                            _c("span", { staticClass: "title" }, [
+                              _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
+                            ])
+                          ])
                         ],
                         1
                       )
@@ -71491,14 +71539,7 @@ var render = function() {
                             [
                               _c(
                                 "v-list-tile-content",
-                                [
-                                  _c("v-list-tile-title", [
-                                    _c("span", {
-                                      class: { strike: task.completed },
-                                      attrs: { id: "task" + task.id }
-                                    })
-                                  ])
-                                ],
+                                [_c("v-list-tile-title")],
                                 1
                               ),
                               _vm._v(" "),
@@ -71510,16 +71551,33 @@ var render = function() {
                                     "v-card",
                                     { attrs: { dark: "", color: "primary" } },
                                     [
-                                      _c("editable-text", {
-                                        attrs: { text: task.name, data: task },
-                                        on: {
-                                          edited: function($event) {
-                                            _vm.editName(task, $event)
-                                          }
-                                        }
-                                      })
-                                    ],
-                                    1
+                                      _c(
+                                        "span",
+                                        {
+                                          class: {
+                                            strike: task.completed == 1
+                                          },
+                                          attrs: { id: "task" + task.id }
+                                        },
+                                        [
+                                          _c("editable-text", {
+                                            attrs: {
+                                              text: task.name,
+                                              data: task
+                                            },
+                                            on: {
+                                              edited: [
+                                                function($event) {
+                                                  _vm.editName(task, $event)
+                                                },
+                                                _vm.dateSelectedInChild
+                                              ]
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
@@ -71543,45 +71601,26 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("v-switch", {
-                                        attrs: {
-                                          label: "Switch : " + task.completed,
-                                          color: "yellow"
-                                        },
-                                        on: { change: _vm.toggleSwitch },
-                                        model: {
-                                          value: task.completed,
-                                          callback: function($$v) {
-                                            _vm.$set(task, "completed", $$v)
-                                          },
-                                          expression: "task.completed"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        id: "button_remove_task",
-                                        small: ""
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.remove(task)
-                                        }
-                                      }
-                                    },
-                                    [
                                       _c(
-                                        "v-icon",
-                                        { attrs: { color: "orange" } },
-                                        [_vm._v("edit")]
+                                        "div",
+                                        [
+                                          _c("v-switch", {
+                                            attrs: {
+                                              label:
+                                                "Completada: " +
+                                                (task.completed == 1),
+                                              "input-value": task.completed == 1
+                                            },
+                                            on: {
+                                              change: function($event) {
+                                                task.completed = $event
+                                              }
+                                            }
+                                          })
+                                        ],
+                                        1
                                       )
-                                    ],
-                                    1
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(

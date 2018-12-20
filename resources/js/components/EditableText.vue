@@ -6,8 +6,8 @@
         <span v-if="editing" @keyup.esc="resetName"
               @keyup.enter="edit" >
             <input type="text" v-model="currentText">
-    <span align="right">
             <v-btn id="buttonEdit" @click="edit" small><v-icon color="orange">edit</v-icon></v-btn>
+    <span align="right">
 
     </span>
             <!--// SINTAX SUGAR-->
@@ -44,6 +44,9 @@ export default {
       this.currentText = this.taskName
     },
     edit () {
+      if ((this.currentText.length) >= 25) {
+        this.currentText = this.currentText.substring(0, 25)
+      }
       if ((this.currentText.length) === 0) {
         this.currentText = this.taskName
       }

@@ -179,7 +179,7 @@ export default {
     //   // }
     // },
     dateSelectedInChild (currentText) {
-      console.log(currentText+'jkhakjhakjha')
+      console.log(currentText + 'jkhakjhakjha')
     },
     completeTask (task) {
       console.log(task)
@@ -223,6 +223,7 @@ export default {
 
     editName (task, text) {
       console.log('text ' + text)
+      console.log('textname ' + task.name)
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
         data: text,
@@ -230,6 +231,8 @@ export default {
       })
         .then((response) => {
           // response.data = text;
+
+
           console.log(response.data)
           console.log('jardin' + text)
           task.name = text
