@@ -6,6 +6,10 @@
         <span v-if="editing" @keyup.esc="resetName"
               @keyup.enter="edit" >
             <input type="text" v-model="currentText">
+    <span align="right">
+            <v-btn id="buttonEdit" @click="edit" small><v-icon color="orange">edit</v-icon></v-btn>
+
+    </span>
             <!--// SINTAX SUGAR-->
             <!--<input type="text" :value="currentText" @input="currentText= $event.target.value">-->
         </span>
@@ -19,7 +23,7 @@ export default {
     return {
       editing: false,
       currentText: this.text,
-      task: this.text
+      taskName: this.text
     }
   },
   props: {
@@ -37,10 +41,13 @@ export default {
   methods: {
     resetName () {
       this.editing = false
-      this.currentText = this.task
+      this.currentText = this.taskName
     },
     edit () {
-      console.log('hola')
+      if ((this.currentText.length) === 0) {
+        this.currentText = this.taskName
+      }
+      // console.log('hola')
 
       this.editing = false
       // INFORMAR AL PARE
