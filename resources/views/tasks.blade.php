@@ -55,7 +55,7 @@
 
 
                         @else
-                            <v-flex xs3>
+                            <v-flex xs3 style="margin-right: 100px;">
 
                             <h5>{{ $task->name }}</h5>
 

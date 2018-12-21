@@ -1,34 +1,23 @@
 <template>
-    <v-container grid-list-md text-xs-center id="tasks" class="tasks" fill-height >
-        <v-layout row wrap>
-            <v-flex xs12>
-                <v-card dark>
-                    <v-card-title color="primary" class="justify-center">
-                        <v-toolbar color="teal" dark class="toolTitle">
-                            <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
+    <div class="container mx-auto ">
+        <div class="flex flex-col ">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg">
 
-                            <v-toolbar-title >
-                                <span class="title">Tasques ({{total}})</span>
-                            </v-toolbar-title>
+                            <span class="title">Tasques ({{total}})</span>
 
-                            <!--<v-toolbar-title>Settings</v-toolbar-title>-->
-                        </v-toolbar>
+                <div v-if="errorMessage">
+                    Ha succeit un error: {{ errorMessage }}
+                </div>
+            </div>
+                <v-list dense>
+                    <v-list-tile v-for="task in filteredTasks" :key="task.id">
+                        <v-list-tile-content>
+                            <v-list-tile-title>
 
-                    </v-card-title>
-                    <v-card-text class="px-0">
-
-                        <div v-if="errorMessage">
-                            Ha succeit un error: {{ errorMessage }}
-                        </div>
-                        <v-list dense>
-                            <v-list-tile v-for="task in filteredTasks" :key="task.id">
-                                <v-list-tile-content>
-                                    <v-list-tile-title>
-
-                                    </v-list-tile-title>
-                                </v-list-tile-content>
-                                <v-flex xs3>
-                                    <v-card dark color="primary">
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                        <v-flex xs3>
+                            <v-card dark color="primary">
                                         <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
                                                 :text="task.name"
@@ -37,41 +26,60 @@
                                                 v-on:edited="dateSelectedInChild"
                                         ></editable-text>
                                         </span>
-                                    </v-card>
-                                </v-flex>
+                            </v-card>
+                        </v-flex>
 
-                                <v-flex xs7>
-                                    <!--<v-card dark color="blue" >-->
+                        <v-flex xs7>
 
-                                    <v-btn id="button_complete" @click="completeTask(task)" small>
-                                        <div >
-                                            <v-switch
-                                                    :label="`Completada: ${task.completed==1}`"
-                                                    :input-value="task.completed==1" @change="task.completed = $event"
-                                            ></v-switch>
+                            <div class="inline-flex">
 
+                                <div class="inline-block relative w-64">
+                                    <div class="inline-flex">
+                                        <div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">
+
+                                        <button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-l">
+                                            Completar
+                                        </button>
                                         </div>
+                                        <div v-if="task.completed==0" class="focus:shadow-outline">
 
-                                    </v-btn>
-                                    <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
-                                    <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
-                                    <!--</v-card>-->
-                                </v-flex>
-                            </v-list-tile>
-                        </v-list>
-                        <form>
-                            <v-text-field
-                                    label="nova tasca"
-                                    type="text"
-                                    v-model="newTask" @keyup.enter="add"
-                                    name="name"
-                                    required>
-                            </v-text-field>
+                                        <button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-r">
+                                            Descompletar
+                                        </button>
+                                        </div>
+                                    </div>
+                                    <!--<button class="bg-blue hover:bg-blue-dark text-white font-bold py-1 px-0 border border-blue-darker ">-->
+                                        <!--<v-switch-->
+                                        <!--:label="`Completada: ${task.completed==1}`"-->
+                                        <!--:input-value="task.completed==1" @change="task.completed = $event"-->
+                                <!--&gt;</v-switch>-->
 
-                            <v-btn id="button_add_task" @click="add">Afegir</v-btn>
-                        </form>
-                            <v-card color="purple">
-                        <span id="filters" v-show="total > 0">
+                                    <!--</button>-->
+
+                                </div>
+
+                            <button id="button_remove_task" @click="remove(task)" class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded">
+                                <svg class="h-6 w-6 fill-current text-red w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                    <path d="M53.122 48.88L36.243 32l16.878-16.878a3 3 0 0 0-4.242-4.242L32 27.758l-16.878-16.88a3 3 0 0 0-4.243 4.243l16.878 16.88-16.88 16.88a3 3 0 0 0 4.243 4.241L32 36.243l16.878 16.88a3 3 0 0 0 4.244-4.243z"/>
+                                </svg>
+                            </button>
+                            </div>
+
+                        </v-flex>
+                    </v-list-tile>
+                </v-list>
+                <form>
+                    <v-text-field
+                            label="nova tasca"
+                            type="text"
+                            v-model="newTask" @keyup.enter="add"
+                            name="name"
+                            required>
+                    </v-text-field>
+
+                    <v-btn id="button_add_task" @click="add">Afegir</v-btn>
+                </form>
+                <span id="filters" v-show="total > 0">
                                  <v-card-title color="primary" class="justify-center">
                                     <span class="title">Filtros: [{{ filter }}]</span>
                                  </v-card-title>
@@ -100,12 +108,10 @@
 
                                 </v-card>
                             </span>
-                            </v-card>
-                    </v-card-text>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-container>
+        </div>
+
+    </div>
+
 </template>
 
 <script>
@@ -130,7 +136,7 @@ var filters = {
   }
 }
 export default {
-  name: 'Tasks',
+  name: 'TasksTailwind',
   components: {
     'editable-text': EditableText
   },
@@ -231,7 +237,6 @@ export default {
       })
         .then((response) => {
           // response.data = text;
-
 
           console.log(response.data)
           console.log('jardin' + text)
