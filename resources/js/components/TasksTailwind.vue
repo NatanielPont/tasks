@@ -35,16 +35,23 @@
 
                                 <div class="inline-block relative w-64">
                                     <div class="inline-flex">
-                                        <div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">
+                                        <!--<div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline">-->
 
-                                        <button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-l">
+                                        <!--<button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-l">-->
+                                            <!--Completar-->
+                                        <!--</button>-->
+                                        <!--</div>-->
+                                        <div  class="focus:shadow-outline">
+
+                                        <button @click="completeTask(task)" class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-r">
+                                            <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline">
+
                                             Completar
-                                        </button>
-                                        </div>
-                                        <div v-if="task.completed==0" class="focus:shadow-outline">
+                                            </div>
+                                            <div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">
+                                                Descompletar
+                                            </div>
 
-                                        <button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-2 rounded-r">
-                                            Descompletar
                                         </button>
                                         </div>
                                     </div>
@@ -189,19 +196,19 @@ export default {
     },
     completeTask (task) {
       console.log(task)
-      if (!task.completed) {
+      if (task.completed) {
         console.log('hola' + task.completed)
         this.uncompleteTask(task)
       } else {
-        console.log('hola2' + task.completed)
+        console.log('hola2 ' + task.completed)
         window.axios.post('/api/v1/completed_task/' + task.id, {
           _method: 'post'
         })
           .then((response) => {
           // response.data = text;
-          // console.log('jardin' + text)
           // task.name = text
             task.completed = true
+          console.log('jardin' + task.completed)
           //   this.dataTasks = null
           })
           .catch(function (error) {
