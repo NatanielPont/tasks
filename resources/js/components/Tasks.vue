@@ -7,7 +7,7 @@
                         <v-toolbar color="teal" dark class="toolTitle">
                             <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
 
-                            <v-toolbar-title >
+                            <v-toolbar-title>
                                 <span class="title">Tasques ({{total}})</span>
                             </v-toolbar-title>
 
@@ -63,7 +63,8 @@
                             <v-text-field
                                     label="nova tasca"
                                     type="text"
-                                    v-model="newTask" @keyup.enter="add"
+                                    v-model="newTask"
+                                    @keyup.native.enter="add"
                                     name="name"
                                     required>
                             </v-text-field>
@@ -172,12 +173,6 @@ export default {
     }
   },
   methods: {
-    // toggleSwitch (task) {
-    //   return task.completed
-    //   // if (!task.completed) {
-    //   //   this.completeTask(task)
-    //   // }
-    // },
     dateSelectedInChild (currentText) {
       console.log(currentText + 'jkhakjhakjha')
     },
@@ -232,7 +227,6 @@ export default {
         .then((response) => {
           // response.data = text;
 
-
           console.log(response.data)
           console.log('jardin' + text)
           task.name = text
@@ -252,6 +246,12 @@ export default {
       this.filter = newFilter
     },
     add () {
+      // console.log('hola')
+      // function f (e) {
+      //   if (e.keyCode === 13) {
+      //   }
+      //   alert('Enter was pressed')
+      // }
       if (this.newTask === '') return
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
