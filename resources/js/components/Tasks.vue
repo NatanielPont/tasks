@@ -43,7 +43,7 @@
                                 <v-flex xs7>
                                     <!--<v-card dark color="blue" >-->
 
-                                    <v-btn id="button_complete" @click="completeTask(task)" small>
+                                    <v-btn v-if="filter=='all'" id="button_complete" @click="completeTask(task)" small>
                                         <div >
                                             <v-switch
                                                     :label="`Completada: ${task.completed==1}`"
@@ -54,7 +54,7 @@
 
                                     </v-btn>
                                     <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
-                                    <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
+                                    <v-btn v-if="filter=='all'" id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
                                     <!--</v-card>-->
                                 </v-flex>
                             </v-list-tile>

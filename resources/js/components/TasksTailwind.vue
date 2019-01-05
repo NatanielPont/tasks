@@ -27,7 +27,8 @@
                     </ul>
                 </div>
                 <!--<div class="flex-1 border-2 border-blue text-center rounded-full  px-4 py-2 m-3">-->
-                                <div  class="focus:shadow-outline">
+
+                                <div v-if="filter=='all'" class="focus:shadow-outline">
 
                                     <button @click="completeTask(task)" class=" flex-1 bg-purple-light hover:bg-yellow text-grey-darkest font-bold px-4 py-4 m-3 rounded-r">
                                         <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">
@@ -40,7 +41,7 @@
 
                                     </button>
                                 </div>
-                        <button id="button_remove_task" @click="remove(task)" class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded">
+                        <button v-if="filter=='all'" id="button_remove_task" @click="remove(task)" class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded">
                             <!--<img src="https://img.icons8.com/material-rounded/64/000000/cancel.png" title="delete task">-->
                             <img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">
                             <!--<img src="https://img.icons8.com/material-two-tone/64/000000/cancel.png" title="delete task">-->
@@ -59,66 +60,18 @@
                     </button>
                 </div>
             </form>
-            <!--<div class="flex-1 text-grey-darker text-center bg-grey-light px-4 py-2 m-2">-->
 
-            <!--<form>-->
-                <!--<input type="text"-->
-                       <!--v-model="newTask"-->
-                       <!--@keyup.enter="add"-->
-                       <!--name="name"-->
-                       <!--class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"-->
-                       <!--placeholder="New task"-->
-                       <!--required-->
-                <!--&gt;-->
-                <!--<button id="button_add_task" @click="add">-->
-                    <!--<img src="https://img.icons8.com/ultraviolet/48/000000/plus.png" title="add task">-->
-                    <!--&lt;!&ndash;<img src="https://img.icons8.com/nolan/48/000000/plus.png">&ndash;&gt;-->
-                <!--</button>-->
-            <!--</form>-->
-                <!--</div>-->
             </div>
-
-            <!--<div class="flex bg-grey-lighter">-->
-
-                <!--<div class="flex-grow text-grey-darkest text-center  px-4 py-2 m-2">-->
-                <!--</div>-->
-
-            <!--</div>-->
 
                 <span id="filters" v-show="total > 0" align="center">
 
-                                    <span class="title">Filtros: [{{ filter }}]</span>
+                                    <span class="font-sans italic text-lg mr-3 border-b-4 border-blue-dark hover:bg-green-light">Filtres: [{{ filter }}]</span>
                      <ul class="list-reset inline-flex mt-5">
                 <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('all')">Totes</button></li>
                 <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('completed')">Completades</button></li>
                 <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('active')">Pendents</button></li>
             </ul>
-                                 <!--<v-card-title color="primary" class="justify-center">-->
-                                 <!--</v-card-title>-->
-                                <!--<v-card>-->
-                                    <!--<v-list id="filterList">-->
-                                        <!--<v-list-tile @click="setFilter('all')">-->
-                                            <!--<v-list-tile-content>-->
-                                        <!--<button>Totes</button>-->
 
-                                            <!--</v-list-tile-content>-->
-                                        <!--</v-list-tile>-->
-
-                                        <!--<v-list-tile @click="setFilter('completed')">-->
-                                            <!--<v-list-tile-content>-->
-
-                                            <!--<button>Completades</button>-->
-                                            <!--</v-list-tile-content>-->
-                                        <!--</v-list-tile>-->
-                                        <!--<v-list-tile @click="setFilter('active')">-->
-                                            <!--<v-list-tile-content>-->
-
-                                            <!--<button>Pendents</button>-->
-                                            <!--</v-list-tile-content>-->
-                                        <!--</v-list-tile>-->
-                                    <!--</v-list>-->
-
-                                <!--</v-card>-->
                             </span>
         </div>
 
@@ -136,9 +89,6 @@ var filters = {
   completed: function (tasks) {
     return tasks.filter(function (task) {
       return task.completed == 1
-      // NO CAL
-      // if (task.completed) return true
-      // else return false
     })
   },
   active: function (tasks) {
@@ -226,12 +176,6 @@ export default {
         _method: 'delete'
       })
         .then((response) => {
-          // console.log('hola')
-          // this.dataTasks = null
-          // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
-          // response.data = text;
-          // console.log('jardin' + text)
-          // task.name = text
           task.completed = false
         })
         .catch(function (error) {
@@ -257,13 +201,6 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
-      // window.axios.put('/api/v1/tasks/' + task.id).then((response) => {
-      //   console.log('jardin' + text)
-      //   task.name = text
-      //   // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
     },
     setFilter (newFilter) {
       this.filter = newFilter
