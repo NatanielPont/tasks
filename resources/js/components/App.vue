@@ -6,7 +6,7 @@ export default {
     return {
       widthSize: 100,
       drawer: null,
-      drawerRight: null,
+      drawerRight: false,
       items: [
         { icon: 'home', text: 'Home', url: '/' },
         { icon: 'content_copy', text: 'Tasks', url: '/tasks' },

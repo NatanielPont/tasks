@@ -37,15 +37,15 @@
                                         @csrf
                                         {{ method_field('DELETE') }}
                                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                                        <v-btn color="warning">
-                                            <button>Descompletar</button>
+                                        <v-btn type="submit" color="warning">
+                                           Descompletar
                                         </v-btn>
                                     </form>
                                     <form action="/tasks/{{ $task->id }}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <v-btn color="error">
-                                            <button>Eliminar</button>
+                                        <v-btn type="submit" color="error">
+                                            Eliminar
                                         </v-btn>
                                     </form>
 
@@ -67,23 +67,21 @@
                                 @csrf
                                 {{ method_field('POST') }}
                                 <input type="hidden" name="id" value="{{ $task->id  }}">
-                                <v-btn color="warning">
-                                    <button>Completar</button>
+                                <v-btn type="submit" color="warning">
+                                    Completar
                                 </v-btn>
                             </form>
                             <form action="/tasks/{{ $task->id }}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <v-btn color="error">
-                                    <button>Eliminar</button>
+                                <v-btn type="submit" color="error">
+                                    Eliminar
                                 </v-btn>
                             </form>
-                            <v-btn color="warning" >
-                                <button name="submit" value="Update" href="#"
-                                        data-toggle="modal"
-                                        data-target="#create-{{$task->id}}"
-                                >Modificar
-                                </button>
+                            <v-btn type="submit" color="warning" name="submit" value="Update" href="#"
+                                   data-toggle="modal"
+                                   data-target="#create-{{$task->id}}">
+                                Modificar
                             </v-btn>
 
 

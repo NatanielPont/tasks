@@ -21,10 +21,8 @@
                     @else
                         <input name="completed" type="checkbox">
                     @endif
-                    <v-btn color="info">
-                        <button >Editar
-                        </button>
-
+                    <v-btn type="Submit" color="info">
+                        Editar
                     </v-btn>
                 </form>
             </div>

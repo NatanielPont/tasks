@@ -136,7 +136,7 @@
                 clipped-left
                 clipped-right
                 fixed>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-side-icon  @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>Application</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
