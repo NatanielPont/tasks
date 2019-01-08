@@ -1,4 +1,4 @@
-//see all
+
 <template>
     <v-form action="/register" method="POST">
         <v-toolbar dark color="primary">

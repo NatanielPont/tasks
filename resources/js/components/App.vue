@@ -16,14 +16,11 @@ export default {
         { icon: 'account_circle', text: 'Contact', url: '/contact' },
         { icon: 'donut_large', text: 'About', url: '/about' },
         { icon: 'settings', text: 'Settings' },
-<<<<<<< HEAD
-        { icon: 'help', text: 'Help' }
-=======
+        { icon: 'help', text: 'Help' },
         // { icon: 'chat_bubble', text: 'Send feedback' },
         { icon: 'help', text: 'Help' }
         // { icon: 'phonelink', text: 'App downloads' },
         // { icon: 'keyboard', text: 'Go to the old version' }
->>>>>>> master
       ]
     }
   },
