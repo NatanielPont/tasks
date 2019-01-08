@@ -13,7 +13,7 @@ class TasksController extends Controller
 {
     //
 
-    public function index(TasksShow $request)
+    public function index()
     {
         $tasks = Task::orderBy('created_at', 'asc')->get();
         return view('tasks', ['tasks' => $tasks]);
@@ -23,7 +23,7 @@ class TasksController extends Controller
 
 
 
-    public function store(TasksStore $request)
+    public function store(Request $request)
     {
 //        dd('juas juas');
 
@@ -41,7 +41,7 @@ class TasksController extends Controller
 
     }
 
-    public function destroy(TasksDestroy $request)
+    public function destroy(Request $request)
     {
         $task = Task::findOrFail($request->id);
         $task->delete();
@@ -49,7 +49,7 @@ class TasksController extends Controller
         return redirect()->back();
     }
 
-    public function update(TasksUpdate $request)
+    public function update(Request $request)
     {
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
         $task = Task::findOrFail($request->id);
@@ -64,7 +64,7 @@ class TasksController extends Controller
         return redirect('/tasks');
     }
 
-    public function edit(TasksUpdate $request)
+    public function edit(Request $request)
     {
         $task = Task::findOrFail($request->id);
         return view('task_edit', compact('task'));

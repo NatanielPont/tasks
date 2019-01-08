@@ -29,6 +29,64 @@ if (!function_exists('create_example_tags')) {
         ]);
     }
 }
+
+if (!function_exists('create_example_tasks_with_tags')) {
+    function create_example_tasks_with_tags() {
+        $user1= factory(User::class)->create();
+        Task::create([
+            'name' => 'comprar pa',
+            'completed' => false,
+            'description' => 'Bla bla bla',
+            'user_id' => $user1->id
+        ]);
+        Task::create([
+            'name' => 'comprar llet',
+            'completed' => false,
+            'description' => 'Bla bla bla',
+            'user_id' => $user1->id
+        ]);
+        Task::create([
+            'name' => 'Estudiar PHP',
+            'completed' => true,
+            'description' => 'JORL JORL JORL',
+            'user_id' => $user1->id
+        ]);
+        $user1= factory(User::class)->create();
+        $comprarpa = Task::create([
+            'name' => 'comprar pa',
+            'completed' => false,
+            'description' => 'Bla bla bla',
+            'user_id' => $user1->id
+        ]);
+        $comprarllet = Task::create([
+            'name' => 'comprar llet',
+            'completed' => false,
+            'description' => 'Bla bla bla',
+            'user_id' => $user1->id
+        ]);
+        $estudiarPHP = Task::create([
+            'name' => 'Estudiar PHP',
+            'completed' => true,
+            'description' => 'JORL JORL JORL',
+            'user_id' => $user1->id
+        ]);
+        $tag1 = Tag::create([
+            'name' => 'Tag1',
+            'color' => 'blue',
+            'description' => 'bla bla bla'
+        ]);
+        $tag2 = Tag::create([
+            'name' => 'Tag2',
+            'color' => 'red',
+            'description' => 'Jorl Jorl'
+        ]);
+        $estudiarPHP->addTag($tag1);
+        $estudiarPHP->addTag($tag2);
+        $comprarllet->addTag($tag1);
+        $comprarllet->addTag($tag2);
+        $comprarpa->addTag($tag1);
+    }
+}
 if (!function_exists('create_example_tasks')){
     function create_example_tasks(){
         Task::create([
@@ -63,13 +121,28 @@ if (!function_exists('create_primary_user')){
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456')),
             ]);
             $user->admin=true;
-              try{
-                  $user->assignRole('TaskManager');
-            }catch (Exception $e){
-                  dd('hola'.$e);
-
-            }
             $user->save();
+        }
+    }
+}
+
+if (!function_exists('create_sergi_user')){
+    function create_sergi_user() {
+        $user = User::where('email', 'sergiturbadenas@gmail.com')->first();
+        if (!$user) {
+            $sergitur = factory(User::class)->create([
+                'name' => 'Sergi Tur',
+                'email' => 'sergiturbadenas@gmail.com',
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
+            ]);
+            $sergitur->admin = true;
+            $sergitur->save();
+            Task::create([
+                'name' => 'Tasca Sergi Tur',
+                'completed' => false,
+                'description' => 'Descripció de prova',
+                'user_id' => $sergitur->id
+            ]);
         }
     }
 }
@@ -248,22 +321,6 @@ if (!function_exists('sample_users')){
         }catch (Exception $e){
 
         }
-        try {
-            $sergitur = factory(User::class)->create([
-                'name' => 'Sergi Tur',
-                'email' => 'sergiturbadenas@gmail.com',
-                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
-            ]);
-            $sergitur->admin = true;
-            $sergitur->save();
-        } catch (Exception $e) {
-        }
-        Task::create([
-            'name' => 'Tasca Sergi Tur',
-            'completed' => false,
-            'description' => 'Descripció de prova',
-            'user_id' => $sergitur->id
-        ]);
     }
 
 }

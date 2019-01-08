@@ -32,7 +32,7 @@ class LoginAltControllerTest extends TestCase
         //
         $response=$this->post('/login_alt',['email'=>$user->email,
             'password'=>'secret']);
-        dd("hola");
+        //dd("hola");
         $response->assertStatus(302);
         $response->assertRedirect('/home');
         $this->assertNotNull(Auth::user());

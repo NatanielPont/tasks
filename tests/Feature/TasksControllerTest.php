@@ -27,9 +27,8 @@ class TasksControllerTest extends TestCase
         //302 comprovar que es redirecciona
         //Prepare
        create_example_tasks();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.show');
+        $this->login('api');
+//        $user->givePermissionTo('tasks.show');
 //        $this->login();
 
 
@@ -54,72 +53,41 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.store');
-        $response=$this->post('/tasks',[
-            'name'=>'Comprar llet',
+        $this->login();
+        $response = $this->post('/tasks',[
+            'name' => 'Comprar llet'
         ]);
         $response->assertStatus(302);
-//        $response->assertSuccessful();
-
-        $this->assertDatabaseHas('tasks',['name'=>'Comprar llet']);
-
-
-
-
+        $this->assertDatabaseHas('tasks',['name' => 'Comprar llet']);
     }
-
+    /**
+     * @test
+     */
+    public function cannot_delete_an_unexisting_task()
+    {
+        $this->login();
+        $response = $this->delete('/tasks/1');
+        $response->assertStatus(404);
+    }
     /**
      * @test
      */
     public function can_delete_task()
     {
-        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login();
-        $user->givePermissionTo('tasks.destroy');
-        $this->withoutExceptionHandling();
-        //1
-        $task=Task::create(['id'=>'0','name'=>'Comprar llet']);
-
-
-        //2
-        $response=$this->delete('/tasks/'.$task->id);
+        $this->login();
+        $task = Task::create([
+            'name' => 'Comprar llet'
+        ]);
+        $response = $this->delete('/tasks/' . $task->id);
         $response->assertStatus(302);
-//        $response->assertSuccessful();
-
-        //3
-        $this->assertDatabaseMissing('tasks',['name'=>'Comprar llet']);
-
-
-
-
+        $this->assertDatabaseMissing('tasks',['name' => 'Comprar llet']);
     }
-
-    /**
-     * @test
-     */
-    public function cannnot_delete_an_unexisting_task()
-    {
-        initialize_roles();
-        $user=$this->login();
-        $user->givePermissionTo('tasks.destroy');
-//        $this->login();
-        $response = $this->delete('/tasks/1');
-        $response->assertStatus(404);
-    }
-
-
-
     /**
      * @test
      */
     public function can_edit_a_task()
     {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $this->login();
         $task = Task::create([
             'name' => 'asdasdasd',
             'completed' => false
@@ -132,63 +100,37 @@ class TasksControllerTest extends TestCase
         $task = $task->fresh();
         $this->assertEquals($task->name,'Comprar pa');
         $this->assertEquals($task->completed,true);
-
-
     }
-
     /**
      * @test
      */
     public function cannot_edit_an_unexisting_task()
     {
-//        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $task= [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
-        ];
-        $response = $this->put('/tasks/1',$task);
+        $this->login();
+        $response = $this->put('/tasks/1',[]);
         $response->assertStatus(404);
-
     }
-
     /**
      * @test
      */
     public function can_show_edit_form()
     {
-//        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $task = Task::create( [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
+        $this->login();
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'completed' => false
         ]);
-//        dd($task);
         $response = $this->get('/task_edit/' . $task->id);
         $response->assertSuccessful();
         $response->assertSee('Comprar pa');
-
     }
-
     /**
      * @test
      */
     public function cannot_show_edit_form_unexisting_task()
     {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
+        $this->login();
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }
-
-
 }

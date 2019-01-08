@@ -84,7 +84,7 @@
                         </v-list>
                         <form v-if="filter=='all'">
                             <v-text-field
-                                    label="nova tasca"
+                                    label="nova tasca (max. 25 ctrs)"
                                     type="text"
                                     v-model="newTask"
                                     @keyup.native.enter="add"
@@ -276,6 +276,7 @@ export default {
       //   alert('Enter was pressed')
       // }
       if (this.newTask === '') return
+      if (this.newTask.length >= 25) this.newTask = this.newTask.substring(0, 25)
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {

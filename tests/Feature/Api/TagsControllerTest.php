@@ -1,6 +1,6 @@
 <?php
 //psr-4
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use App\Tag;
 use App\Task;

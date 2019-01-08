@@ -54,7 +54,7 @@
                 <div class="flex items-center border-b border-b-2 border-teal py-2">
                     <input v-model="newTask"
                            @keyup.enter="add"
-                           name="name" class=" appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="New task" required>
+                           name="name" class=" appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="New task (max. 25 ctrs)" required>
                     <button id="button_add_task" @click="add">
                         <img src="https://img.icons8.com/ultraviolet/48/000000/plus.png" title="add task">
                     </button>
@@ -207,6 +207,7 @@ export default {
     },
     add () {
       if (this.newTask === '') return
+      if (this.newTask.length >= 25) this.newTask = this.newTask.substring(0, 25)
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
