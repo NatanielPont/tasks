@@ -12,6 +12,8 @@
 */
 
 
+use App\Http\Controllers\TasksController;
+
 Auth::routes();
 
 //TODO
@@ -19,10 +21,10 @@ Route::post('/login_alt', 'Auth\LoginAltController@login');
 Route::post('/register_alt', 'Auth\RegisterAltController@register');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/tasks', 'TasksController@index');
-    Route::post('/tasks', 'TasksController@store');
-    Route::delete('/tasks/{id}', 'TasksController@destroy');
-    Route::put('/tasks/{id}', 'TasksController@update');
+    Route::get('/tasks','\\'. TasksController::class . '@index');
+    Route::post('/tasks','\\'. TasksController::class . '@store');
+    Route::delete('/tasks/{id}','\\'. TasksController::class . '@destroy');
+    Route::put('/tasks/{id}','\\'. TasksController::class . '@update');
 
 //    Route::get('/editableForm/{id}', 'TasksController@edit');
     Route::get('/task_edit/{id}', 'TasksController@edit');

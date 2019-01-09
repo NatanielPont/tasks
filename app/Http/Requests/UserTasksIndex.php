@@ -8,9 +8,11 @@
 
 namespace App\Http\Requests;
 
+
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UserTasksIndex
+class UserTasksIndex extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,6 +21,7 @@ class UserTasksIndex
      */
     public function authorize()
     {
+
         return Auth::user()->can('user.tasks.index');
     }
     /**

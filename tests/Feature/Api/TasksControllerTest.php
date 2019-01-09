@@ -24,6 +24,7 @@ class TasksControllerTest extends TestCase
      */
     public function task_manager_can_show_a_task()
     {
+        $this->withoutExceptionHandling();
         $this->loginAsTaskManager('api');
         $task = factory(Task::class)->create();
         $response = $this->json('GET','/api/v1/tasks/' . $task->id);

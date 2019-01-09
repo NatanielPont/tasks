@@ -16,12 +16,16 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('color')->nullable();
+            $table->string('description');
+            $table->string('color');
             $table->timestamps();
         });
+        Schema::create('tag_task', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('task_id');
+            $table->unsignedInteger('tag_id');
+        });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -30,5 +34,6 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
+        Schema::dropIfExists('tag_task');
     }
 }

@@ -135,89 +135,89 @@
 </template>
 
 <script>
-  import Toggle from './Toggle'
-  import TaskDestroy from './TaskDestroy'
-  import TaskUpdate from './TaskUpdate'
-  import TaskShow from './TaskShow'
-  import TasksTags from './TasksTags'
-  export default {
-    name: 'TasksList',
-    data () {
-      return {
-        user: '',
-        loading: false,
-        dataTasks: this.tasks,
-        dataUsers: this.users,
-        filter: 'Totes',
-        filters: [
-          'Totes',
-          'Completades',
-          'Pendents'
-        ],
-        search: '',
-        pagination: {
-          rowsPerPage: 25
-        },
-        headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'User', value: 'user_id' },
-          { text: 'Completat', value: 'completed' },
-          { text: 'Etiquetes', value: 'tags' },
-          { text: 'Creat', value: 'created_at_timestamp' },
-          { text: 'Modificat', value: 'updated_at_timestamp' },
-          { text: 'Accions', sortable: false, value: 'full_search' }
-        ]
-      }
+import Toggle from './Toggle'
+import TaskDestroy from './TaskDestroy'
+import TaskUpdate from './TaskUpdate'
+import TaskShow from './TaskShow'
+import TasksTags from './TasksTags'
+export default {
+  name: 'TasksList',
+  data () {
+    return {
+      user: '',
+      loading: false,
+      dataTasks: this.tasks,
+      dataUsers: this.users,
+      filter: 'Totes',
+      filters: [
+        'Totes',
+        'Completades',
+        'Pendents'
+      ],
+      search: '',
+      pagination: {
+        rowsPerPage: 25
+      },
+      headers: [
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'User', value: 'user_id' },
+        { text: 'Completat', value: 'completed' },
+        { text: 'Etiquetes', value: 'tags' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
+      ]
+    }
+  },
+  components: {
+    'toggle': Toggle,
+    'task-destroy': TaskDestroy,
+    'task-update': TaskUpdate,
+    'task-show': TaskShow,
+    'tasks-tags': TasksTags
+  },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
     },
-    components: {
-      'toggle': Toggle,
-      'task-destroy': TaskDestroy,
-      'task-update': TaskUpdate,
-      'task-show': TaskShow,
-      'tasks-tags': TasksTags
+    tags: {
+      type: Array,
+      required: true
     },
-    props: {
-      tasks: {
-        type: Array,
-        required: true
-      },
-      tags: {
-        type: Array,
-        required: true
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
+    users: {
+      type: Array,
+      required: true
     },
-    watch: {
-      tasks (newTasks) {
-        this.dataTasks = newTasks
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  watch: {
+    tasks (newTasks) {
+      this.dataTasks = newTasks
+    }
+  },
+  methods: {
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    methods: {
-      removeTask (task) {
-        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-      },
-      updateTask (task) {
-        this.refresh()
-      },
-      refresh () {
-        this.loading = true
-        window.axios.get(this.uri).then(response => {
-          this.dataTasks = response.data
-          this.loading = false
-          this.$snackbar.showMessage('Tasques actualitzades correctament')
-        }).catch(error => {
-          console.log(error)
-          this.loading = false
-        })
-      }
+    updateTask (task) {
+      this.refresh()
+    },
+    refresh () {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        this.dataTasks = response.data
+        this.loading = false
+        this.$snackbar.showMessage('Tasques actualitzades correctament')
+      }).catch(error => {
+        console.log(error)
+        this.loading = false
+      })
     }
   }
+}
 </script>

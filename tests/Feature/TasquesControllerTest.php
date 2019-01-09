@@ -18,6 +18,7 @@ class TasquesControllerTest extends TestCase
      */
     public function guest_user_cannot_index_tasks()
     {
+
         $response = $this->get('/tasques');
         $response->assertRedirect('login');
     }
@@ -35,7 +36,7 @@ class TasquesControllerTest extends TestCase
      */
     public function superadmin_can_index_tasks()
     {
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
         create_example_tasks_with_tags();
         $user  = $this->loginAsSuperAdmin();
         $response = $this->get('/tasques');
@@ -68,16 +69,17 @@ class TasquesControllerTest extends TestCase
      */
     public function task_manager_can_index_tasks()
     {
+        $this->withoutExceptionHandling();
         create_example_tasks();
         $this->loginAsTaskManager();
         $response = $this->get('/tasques');
         $response->assertSuccessful();
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks', function($tasks) {
-            return count($tasks)===6 &&
-                $tasks[0]['name']==='comprar pa' &&
-                $tasks[1]['name']==='comprar llet' &&
-                $tasks[2]['name']==='Estudiar PHP';
+            return count($tasks)===3 &&
+                $tasks[0]['name']==='Comprar pa' &&
+                $tasks[1]['name']==='Comprar llet' &&
+                $tasks[2]['name']==='Estudiar php';
         });
     }
     /**
@@ -97,13 +99,12 @@ class TasquesControllerTest extends TestCase
         $response->assertSuccessful();
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks', function($tasks) {
-            return count($tasks)===1 &&
-                $tasks[0]['name']==='Tasca usuari logat';
+//            dd($tasks);
+            return count($tasks)===4 &&
+                $tasks[3]['name']==='Tasca usuari logat';
         });
         $response->assertViewHas('users');
         $response->assertViewHas('uri');
     }
-
-
 
 }

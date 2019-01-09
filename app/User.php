@@ -12,7 +12,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-//    use Notifiable, HasApiTokens,HasRoles;
     use HasRoles,Notifiable, HasApiTokens,Impersonate;
     /**
      * The attributes that are mass assignable.
@@ -37,22 +36,18 @@ class User extends Authenticatable
     {
         return $this->isSuperAdmin();
     }
-
+    /**
+     * @return bool
+     */
     public function canBeImpersonated()
     {
         return !$this->isSuperAdmin();
-
-
     }
-
-    public function impersonatedBY()
+    public function impersonatedBy()
     {
-        if ($this->isImpersonated()) return User::findORfail(Session::get('impersonated_by'));
+        if ($this->isImpersonated()) return User::findOrFail(Session::get('impersonated_by'));
         return null;
-
     }
-    
-    
     public function tasks()
     {
         return $this->hasMany(Task::class);
@@ -101,6 +96,8 @@ class User extends Authenticatable
     {
         return $query->where('admin',true);
     }
+
+
 
 
 }

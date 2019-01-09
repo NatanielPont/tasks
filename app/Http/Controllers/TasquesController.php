@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IndexTasques;
 use App\Http\Requests\UserTasksIndex;
 use App\Tag;
 use App\Task;
@@ -19,6 +18,7 @@ class TasquesController extends Controller
             $tasks =  map_collection(Task::orderBy('created_at','desc')->get());
             $uri = '/api/v1/tasks';
         } else {
+//            dd('hola');
             $tasks =  map_collection($request->user()->tasks);
             $uri = '/api/v1/user/tasks';
         }
