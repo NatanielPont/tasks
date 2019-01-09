@@ -38,7 +38,7 @@ class HelpersTest extends TestCase
         $user = User::where('email','sergiturbadenas@gmail.com')->first();
         $this->assertEquals($user->name,'Sergi Tur');
         $this->assertEquals($user->email,'sergiturbadenas@gmail.com');
-        $this->assertTrue(Hash::check(env('PRIMARY_USER_PASSWORD','secret'), $user->password));
+        $this->assertTrue(Hash::check(env('PRIMARY_USER_PASSWORD','123456'), $user->password));
 
     }
 }
