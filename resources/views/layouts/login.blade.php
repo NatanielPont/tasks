@@ -9,7 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title','Put your title here')</title>
-
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
 <div id="app" v-cloak>

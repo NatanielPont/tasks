@@ -14,6 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>@yield('title','Put your title here')</title>
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
 <div id="app" v-cloak>
