@@ -12,6 +12,7 @@
 */
 
 
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
 
 Auth::routes();
@@ -53,8 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::impersonate();
 
     //TAGS
-    Route::get('/tags','TagsController@index');
-
+    Route::get('/tags','\\'. TagsController::class . '@index');
 });
 Route::get('/', function () {
     return view('welcome');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagsIndex;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TagsIndex $request)
     {
         //
         $tags=map_collection(Tag::orderBy('created_at','desc')->get());
