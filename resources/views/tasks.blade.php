@@ -30,9 +30,11 @@
                             <v-flex xs3>
                             <del>{{ $task->name }}</del>
                             </v-flex>
-                            <v-flex xs7>
+                        <v-layout justify-end>
 
-                                <div class="btn-group"  >
+                            <v-flex xs7 class="text-xs-right">
+
+                                <div class="btn-group" >
                                     <form action="completed_task/{{ $task->id }}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
@@ -52,6 +54,7 @@
 
                                 </div>
                             </v-flex>
+                        </v-layout>
 
 
                         @else
