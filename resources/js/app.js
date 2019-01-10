@@ -16,6 +16,8 @@ import UserSelect from './components/UserSelect'
 // import Snackbar from './components/ui/SnackBar'
 import snackbar from './plugins/snackbar'
 import permissions from './plugins/permissions'
+import Profile from './components/Profile'
+
 window.Vue = Vue
 window.Vue.use(Vuetify)
 window.Vue.use(permissions)
@@ -30,9 +32,9 @@ window.Vue.component('register-form', RegisterForm)
 // window.Vue.component('editable-form', EditableForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
+window.Vue.component('profile', Profile)
+
 // window.Vue.component('snackbar', Snackbar)
 
 // eslint-disable-next-line no-unused-vars
 const app = new window.Vue(AppComponent)
-
-

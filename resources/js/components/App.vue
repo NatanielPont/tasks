@@ -14,6 +14,7 @@ export default {
         { icon: 'history', text: 'Tasks Tailwind', url: '/tasks_tailwind' },
         { icon: 'build', text: 'Tasques', url: '/tasques' },
         { icon: 'donut_large', text: 'Tags', url: '/tags' },
+        { icon: 'donut_large', text: 'Perfil', url: '/profile' },
         { icon: 'account_circle', text: 'Contact', url: '/contact' },
         { icon: 'donut_large', text: 'About', url: '/about' }
         // { icon: 'chat_bubble', text: 'Send feedback' },

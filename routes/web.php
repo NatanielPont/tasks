@@ -12,6 +12,9 @@
 */
 
 
+use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
 
@@ -55,6 +58,10 @@ Route::middleware(['auth'])->group(function () {
 
     //TAGS
     Route::get('/tags','\\'. TagsController::class . '@index');
+    Route::get('/profile', '\\'. ProfileController::class . '@show');
+    Route::post('/photo', '\\'. PhotoController::class . '@store');
+    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
+
 });
 Route::get('/', function () {
     return view('welcome');

@@ -30,9 +30,9 @@
                             <v-flex xs3>
                             <del>{{ $task->name }}</del>
                             </v-flex>
-                        <v-layout justify-end>
+                        <v-layout>
 
-                            <v-flex xs7 class="text-xs-right">
+                            <v-flex xs7 offset-xs7>
 
                                 <div class="btn-group" >
                                     <form action="completed_task/{{ $task->id }}" method="POST">
