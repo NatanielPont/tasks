@@ -6,6 +6,7 @@
             :item_value="itemValue"
             clearable
             :label="label"
+            style="margin: 20px;"
     >
         <template slot="selection" slot-scope="data">
             <v-chip>

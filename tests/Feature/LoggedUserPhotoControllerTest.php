@@ -28,9 +28,10 @@ class LoggedUserPhotoControllerTest extends TestCase
         $this->withoutExceptionHandling();
         Storage::fake('local');
         $user = factory(User::class)->create();
+//        dd(File::get(base_path('tests/__Fixtures__/photos/default.jpg')));
         Storage::disk('local')->put(
             '/photos/' . $user->id . '.jpg',
-            File::get(base_path('tests/__Fixtures__/photos/default.jpg'))
+            File::get(base_path('tests/__Fixtures__/photos/default.png'))
         );
         $photo = Photo::create([
             'url' => 'photos/' . $user->id . '.jpg',

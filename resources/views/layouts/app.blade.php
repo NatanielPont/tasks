@@ -9,7 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="user" content="{{ logged_user() }}">
+    <meta name="git" content="{{ git() }}">
 
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2680C2"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -121,7 +124,7 @@
                         @endImpersonating
                         <v-flex xs12>
                             @canImpersonate
-                            <user-select label="Entrar com..." @selected="impersonate" url="/api/v1/regular_users" v-bind:style="{ padding: 10 }"></user-select>
+                            <impersonate label="Entrar com..." url="/api/v1/regular_users" ></impersonate>
                             @endCanImpersonate
                             @impersonating
                             {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
@@ -133,7 +136,7 @@
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar
-                color="indigo"
+                color="primary darken-4"
                 dark
                 app
                 clipped-left
