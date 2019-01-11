@@ -15,6 +15,8 @@ import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
 // import Snackbar from './components/ui/SnackBar'
 import snackbar from './plugins/snackbar'
+import confirm from './plugins/confirm'
+
 import permissions from './plugins/permissions'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
@@ -108,6 +110,8 @@ window.Vue.use(window.Vuetify, {
 window.Vue.use(Vuetify)
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
+window.Vue.use(confirm)
+
 
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
