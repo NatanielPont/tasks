@@ -12,11 +12,11 @@
                     <v-icon class="mr-1">exit_to_app</v-icon>
                     Sortir
                 </v-btn>
-                <!--TODO-->
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
-                </v-btn>
+                <!--&lt;!&ndash;TODO&ndash;&gt;-->
+                <!--<v-btn flat class="white&#45;&#45;text" @click="dialog=false">-->
+                    <!--<v-icon class="mr-1">save</v-icon>-->
+                    <!--Guardar-->
+                <!--</v-btn>-->
             </v-toolbar>
             <v-card>
                 <v-card-text>

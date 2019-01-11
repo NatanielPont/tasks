@@ -15,7 +15,8 @@ class TasksController extends Controller
 
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = map_collection(Task::orderBy('created_at','desc')->get());
+//        dd($tasks);
         return view('tasks', ['tasks' => $tasks]);
 
     }

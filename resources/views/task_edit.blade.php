@@ -1,9 +1,9 @@
-<div class="modal fade" tabindex="-1" id="create-{{$task->id}}" role="document" aria-labelledby="create-label"
+<div class="modal fade" tabindex="-1" id="create-{{$task['id']}}" role="document" aria-labelledby="create-label"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="/tasks/{{$task->id}}" method="POST">
+                <form action="/tasks/{{$task['id']}}" method="POST">
 
                     @csrf
                     {{ method_field('PUT') }}
@@ -14,9 +14,9 @@
                     >
                     </v-input>
                     <br>
-                    <input name="name" type="text" value="{{$task->name}}" placeholder="{{$task->name}}" required>
+                    <input name="name" type="text" value="{{$task['name']}}" placeholder="{{$task['name']}}" required>
                     Completed:
-                    @if ( $task->completed )
+                    @if ( $task['completed'] )
                         <input name="completed" type="checkbox" checked>
                     @else
                         <input name="completed" type="checkbox">

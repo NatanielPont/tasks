@@ -61,12 +61,13 @@
         })
       },
       update () {
+        console.log(this.completed)
         this.working = true
         const newTask = {
           name: this.name,
           description: this.description,
           completed: this.completed,
-          user: this.user
+          user: this.user.id
         }
         window.axios.put(this.uri + '/' + this.task.id, newTask).then((response) => {
           this.$emit('updated', response.data)
