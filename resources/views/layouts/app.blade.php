@@ -133,6 +133,7 @@
                         </v-flex>
                     </v-layout>
                 </v-card>
+                    <tema></tema>
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <style>
+        [v-cloak] {display: none}
+    </style>
 </head>
 <body>
 <div id="app" v-cloak>
@@ -50,7 +53,7 @@
                         <div class="text-xs-center">
                             <h2 class="headline">The best way to start developing</h2>
                             <span class="subheading">
-                Cras facilisis mi vitae nunc 
+                Cras facilisis mi vitae nunc
               </span>
                         </div>
                     </v-flex>

@@ -20,8 +20,10 @@ import confirm from './plugins/confirm'
 import permissions from './plugins/permissions'
 import Impersonate from './components/Impersonate'
 import GitInfo from './components/git/GitInfoComponent'
-
+import Tema from './components/Tema.vue'
 import Profile from './components/Profile'
+
+
 const PRIMARY_COLOR_KEY = 'primary_color_key'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2680C2'
@@ -31,28 +33,10 @@ window.Vuetify = Vuetify
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
-      base: primaryColor,
-      lighten1: '#4098D7',
-      lighten2: '#62B0E8',
-      lighten3: '#84C5F4',
-      lighten4: '#B6E0FE',
-      lighten5: '#DCEEFB',
-      darken1: '#186FAF',
-      darken2: '#0F609B',
-      darken3: '#0A558C',
-      darken4: '#003E6B'
+      base: primaryColor
     },
     secondary: {
-      base: '#2CB1BC',
-      lighten1: '#38BEC9',
-      lighten2: '#54D1DB',
-      lighten3: '#87EAF2',
-      lighten4: '#BEF8FD',
-      lighten5: '#E0FCFF',
-      darken1: '#14919B',
-      darken2: '#0E7C86',
-      darken3: '#0A6C74',
-      darken4: '#044E54'
+      base: '#2CB1BC'
     },
     accent: {
       base: '#F0B429',
@@ -124,7 +108,7 @@ window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
-
+window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
 
 // window.Vue.component('snackbar', Snackbar)

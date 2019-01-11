@@ -2,7 +2,9 @@
 @section('title')
     Tasques
 @endsection
-
+<style>
+    [v-cloak] {display: none}
+</style>
 @section('content')
 
     <v-card v-cloak>
