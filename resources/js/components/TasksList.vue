@@ -205,11 +205,15 @@ export default {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     updateTask (task) {
+      // console.log(task)
       this.refresh()
     },
     refresh () {
+      self.location.reload()
+
       this.loading = true
       window.axios.get(this.uri).then(response => {
+      // console.log(response.data)
         this.dataTasks = response.data
         this.loading = false
         this.$snackbar.showMessage('Tasques actualitzades correctament')
@@ -217,6 +221,7 @@ export default {
         console.log(error)
         this.loading = false
       })
+      // self.location.reload()
     }
   }
 }

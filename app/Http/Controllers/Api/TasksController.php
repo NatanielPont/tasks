@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\TagsStore;
 use App\Http\Requests\TasksDestroy;
 use App\Http\Requests\TasksIndex;
 use App\Http\Requests\TasksShow;
 use App\Http\Requests\TasksStore;
 use App\Http\Requests\TasksUpdate;
+use App\Tag;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,6 +18,8 @@ class TasksController extends Controller
 
     public function index(TasksIndex $request)
     {
+//        dd(map_collection(Task::orderBy('created_at','desc')->get()));
+//        dd('hola');
         return map_collection(Task::orderBy('created_at','desc')->get());
     }
     public function show(TasksShow $request, Task $task) // Route Model Binding
@@ -48,6 +52,16 @@ class TasksController extends Controller
     {
         $task->delete();
         return $task;
+    }
+    public function storeTag(TagsStore $tag,Task $task){
+        $tag1 = Tag::create([
+            'name' => $tag->name,
+            'color' => $tag->color,
+            'description' => $tag->description
+        ]);
+        $task->addTag($tag1);
+        return $task->map();
+
     }
 
 }

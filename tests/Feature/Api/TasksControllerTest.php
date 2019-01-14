@@ -9,6 +9,7 @@
 namespace Tests\Feature\Api;
 
 
+use App\Tag;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

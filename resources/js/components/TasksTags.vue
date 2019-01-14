@@ -70,7 +70,10 @@
       },
       addTag () {
         console.log('TODO ADD TAG')
-        let tag = {}
+        let tag = {
+          name: this.name,
+          description: this.description,
+        }
         window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(response => {
           this.$snackbar.showMessage('Etiqueta afegida correctament')
         }).catch(error => {

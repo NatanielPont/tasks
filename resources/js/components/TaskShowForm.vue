@@ -18,7 +18,7 @@
                 :readonly="true"
         ></v-textarea>
 
-        <user-select :readonly="true" :users="dataUsers" label="Usuari"></user-select>
+        <user-select v-model="user" :readonly="true" :users="dataUsers" label="Usuari"></user-select>
 
     </v-form>
 </template>
@@ -30,7 +30,10 @@
         name: this.task.name,
         completed: this.task.completed,
         description: this.task.description,
-        dataUsers: this.users
+        dataUsers: this.users,
+        user: this.user = this.users.find((user) => {
+          return parseInt(user.id) === parseInt(this.task.user_id)
+        })
       }
     },
     props: {
@@ -44,9 +47,9 @@
       }
     },
     watch: {
-      task (task) {
-        this.updateUser(task)
-      }
+      // task (task) {
+      //   this.updateUser(task)
+      // }
     },
     methods: {
       updateUser (task) {

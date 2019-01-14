@@ -52,6 +52,7 @@ class TasksController extends Controller
 
     public function update(Request $request)
     {
+
         // Models -> Eloquent -> ORM (HIBERNATE de Java) Object Relation Model
         $task = Task::findOrFail($request->id);
 

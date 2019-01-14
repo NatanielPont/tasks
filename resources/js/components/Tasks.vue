@@ -210,11 +210,7 @@ export default {
           _method: 'post'
         })
           .then((response) => {
-          // response.data = text;
-          // console.log('jardin' + text)
-          // task.name = text
             task.completed = true
-          //   this.dataTasks = null
           })
           .catch(function (error) {
             console.log(error)
@@ -226,12 +222,6 @@ export default {
         _method: 'delete'
       })
         .then((response) => {
-          // console.log('hola')
-          // this.dataTasks = null
-          // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
-          // response.data = text;
-          // console.log('jardin' + text)
-          // task.name = text
           task.completed = false
         })
         .catch(function (error) {
