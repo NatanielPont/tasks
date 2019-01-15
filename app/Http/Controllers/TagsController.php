@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TagsIndex;
+use App\Http\Requests\TagsStore;
 use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,17 +18,24 @@ class TagsController extends Controller
      */
     public function index(TagsIndex $request)
     {
+//        return map_collection(Tag::orderBy('created_at')->get());
 
-        if (Auth::user()->can('tags.manage')){
-            $tags = map_collection(Tag::orderBy('created_at','desc')->get());
-            $uri = '/api/v1/tags';
-        }else{
-            $tags = map_collection($request->user()->tasks);
-            $uri = '/api/v1/user/tags';
-        }
-        $users = map_collection(User::all());
-        return view('tags',compact('tags','users','uri'));
+        $tags = map_collection(Tag::orderBy('created_at', 'desc')->get());
+        $uri = '/api/v1/tags';
+        return view('tags', compact('tags','uri'));
+//        if (Auth::user()->can('tags.manage')){
+//            $tags = map_collection(Tag::orderBy('created_at','desc')->get());
+//            $uri = '/api/v1/tags';
+//        }else{
+//            $tags = map_collection($request->user()->tasks);
+//            $uri = '/api/v1/user/tags';
+//        }
+////        dd($tags);
+//        $users = map_collection(User::all());
+////        dd('hola');
+//        return view('tags',compact('tags','users','uri'));
     }
+//
 
     /**
      * Show the form for creating a new resource.

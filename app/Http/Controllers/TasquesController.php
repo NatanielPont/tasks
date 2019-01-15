@@ -26,4 +26,10 @@ class TasquesController extends Controller
         $tags = map_collection(Tag::all());
         return view('tasques',compact('tasks','users','uri','tags'));
     }
+
+//    public function addTagTask(Request $request){
+//
+//
+//
+//    }
 }

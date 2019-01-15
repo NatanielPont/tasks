@@ -139,6 +139,7 @@ class TasksControllerTest extends TestCase
      */
     public function superadmin_can_create_fulltask()
     {
+//        $this->withoutExceptionHandling();
         $this->loginAsSuperAdmin('api');
         $user = factory(User::class)->create();
         $response = $this->json('POST','/api/v1/tasks/',[

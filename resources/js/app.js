@@ -27,7 +27,7 @@ import Profile from './components/Profile'
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
 
-const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2680C2'
+const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429' //'#2680C2'
 window.Vue = Vue
 window.Vuetify = Vuetify
 

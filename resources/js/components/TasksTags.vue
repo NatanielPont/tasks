@@ -8,7 +8,7 @@
                 <v-card-title>Afegiu etiquetes a la tasca</v-card-title>
                 <v-card-text>
                     <v-combobox
-                            v-model="selectedTags"
+                            v-model="selectedTag"
                             :items="tags"
                             multiple
                             chips
@@ -16,7 +16,7 @@
                     >
                         <template slot="selection"
                                   slot-scope="data">
-                            <v-chip
+                            <v-chip :color="data.item.color"
                                     :selected="data.selected"
                                     :disabled="data.disabled"
                                     :key="JSON.stringify(data.item)"
@@ -40,46 +40,55 @@
 </template>
 
 <script>
-  export default {
-    name: 'TasksTags',
-    data () {
-      return {
-        dialog: false,
-        selectedTags: []
-      }
+export default {
+  name: 'TasksTags',
+  data () {
+    return {
+      dialog: false,
+      selectedTag: null
+      // tag: {}
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
     },
-    props: {
-      task: {
-        type: Object,
-        required: true
-      },
-      tags: {
-        type: Array,
-        required: true
-      }
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
+  methods: {
+    removeTag () {
+      // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
+      console.log('TODO REMOVE TAG')
+      window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.data.item).then(response => {
+        console.log(this.data.item)
+        this.$snackbar.showMessage('Etiqueta eliminada correctament')
+      }).catch(error => {
+        this.$snackbar.showError(error.toString())
+      })
     },
-    methods: {
-      removeTag () {
-        // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
-        console.log('TODO REMOVE TAG')
-        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag).then(response => {
-          this.$snackbar.showMessage('Etiqueta eliminada correctament')
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      },
-      addTag () {
-        console.log('TODO ADD TAG')
-        let tag = {
-          name: this.name,
-          description: this.description,
-        }
-        window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(response => {
-          this.$snackbar.showMessage('Etiqueta afegida correctament')
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      }
+    addTag () {
+      console.log('TODO ADD TAG')
+
+      // this.tag = {
+      //   name: this.name,
+      //   description: this.description,
+      //   color: this.color
+      // }
+      // this.selectedTag = this.tag
+      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tags: this.selectedTag }).then(response => {
+        console.log('tag ' + this.selectedTag)
+        this.selectedTag = null
+        this.$snackbar.showMessage('Etiqueta afegida correctament')
+      }).catch(error => {
+        console.log('tag ')
+
+        this.$snackbar.showError(error.data)
+      })
     }
   }
+}
 </script>

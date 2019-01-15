@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="primary">
+        <v-toolbar class="grey lighten-1">
             <v-menu>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -203,6 +203,8 @@ export default {
   methods: {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      // TODO improve refresh()
+      this.refresh()
     },
     updateTask (task) {
       // console.log(task)

@@ -6,41 +6,41 @@
 </template>
 
 <script>
-  import TasksCreate from './TasksCreate'
-  import TasksList from './TasksList'
-  export default {
-    name: 'Tasques',
-    components: {
-      'tasks-list': TasksList,
-      'tasks-create': TasksCreate
+import TasksCreate from './TasksCreate'
+import TasksList from './TasksList'
+export default {
+  name: 'Tasques',
+  components: {
+    'tasks-list': TasksList,
+    'tasks-create': TasksCreate
+  },
+  data () {
+    return {
+      dataTasks: this.tasks
+    }
+  },
+  props: {
+    tasks: {
+      type: Array,
+      required: true
     },
-    data () {
-      return {
-        dataTasks: this.tasks
-      }
+    tags: {
+      type: Array,
+      required: true
     },
-    props: {
-      tasks: {
-        type: Array,
-        required: true
-      },
-      tags: {
-        type: Array,
-        required: true
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
+    users: {
+      type: Array,
+      required: true
     },
-    methods: {
-      add (task) {
-        this.dataTasks.push(task)
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    add (task) {
+      this.dataTasks.push(task)
     }
   }
+}
 </script>

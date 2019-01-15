@@ -31,6 +31,7 @@
                 app
                 clipped
                 dark
+                class="grey darken-1"
         >
             <v-list dense>
                 <template v-for="item in items">
@@ -99,7 +100,7 @@
                 app
         >
             <v-card>
-                <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+                <v-card-title class="grey lighten-1 white--text"><h4>Perfil</h4></v-card-title>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <ul>
@@ -112,7 +113,7 @@
                     </v-flex>
                 </v-layout>
                 <v-card>
-                    <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+                    <v-card-title class="grey lighten-1 white--text"><h4>Opcions administrador</h4></v-card-title>
 
                     <v-layout row wrap>
                         @impersonating
@@ -137,21 +138,21 @@
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar
-                color="primary darken-4"
-                dark
+                color="success lighten-3"
+
                 app
                 clipped-left
                 clipped-right
                 fixed>
             <v-toolbar-side-icon  @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title>Application</v-toolbar-title>
+            <v-toolbar-title >Application</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
             </v-avatar>
             <v-form action="logout" method="POST">
                 @csrf
-                <v-btn color="primary" type="submit">Logout</v-btn>
+                <v-btn color="grey lighten-1" class="white--text" type="submit">Logout</v-btn>
             </v-form>
         </v-toolbar>
         <v-content>

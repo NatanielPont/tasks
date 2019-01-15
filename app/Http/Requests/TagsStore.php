@@ -14,6 +14,7 @@ class TagsStore extends FormRequest
      */
     public function authorize()
     {
+        //return true;
         return Auth::user()->can('tags.store');
     }
 
@@ -26,9 +27,9 @@ class TagsStore extends FormRequest
     {
         return [
             //
-            'name' => 'required',
-            'description' => 'required',
-            'color' => 'required'
+//            'name' => 'required',
+//            'description' => 'required',
+//            'color' => 'required'
         ];
     }
 }

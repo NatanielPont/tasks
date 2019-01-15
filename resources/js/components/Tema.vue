@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-card-title class="grey darken-3 white--text"><h4>Tema</h4></v-card-title>
+        <v-card-title class="grey lighten-1 white--text"><h4>Tema</h4></v-card-title>
         <p>Color principal</p>
         <swatches v-model="colorPrincipal" ></swatches>
     </v-card>
@@ -15,7 +15,7 @@ export default {
   components: { Swatches },
   data () {
     return {
-      colorPrincipal: window.localStorage.getItem('PRIMARY_COLOR_KEY'),
+      colorPrincipal: window.localStorage.getItem('PRIMARY_COLOR_KEY')
     }
   },
   watch: {
