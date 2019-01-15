@@ -66,7 +66,7 @@
                     class="hidden-md-and-down"
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-                <template slot="items" slot-scope="{item: task}">
+                <template slot="items" slot-scope="{item: task}"  >
                     <tr>
                         <td>{{ task.id }}</td>
                         <td>
@@ -140,6 +140,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
+
 export default {
   name: 'TasksList',
   data () {
@@ -195,12 +196,25 @@ export default {
       required: true
     }
   },
+  computed: {
+    // filteredTasks () {
+    //   // Segons el filtre actiu
+    //   // Alternativa switch/case -> array associatiu
+    //   return filters[this.filter](this.dataTasks)
+    // }
+  },
   watch: {
     tasks (newTasks) {
       this.dataTasks = newTasks
     }
   },
   methods: {
+    // filteredTasks () {
+    //   // Segons el filtre actiu
+    //   // Alternativa switch/case -> array associatiu
+    //   return filters[this.filter](this.dataTasks)
+    // },
+
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // TODO improve refresh()
