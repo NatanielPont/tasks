@@ -18,6 +18,8 @@ class TasksTagController extends Controller
 
     public function store(Request $request, Task $task)
     {
+//        dd($request->id);
+//        dd($request);
 //        dd($request->tag[0]['name']);
 //       $tag = new Tag();
 //        $tag->name = $request->name;
@@ -38,9 +40,11 @@ class TasksTagController extends Controller
     }
     public function destroy(Request $request, Task $task)
     {
+//        dd($request->tag['id']);
         $tag = Tag::findOrFail($request->tag['id']);
         $task->removeTag($tag);
-        return $tag->map();
+//        $task->save();
+        return $task->map();
     }
 //
 
