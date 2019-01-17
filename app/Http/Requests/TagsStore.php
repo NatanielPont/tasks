@@ -27,7 +27,7 @@ class TagsStore extends FormRequest
     {
         return [
             //
-//            'name' => 'required',
+            'name' => 'required',
 //            'description' => 'required',
 //            'color' => 'required'
         ];

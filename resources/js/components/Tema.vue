@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-card-title class="grey lighten-1 white--text"><h4>Tema</h4></v-card-title>
+        <v-card-title class="grey darken-1 white--text"><h4>Tema</h4></v-card-title>
         <p>Color principal</p>
         <swatches v-model="colorPrincipal" ></swatches>
     </v-card>

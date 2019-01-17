@@ -31,6 +31,10 @@ class Task extends Model
     {
         $this->tags()->save($tag);
     }
+    public function removeTag($tag)
+    {
+        $this->tags()->detach($tag);
+    }
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

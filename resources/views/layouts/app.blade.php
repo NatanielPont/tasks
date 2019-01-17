@@ -100,7 +100,7 @@
                 app
         >
             <v-card>
-                <v-card-title class="grey lighten-1 white--text"><h4>Perfil</h4></v-card-title>
+                <v-card-title class="grey darken-1 white--text"><h4>Perfil</h4></v-card-title>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <ul>
@@ -113,7 +113,7 @@
                     </v-flex>
                 </v-layout>
                 <v-card>
-                    <v-card-title class="grey lighten-1 white--text"><h4>Opcions administrador</h4></v-card-title>
+                    <v-card-title class="grey darken-1 white--text"><h4>Opcions administrador</h4></v-card-title>
 
                     <v-layout row wrap>
                         @impersonating
@@ -152,7 +152,7 @@
             </v-avatar>
             <v-form action="logout" method="POST">
                 @csrf
-                <v-btn color="grey lighten-1" class="white--text" type="submit">Logout</v-btn>
+                <v-btn color="grey darken-1" class="white--text" type="submit">Logout</v-btn>
             </v-form>
         </v-toolbar>
         <v-content>

@@ -54,75 +54,7 @@ class TasksController extends Controller
         return $task;
     }
 
-    public function storeTag(TagsStore $request, Task $task)
-    {
-        //abort(404);
-//        dd($task);
-        //dd($task->tags);
 
-        //$tag = new Tag();
-
-
-        $tags = $request->get('tags');
-//        $array = json_decode(json_encode($tags), true);
-
-//        dd(count($tags));
-        foreach ($tags as $tag) {
-            $taG = Tag::create([
-                //dd($t != null ? $t['name'] : 'Hola'),
-                'name' => $tag,
-                'description' => $tags['description'] != null ? $tags['description'] : 'Afegeix descripció a '.$tags['name'],
-                'color' => $tags['color'] || 'primary'
-            ]);
-
-            $taG->save();
-
-            $task->addTag($taG);
-        }
-
-        //dd(count($tags));
-//        if (count($array)<2){
-//
-//            $tag = Tag::create([
-//                //dd($t != null ? $t['name'] : 'Hola'),
-//                'name' => $tags,
-//                'description' => $tags['description'] != null ? $tags['description'] : 'Afegeix descripció a '.$tags['name'],
-//                'color' => $tags['color'] || 'primary'
-//            ]);
-//
-//            $tag->save();
-//
-//            $task->addTag($tag);
-//        } else {
-//            foreach ($tags as $tag) {
-//                $tag = Tag::create([
-//                    //dd($t != null ? $t['name'] : 'Hola'),
-//                    'name' => $tags,
-//                    'description' => $tags['description'] != null ? $tags['description'] : 'Afegeix descripció a '.$tags['name'],
-//                    'color' => $tags['color'] || 'primary'
-//                ]);
-//
-//                $tag->save();
-//
-//            $task->addTag($tag);
-//            }
-//
-//
-//        }
-//        foreach ($tags as $t){
-//        }
-
-        $task->refresh();
-
-        $task->save();
-
-
-
-        //dd($task->tags);
-
-        return $task->map();
-
-    }
 //
 
 }

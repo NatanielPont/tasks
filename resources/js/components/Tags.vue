@@ -247,7 +247,8 @@ export default{
         { title: 'Esta seguro?', buttonTrueText: 'Eliminar', buttonFalseText: 'Cancelar', color: 'error' })
       if (result) {
         this.removing = tag.id
-        window.axios.delete(this.uri + tag.id).then(() => {
+        console.log(this.uri)
+        window.axios.delete(this.uri + '/' + tag.id).then(() => {
           this.removeTag(tag)
           this.$snackbar.showMessage('Se ha borrado correctamente la etiqueta')
           this.removing = null
@@ -258,8 +259,9 @@ export default{
       }
     },
     edit () {
+      console.log('hola')
       this.editing = true
-      window.axios.put(this.uri + this.tagBeingEdited.id, this.tagBeingEdited).then(() => {
+      window.axios.put(this.uri + '/' + this.tagBeingEdited.id, this.tagBeingEdited).then(() => {
         this.editTag(this.tagBeingEdited)
         this.$snackbar.showMessage('Se ha editado correctamente la etiqueta')
         this.refresh()

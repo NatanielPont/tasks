@@ -26,12 +26,13 @@
         <v-card>
             <v-card-title>
                 <v-layout row wrap>
-                    <v-flex lg3 class="mr-2">
+                    <v-flex lg2 class="mr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter"
                                 item-text="name"
+                                outline
                         >
                         </v-select>
                     </v-flex>
@@ -82,7 +83,7 @@
                             <toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
                         </td>
                         <td>
-                            <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                            <tasks-tags :task="task" :tags="tags" @removed="refresh" @added="refresh"></tasks-tags>
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -222,10 +223,14 @@ export default {
     },
     updateTask (task) {
       // console.log(task)
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      // this.tasks = this.dataTasks
+      self.location.reload()
+      // this.dataTags.splice(this.dataTags.indexOf(tag), 1, tag)
       this.refresh()
     },
     refresh () {
-      self.location.reload()
+      // self.location.reload()
 
       this.loading = true
       window.axios.get(this.uri).then(response => {

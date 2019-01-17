@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->timestamps();
         });
         Schema::create('tag_task', function (Blueprint $table) {
