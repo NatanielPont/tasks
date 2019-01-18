@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)" :loading="removing" :disabled="removing"></v-chip>
+        <v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)" ></v-chip>
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <!--<v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>-->
         <v-dialog v-model="dialog" width="500">
@@ -91,10 +91,10 @@ export default {
           // console.log(response.data.name)
           this.$snackbar.showMessage('Etiqueta eliminada correctament')
           this.$emit('removed')
-          this.removing = false
+          // this.removing = false
         }).catch(error => {
           this.$snackbar.showError(error.toString())
-          this.removing = false
+          // this.removing = false
         })
       }
     },
@@ -102,11 +102,22 @@ export default {
       console.log('TODO ADD TAG')
       // console.log(this.tag)
       // console.log(this.selectedTag)
-      if (this.selectedTag.length == 0) {
+      if (this.selectedTag == null) {
         return this.$snackbar.showError("Tag invàlid, seleccioni un tag abans d'afegir")
       }
+      if (this.selectedTag.length === 0) {
+        return this.$snackbar.showError("Tag invàlid, seleccioni un tag abans d'afegir")
+      }
+      // if (this.selectedTag.id==)
+      // console.log(this.selectedTag.id)
+      for (let i = 0; i < this.task.tags.length; i++) {
+        if (this.selectedTag.id == this.task.tags[i]['id']) {
+          return this.$snackbar.showError('Tag invàlid, seleccioni un tag no existent en la tasca')
+        }
+      }
+      // console.log(this.task.tags)
       window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', { tag: this.selectedTag }).then(response => {
-        console.log('tag 0' + this.selectedTag)
+        // console.log('tag 0' + this.selectedTag)
         this.selectedTag = null
         this.$snackbar.showMessage('Etiqueta afegida correctament')
         this.$emit('added')

@@ -34,6 +34,7 @@ class TasksTagController extends Controller
 //            }
 //        );
 //        if ($task->tags())
+//        dd($task);
         $task->addTag($tag);
 ////        $task->save();
         return $tag->map();

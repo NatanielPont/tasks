@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
+
 //TDD-> test driven development
 //controlador tasques
 
