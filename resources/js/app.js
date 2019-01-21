@@ -10,6 +10,7 @@ import Tags from './components/Tags.vue'
 import TasksTailwind from './components/TasksTailwind.vue'
 import Tasques from './components/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
+// import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
@@ -24,10 +25,9 @@ import GitInfo from './components/git/GitInfoComponent'
 import Tema from './components/Tema.vue'
 import Profile from './components/Profile'
 
-
 const PRIMARY_COLOR_KEY = 'primary_color_key'
 
-const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429' //'#2680C2'
+const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429' // '#2680C2'
 window.Vue = Vue
 window.Vuetify = Vuetify
 
@@ -97,7 +97,6 @@ window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
 
-
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
 window.Vue.component('tags', Tags)
@@ -112,6 +111,7 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
+// window.Vue.component('reset-password-form', ResetPasswordForm)
 
 // window.Vue.component('snackbar', Snackbar)
 

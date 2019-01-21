@@ -28,10 +28,10 @@
                           @blur="$v.password.$touch()"
             ></v-text-field>
         </v-card-text>
-        <!--<v-card-actions>-->
-            <!--<v-btn color="primary"  href="/password/reset/" >Forgot your password?-->
-            <!--</v-btn>-->
-        <!--</v-card-actions>-->
+        <v-card-actions>
+            <v-btn color="primary"  href="/password/reset/" >Forgot your password?
+            </v-btn>
+        </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
 
