@@ -4,7 +4,7 @@
     Login a l'aplicació de Tasks
 @endsection
 @section('content')
-    
+
     <v-content>
         {{--@if ($errors->any())--}}
             {{--<v-alert--}}
