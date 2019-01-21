@@ -12,6 +12,14 @@
 */
 
 
+use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagsController;
+use App\Http\Controllers\TasksController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 //TODO
@@ -19,10 +27,10 @@ Route::post('/login_alt', 'Auth\LoginAltController@login');
 Route::post('/register_alt', 'Auth\RegisterAltController@register');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/tasks', 'TasksController@index');
-    Route::post('/tasks', 'TasksController@store');
-    Route::delete('/tasks/{id}', 'TasksController@destroy');
-    Route::put('/tasks/{id}', 'TasksController@update');
+    Route::get('/tasks','\\'. TasksController::class . '@index');
+    Route::post('/tasks','\\'. TasksController::class . '@store');
+    Route::delete('/tasks/{id}','\\'. TasksController::class . '@destroy');
+    Route::put('/tasks/{id}','\\'. TasksController::class . '@update');
 
 //    Route::get('/editableForm/{id}', 'TasksController@edit');
     Route::get('/task_edit/{id}', 'TasksController@edit');
@@ -51,12 +59,16 @@ Route::middleware(['auth'])->group(function () {
     Route::impersonate();
 
     //TAGS
-    Route::get('/tags','TagsController@index');
+    Route::get('/tags','\\'. TagsController::class . '@index');
+    Route::get('/profile', '\\'. ProfileController::class . '@show');
+    Route::post('/photo', '\\'. PhotoController::class . '@store');
+    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 
 });
 Route::get('/', function () {
     return view('welcome');
 });
+
 //TDD-> test driven development
 //controlador tasques
 
@@ -67,3 +79,15 @@ Route::get('/', function () {
 // edit-> put
 //Tags
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

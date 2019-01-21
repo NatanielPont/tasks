@@ -2,9 +2,11 @@
 //psr-4
 namespace Tests\Feature;
 
+use App\Tag;
 use App\Task;
 
 //sufix as + alias;
+use App\User;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,211 +14,100 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TasquesControllerTest extends TestCase
 {
-    //refresh database
-    use RefreshDatabase,CanLogin;
-
-
+    use RefreshDatabase, CanLogin;
     /**
-     * A basic test example.
      * @test
      */
-    public function can_index_tasques()
+    public function guest_user_cannot_index_tasks()
     {
-        $this->withoutExceptionHandling();
-//        $this->assertTrue(true);
-        //302 comprovar que es redirecciona
-        //Prepare
-       create_example_tasks();
-        initialize_roles();
-        $user=$this->login('');
-        $user->givePermissionTo('user.tasks.index');
-//        $this->login();
 
-
-        //Execute
-        $response=$this->get('/tasques');
-//        dd($response);
-
-        //Assert
-        $response->assertSuccessful();
-//        $response->assertSee('Tasques');
-        $response->assertSee('Comprar pa');
-        $response->assertSee('Comprar llet');
-        $response->assertSee('Estudiar php');
-
-        //comprovar que es veuen les tasques q hi ha en la bd
-        //preparar la bd a prepare
-
+        $response = $this->get('/tasques');
+        $response->assertRedirect('login');
     }
-
-    /**
-     * A basic test example.
-     * @test
-     */
-    public function guest_user_can_index_tasques()
-    {
-        $this->withoutExceptionHandling();
-//        $this->assertTrue(true);
-        //302 comprovar que es redirecciona
-        //Prepare
-        create_example_tasks();
-//        initialize_roles();
-        $user=$this->login('');
-
-//        $user->giveRo('user.tasks.index');
-//        $this->login();
-
-
-        //Execute
-        $response=$this->get('/tasques');
-//        dd($response);
-
-        //Assert
-        $response->assertSuccessful();
-//        $response->assertSee('Tasques');
-        $response->assertSee('Comprar pa');
-        $response->assertSee('Comprar llet');
-        $response->assertSee('Estudiar php');
-
-        //comprovar que es veuen les tasques q hi ha en la bd
-        //preparar la bd a prepare
-
-    }
-
     /**
      * @test
      */
-    public function can_store_tasques()
-    {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.store');
-        $response=$this->post('/tasks',[
-            'name'=>'Comprar llet',
-        ]);
-        $response->assertStatus(302);
-//        $response->assertSuccessful();
-
-        $this->assertDatabaseHas('tasks',['name'=>'Comprar llet']);
-
-
-
-
-    }
-
-    /**
-     * @test
-     */
-    public function can_delete_task()
+    public function regular_user_cannot_index_tasks()
     {
         $this->login();
-        $this->withoutExceptionHandling();
-        //1
-        $task=Task::create(['name'=>'Comprar llet']);
-
-
-        //2
-        $response=$this->delete('/tasks/'.$task->id);
-        $response->assertStatus(302);
-//        $response->assertSuccessful();
-
-        //3
-        $this->assertDatabaseMissing('tasks',['name'=>'Comprar llet']);
-
-
-
-
+        $response = $this->get('/tasques');
+        $response->assertStatus(403);
     }
-
     /**
      * @test
      */
-    public function cannnot_delete_an_unexisting_task()
-    {
-        $this->login();
-        $response = $this->delete('/tasks/1');
-        $response->assertStatus(404);
-    }
-
-
-
-    /**
-     * @test
-     */
-    public function can_edit_a_task()
-    {
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $task = Task::create([
-            'name' => 'asdasdasd',
-            'completed' => false
-        ]);
-        $response = $this->put('/tasks/' . $task->id,$newTask = [
-            'name' => 'Comprar pa',
-            'completed' => true
-        ]);
-        $response->assertStatus(302);
-        $task = $task->fresh();
-        $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,true);
-
-
-    }
-
-    /**
-     * @test
-     */
-    public function cannot_edit_an_unexisting_task()
+    public function superadmin_can_index_tasks()
     {
 //        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $task= [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
-        ];
-        $response = $this->put('/tasks/1',$task);
-        $response->assertStatus(404);
-
-    }
-
-    /**
-     * @test
-     */
-    public function can_show_edit_form()
-    {
-        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $task = Task::create( [
-            'name'=>'Comprar pa',
-            'completed'=> true,
-            'description'=>'A',
-            'user_id'=>1
-        ]);
-//        dd($task);
-        $response = $this->get('/task_edit/' . $task->id);
+        create_example_tasks_with_tags();
+        $user  = $this->loginAsSuperAdmin();
+        $response = $this->get('/tasques');
         $response->assertSuccessful();
-        $response->assertSee('Comprar pa');
+        $response->assertViewIs('tasques');
+        $response->assertViewHas('tasks', function($tasks) {
+            return count($tasks)===6 &&
+                $tasks[0]['name']==='comprar pa' &&
+                $tasks[1]['name']==='comprar llet' &&
+                $tasks[2]['name']==='Estudiar PHP';
+        });
+        $response->assertViewHas('users', function($users) use ($user) {
+            return count($users)===3 &&
+                $users[2]['id']=== $user->id &&
+                $users[2]['name']=== $user->name &&
+                $users[2]['email']=== $user->email &&
+                $users[2]['gravatar']=== $user->gravatar &&
+                $users[2]['admin']=== $user->admin;
+        });
+        $response->assertViewHas('tags', function($tags) use ($user) {
+            return count($tags)===2 &&
+                $tags[0]['id']=== 1 &&
+                $tags[0]['name']=== 'Tag1' &&
+                $tags[0]['description']=== 'bla bla bla' &&
+                $tags[0]['color']=== 'blue';
+        });
+    }
 
+    /**
+     * @test
+     */
+    public function task_manager_can_index_tasks()
+    {
+        $this->withoutExceptionHandling();
+        create_example_tasks();
+        $this->loginAsTaskManager();
+        $response = $this->get('/tasques');
+        $response->assertSuccessful();
+        $response->assertViewIs('tasques');
+        $response->assertViewHas('tasks', function($tasks) {
+            return count($tasks)===3 &&
+                $tasks[0]['name']==='Comprar pa' &&
+                $tasks[1]['name']==='Comprar llet' &&
+                $tasks[2]['name']==='Estudiar php';
+        });
     }
     /**
      * @test
      */
-    public function cannot_show_edit_form_unexisting_task()
+    public function tasks_user_can_index_tasks()
     {
-        $this->withoutExceptionHandling();
-        initialize_roles();
-        $user=$this->login('api');
-        $user->givePermissionTo('tasks.update');
-        $response = $this->get('/task_edit/1',['name'=>'pep']);
-        $response->assertStatus(404);
+        create_example_tasks();
+        $user = $this->loginAsTasksUser();
+        Task::create([
+            'name' => 'Tasca usuari logat',
+            'completed' => false,
+            'description' => 'Jorl',
+            'user_id' => $user->id
+        ]);
+        $response = $this->get('/tasques');
+        $response->assertSuccessful();
+        $response->assertViewIs('tasques');
+        $response->assertViewHas('tasks', function($tasks) {
+//            dd($tasks);
+            return count($tasks)===4 &&
+                $tasks[3]['name']==='Tasca usuari logat';
+        });
+        $response->assertViewHas('users');
+        $response->assertViewHas('uri');
     }
-
 
 }

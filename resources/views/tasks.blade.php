@@ -2,16 +2,17 @@
 @section('title')
     Tasques
 @endsection
-
+<style>
+    [v-cloak] {display: none}
+</style>
 @section('content')
 
     <v-card v-cloak>
 
 
-        <v-toolbar color="cyan" dark>
+        <v-toolbar color="cyan" dark class="toolTitle" >
 
-            <v-toolbar-title>Tasques</v-toolbar-title>
-
+            <v-toolbar-title >Tasques</v-toolbar-title>
         </v-toolbar>
         <v-layout align-center justify-center>
             <v-flex xs12 sm8 md5>
@@ -23,59 +24,77 @@
                         <v-list-tile-avatar>
                             <img src="https://placeimg.com/100/100/any">
                         </v-list-tile-avatar>
-                        @if($task->completed)
-                            <del>{{ $task->name }}</del>
+                        @if($task['completed'])
+                            <v-layout row justify-center >
+                                <v-flex xs8 mt-3>
+                                    <del><h5>{{ $task['name'] }}</h5></del>
 
-                            <form action="completed_task/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <input type="hidden" name="id" value="{{ $task->id  }}">
-                                <v-btn color="warning">
-                                    <button>Descompletar</button>
-                                </v-btn>
-                            </form>
-                            <form action="/tasks/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <v-btn color="error">
-                                    <button>Eliminar</button>
-                                </v-btn>
-                            </form>
+                                </v-flex>
+                                <v-layout justify-space-between>
+                                    <v-layout justify-end>
 
+                                    <v-flex xs>
+                                        <form action="completed_task/{{ $task['id'] }}" method="POST">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <input type="hidden" name="id" value="{{ $task['id']  }}">
+                                            <v-btn type="submit" color="warning">
+                                                Descompletar
+                                            </v-btn>
+                                        </form>
+                                    </v-flex>
+                                    <v-flex xs >
+                                        <form action="/tasks/{{ $task['id'] }}" method="POST">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <v-btn type="submit" color="error">
+                                                Eliminar
+                                            </v-btn>
+                                        </form>
+                                    </v-flex>
+                                    </v-layout>
+                                </v-layout>
+
+                            </v-layout>
                         @else
-                            <div>
+                            <v-layout row justify-center >
+                                <v-flex xs9 mt-3>
+                                        <h5>{{ $task['name'] }}</h5>
+                                </v-flex>
+                                <v-layout justify-end>
+                                    <v-layout justify-space-between>
 
-                            <h5>{{ $task->name }}</h5>
-                            </div>
+                                    <v-flex xs>
+                                        <form action="completed_task/{{ $task['id'] }}" method="POST">
+                                            @csrf
+                                            {{ method_field('POST') }}
+                                            <input type="hidden" name="id" value="{{ $task['id']  }}">
+                                            <v-btn type="submit" color="warning">
+                                                Completar
+                                            </v-btn>
+                                        </form>
+                                    </v-flex>
 
+                                    <v-flex xs>
+                                        <v-btn type="submit" color="warning" name="submit" value="Update" href="#"
+                                               data-toggle="modal"
+                                               data-target="#create-{{$task['id']}}">
+                                            Modificar
+                                        </v-btn>
+                                    </v-flex>
+                                    <v-flex xs>
+                                        <form action="/tasks/{{ $task['id'] }}" method="POST">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <v-btn type="submit" color="error">
+                                                Eliminar
+                                            </v-btn>
+                                        </form>
+                                    </v-flex>
+                                    </v-layout>
+                                </v-layout>
 
-                        <div class="btn-group"  >
-                            <form action="completed_task/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('POST') }}
-                                <input type="hidden" name="id" value="{{ $task->id  }}">
-                                <v-btn color="warning">
-                                    <button>Completar</button>
-                                </v-btn>
-                            </form>
-                            <form action="/tasks/{{ $task->id }}" method="POST">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <v-btn color="error">
-                                    <button>Eliminar</button>
-                                </v-btn>
-                            </form>
-                            <v-btn color="warning" >
-                                <button name="submit" value="Update" href="#"
-                                        data-toggle="modal"
-                                        data-target="#create-{{$task->id}}"
-                                >Modificar
-                                </button>
-                            </v-btn>
-
-
-                        </div>
-
+                            </v-layout>
                         @endif
                     </v-list-tile>
                     @include('task_edit')
@@ -98,4 +117,12 @@
 
 
 @endsection
+
+<style>
+    .toolTitle > div.v-toolbar__content {
+        display: block;
+        padding-top: 15px;
+        text-align: center;
+    }
+</style>
 

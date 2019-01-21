@@ -29,10 +29,15 @@
             ></v-text-field>
         </v-card-text>
         <v-card-actions>
+            <v-btn color="primary"  href="/password/reset/" >Forgot your password?
+            </v-btn>
+        </v-card-actions>
+        <v-card-actions>
             <v-spacer></v-spacer>
 
             <v-btn color="primary" type="submit"  :disabled="$v.$invalid">Login</v-btn>
         </v-card-actions>
+
     </v-form>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
     <span>
+<<<<<<< HEAD
         <v-dialog v-model="deleteDialog">
             <v-card>
                 <v-card-title class="headline">Esteu segurs?</v-card-title>
@@ -215,57 +216,25 @@
         >
             <v-icon>add</v-icon>
         </v-btn>
+=======
+        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
+        <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
+>>>>>>> master
     </span>
 </template>
 
 <script>
-// import EventBus from '../eventBus'
+import TasksCreate from './TasksCreate'
+import TasksList from './TasksList'
 export default {
   name: 'Tasques',
+  components: {
+    'tasks-list': TasksList,
+    'tasks-create': TasksCreate
+  },
   data () {
     return {
-      snackbarMessage: 'Prova',
-      snackbarTimeout: 3000,
-      snackbarColor: 'success',
-      snackbar: false,
-      dataUsers: this.users,
-      completed: false,
-      name: '',
-      description: '',
-      deleteDialog: false,
-      createDialog: false,
-      editDialog: false,
-      taskBeingRemoved: null,
-      user: '',
-      usersold: [
-        'Sergi Tur',
-        'Pepe Pardo',
-        'Maria Delahoz'
-      ],
-      filter: 'Totes',
-      filters: [
-        'Totes',
-        'Completades',
-        'Pendents'
-      ],
-      search: '',
-      pagination: {
-        rowsPerPage: 25
-      },
-      loading: false,
-      creating: false,
-      editing: false,
-      removing: false,
-      dataTasks: this.tasks,
-      headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'User', value: 'user_id' },
-        { text: 'Completat', value: 'completed' },
-        { text: 'Creat', value: 'created_at' },
-        { text: 'Modificat', value: 'updated_at' },
-        { text: 'Accions', sortable: false }
-      ]
+      dataTasks: this.tasks
     }
   },
   props: {
@@ -273,12 +242,21 @@ export default {
       type: Array,
       required: true
     },
+    tags: {
+      type: Array,
+      required: true
+    },
     users: {
       type: Array,
+      required: true
+    },
+    uri: {
+      type: String,
       required: true
     }
   },
   methods: {
+<<<<<<< HEAD
     showUpdate () {
       this.editDialog = true
     },
@@ -357,6 +335,10 @@ export default {
     created () {
       console.log('Usuari logat')
       console.log(window.laravel_user)
+=======
+    add (task) {
+      this.dataTasks.push(task)
+>>>>>>> master
     }
   }
 }

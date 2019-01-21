@@ -34,6 +34,7 @@ let token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+  window.csrf_token = token.content
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
@@ -51,6 +52,10 @@ if (user) {
 } else {
   console.error('CAUTION!: user not found at HTML meta')
 }
+
+let gitHeader = document.head.querySelector('meta[name="git"]')
+window.git = null
+if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content)
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

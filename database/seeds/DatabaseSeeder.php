@@ -12,10 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        create_example_tags();
         create_example_tasks();
         initialize_roles();
         create_primary_user();
-        sample_users();
+        create_sergi_user();
+        sample_users_and_tasks();
 
         //crear usuaris de proves
         //TODO rols per defecte en registrarse els usuaris

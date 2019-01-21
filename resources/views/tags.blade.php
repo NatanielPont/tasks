@@ -4,7 +4,7 @@
     <v-container fluid>
         <v-layout>
             <v-flex>
-                <tasques :tasks="{{ $tags }}" ></tasques>
+                <tags :tags="{{ $tags }}" uri="{{$uri}}"></tags>
             </v-flex>
         </v-layout>
     </v-container>

@@ -1,12 +1,10 @@
 <?php
-
 namespace App;
-
 use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
-
 class Task extends Model
-{   use FormattedDates;
+{
+    use FormattedDates;
     protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
@@ -32,6 +30,10 @@ class Task extends Model
     public function addTag($tag)
     {
         $this->tags()->save($tag);
+    }
+    public function removeTag($tag)
+    {
+        $this->tags()->detach($tag);
     }
     public function tags()
     {
@@ -72,6 +74,7 @@ class Task extends Model
             'updated_at_timestamp' => $this->updated_at_timestamp,
             'user' => $this->user,
             'full_search' => $this->full_search
+            ,'tags' => $this->tags
         ];
     }
     public function getFullSearchAttribute()

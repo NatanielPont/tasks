@@ -49,8 +49,6 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_list_logged_user_tasks_if_user_is_not_logged()
     {
-        $this->markTestSkipped('TODO');
-        $this->login();
         $response = $this->json('GET','/user/tasks');
         $response->assertStatus(401);
     }
@@ -59,18 +57,14 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_edit_a_task_not_associated_to_user()
     {
-
-        $this->withoutExceptionHandling();
-        $user = $this->login('api');
+//        $this->withoutExceptionHandling();
+        $this->login('api');
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet',
-            'description'=>'describint'
+            'name' => 'Comprar llet'
         ]);
-        // 2
         $response = $this->json('PUT', '/api/v1/user/tasks/' . $oldTask->id, [
             'name' => 'Comprar pa'
         ]);
-
         $response->assertStatus(404);
     }
     /**
@@ -78,7 +72,6 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_edit_task()
     {
-        $this->withoutExceptionHandling();
         $user = $this->login('api');
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet',
@@ -99,4 +92,35 @@ class LoggedUserTasksControllerTest extends TestCase
         $this->assertEquals('JORl jhorlsad asd',$result->description);
         $this->assertFalse((boolean) $newTask->completed);
     }
+    /**
+     * @test
+     */
+    public function can_delete_tasks()
+    {
+        $user = $this->login('api');
+        $task = factory(Task::class)->create([
+            'name' => 'Comprar llet',
+            'description' => 'Bla bla bla'
+        ]);
+        $user->addTask($task);
+        $response = $this->json('DELETE','/api/v1/user/tasks/' . $task->id);
+        $response->assertSuccessful();
+        $this->assertCount(0,$user->tasks);
+        $task = $task->fresh();
+        $this->assertNull($task);
+    }
+    /**
+     * @test
+     */
+    public function cannot_delete_not_owned_tasks()
+    {
+        $user = $this->login('api');
+        $task = factory(Task::class)->create([
+            'name' => 'Comprar llet',
+            'description' => 'Bla bla bla'
+        ]);
+        $response = $this->json('DELETE','/api/v1/user/tasks/' . $task->id);
+        $response->assertStatus(404);
+    }
+
 }

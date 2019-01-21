@@ -1,5 +1,5 @@
 <template>
-    <v-container grid-list-md text-xs-center id="tasks" class="tasks" fill-height>
+    <v-container grid-list-md text-xs-center id="tasks" class="tasks" fill-height >
         <v-layout row wrap>
             <v-flex xs12>
                 <v-card dark>
@@ -7,7 +7,7 @@
                         <v-toolbar color="teal" dark class="toolTitle">
                             <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
 
-                            <v-toolbar-title align="center">
+                            <v-toolbar-title>
                                 <span class="title">Tasques ({{total}})</span>
                             </v-toolbar-title>
 
@@ -20,61 +20,87 @@
                         <div v-if="errorMessage">
                             Ha succeit un error: {{ errorMessage }}
                         </div>
-                        <v-list dense>
+                        <v-list dense >
                             <v-list-tile v-for="task in filteredTasks" :key="task.id">
                                 <v-list-tile-content>
                                     <v-list-tile-title>
-                                        <span :id="'task' + task.id" :class="{ strike: task.completed }">
-                                        </span>
+
                                     </v-list-tile-title>
                                 </v-list-tile-content>
-
-                                <v-flex xs3>
+                                <v-flex v-if="filter=='all'" xs3>
                                     <v-card dark color="primary">
+                                        <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
                                                 :text="task.name"
                                                 :data=task
                                                 @edited="editName(task, $event)"
+                                                v-on:edited="dateSelectedInChild"
                                         ></editable-text>
+                                        </span>
                                     </v-card>
                                 </v-flex>
-                                <v-flex xs7>
+                                <v-container v-if="filter!='all'" grid-list text-xs-center ma-0>
+                                    <v-layout >
+                                    <v-flex  xs10 offset-xs1  >
+                                        <v-card dark color="primary" >
+                                        <span :id="'task' + task.id" :class="{ strike: task.completed==1 }" >
+                                        <editable-text
+                                                :text="task.name"
+                                                :data=task
+                                                @edited="editName(task, $event)"
+                                                v-on:edited="dateSelectedInChild"
+                                        ></editable-text>
+                                        </span>
+                                        </v-card>
+                                    </v-flex>
+
+                                    </v-layout>
+
+                                </v-container>
+                                <!--<v-layout v-if="filter!='all'"  row justify-space-between wrap>-->
+
+                                <!--</v-layout>-->
+                                <!--<v-flex v-if="filter!='all'" xs3>-->
+                                   <!---->
+                                <!--</v-flex>-->
+
+                                <v-flex v-if="filter=='all'" xs7>
                                     <!--<v-card dark color="blue" >-->
                                     <v-btn id="button_complete" @click="completeTask(task)" small>
-                                        <v-switch
-                                                :label="`Switch : ${task.completed}`"
-                                                v-model="switch1"
-                                                color="yellow"
-                                        ></v-switch>
-                                        <!--<v-checkbox :id="'check'+task.id"-->
-                                                <!--:label="`Completada : ${task.completed}`"-->
-                                                <!--v-model="completed"-->
-                                        <!--&gt;</v-checkbox>-->
+                                        <!--<div >-->
+                                            <v-switch
+                                                    :label="`Completada: ${task.completed==1}`"
+                                                    :input-value="task.completed==1" @change="task.completed = $event"
+                                            ></v-switch>
+
+                                        <!--</div>-->
+
                                     </v-btn>
-                                    <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="orange">edit</v-icon></v-btn>
+                                    <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
                                     <!--</v-card>-->
                                 </v-flex>
                             </v-list-tile>
                         </v-list>
-                        <form>
+                        <form v-if="filter=='all'">
                             <v-text-field
-                                    label="nova tasca"
+                                    label="nova tasca (max. 25 ctrs)"
                                     type="text"
-                                    v-model="newTask" @keyup.enter="add"
+                                    v-model="newTask"
+                                    @keyup.native.enter="add"
                                     name="name"
                                     required>
                             </v-text-field>
 
-                            <v-btn id="button_add_task" @click="add">Afegir</v-btn>
+                            <v-btn class="mt-0" id="button_add_task" @click="add">Afegir</v-btn>
                         </form>
-                            <v-card color="purple">
-                        <span id="filters" v-show="total > 0">
+                            <v-card color="purple" class="mt-5">
+                        <span id="filters" v-show="total > 0" >
                                  <v-card-title color="primary" class="justify-center">
                                     <span class="title">Filtros: [{{ filter }}]</span>
                                  </v-card-title>
                                 <v-card>
-                                    <v-list id="filterList">
+                                    <v-list id="filterList" >
                                         <v-list-tile @click="setFilter('all')">
                                             <v-list-tile-content>
                                         <button>Totes</button>
@@ -115,7 +141,7 @@ var filters = {
   },
   completed: function (tasks) {
     return tasks.filter(function (task) {
-      return task.completed
+      return task.completed == 1
       // NO CAL
       // if (task.completed) return true
       // else return false
@@ -123,7 +149,7 @@ var filters = {
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
-      return !task.completed
+      return task.completed == 0
     })
   }
 }
@@ -139,8 +165,12 @@ export default {
       dataTasks: this.tasks,
       errorMessage: '',
       // completed: false,
-      switch1: true
+      switch1: false
     }
+  },
+  model: {
+    prop: 'inputValue',
+    event: 'change'
   },
   props: {
     tasks: {
@@ -166,36 +196,33 @@ export default {
     }
   },
   methods: {
-    toggleSwitch (task) {
-      if (!task.completed) {
-        this.completeTask(task)
-      }
+    dateSelectedInChild (currentText) {
+      console.log(currentText + 'jkhakjhakjha')
     },
     completeTask (task) {
       console.log(task)
-      window.axios.post('/api/v1/completed_task/' + task.id, {
-        _method: 'post'
-      })
-        .then((response) => {
-          // response.data = text;
-          // console.log('jardin' + text)
-          // task.name = text
-          //   this.dataTasks = null
+      if (!task.completed) {
+        console.log('hola' + task.completed)
+        this.uncompleteTask(task)
+      } else {
+        console.log('hola2' + task.completed)
+        window.axios.post('/api/v1/completed_task/' + task.id, {
+          _method: 'post'
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+          .then((response) => {
+            task.completed = true
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     },
     uncompleteTask (task) {
       window.axios.post('/api/v1/completed_task/' + task.id, {
         _method: 'delete'
       })
         .then((response) => {
-          // this.dataTasks = null
-          // this.dataTasks.splice(0, 0, { id: response.data.id, name: task.name, completed: completed })
-          // response.data = text;
-          // console.log('jardin' + text)
-          // task.name = text
+          task.completed = false
         })
         .catch(function (error) {
           console.log(error)
@@ -204,6 +231,7 @@ export default {
 
     editName (task, text) {
       console.log('text ' + text)
+      console.log('textname ' + task.name)
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
         data: text,
@@ -211,6 +239,7 @@ export default {
       })
         .then((response) => {
           // response.data = text;
+
           console.log(response.data)
           console.log('jardin' + text)
           task.name = text
@@ -230,7 +259,14 @@ export default {
       this.filter = newFilter
     },
     add () {
+      // console.log('hola')
+      // function f (e) {
+      //   if (e.keyCode === 13) {
+      //   }
+      //   alert('Enter was pressed')
+      // }
       if (this.newTask === '') return
+      if (this.newTask.length >= 25) this.newTask = this.newTask.substring(0, 25)
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {

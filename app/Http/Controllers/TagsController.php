@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagsIndex;
+use App\Http\Requests\TagsStore;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagsController extends Controller
 {
@@ -12,13 +16,26 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TagsIndex $request)
     {
-        //
-        $tags=map_collection(Tag::orderBy('created_at','desc')->get());
-//        dump('hola');
-        return view('tags',['tags'=>$tags]);
+//        return map_collection(Tag::orderBy('created_at')->get());
+
+        $tags = map_collection(Tag::orderBy('created_at', 'desc')->get());
+        $uri = '/api/v1/tags';
+        return view('tags', compact('tags','uri'));
+//        if (Auth::user()->can('tags.manage')){
+//            $tags = map_collection(Tag::orderBy('created_at','desc')->get());
+//            $uri = '/api/v1/tags';
+//        }else{
+//            $tags = map_collection($request->user()->tasks);
+//            $uri = '/api/v1/user/tags';
+//        }
+////        dd($tags);
+//        $users = map_collection(User::all());
+////        dd('hola');
+//        return view('tags',compact('tags','users','uri'));
     }
+//
 
     /**
      * Show the form for creating a new resource.

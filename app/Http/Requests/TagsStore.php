@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TagsStore extends FormRequest
 {
@@ -13,7 +14,8 @@ class TagsStore extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        //return true;
+        return Auth::user()->can('tags.store');
     }
 
     /**
@@ -25,7 +27,9 @@ class TagsStore extends FormRequest
     {
         return [
             //
-            'name'=> 'required'
+            'name' => 'required',
+//            'description' => 'required',
+//            'color' => 'required'
         ];
     }
 }
