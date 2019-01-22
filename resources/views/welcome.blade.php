@@ -34,7 +34,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/home"
+                                href="/tasques"
                         >
                             Home
                         </v-btn>
@@ -120,7 +120,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/home"
+                                href="/tasques"
                         >
                             Home
                         </v-btn>
