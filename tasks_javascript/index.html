@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-grey-light font-sans">
+
+<div id="app" class="flex justify-center">
+   <!--llista-->
+    <div class="flex flex-col">
+    <hi class="text-center text-red">Tasques</hi>
+    <div class="flex-row">
+
+    <input id="newTask" value="prova" onblur="addTask()"  type="text" placeholder="Nova Tasca" class="m-3 mt-5 p-4 shadow-lg border rounded focus:shadow-outline text-black-50">
+        <svg onclick="addTask()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+             class="h-5 w-5"><path d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/></svg>
+    </div>
+        <div id="tasks">
+
+        </div>
+    </div>
+    <!--<ul>-->
+        <!--<li @foreach="tasks in task">{{$task}}</li>-->
+    <!--</ul>-->
+
+</div>
+<script>
+
+    function addTask() {
+        tasks=[]
+        console.log('TODO add task')
+        //afegir tasca al vector tasks
+        //manipulacio d'arrays
+        //insertar alguna cosa 'splice'
+        var task=document.getElementById('newTask')
+        console.log(task.value)
+        tasks.splice(0,0,task.value)
+        drawList()
+
+
+    }
+    var tasks=["Comprar pa","Comprar llet","Estudiar php"]
+    function drawList() {
+
+        var divTasks=document.getElementById('tasks')
+        var ul=document.createElement('ul')
+        ul.setAttribute('class', 'list-reset')
+        tasks.forEach(function (task) {
+            var li=document.createElement('li')
+            var text=document.createTextNode(task)
+            li.setAttribute('class','text-green-darker m-2 pl-5')
+            li.appendChild(text)
+            ul.appendChild(li);
+        })
+        divTasks.appendChild(ul);
+        // tasks=[]
+
+
+
+    }
+    drawList();
+    //MVC
+    //model=variables/objectes Javascript
+
+    //codi javascript que agafi el model i cree html pertinent
+
+    //llibreria dom
+
+
+    // console.log(app)
+    // var ul=document.createElement('ul')
+    // var li=document.createElement('li')
+    // var text=document.createTextNode('Comprar pa')
+    // li.appendChild(text)
+    // var li2=document.createElement('li')
+    // var text2=document.createTextNode('Comprar llet')
+
+
+</script>
+
+</body>
+</html>
