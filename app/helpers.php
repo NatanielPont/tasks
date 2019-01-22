@@ -3,13 +3,10 @@
 use App\Tag;
 use App\Task;
 use App\User;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
-=======
+
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
->>>>>>> master
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Exceptions\PermissionAlreadyExists;
@@ -224,17 +221,14 @@ if (!function_exists('create_mysql_user')) {
         return $password;
     }
 }
-<<<<<<< HEAD
 
 if (!function_exists('grant_mysql_privileges')){
     function grant_mysql_privileges($user, $database=null,$host='localhost'){
         $statement= "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
-=======
 if (!function_exists('grant_mysql_privileges')) {
     function grant_mysql_privileges($user,$database, $host = 'localhost')
     {
         $statement = "GRANT ALL PRIVILEGES ON {$database}.* TO '{$user}'@'{$host}' WITH GRANT OPTION";
->>>>>>> master
         DB::connection('mysqlroot')->getPdo()->exec($statement);
         $statement = "FLUSH PRIVILEGES";
         DB::connection('mysqlroot')->getPdo()->exec($statement);
