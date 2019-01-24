@@ -10,7 +10,7 @@
     <v-card v-cloak>
 
 
-        <v-toolbar color="cyan" dark class="toolTitle" >
+        <v-toolbar color="grey darken-4" dark class="toolTitle" >
 
             <v-toolbar-title >Tasques</v-toolbar-title>
         </v-toolbar>
@@ -30,24 +30,24 @@
                                     <del><h5>{{ $task['name'] }}</h5></del>
 
                                 </v-flex>
-                                <v-layout justify-space-between>
-                                    <v-layout justify-end>
+                                <v-layout >
+                                    <v-layout>
 
                                     <v-flex xs12>
                                         <form action="completed_task/{{ $task['id'] }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <input type="hidden" name="id" value="{{ $task['id']  }}">
-                                            <v-btn type="submit" color="warning">
+                                            <v-btn type="submit" color="success lighten-2">
                                                 Descompletar
                                             </v-btn>
                                         </form>
                                     </v-flex>
-                                    <v-flex xs4 >
+                                    <v-flex xs12 >
                                         <form action="/tasks/{{ $task['id'] }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
-                                            <v-btn type="submit" color="error">
+                                            <v-btn type="submit" color="error lighten-1">
                                                 Eliminar
                                             </v-btn>
                                         </form>
@@ -69,14 +69,14 @@
                                             @csrf
                                             {{ method_field('POST') }}
                                             <input type="hidden" name="id" value="{{ $task['id']  }}">
-                                            <v-btn type="submit" color="warning">
+                                            <v-btn type="submit" color="success">
                                                 Completar
                                             </v-btn>
                                         </form>
                                     </v-flex>
 
                                     <v-flex xs>
-                                        <v-btn type="submit" color="warning" name="submit" value="Update" href="#"
+                                        <v-btn type="submit" color="accent lighten-2" name="submit" value="Update" href="#"
                                                data-toggle="modal"
                                                data-target="#create-{{$task['id']}}">
                                             Modificar
@@ -86,7 +86,7 @@
                                         <form action="/tasks/{{ $task['id'] }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
-                                            <v-btn type="submit" color="error">
+                                            <v-btn type="submit" color="error lighten-1">
                                                 Eliminar
                                             </v-btn>
                                         </form>
