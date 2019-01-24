@@ -26873,43 +26873,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var PRIMARY_COLOR_KEY = 'primary_color_key';
 
-var primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#F0B429'; // '#2680C2'
+var primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED'; // '#2680C2'
 window.Vue = __WEBPACK_IMPORTED_MODULE_0_vue___default.a;
 window.Vuetify = __WEBPACK_IMPORTED_MODULE_1_vuetify___default.a;
 
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
-      base: primaryColor
+      base: primaryColor,
+      lighten1: '#40C3F7',
+      lighten2: '#5ED0FA',
+      lighten3: '#81DEFD',
+      lighten4: '#B3ECFF',
+      lighten5: '#E3F8FF',
+      darken1: '#1992D4',
+      darken2: '#127FBF',
+      darken3: '#0B69A3',
+      darken4: '#035388'
     },
     secondary: {
-      base: '#2CB1BC'
+      base: '#616E7C',
+      lighten1: '#7B8794',
+      lighten2: '#9AA5B1',
+      lighten3: '#CBD2D9',
+      lighten4: '#E4E7EB',
+      lighten5: '#F5F7FA',
+      darken1: '#52606D',
+      darken2: '#3E4C59',
+      darken3: '#323F4B',
+      darken4: '#1F2933'
     },
     accent: {
-      base: '#F0B429',
-      lighten1: '#F7C948',
-      lighten2: '#FADB5F',
-      lighten3: '#FCE588',
-      lighten4: '#FFF3C4',
-      lighten5: '#FFFBEA',
-      darken1: '#DE911D',
-      darken2: '#CB6E17',
-      darken3: '#B44D12',
-      darken4: '#8D2B0B'
+      base: '#DA127D',
+      lighten1: '#E8368F',
+      lighten2: '#F364A2',
+      lighten3: '#FF8CBA',
+      lighten4: '#FFB8D2',
+      lighten5: '#FFE3EC',
+      darken1: '#BC0A6F',
+      darken2: '#A30664',
+      darken3: '#870557',
+      darken4: '#620042'
+
     },
     error: {
-      base: '#BA2525',
-      lighten1: '#D64545',
-      lighten2: '#E66A6A',
-      lighten3: '#F29B9B',
-      lighten4: '#FACDCD',
-      lighten5: '#FFEEEE',
-      darken1: '#A61B1B',
-      darken2: '#911111',
-      darken3: '#780A0A',
-      darken4: '#610404'
+      base: '#E12D39',
+      lighten1: '#EF4E4E',
+      lighten2: '#F86A6A',
+      lighten3: '#FF9B9B',
+      lighten4: '#FFBDBD',
+      lighten5: '#FFE3E3',
+      darken1: '#CF1124',
+      darken2: '#AB091E',
+      darken3: '#8A041A',
+      darken4: '#610316'
     },
-    // Taken from palete 3
     success: {
       base: '#27AB83',
       lighten1: '#3EBD93',
@@ -71769,16 +71787,13 @@ var render = function() {
                 [
                   _c(
                     "v-card-title",
-                    {
-                      staticClass: "justify-center",
-                      attrs: { color: "primary" }
-                    },
+                    { staticClass: "justify-center" },
                     [
                       _c(
                         "v-toolbar",
                         {
                           staticClass: "toolTitle",
-                          attrs: { color: "teal", dark: "" }
+                          attrs: { color: "success lighten-1", dark: "" }
                         },
                         [
                           _c("v-toolbar-title", [
@@ -72063,7 +72078,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-card",
-                        { staticClass: "mt-5", attrs: { color: "purple" } },
+                        {
+                          staticClass: "mt-5",
+                          attrs: { color: "grey lighten-1" }
+                        },
                         [
                           _c(
                             "span",
@@ -78445,7 +78463,7 @@ var render = function() {
     [
       _c(
         "v-toolbar",
-        { staticClass: "grey lighten-1" },
+        { staticClass: "grey darken-4" },
         [
           _c(
             "v-menu",
