@@ -34,6 +34,7 @@
                                 item-text="name"
                                 outline
                         >
+                                <!--value="{{filter}}"-->
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="mr-2">
@@ -65,10 +66,11 @@
                     :loading="loading"
                     :pagination.sync="pagination"
                     class="hidden-md-and-down"
+
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}"  >
-                    <tr>
+                    <tr >
                         <td>{{ task.id }}</td>
                         <td>
                             <span :title="task.description">{{ task.name }}</span>
@@ -198,6 +200,22 @@ export default {
     }
   },
   computed: {
+    filteredPeople: function () {
+      var vm = this
+      var category = vm.filter
+
+      if (category === 'Totes') {
+        return vm.dataTasks
+      } else if (category === 'Completades') {
+        return vm.dataTasks.filter(function (task) {
+          return task.completed === 1
+        })
+      } else if (category === 'Pendents') {
+        return vm.dataTasks.filter(function (task) {
+          return task.completed === 0
+        })
+      }
+    }
     // filteredTasks () {
     //   // Segons el filtre actiu
     //   // Alternativa switch/case -> array associatiu
