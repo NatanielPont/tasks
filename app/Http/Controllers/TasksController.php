@@ -61,7 +61,7 @@ class TasksController extends Controller
                 $request->name = substr($request->name, 0, 20);
             $task->name = $request->name;
         }
-        $task->completed = $request->completed;
+        $task->completed = (boolean)$request->completed;
         $task->save();
         return redirect('/tasks');
     }
