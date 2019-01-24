@@ -15,7 +15,7 @@
             <v-toolbar-title >Tasques</v-toolbar-title>
         </v-toolbar>
         <v-layout align-center justify-center>
-            <v-flex xs12 sm8 md5>
+            <v-flex xs10 sm5 md8>
                 <v-list>
                     <?php foreach ($tasks as $task) : ?>
 
@@ -33,7 +33,7 @@
                                 <v-layout justify-space-between>
                                     <v-layout justify-end>
 
-                                    <v-flex xs>
+                                    <v-flex xs12>
                                         <form action="completed_task/{{ $task['id'] }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
@@ -43,7 +43,7 @@
                                             </v-btn>
                                         </form>
                                     </v-flex>
-                                    <v-flex xs >
+                                    <v-flex xs4 >
                                         <form action="/tasks/{{ $task['id'] }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
