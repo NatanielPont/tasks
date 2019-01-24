@@ -3,8 +3,8 @@
         <v-layout row wrap>
             <v-flex xs12>
                 <v-card dark>
-                    <v-card-title color="primary" class="justify-center">
-                        <v-toolbar color="teal" dark class="toolTitle">
+                    <v-card-title class="justify-center">
+                        <v-toolbar color="success lighten-1" dark class="toolTitle">
                             <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
 
                             <v-toolbar-title>
@@ -94,7 +94,7 @@
 
                             <v-btn class="mt-0" id="button_add_task" @click="add">Afegir</v-btn>
                         </form>
-                            <v-card color="purple" class="mt-5">
+                            <v-card color="grey lighten-1" class="mt-5">
                         <span id="filters" v-show="total > 0" >
                                  <v-card-title color="primary" class="justify-center">
                                     <span class="title">Filtros: [{{ filter }}]</span>
