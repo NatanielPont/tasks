@@ -65,12 +65,12 @@
                                     <v-btn id="button_complete" @click="completeTask(task)" small flat>
                                             <v-switch
                                                     :input-value="task.completed==1" @change="task.completed = $event"
+                                                    color="grey lighten-1"
                                             ></v-switch>
-
 
                                     </v-btn>
                                     <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
-                                    <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
+                                    <v-btn id="button_remove_task" @click="remove(task)" small flat><v-icon color="error darken-3">delete</v-icon></v-btn>
                                     </v-btn-toggle>
                                     <!--</v-card>-->
                                 </v-flex>

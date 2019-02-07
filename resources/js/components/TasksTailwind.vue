@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="inline-flex bg-grey-lighter .items-center"  v-for="task in filteredTasks" :key="task.id" >
-                <div class="flex-1  text-center border-2 border-blue hover:bg-blue px-4 py-4 m-3">
+                <div class="flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-3">
                     <ul class="list-reset">
                         <li >
 
