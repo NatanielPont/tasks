@@ -8,14 +8,14 @@
                     Ha succeit un error: {{ errorMessage }}
                 </div>
             </div>
-            <div class="inline-flex bg-grey-lighter .items-center"  v-for="task in filteredTasks" :key="task.id" >
-                <div class="flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2">
-                    <ul class="list-reset">
+            <div class="inline-flex bg-grey-lighter"  v-for="task in filteredTasks" :key="task.id" >
+                <div class=" text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 ">
+                    <ul class="list-reset ">
                         <li >
 
-                <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
+                <span :id="'task' + task.id" :class="{ strike: task.completed==1 }" class=" align-items-start">
                                         <editable-text
-                                                class=" hover:bg-blue-light"
+                                                class=" hover:bg-blue-light "
                                                 :text="task.name"
                                                 :data=task
                                                 @edited="editName(task, $event)"
