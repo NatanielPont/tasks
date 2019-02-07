@@ -71310,12 +71310,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -71963,52 +71957,65 @@ var render = function() {
                                     { attrs: { xs7: "" } },
                                     [
                                       _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            id: "button_complete",
-                                            small: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.completeTask(task)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("v-switch", {
-                                            attrs: {
-                                              label: "" + (task.completed == 1),
-                                              "input-value": task.completed == 1
-                                            },
-                                            on: {
-                                              change: function($event) {
-                                                task.completed = $event
-                                              }
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            id: "button_remove_task",
-                                            small: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.remove(task)
-                                            }
-                                          }
-                                        },
+                                        "v-btn-toggle",
                                         [
                                           _c(
-                                            "v-icon",
-                                            { attrs: { color: "red" } },
-                                            [_vm._v("delete")]
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                id: "button_complete",
+                                                small: "",
+                                                flat: ""
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.completeTask(task)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("v-switch", {
+                                                attrs: {
+                                                  "input-value":
+                                                    task.completed == 1,
+                                                  color: "grey lighten-1"
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    task.completed = $event
+                                                  }
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                id: "button_remove_task",
+                                                small: "",
+                                                flat: ""
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.remove(task)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: {
+                                                    color: "error darken-3"
+                                                  }
+                                                },
+                                                [_vm._v("delete")]
+                                              )
+                                            ],
+                                            1
                                           )
                                         ],
                                         1
@@ -74586,7 +74593,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "flex-1  text-center border-2 border-blue hover:bg-blue px-4 py-4 m-3"
+                    "flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-3"
                 },
                 [
                   _c("ul", { staticClass: "list-reset" }, [
