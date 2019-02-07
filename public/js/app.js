@@ -71978,9 +71978,7 @@ var render = function() {
                                         [
                                           _c("v-switch", {
                                             attrs: {
-                                              label:
-                                                "Completada: " +
-                                                (task.completed == 1),
+                                              label: "" + (task.completed == 1),
                                               "input-value": task.completed == 1
                                             },
                                             on: {
@@ -80821,7 +80819,7 @@ var render = function() {
   return _c(
     "v-card",
     [
-      _c("v-card-title", { staticClass: "grey darken-1 white--text" }, [
+      _c("v-card-title", { staticClass: "grey darken-4 white--text" }, [
         _c("h4", [_vm._v("Tema")])
       ]),
       _vm._v(" "),

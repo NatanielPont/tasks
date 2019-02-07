@@ -99,7 +99,7 @@
                 app
         >
             <v-card>
-                <v-card-title class="grey darken-1 white--text"><h4>Perfil</h4></v-card-title>
+                <v-card-title class="grey darken-4 white--text"><h4>Perfil</h4></v-card-title>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <ul>
@@ -112,7 +112,7 @@
                     </v-flex>
                 </v-layout>
                 <v-card>
-                    <v-card-title class="grey darken-1 white--text"><h4>Opcions administrador</h4></v-card-title>
+                    <v-card-title class="grey darken-4 white--text"><h4>Opcions administrador</h4></v-card-title>
 
                     <v-layout row wrap>
                         @impersonating
@@ -137,14 +137,14 @@
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar
-                color="success lighten-3"
+                color="grey darken-4"
 
                 app
                 clipped-left
                 clipped-right
                 fixed>
-            <v-toolbar-side-icon  @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title >Application</v-toolbar-title>
+            <v-toolbar-side-icon class="white--text" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-toolbar-title class="white--text">Application</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
@@ -163,8 +163,5 @@
     </v-app>
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
-<script>
-
-</script>
 </body>
 </html>
