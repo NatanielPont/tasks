@@ -69,7 +69,7 @@
                                     <v-btn id="button_complete" @click="completeTask(task)" small>
                                         <!--<div >-->
                                             <v-switch
-                                                    :label="`Completada: ${task.completed==1}`"
+                                                    :label="`${task.completed==1}`"
                                                     :input-value="task.completed==1" @change="task.completed = $event"
                                             ></v-switch>
 
