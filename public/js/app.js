@@ -71697,7 +71697,7 @@ var render = function() {
               _c(
                 "svg",
                 {
-                  staticClass: " fill-current text-green",
+                  staticClass: " text-green",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 20 20",
@@ -74389,6 +74389,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -74593,7 +74613,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-3"
+                    "flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2"
                 },
                 [
                   _c("ul", { staticClass: "list-reset" }, [
@@ -74625,78 +74645,53 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm.filter == "all"
-                ? _c("div", { staticClass: "focus:shadow-outline" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          " flex-1 bg-purple-light hover:bg-yellow text-grey-darkest font-bold px-4 py-4 m-3 rounded-r",
-                        on: {
-                          click: function($event) {
-                            _vm.completeTask(task)
-                          }
-                        }
-                      },
-                      [
-                        task.completed == 0
-                          ? _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "focus:outline-none focus:shadow-outline "
-                              },
-                              [
-                                _vm._v(
-                                  "\n\n                                        Completar\n                                    "
-                                )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        task.completed == 1
-                          ? _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "focus:outline-none focus:shadow-outline"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        Descompletar\n                                    "
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.filter == "all"
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        " flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded",
-                      attrs: { id: "button_remove_task" },
-                      on: {
-                        click: function($event) {
-                          _vm.remove(task)
-                        }
+              _c("div", { staticClass: "inline-flex" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-grey-light hover:bg-grey text-grey-darkest px-2 m-1 font-bold rounded-l",
+                    on: {
+                      click: function($event) {
+                        _vm.completeTask(task)
                       }
-                    },
-                    [
-                      _c("img", {
-                        attrs: {
-                          src:
-                            "https://img.icons8.com/color/64/000000/cancel.png",
-                          title: "delete task"
-                        }
-                      })
-                    ]
-                  )
-                : _vm._e()
+                    }
+                  },
+                  [
+                    task.completed == 0
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "focus:outline-none focus:shadow-outline "
+                          },
+                          [
+                            _vm._v(
+                              "\n\n                        Completar\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    task.completed == 1
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "focus:outline-none focus:shadow-outline"
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Descompletar\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0, true)
+              ])
             ]
           )
         }),
@@ -74720,7 +74715,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    " appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none",
+                    "mt-2 appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none",
                   attrs: {
                     name: "name",
                     type: "text",
@@ -74844,7 +74839,28 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          " flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white m-2  hover:border-transparent rounded "
+      },
+      [
+        _c("img", {
+          attrs: {
+            src: "https://img.icons8.com/color/64/000000/cancel.png",
+            title: "delete task"
+          }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
