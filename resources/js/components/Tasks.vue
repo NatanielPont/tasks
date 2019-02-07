@@ -57,27 +57,21 @@
                                     </v-layout>
 
                                 </v-container>
-                                <!--<v-layout v-if="filter!='all'"  row justify-space-between wrap>-->
-
-                                <!--</v-layout>-->
-                                <!--<v-flex v-if="filter!='all'" xs3>-->
-                                   <!---->
-                                <!--</v-flex>-->
 
                                 <v-flex v-if="filter=='all'" xs7>
                                     <!--<v-card dark color="blue" >-->
-                                    <v-btn id="button_complete" @click="completeTask(task)" small>
-                                        <!--<div >-->
+                                    <v-btn-toggle >
+
+                                    <v-btn id="button_complete" @click="completeTask(task)" small flat>
                                             <v-switch
-                                                    :label="`${task.completed==1}`"
                                                     :input-value="task.completed==1" @change="task.completed = $event"
                                             ></v-switch>
 
-                                        <!--</div>-->
 
                                     </v-btn>
                                     <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
                                     <v-btn id="button_remove_task" @click="remove(task)" small><v-icon color="red">delete</v-icon></v-btn>
+                                    </v-btn-toggle>
                                     <!--</v-card>-->
                                 </v-flex>
                             </v-list-tile>

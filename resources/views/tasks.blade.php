@@ -13,7 +13,7 @@
 
                 <v-toolbar-title >Tasques</v-toolbar-title>
             </v-toolbar>
-            <v-layout  justify-center>
+            <v-layout>
                 <v-flex xs7>
                     <v-list>
                         <?php foreach ($tasks as $task) : ?>
