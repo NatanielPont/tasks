@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="inline-flex bg-grey-lighter .items-center"  v-for="task in filteredTasks" :key="task.id" >
-                <div class="flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-3">
+                <div class="flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2">
                     <ul class="list-reset">
                         <li >
 
@@ -28,25 +28,45 @@
                 </div>
                 <!--<div class="flex-1 border-2 border-blue text-center rounded-full  px-4 py-2 m-3">-->
 
-                                <div v-if="filter=='all'" class="focus:shadow-outline">
+                <div class="inline-flex">
+                    <!--<button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded-l">-->
+                        <!--Prev-->
+                    <!--</button>-->
+                    <button @click="completeTask(task)" class="bg-grey-light hover:bg-grey text-grey-darkest px-2 m-1 font-bold rounded-l" >
+                        <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">
 
-                                    <button @click="completeTask(task)" class=" flex-1 bg-purple-light hover:bg-yellow text-grey-darkest font-bold px-4 py-4 m-3 rounded-r">
-                                        <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">
+                            Completar
+                        </div>
+                        <div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">
+                            Descompletar
+                        </div>
 
-                                            Completar
-                                        </div>
-                                        <div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">
-                                            Descompletar
-                                        </div>
+                    </button>
+                    <button class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white m-2  hover:border-transparent rounded ">
+                        <img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">
 
-                                    </button>
-                                </div>
-                        <button v-if="filter=='all'" id="button_remove_task" @click="remove(task)" class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded">
-                            <!--<img src="https://img.icons8.com/material-rounded/64/000000/cancel.png" title="delete task">-->
-                            <img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">
-                            <!--<img src="https://img.icons8.com/material-two-tone/64/000000/cancel.png" title="delete task">-->
-                            <!--<img src="https://img.icons8.com/office/64/000000/delete.png" title="delete task">-->
-                        </button>
+                    </button>
+                </div>
+
+                                <!--<div v-if="filter=='all'" class="focus:shadow-outline">-->
+
+                                    <!--<button @click="completeTask(task)" class=" flex-1 bg-purple-light hover:bg-yellow text-grey-darkest  px-4 py-4 m-3 rounded-r " >-->
+                                        <!--<div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">-->
+
+                                            <!--Completar-->
+                                        <!--</div>-->
+                                        <!--<div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">-->
+                                            <!--Descompletar-->
+                                        <!--</div>-->
+
+                                    <!--</button>-->
+                                <!--</div>-->
+                        <!--<button v-if="filter=='all'" id="button_remove_task" @click="remove(task)" class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded " >-->
+                            <!--&lt;!&ndash;<img src="https://img.icons8.com/material-rounded/64/000000/cancel.png" title="delete task">&ndash;&gt;-->
+                            <!--<img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">-->
+                            <!--&lt;!&ndash;<img src="https://img.icons8.com/material-two-tone/64/000000/cancel.png" title="delete task">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<img src="https://img.icons8.com/office/64/000000/delete.png" title="delete task">&ndash;&gt;-->
+                        <!--</button>-->
 
             </div>
             <div class="flex bg-grey-lighter justify-center ">
@@ -54,7 +74,7 @@
                 <div class="flex items-center border-b border-b-2 border-teal py-2">
                     <input v-model="newTask"
                            @keyup.enter="add"
-                           name="name" class=" appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="New task (max. 25 ctrs)" required>
+                           name="name" class="mt-2 appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="New task (max. 25 ctrs)" required>
                     <button id="button_add_task" @click="add">
                         <img src="https://img.icons8.com/ultraviolet/48/000000/plus.png" title="add task">
                     </button>
