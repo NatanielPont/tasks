@@ -8,7 +8,10 @@
                     Ha succeit un error: {{ errorMessage }}
                 </div>
             </div>
+
             <div class="flex flex-column bg-grey-lighter"  v-for="task in filteredTasks" :key="task.id" >
+        <div class="max-w rounded overflow-hidden shadow-lg">
+
                 <div class=" text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 ">
                     <ul class="list-reset ">
                         <li >
@@ -28,7 +31,7 @@
                 </div>
                 <!--<div class="flex-1 border-2 border-blue text-center rounded-full  px-4 py-2 m-3">-->
 
-                <div class="flex justify-center">
+                <div class="flex justify-center" v-if="filter=='all'">
                     <!--<button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded-l">-->
                         <!--Prev-->
                     <!--</button>-->
@@ -47,6 +50,7 @@
 
                     </button>
                 </div>
+        </div>
             </div>
             <div class="flex bg-grey-lighter justify-center ">
             <form class="w-full max-w-sm">
