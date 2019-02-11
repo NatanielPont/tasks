@@ -71682,7 +71682,7 @@ var render = function() {
                   expression: "currentText"
                 }
               ],
-              staticClass: "text-center ",
+              staticClass: "text-center",
               attrs: { type: "text" },
               domProps: { value: _vm.currentText },
               on: {
@@ -74397,20 +74397,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -74578,188 +74564,220 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mx-auto " }, [
-    _c(
-      "div",
-      { staticClass: "flex flex-col " },
-      [
-        _c("span", { staticClass: "title text-center " }, [
-          _vm._v("Tasques (" + _vm._s(_vm.total) + ")")
-        ]),
-        _vm._v(" "),
-        _c(
+  return _c(
+    "div",
+    { staticClass: "container mx-auto " },
+    [
+      _c(
+        "span",
+        {
+          staticClass:
+            "title text-center flex justify-center hover:bg-yellow mb-5 "
+        },
+        [_vm._v("Tasques (" + _vm._s(_vm.total) + ")")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "max-w-sm rounded  overflow-hidden shadow-lg" },
+        [
+          _vm.errorMessage
+            ? _c("div", [
+                _vm._v(
+                  "\n                Ha succeit un error: " +
+                    _vm._s(_vm.errorMessage) +
+                    "\n            "
+                )
+              ])
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.filteredTasks, function(task) {
+        return _c(
           "div",
-          { staticClass: "max-w-sm rounded  overflow-hidden shadow-lg" },
+          { key: task.id, staticClass: "flex flex-column bg-grey-lighter" },
           [
-            _vm.errorMessage
-              ? _c("div", [
-                  _vm._v(
-                    "\n                Ha succeit un error: " +
-                      _vm._s(_vm.errorMessage) +
-                      "\n            "
-                  )
-                ])
-              : _vm._e()
-          ]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.filteredTasks, function(task) {
-          return _c(
-            "div",
-            { key: task.id, staticClass: "inline-flex bg-grey-lighter" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    " text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 "
-                },
-                [
-                  _c("ul", { staticClass: "list-reset " }, [
-                    _c("li", [
-                      _c(
-                        "span",
-                        {
-                          staticClass: " align-items-start",
-                          class: { strike: task.completed == 1 },
-                          attrs: { id: "task" + task.id }
-                        },
-                        [
-                          _c("editable-text", {
-                            staticClass: " hover:bg-blue-light ",
-                            attrs: { text: task.name, data: task },
-                            on: {
-                              edited: [
-                                function($event) {
-                                  _vm.editName(task, $event)
-                                },
-                                _vm.dateSelectedInChild
-                              ]
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "inline-flex" }, [
+            _c(
+              "div",
+              { staticClass: "max-w rounded overflow-hidden shadow-lg" },
+              [
                 _c(
-                  "button",
+                  "div",
                   {
                     staticClass:
-                      "bg-grey-light hover:bg-grey text-grey-darkest px-2 m-1 font-bold rounded-l",
-                    on: {
-                      click: function($event) {
-                        _vm.completeTask(task)
-                      }
-                    }
+                      " text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 "
                   },
                   [
-                    task.completed == 0
-                      ? _c(
-                          "div",
+                    _c("ul", { staticClass: "list-reset " }, [
+                      _c("li", [
+                        _c(
+                          "span",
                           {
-                            staticClass:
-                              "focus:outline-none focus:shadow-outline "
+                            class: { strike: task.completed == 1 },
+                            attrs: { id: "task" + task.id }
                           },
                           [
-                            _vm._v(
-                              "\n\n                        Completar\n                    "
-                            )
-                          ]
+                            _c("editable-text", {
+                              staticClass: " hover:bg-blue-light ",
+                              attrs: { text: task.name, data: task },
+                              on: {
+                                edited: [
+                                  function($event) {
+                                    _vm.editName(task, $event)
+                                  },
+                                  _vm.dateSelectedInChild
+                                ]
+                              }
+                            })
+                          ],
+                          1
                         )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    task.completed == 1
-                      ? _c(
-                          "div",
-                          {
-                            staticClass:
-                              "focus:outline-none focus:shadow-outline"
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Descompletar\n                    "
-                            )
-                          ]
-                        )
-                      : _vm._e()
+                      ])
+                    ])
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(0, true)
-              ])
-            ]
-          )
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex bg-grey-lighter justify-center " }, [
-          _c("form", { staticClass: "w-full max-w-sm" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "flex items-center border-b border-b-2 border-teal py-2"
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newTask,
-                      expression: "newTask"
-                    }
-                  ],
-                  staticClass:
-                    "mt-2 appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none",
-                  attrs: {
-                    name: "name",
-                    type: "text",
-                    placeholder: "New task (max. 25 ctrs)",
-                    required: ""
-                  },
-                  domProps: { value: _vm.newTask },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !("button" in $event) &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
-                      }
-                      return _vm.add($event)
-                    },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.newTask = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { attrs: { id: "button_add_task" }, on: { click: _vm.add } },
-                  [
-                    _c("img", {
-                      attrs: {
-                        src:
-                          "https://img.icons8.com/ultraviolet/48/000000/plus.png",
-                        title: "add task"
-                      }
-                    })
-                  ]
-                )
+                _vm.filter == "all"
+                  ? _c("div", { staticClass: "flex justify-center" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            " hover:bg-orange text-grey-darkest   font-bold rounded-l mr-2 w-1/3",
+                          on: {
+                            click: function($event) {
+                              _vm.completeTask(task)
+                            }
+                          }
+                        },
+                        [
+                          task.completed == 0
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "focus:outline-none focus:shadow-outline "
+                                },
+                                [
+                                  _vm._v(
+                                    "\n\n                        Completar\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          task.completed == 1
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "focus:outline-none focus:shadow-outline"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        Descompletar\n                    "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            " hover:bg-orange text-blue-dark  hover:text-white   hover:border-transparent rounded w-1/3",
+                          on: {
+                            click: function($event) {
+                              _vm.remove(task)
+                            }
+                          }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src:
+                                "https://img.icons8.com/color/64/000000/cancel.png",
+                              title: "delete task"
+                            }
+                          })
+                        ]
+                      )
+                    ])
+                  : _vm._e()
               ]
             )
-          ])
-        ]),
-        _vm._v(" "),
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex bg-grey-lighter justify-center " }, [
+        _c("form", { staticClass: "w-full max-w-sm" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex items-center border-b border-b-2 border-teal py-2"
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.newTask,
+                    expression: "newTask"
+                  }
+                ],
+                staticClass:
+                  "mt-2 appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none",
+                attrs: {
+                  name: "name",
+                  type: "text",
+                  placeholder: "New task (max. 25 ctrs)",
+                  required: ""
+                },
+                domProps: { value: _vm.newTask },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.add($event)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.newTask = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                { attrs: { id: "button_add_task" }, on: { click: _vm.add } },
+                [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "https://img.icons8.com/ultraviolet/48/000000/plus.png",
+                      title: "add task"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex justify-center" }, [
         _c(
           "span",
           {
@@ -74834,33 +74852,12 @@ var render = function() {
             ])
           ]
         )
-      ],
-      2
-    )
-  ])
+      ])
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass:
-          " flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white m-2  hover:border-transparent rounded "
-      },
-      [
-        _c("img", {
-          attrs: {
-            src: "https://img.icons8.com/color/64/000000/cancel.png",
-            title: "delete task"
-          }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
