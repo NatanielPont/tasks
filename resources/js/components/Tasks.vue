@@ -27,7 +27,7 @@
 
                                     </v-list-tile-title>
                                 </v-list-tile-content>
-                                <v-flex v-if="filter=='all'" xs3>
+                                <v-flex v-if="filter=='all'" xs8 >
                                     <v-card dark color="primary">
                                         <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
