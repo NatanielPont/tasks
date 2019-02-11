@@ -71547,6 +71547,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditableText',
@@ -71680,7 +71682,7 @@ var render = function() {
                   expression: "currentText"
                 }
               ],
-              staticClass: "text-center",
+              staticClass: "text-center ",
               attrs: { type: "text" },
               domProps: { value: _vm.currentText },
               on: {
@@ -71833,7 +71835,7 @@ var render = function() {
                               _vm.filter == "all"
                                 ? _c(
                                     "v-flex",
-                                    { attrs: { xs3: "" } },
+                                    { attrs: { xs8: "" } },
                                     [
                                       _c(
                                         "v-card",
@@ -74604,29 +74606,27 @@ var render = function() {
         _vm._l(_vm.filteredTasks, function(task) {
           return _c(
             "div",
-            {
-              key: task.id,
-              staticClass: "inline-flex bg-grey-lighter .items-center"
-            },
+            { key: task.id, staticClass: "inline-flex bg-grey-lighter" },
             [
               _c(
                 "div",
                 {
                   staticClass:
-                    "flex-1  text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2"
+                    " text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 "
                 },
                 [
-                  _c("ul", { staticClass: "list-reset" }, [
+                  _c("ul", { staticClass: "list-reset " }, [
                     _c("li", [
                       _c(
                         "span",
                         {
+                          staticClass: " align-items-start",
                           class: { strike: task.completed == 1 },
                           attrs: { id: "task" + task.id }
                         },
                         [
                           _c("editable-text", {
-                            staticClass: " hover:bg-blue-light",
+                            staticClass: " hover:bg-blue-light ",
                             attrs: { text: task.name, data: task },
                             on: {
                               edited: [
