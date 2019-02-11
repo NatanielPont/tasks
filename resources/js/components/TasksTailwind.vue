@@ -1,19 +1,19 @@
 <template>
     <div class="container mx-auto ">
-        <div class="flex flex-col ">
-                            <span class="title text-center ">Tasques ({{total}})</span>
+        <!--<div class="flex flex-col ">-->
+                            <span class="title text-center flex justify-center hover:bg-yellow mb-5 ">Tasques ({{total}})</span>
             <div class="max-w-sm rounded  overflow-hidden shadow-lg">
 
                 <div v-if="errorMessage">
                     Ha succeit un error: {{ errorMessage }}
                 </div>
             </div>
-            <div class="inline-flex bg-grey-lighter"  v-for="task in filteredTasks" :key="task.id" >
+            <div class="flex flex-column bg-grey-lighter"  v-for="task in filteredTasks" :key="task.id" >
                 <div class=" text-center border-2 border-blue hover:bg-blue px-1 py-1 m-2 ">
                     <ul class="list-reset ">
                         <li >
 
-                <span :id="'task' + task.id" :class="{ strike: task.completed==1 }" class=" align-items-start">
+                <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
                                                 class=" hover:bg-blue-light "
                                                 :text="task.name"
@@ -28,11 +28,11 @@
                 </div>
                 <!--<div class="flex-1 border-2 border-blue text-center rounded-full  px-4 py-2 m-3">-->
 
-                <div class="inline-flex">
+                <div class="flex justify-center">
                     <!--<button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded-l">-->
                         <!--Prev-->
                     <!--</button>-->
-                    <button @click="completeTask(task)" class="bg-grey-light hover:bg-grey text-grey-darkest px-2 m-1 font-bold rounded-l" >
+                    <button @click="completeTask(task)" class=" hover:bg-orange text-grey-darkest   font-bold rounded-l mr-2 w-1/3" >
                         <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">
 
                             Completar
@@ -42,32 +42,11 @@
                         </div>
 
                     </button>
-                    <button class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white m-2  hover:border-transparent rounded ">
+                    <button @click="remove(task)" class=" hover:bg-orange text-blue-dark  hover:text-white   hover:border-transparent rounded w-1/3">
                         <img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">
 
                     </button>
                 </div>
-
-                                <!--<div v-if="filter=='all'" class="focus:shadow-outline">-->
-
-                                    <!--<button @click="completeTask(task)" class=" flex-1 bg-purple-light hover:bg-yellow text-grey-darkest  px-4 py-4 m-3 rounded-r " >-->
-                                        <!--<div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">-->
-
-                                            <!--Completar-->
-                                        <!--</div>-->
-                                        <!--<div v-if="task.completed==1" class="focus:outline-none focus:shadow-outline">-->
-                                            <!--Descompletar-->
-                                        <!--</div>-->
-
-                                    <!--</button>-->
-                                <!--</div>-->
-                        <!--<button v-if="filter=='all'" id="button_remove_task" @click="remove(task)" class=" flex-initial hover:bg-blue text-blue-dark font-semibold hover:text-white px-2 py-2 m-3  hover:border-transparent rounded " >-->
-                            <!--&lt;!&ndash;<img src="https://img.icons8.com/material-rounded/64/000000/cancel.png" title="delete task">&ndash;&gt;-->
-                            <!--<img src="https://img.icons8.com/color/64/000000/cancel.png" title="delete task">-->
-                            <!--&lt;!&ndash;<img src="https://img.icons8.com/material-two-tone/64/000000/cancel.png" title="delete task">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<img src="https://img.icons8.com/office/64/000000/delete.png" title="delete task">&ndash;&gt;-->
-                        <!--</button>-->
-
             </div>
             <div class="flex bg-grey-lighter justify-center ">
             <form class="w-full max-w-sm">
@@ -82,8 +61,9 @@
             </form>
 
             </div>
+        <div class="flex justify-center">
 
-                <span id="filters" v-show="total > 0" align="center">
+                <span id="filters" v-show="total > 0" align="center" class="">
 
                                     <span class="font-sans italic text-lg mr-3 border-b-4 border-blue-dark hover:bg-green-light">Filtres: [{{ filter }}]</span>
                      <ul class="list-reset inline-flex mt-5">
@@ -94,6 +74,8 @@
 
                             </span>
         </div>
+
+        <!--</div>-->
 
     </div>
 

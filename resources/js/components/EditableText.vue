@@ -9,7 +9,7 @@
               @keyup.enter="edit" >
                   <!--<input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">-->
 
-            <input type="text" v-model="currentText" class="text-center ">
+            <input type="text" v-model="currentText" class="text-center">
            <div class="pepe">
              <svg @click="edit"  class=" text-green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="15">
                  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
