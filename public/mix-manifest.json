@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+<<<<<<< HEAD
     "/css/app.css": "/css/app.css",
     "/0.957b5fec0e71056384a0.hot-update.js": "/0.957b5fec0e71056384a0.hot-update.js",
     "/0.f42ef4824acded6e34e7.hot-update.js": "/0.f42ef4824acded6e34e7.hot-update.js",
@@ -37,4 +38,7 @@
     "/0.ad50c80b4d86f738283f.hot-update.js": "/0.ad50c80b4d86f738283f.hot-update.js",
     "/0.e4ffbeb32fe76539ae46.hot-update.js": "/0.e4ffbeb32fe76539ae46.hot-update.js",
     "/0.1766378612472a56e598.hot-update.js": "/0.1766378612472a56e598.hot-update.js"
+=======
+    "/css/app.css": "/css/app.css"
+>>>>>>> master
 }
