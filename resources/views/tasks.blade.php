@@ -6,15 +6,19 @@
     [v-cloak] {display: none}
 </style>
 @section('content')
-        <v-card v-cloak>
+    <v-container grid-list-md text-xs-center id="tasks" class="tasks" fill-height >
+        <v-layout row wrap>
+            <v-flex xs12 >
+
+            <v-card v-cloak>
 
 
             <v-toolbar color="grey darken-1" dark class="toolTitle" >
 
                 <v-toolbar-title >Tasques</v-toolbar-title>
             </v-toolbar>
-            <v-layout>
-                <v-flex xs7>
+            {{--<v-layout row wrap>--}}
+                {{--<v-flex >--}}
                     <v-list>
                         <?php foreach ($tasks as $task) : ?>
 
@@ -24,73 +28,72 @@
                                 <img src="https://placeimg.com/100/100/any">
                             </v-list-tile-avatar>
                             @if($task['completed'])
-                                <v-layout row >
+                                {{--<v-layout row >--}}
 
-                                    <v-flex xs7 mt-3>
+
+                                    <v-flex xs12 mt-2>
+
+                                            <v-card dark color="primary">
                                         <del><h5>{{ $task['name'] }}</h5></del>
 
-                                    </v-flex>
-                                        <v-layout>
+                                            </v-card>
+                                        <v-layout justify-end>
 
-                                            <v-btn-toggle >
+                                            <v-btn-toggle>
 
                                                 <form action="completed_task/{{ $task['id'] }}" method="POST">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <input type="hidden" name="id" value="{{ $task['id']  }}">
-                                                    <v-btn type="submit" color="success darken-3" flat >
+                                                    <v-btn type="submit" color="success darken-3" small flat >
                                                         Descompletar
                                                     </v-btn>
                                                 </form>
                                                 <form action="/tasks/{{ $task['id'] }}" method="POST">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
-                                                    <v-btn type="submit" color="error darken-3" flat>
+                                                    <v-btn type="submit" color="error darken-3" small flat>
                                                         Eliminar
                                                     </v-btn>
                                                 </form>
                                             </v-btn-toggle>
-
                                         </v-layout>
-
-                                </v-layout>
-                            @else
-                                <v-layout row >
-
-                                    <v-flex xs3 mt-3>
-                                        <h5>{{ $task['name'] }}</h5>
                                     </v-flex>
-                                    <v-layout >
-                                        <v-layout justify-center>
-                                            <v-flex xs12 sm4 class="py-2">
+
+
+                            @else
+                                    <v-flex xs12 mt-2>
+
+                                        <v-card dark color="primary">
+                                            <h5>{{ $task['name'] }}</h5>
+
+                                        </v-card>
+                                        <v-layout justify-end>
                                                 <v-btn-toggle>
                                                     <form action="completed_task/{{ $task['id'] }}" method="POST">
                                                         @csrf
                                                         {{ method_field('POST') }}
                                                         <input type="hidden" name="id" value="{{ $task['id']  }}">
-                                                        <v-btn type="submit" color="success darken-4" flat>
+                                                        <v-btn type="submit" color="success darken-4" small flat>
                                                             Completar
                                                         </v-btn>
                                                     </form>
                                                     <v-btn type="submit" color="accent darken-3" name="submit" value="Update" href="#"
                                                            data-toggle="modal"
-                                                           data-target="#create-{{$task['id']}}" flat>
+                                                           data-target="#create-{{$task['id']}}" small flat>
                                                         Modificar
                                                     </v-btn>
                                                     <form action="/tasks/{{ $task['id'] }}" method="POST">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
-                                                        <v-btn type="submit" color="error darken-3" flat>
+                                                        <v-btn type="submit" color="error darken-3" small flat>
                                                             Eliminar
                                                         </v-btn>
                                                     </form>
                                                 </v-btn-toggle>
-                                            </v-flex>
-
                                         </v-layout>
-                                    </v-layout>
+                                    </v-flex>
 
-                                </v-layout>
                             @endif
                         </v-list-tile>
                         @include('task_edit')
@@ -105,11 +108,13 @@
                             </v-btn>
                         </form>
                     </v-list>
-                </v-flex>
-            </v-layout>
 
 
         </v-card>
+            </v-flex>
+
+        </v-layout>
+    </v-container>
 
 
 
