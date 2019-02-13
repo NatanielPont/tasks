@@ -19,10 +19,12 @@
             </v-toolbar>
             {{--<v-layout row wrap>--}}
                 {{--<v-flex >--}}
-                    <v-list>
+                    <v-list style="
+    background-color: grey;
+">
                         <?php foreach ($tasks as $task) : ?>
 
-                        <v-list-tile>
+                        <v-list-tile class="mb-3">
 
                             <v-list-tile-avatar>
                                 <img src="https://placeimg.com/100/100/any">
@@ -39,13 +41,13 @@
                                             </v-card>
                                         <v-layout justify-end>
 
-                                            <v-btn-toggle>
+                                            <v-btn-toggle >
 
                                                 <form action="completed_task/{{ $task['id'] }}" method="POST">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <input type="hidden" name="id" value="{{ $task['id']  }}">
-                                                    <v-btn type="submit" color="success darken-3" small flat >
+                                                    <v-btn type="submit" color="success darken-3" small  >
                                                         Descompletar
                                                     </v-btn>
                                                 </form>
@@ -102,8 +104,8 @@
 
                         <form action="/tasks" method="POST" align="center">
                             @csrf
-                            <input name="name" type="text" placeholder="Nova tasca (max. 25 ctrs)" required>
-                            <v-btn color="success">
+                            <input name="name" type="text"  placeholder="Nova tasca (max. 25 ctrs)" required>
+                            <v-btn color="primary">
                                 <button>Afegir</button>
                             </v-btn>
                         </form>
