@@ -99,7 +99,9 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
-            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray()
+            'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
+            'hash_id' => $this->hash_id
+
         ];
     }
     /**
@@ -118,6 +120,27 @@ class User extends Authenticatable
     public function scopeAdmin($query)
     {
         return $query->where('admin',true);
+    }
+
+
+    /**
+     * Hashed key.
+     * @return string
+     */
+    protected function hashedKey()
+    {
+//        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+//        return $hashids->encode($this->getKey());
+    }
+    /**
+     * Get the photo path prefix.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getHashIdAttribute($value)
+    {
+        return $this->hashedKey();
     }
 
 

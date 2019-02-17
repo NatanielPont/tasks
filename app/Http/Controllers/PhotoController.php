@@ -43,7 +43,7 @@ class PhotoController extends Controller
 //        $path = $request->file('photo')->store(
 //            'photos/'.$request->user()->id, 's3'
 //        );
-        dump($path);
+//        dump($path);
         return Photo::create([
             'url' => $path
         ]);

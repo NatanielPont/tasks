@@ -21,6 +21,7 @@ class RegularUsersControllerTest extends TestCase
     /** @test */
     public function can_list_regular_users()
     {
+        $this->withoutExceptionHandling();
         $user1 = factory(User::class)->create([
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'

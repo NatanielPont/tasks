@@ -15,7 +15,7 @@
                         </v-toolbar>
 
                     </v-card-title>
-                    <v-card-text class="px-0">
+                    <v-card-text >
 
                         <div v-if="errorMessage">
                             Ha succeit un error: {{ errorMessage }}

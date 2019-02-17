@@ -12,17 +12,20 @@
 */
 
 
+use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\UserPhotoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 Auth::routes();
 
-//TODO
+
 Route::post('/login_alt', 'Auth\LoginAltController@login');
 Route::post('/register_alt', 'Auth\RegisterAltController@register');
 
@@ -63,6 +66,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', '\\'. ProfileController::class . '@show');
     Route::post('/photo', '\\'. PhotoController::class . '@store');
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
+
+    //Changelog
+    Route::get('/changelog','\\'. ChangelogController::class . '@index');
+
+
+    // User photos
+    Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
+    Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
 
 });
 Route::get('/', function () {
