@@ -85,7 +85,8 @@
                             <toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
                         </td>
                         <td>
-                            <tasks-tags :task="task" :tags="tags" @removed="refresh" @added="refresh"></tasks-tags>
+                            <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" ></tasks-tags>
+                            <!--<tasks-tags :task="task" :tags="tags" @removed="refresh" @added="refresh"></tasks-tags>-->
                         </td>
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>

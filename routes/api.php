@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\LoggedUserTasksController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
-use App\Http\Controllers\Api\TasksTagController;
+use App\Http\Controllers\Api\TasksTagsController;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -34,8 +34,10 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/v1/tasks/{task}','\\' . TasksController::class . '@destroy');    // DELETE
     Route::post('/v1/tasks','\\' . TasksController::class . '@store');               // CREATE
     Route::put('/v1/tasks/{task}','\\' . TasksController::class . '@update');        // EDIT
-    Route::post('/v1/tasks/{task}/tag','\\' . TasksTagController::class . '@store');        // EDIT
-    Route::delete('/v1/tasks/{task}/tag','\\' . TasksTagController::class . '@destroy');        // EDIT
+    Route::post('/v1/tasks/{task}/tag','\\' . TasksTagsController::class . '@store');        // EDIT
+    Route::delete('/v1/tasks/{task}/tag','\\' . TasksTagsController::class . '@destroy');        // EDIT
+    Route::put('/v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update' );
+
 
 
 //    Route::get('/v1/tasks','Api\TasksController@index'); //browser
