@@ -112,7 +112,7 @@ export default {
       // console.log(this.selectedTag.id)
       for (let i = 0; i < this.task.tags.length; i++) {
         if (this.selectedTag.id == this.task.tags[i]['id']) {
-          return this.$snackbar.showError('Tag invàlid, seleccioni un tag no existent en la tasca')
+          return this.$snackbar.showError('Tag invàlid, tag no existent en la tasca')
         }
       }
       // console.log(this.task.tags)
