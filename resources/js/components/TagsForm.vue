@@ -11,17 +11,18 @@
                 @input="$v.name.$touch()"
                 @blur="$v.name.$touch()"
         ></v-text-field>
+        <input type="color" v-model="color" label="Color" style="width: 50px; height: 50px;">
 
-        <v-text-field
-                autofocus
-                v-model="color"
-                label="Nom"
-                hint="El color de l'etiqueta..."
-                placeholder="Color de l'etiqueta"
-                :error-messages="colorErrors"
-                @input="$v.color.$touch()"
-                @blur="$v.color.$touch()"
-        ></v-text-field>
+        <!--<v-text-field-->
+                <!--autofocus-->
+                <!--v-model="color"-->
+                <!--label="Nom"-->
+                <!--hint="El color de l'etiqueta..."-->
+                <!--placeholder="Color de l'etiqueta"-->
+                <!--:error-messages="colorErrors"-->
+                <!--@input="$v.color.$touch()"-->
+                <!--@blur="$v.color.$touch()"-->
+        <!--&gt;</v-text-field>-->
 
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de l'etiqueta..."
                     :error-messages="descriptionErrors"

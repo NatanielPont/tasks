@@ -1,9 +1,9 @@
 <template>
     <span>
-        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag"></v-chip>
+        <v-chip v-for="tag in taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)"></v-chip>
         <!--<v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)" ></v-chip>-->
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
-        <v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>
+        <!--<v-btn icon @click="dialog = true"><v-icon>remove</v-icon></v-btn>-->
         <v-dialog v-model="dialog" width="500">
             <v-card>
                 <v-card-title>Afegiu etiquetes a la tasca</v-card-title>
@@ -82,7 +82,7 @@ export default {
         }
       }
     },
-    async removeTag () {
+    async removeTag (tag) {
       // TODO ASYNC PRIMER EXECUTAR UN CONFIRM
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
         {
@@ -91,11 +91,24 @@ export default {
           buttonFalsetext: 'Cancel·lar',
           color: 'error'
         })
+      // if (result) {
+      //   window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag, { data: { tag: tag } }).then(response => {
+      //     this.$snackbar.showMessage('Etiqueta eliminada correctament')
+      //   }).catch(error => {
+      //     this.$snackbar.showError(error)
+      //   })
+      // }
       if (result) {
-        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag).then(response => {
+        this.removing = true
+        window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/', { data: { tag: tag } }).then(response => {
+          console.log(tag)
+          console.log(response.data.name)
           this.$snackbar.showMessage('Etiqueta eliminada correctament')
+          this.$emit('removed')
+          this.removing = false
         }).catch(error => {
-          this.$snackbar.showError(error)
+          this.$snackbar.showError(error.toString())
+          this.removing = false
         })
       }
     },

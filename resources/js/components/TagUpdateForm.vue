@@ -40,13 +40,11 @@ export default {
   methods: {
     update () {
       this.working = true
-      const newTag = {
-        name: this.name,
-        color: this.color,
-        description: this.description
-      }
-      window.axios.put('/api/v1/tags/' + this.tag.id, newTag).then((response) => {
+      this.tag.color = this.color
+
+      window.axios.put('/api/v1/tags/' + this.tag.id, this.tag).then((response) => {
         this.$emit('updated', response.data)
+        console.log(response.data)
         this.$emit('close')
         this.working = false
       }).catch(error => {
