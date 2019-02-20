@@ -13,6 +13,7 @@ use App\Tag;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use function Sodium\add;
 
 class TasksTagsController extends Controller
 {
@@ -57,19 +58,7 @@ class TasksTagsController extends Controller
      */
     public function update(TasksTagsUpdate $request, Task $task)
     {
-//        foreach ($request->tags as $tag) {
-//            if (is_int($tag)) {
-//                $task->addTag(Tag::find($tag));
-//            } else {
-//                $newTag = Tag::create([
-//                    'color' => 'grey',
-//                    'name' => $tag,
-//                    'description' => ''
-//                ]);
-////                dd($newTag->id);
-//                $task->addTag($newTag);
-//            }
-//        }
+
         $mappedTags = collect($request->tags)->map(function ($tag) {
             if (is_int($tag)) return $tag;
             else {
