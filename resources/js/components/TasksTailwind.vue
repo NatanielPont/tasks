@@ -1,7 +1,21 @@
 <template>
     <div class="container mx-auto ">
         <!--<div class="flex flex-col ">-->
-                            <span class="title text-center flex justify-center hover:bg-yellow mb-5 ">Tasques ({{total}})</span>
+        <div class=" w-full  rounded overflow-hidden shadow-lg grey darken-4">
+            <!--<img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">-->
+            <!--<div class="px-6 py-4">-->
+                <!--<div class="font-bold text-xl mb-2">The Coldest Sunset</div>-->
+                <!--<p class="text-grey-darker text-base">-->
+                    <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div class="px-6 py-4">-->
+                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>-->
+                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>-->
+                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>-->
+            <!--</div>-->
+                            <span class="title text-center white--text flex justify-center mb-3 mt-3 ">Tasques ({{total}})</span>
+        </div>
             <div class="max-w-sm rounded  overflow-hidden shadow-lg">
 
                 <div v-if="errorMessage">

@@ -13,7 +13,7 @@
             <v-card v-cloak>
 
 
-            <v-toolbar color="grey darken-1" dark class="toolTitle" >
+            <v-toolbar color="grey darken-4" dark class="toolTitle" >
 
                 <v-toolbar-title >Tasques</v-toolbar-title>
             </v-toolbar>

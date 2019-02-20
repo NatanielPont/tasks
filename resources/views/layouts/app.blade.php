@@ -137,7 +137,7 @@
                 </v-card>
         </v-navigation-drawer>
         <v-toolbar
-                color="grey darken-4"
+                color="grey darken-1"
 
                 app
                 clipped-left
@@ -151,7 +151,7 @@
             </v-avatar>
             <v-form action="logout" method="POST">
                 @csrf
-                <v-btn color="grey darken-1" class="white--text" type="submit">Logout</v-btn>
+                <v-btn color="grey darken-4" class="white--text" type="submit">Logout</v-btn>
             </v-form>
         </v-toolbar>
         <v-content>

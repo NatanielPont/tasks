@@ -4,7 +4,7 @@
             <v-flex xs12>
                 <v-card dark>
                     <v-card-title class="justify-center">
-                        <v-toolbar color="success lighten-1" dark class="toolTitle">
+                        <v-toolbar color="grey darken-4" class="toolTitle">
                             <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
 
                             <v-toolbar-title>
@@ -15,7 +15,7 @@
                         </v-toolbar>
 
                     </v-card-title>
-                    <v-card-text class="px-0">
+                    <v-card-text >
 
                         <div v-if="errorMessage">
                             Ha succeit un error: {{ errorMessage }}

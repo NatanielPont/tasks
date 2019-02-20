@@ -1,26 +1,43 @@
 <template>
-    <span>
-
-    </span>
+    <span></span>
 </template>
 <script>
 export default {
   name: 'ServiceWorker',
+  // VULL EXECUTAR EL REGISTRE DEL SERVICE WORKER
   mounted () {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
     } else {
       console.log('Navegador obsolet')
     }
-  },
-  data () {
-    return {
-      value: ''
-    }
   }
 }
 </script>
 
-<style scoped>
+<!--<template>-->
+    <!--<span>-->
 
-</style>
+    <!--</span>-->
+<!--</template>-->
+<!--<script>-->
+<!--export default {-->
+  <!--name: 'ServiceWorker',-->
+  <!--mounted () {-->
+    <!--if ('serviceWorker' in navigator) {-->
+      <!--navigator.serviceWorker.register('/service-worker.js')-->
+    <!--} else {-->
+      <!--console.log('Navegador obsolet')-->
+    <!--}-->
+  <!--},-->
+  <!--data () {-->
+    <!--return {-->
+      <!--value: ''-->
+    <!--}-->
+  <!--}-->
+<!--}-->
+<!--</script>-->
+
+<!--<style scoped>-->
+
+<!--</style>-->
