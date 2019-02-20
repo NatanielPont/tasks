@@ -157,11 +157,7 @@ export default {
         } else {
           this.taskTags.map((tago) => {
             if (tago.name === tag.name) {
-              // console.log("iguals!!");
-              // console.log(tago.id)
               ids.push(tag)
-              // this.selectedTags = this.selectedTags.filter(function (e) { return e !== tag.id })
-              // return null
             }
           })
           return tag.name
