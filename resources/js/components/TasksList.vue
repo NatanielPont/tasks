@@ -252,7 +252,10 @@ export default {
       this.loading = true
       window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
+        // this.task.tags = this.tags
         this.loading = false
+        this.$emit('change', this.dataTasks)
+
         if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
       }).catch(error => {
         console.log(error)

@@ -123,14 +123,6 @@ export default {
             color: 'error'
           })
       }
-      // }
-      // if (result) {
-      //   window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/' + this.tag, { data: { tag: tag } }).then(response => {
-      //     this.$snackbar.showMessage('Etiqueta eliminada correctament')
-      //   }).catch(error => {
-      //     this.$snackbar.showError(error)
-      //   })
-      // }
       if (result) {
         this.removing = true
         window.axios.delete('/api/v1/tasks/' + this.task.id + '/tag/', { data: { tag: tag } }).then(response => {
@@ -146,20 +138,12 @@ export default {
         this.selectedTag = null
       }
     },
-    removeItem (array, item) {
-      for (var i in array) {
-        if (array[i] == item) {
-          array.splice(i, 1)
-          break
-        }
-      }
-    },
-
     addTag () {
+      // this.task.tags = this.selectedTags
       let ids = []
       this.selectedTags.map((tag) => {
         if (tag.id) {
-          this.task.tags.map((tago) => {
+          this.taskTags.map((tago) => {
             if (tago.id === tag.id) {
               // console.log("iguals!!");
               // console.log(tago.id)
@@ -170,7 +154,18 @@ export default {
           })
           // console.log(tag.id)
           return tag.id
-        } else return tag.name
+        } else {
+          this.taskTags.map((tago) => {
+            if (tago.name === tag.name) {
+              // console.log("iguals!!");
+              // console.log(tago.id)
+              ids.push(tag)
+              // this.selectedTags = this.selectedTags.filter(function (e) { return e !== tag.id })
+              // return null
+            }
+          })
+          return tag.name
+        }
       })
       // console.log(ids)
       for (var id in ids) {
