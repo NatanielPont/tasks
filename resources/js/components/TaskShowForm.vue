@@ -24,42 +24,42 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        name: this.task.name,
-        completed: this.task.completed,
-        description: this.task.description,
-        dataUsers: this.users,
-        user: this.user = this.users.find((user) => {
-          return parseInt(user.id) === parseInt(this.task.user_id)
-        })
-      }
-    },
-    props: {
-      task: {
-        type: Object,
-        required: true
-      },
-      users: {
-        type: Array,
-        required: true
-      }
-    },
-    watch: {
-      // task (task) {
-      //   this.updateUser(task)
-      // }
-    },
-    methods: {
-      updateUser (task) {
-        this.user = this.users.find((user) => {
-          return parseInt(user.id) === parseInt(task.user_id)
-        })
-      }
-    },
-    created () {
-      this.updateUser(this.task)
+export default {
+  data () {
+    return {
+      name: this.task.name,
+      completed: this.task.completed,
+      description: this.task.description,
+      dataUsers: this.users,
+      user: this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(this.task.user_id)
+      })
     }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
+    },
+    users: {
+      type: Array,
+      required: true
+    }
+  },
+  watch: {
+    // task (task) {
+    //   this.updateUser(task)
+    // }
+  },
+  methods: {
+    updateUser (task) {
+      this.user = this.users.find((user) => {
+        return parseInt(user.id) === parseInt(task.user_id)
+      })
+    }
+  },
+  created () {
+    this.updateUser(this.task)
   }
+}
 </script>

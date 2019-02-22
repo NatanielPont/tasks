@@ -33,35 +33,35 @@
 </template>
 
 <script>
-  import TaskUpdateForm from './TaskUpdateForm'
-  export default {
-    name: 'TaskUpdate',
-    components: {
-      'task-update-form': TaskUpdateForm
+import TaskUpdateForm from './TaskUpdateForm'
+export default {
+  name: 'TaskUpdate',
+  components: {
+    'task-update-form': TaskUpdateForm
+  },
+  data () {
+    return {
+      dialog: false
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
     },
-    data () {
-      return {
-        dialog: false
-      }
+    users: {
+      type: Array,
+      required: true
     },
-    props: {
-      task: {
-        type: Object,
-        required: true
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
-    },
-    methods: {
-      updated (task) {
-        this.$emit('updated', task)
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    updated (task) {
+      this.$emit('updated', task)
     }
   }
+}
 </script>

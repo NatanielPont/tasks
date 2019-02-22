@@ -37,31 +37,31 @@
 </template>
 
 <script>
-  import TaskForm from './TaskForm'
-  export default {
-    name: 'TaskCreate',
-    components: {
-      'task-form': TaskForm
+import TaskForm from './TaskForm'
+export default {
+  name: 'TaskCreate',
+  components: {
+    'task-form': TaskForm
+  },
+  data () {
+    return {
+      dialog: false
+    }
+  },
+  props: {
+    users: {
+      type: Array,
+      required: true
     },
-    data () {
-      return {
-        dialog: false
-      }
-    },
-    props: {
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
-    },
-    methods: {
-      created (task) {
-        this.$emit('created', task)
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    created (task) {
+      this.$emit('created', task)
     }
   }
+}
 </script>

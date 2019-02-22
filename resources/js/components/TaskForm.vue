@@ -22,7 +22,6 @@
         <!--<user-select :value="variable" @input="this.variable = $event.target.value"></user-select>-->
         <!--<user-select v-bind:value="variable" v-on:input=""></user-select>-->
 
-
         <!--v-model equivalent for <user-select v-model="user_id" ..> -->
         <!--<user-select-->
         <!--v-bind:value="user_id"-->
@@ -42,82 +41,85 @@
 </template>
 
 <script>
-  import { validationMixin } from 'vuelidate'
-  import { required } from 'vuelidate/lib/validators'
-  import UserSelect from './UserSelect'
-  export default {
-    name: 'TaskForm',
-    mixins: [validationMixin],
-    validations: {
-      name: { required }
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+import UserSelect from './UserSelect'
+export default {
+  name: 'TaskForm',
+  mixins: [validationMixin],
+  validations: {
+    name: { required }
+  },
+  components: {
+    'user-select': UserSelect
+  },
+  data () {
+    return {
+      name: '',
+      completed: false,
+      description: '',
+      dataUsers: this.users,
+      loading: false,
+      user: null
+    }
+  },
+  props: {
+    users: {
+      type: Array,
+      required: true
     },
-    components: {
-      'user-select': UserSelect
-    },
-    data () {
-      return {
-        name: '',
-        completed: false,
-        description: '',
-        dataUsers: this.users,
-        loading: false,
-        user: null
-      }
-    },
-    props: {
-      users: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        default: '/api/v1/tasks'
-      }
-    },
-    computed: {
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.required && errors.push('El camp name és obligatori.')
-        return errors
-      }
-    },
-    methods: {
-      selectLoggedUser () {
-        if (window.laravel_user) {
-          this.user = this.users.find((user) => {
-            return parseInt(user.id) === parseInt(window.laravel_user.id)
-          })
-        }
-      },
-      reset () {
-        this.name = ''
-        this.description = ''
-        this.completed = false
-        this.user = null
-      },
-      add () {
-        this.loading = true
-        const task = {
-          'name': this.name,
-          'description': this.description,
-          'completed': this.completed,
-          'user_id': this.user.id
-        }
-        window.axios.post(this.uri, task).then(response => {
-          this.$snackbar.showMessage('Tasca creada correctament')
-          this.reset()
-          this.$emit('created', response.data)
-          this.loading = false
-          this.$emit('close')
-        }).catch(error => {
-          this.$snackbar.showError(error.data)
-          this.loading = false
+    uri: {
+      type: String,
+      default: '/api/v1/tasks'
+    }
+  },
+  computed: {
+    nameErrors () {
+      const errors = []
+      if (!this.$v.name.$dirty) return errors
+      !this.$v.name.required && errors.push('El camp name és obligatori.')
+      return errors
+    }
+  },
+  methods: {
+    selectLoggedUser () {
+      if (window.laravel_user) {
+        this.user = this.users.find((user) => {
+          return parseInt(user.id) === parseInt(window.laravel_user.id)
         })
       }
     },
-    created () {
-      this.selectLoggedUser()
+    reset () {
+      this.name = ''
+      this.description = ''
+      this.completed = false
+      this.user = null
+    },
+    add () {
+      this.loading = true
+      const task = {
+        'name': this.name,
+        'description': this.description,
+        'completed': this.completed,
+        'user_id': this.user.id
+      }
+      // this.reset()
+      window.axios.post(this.uri, task).then(response => {
+        this.$snackbar.showMessage('Tasca creada correctament')
+        this.reset()
+        this.loading = false
+        this.$emit('created', response.data)
+        this.$emit('close')
+        self.location.reload()
+
+      }).catch(error => {
+        this.$snackbar.showError(error.data)
+        this.loading = false
+      })
     }
+  },
+  created () {
+    this.selectLoggedUser()
   }
+}
 </script>
