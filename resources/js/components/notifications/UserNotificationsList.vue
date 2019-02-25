@@ -1,6 +1,6 @@
 <template>
     <span v-if="!closed">
-        <v-toolbar color="primary" dense>
+        <v-toolbar color="grey darken-1" dense>
             <v-toolbar-title class="white--text">Notificacions rebudes</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>

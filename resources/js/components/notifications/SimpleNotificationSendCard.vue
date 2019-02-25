@@ -1,6 +1,6 @@
 <template>
     <v-card class="elevation-3" v-if="!closed">
-        <v-toolbar color="primary" dense>
+        <v-toolbar color="grey darken-1" dense>
             <v-toolbar-title class="white--text">Enviar una notificació </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>

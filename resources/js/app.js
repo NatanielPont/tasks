@@ -30,13 +30,22 @@ import Notifications from './components/notifications/Notifications'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import UserSelectComponent from './components/users/UsersSelectComponent'
 import Navigation from './components/Navigation'
-
+import TreeView from 'vue-json-tree-view'
+// import VueTimeago from 'vue-timeago'
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED' // '#2680C2'
 window.Vue = Vue
 window.Vuetify = Vuetify
+// window.Vue.use(VueTimeago, {
+//   locale: 'ca', // Default locale
+//   locales: {
+//     'ca': require('date-fns/locale/ca')
+//   }
+// })
+
+window.Vue.use(TreeView)
 
 window.Vue.use(window.Vuetify, {
   theme: {

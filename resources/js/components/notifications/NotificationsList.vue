@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-toolbar color="primary" dense>
+        <v-toolbar color="grey darken-1" dense>
             <v-menu bottom>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
