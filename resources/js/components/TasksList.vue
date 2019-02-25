@@ -73,7 +73,7 @@
                     <tr >
                         <td>{{ task.id }}</td>
                         <td>
-                            <span :title="task.description">{{ task.name }}</span>
+                            <span :title="task.description">{{ task.name}} | {{ task.completed}} </span>
                         </td>
                         <td>
                             <v-avatar :title="task.user_name">
@@ -145,11 +145,16 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 var filters = {
+
   Totes: function (tasks) {
+    // this.filter = ''
     return tasks
   },
   Completades: function (tasks) {
     return tasks.filter(function (task) {
+      // console.log('holaCompletades ' + task)
+      // this.filter = ''
+
       return task.completed
       // NO CAL
       // if (task.completed) return true
@@ -157,7 +162,10 @@ var filters = {
     })
   },
   Pendents: function (tasks) {
+    // this.filter = ''
+
     return tasks.filter(function (task) {
+      // console.log('holaPendents ' + task)
       return !task.completed
     })
   }
@@ -233,16 +241,19 @@ export default {
     filteredTasks () {
       // Segons el filtre actiu
       // Alternativa switch/case -> array associatiu
-
+      // return this.dataTasks=this.dataTasks.map(()=>{
+      //
+      // })
+      // this.dataTasks=(filters[this.filter](this.dataTasks))
+      // let ids = []
+      // this.selectedTags.map((task) => {
+      //   if (task.completed) {
+      //     ids.push(task)
+      //   }
+      // })
       return filters[this.filter](this.dataTasks)
-    },
-    filteredUser () {
-      // Segons el filtre actiu
-      // Alternativa switch/case -> array associatiu
-      // this.selectedTags = this.selectedTags.filter(function (e) { return e != ids[id] })
-      this.dataTasks = this.dataTasks.filter(function (e) { return e.user_id == this.user.id })
-      return this.dataTasks
     }
+
   },
   watch: {
     tasks (newTasks) {

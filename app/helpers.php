@@ -1,6 +1,7 @@
 <?php
 
 use App\Log;
+use App\Notifications\SimpleNotification;
 use App\Tag;
 use App\Task;
 use App\User;
@@ -281,6 +282,7 @@ if (!function_exists('initialize_roles')) {
             'TaskManager',
             'Tasks',
             'TagsManager',
+            'NotificationsManager',
             'Tags'
         ];
         foreach ($roles as $role) {
@@ -304,6 +306,14 @@ if (!function_exists('initialize_roles')) {
             'tags.uncomplete',
             'tags.destroy'
         ];
+
+        $notificationsManagerPermissions = [
+            'notifications.index',
+            'notifications.destroy',
+            'notifications.destroyMultiple',
+            'notifications.simple.store'
+        ];
+
         // user.tasks Who:
         // Logged->user === Task->user_id &&
         // També ha de tenir Rol Tasks
@@ -325,7 +335,15 @@ if (!function_exists('initialize_roles')) {
             'user.tags.uncomplete',
             'user.tags.destroy'
         ];
-        $permissions = array_merge($taskManagerPermissions, $userTaskPermissions, $tagsManagerPermissions, $userTagsPermissions);
+        $permissions = array_merge($taskManagerPermissions, $userTaskPermissions, $tagsManagerPermissions, $userTagsPermissions,$notificationsManagerPermissions);
+//        $permissions = array_merge(
+//            $taskManagerPermissions,
+//            $userTaskPermissions,
+//            $tagsManagerPermissions,
+//            $userTagsPermissions,
+//            $notificationsManagerPermissions
+//        );
+
         foreach ($permissions as $permission) {
             create_permission($permission);
         }
@@ -334,6 +352,8 @@ if (!function_exists('initialize_roles')) {
             'Tasks' => $userTaskPermissions,
             'TagsManager' => $tagsManagerPermissions,
             'Tags' => $userTagsPermissions,
+            'NotificationsManager' => $notificationsManagerPermissions,
+
         ];
         foreach ($rolePermissions as $role => $rolePermission) {
             $role = Role::findByName($role);
@@ -583,6 +603,37 @@ if (! function_exists('sample_logs')) {
             'color' => 'teal'
         ]);
         return [$log1,$log2,$log3,$log4];
+    }
+}
+
+if (! function_exists('set_sample_notifications_to_user')) {
+    function set_sample_notifications_to_user($user) {
+        $user->notify(new SimpleNotification('Notification 1'));
+        $user->notify(new SimpleNotification('Notification 2'));
+        $user->notify(new SimpleNotification('Notification 3'));
+    }
+}
+if (! function_exists('sample_notifications')) {
+    function sample_notifications() {
+        $user1 = factory(User::class)->create([
+            'name' => 'Homer Simpson',
+            'email' => 'homer@lossimpsons.com'
+        ]);
+        $user2 = factory(User::class)->create([
+            'name' => 'Bart Simpson',
+            'email' => 'bart@lossimpsons.com'
+        ]);
+        $user1->notify(new SimpleNotification('Sample Notification 1'));
+        $user2->notify(new SimpleNotification('Sample Notification 2'));
+    }
+}
+
+if (! function_exists('map_simple_collection')) {
+    function map_simple_collection($collection)
+    {
+        return $collection->map(function($item) {
+            return $item->mapSimple();
+        });
     }
 }
 

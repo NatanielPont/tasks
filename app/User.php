@@ -104,6 +104,19 @@ class User extends Authenticatable
 
         ];
     }
+
+    public function mapSimple()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'gravatar' => $this->gravatar,
+            'admin' => (boolean) $this->admin,
+            'hash_id' => $this->hash_id,
+        ];
+    }
+
     /**
      * Get the user's full name.
      *

@@ -132,7 +132,7 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
-// window.Vue.component('changelog', Changelog)
+window.Vue.component('changelog', Changelog)
 window.Vue.component('service-worker', ServiceWorker)
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)

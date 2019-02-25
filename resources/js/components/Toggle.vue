@@ -3,7 +3,8 @@
             v-model="dataValue"
             :label="dataValue ? activeText : unactiveText"
             :loading="loading"
-    ></v-switch>
+    >
+    </v-switch>
 </template>
 
 <script>
@@ -61,7 +62,6 @@ export default {
       window.axios.delete(this.uri + '/' + this.resource.id).then(() => {
         this.loading = false
         this.$emit('change')
-
       }).catch(error => {
         this.loading = false
         this.$snackbar.showError(error)
