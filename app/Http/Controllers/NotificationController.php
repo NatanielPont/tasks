@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\DatabaseNotification;
 use App\Http\Requests\Changelog\ListChangelog;
 use App\Http\Requests\Notifications\NotificationsIndex;
+use App\Http\Requests\Notifications\UserNotificationsIndex;
 use App\Log;
 use App\User;
 /**
@@ -26,7 +27,7 @@ class NotificationController extends Controller
      * @param NotificationsIndex $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(NotificationsIndex $request)
+    public function index(UserNotificationsIndex $request)
     {
         $notifications = collect([]);
         $users = collect([]);

@@ -61,7 +61,7 @@ class NotificationsControllerTest extends TestCase
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
         ]);
-        $user = $this->login('');
+        $user = $this->login();
         set_sample_notifications_to_user($user);
         sample_notifications();
         $response = $this->get('/notifications');

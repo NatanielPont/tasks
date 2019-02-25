@@ -26,6 +26,10 @@ import Tema from './components/Tema.vue'
 import Profile from './components/Profile'
 import ServiceWorker from './components/ServiceWorker'
 import Changelog from './components/changelog/ChangelogComponent.vue'
+import Notifications from './components/notifications/Notifications'
+import NotificationsWidget from './components/notifications/NotificationsWidget'
+import UserSelectComponent from './components/users/UsersSelectComponent'
+import Navigation from './components/Navigation'
 
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
@@ -133,7 +137,14 @@ window.Vue.component('git-info', GitInfo)
 window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
 window.Vue.component('changelog', Changelog)
+window.Vue.component('navigation', Navigation)
 window.Vue.component('service-worker', ServiceWorker)
+// window.Vue.component('service-worker', ServiceWorker)
+// Notifications
+window.Vue.component('notifications', Notifications)
+window.Vue.component('notifications-widget', NotificationsWidget)
+window.Vue.component('user-select-component', UserSelectComponent)
+
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)
 

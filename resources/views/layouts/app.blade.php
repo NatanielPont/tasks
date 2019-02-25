@@ -32,7 +32,9 @@
                 dark
                 class="grey darken-1"
         >
-            <v-list dense>
+        {{--<navigation v-model="drawer"></navigation>--}}
+
+        <v-list dense>
                 <template v-for="item in items">
                     <v-layout
                             v-if="item.heading"
