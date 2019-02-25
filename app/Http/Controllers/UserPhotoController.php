@@ -24,6 +24,7 @@ class UserPhotoController extends Controller
      */
     public function show(Request $request, $tenant, User $user)
     {
+//        dd('hola');
         if (! $user->photo || ! Storage::disk('local')->exists($user->photo)) {
             return response()->file(public_path(User::DEFAULT_PHOTO_PATH));
         }

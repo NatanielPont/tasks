@@ -25,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::bind('hashuser', function($value, $route)
+{
+    $hashids = new Hashids\Hashids(config('scool.salt'));
+    $id = $hashids->decode($value)[0];
+    return User::findOrFail($id);
+});
 
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');

@@ -148,6 +148,8 @@
             <v-toolbar-side-icon class="white--text" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="white--text">Application</v-toolbar-title>
             <v-spacer></v-spacer>
+            <notifications-widget></notifications-widget>
+
             <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
             </v-avatar>
