@@ -24,6 +24,7 @@
 <div id="app" v-cloak>
     <v-app>
         <snackbar></snackbar>
+        <service-worker></service-worker>
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
