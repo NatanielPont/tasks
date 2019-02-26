@@ -25,10 +25,13 @@
         "moxios": "^0.4.0",
         "popper.js": "^1.12",
         "tailwindcss": "^0.7.3",
-        "vue": "^2.5.17"
+        "vue": "^2.5.17",
+        "workbox-webpack-plugin": "^3.6.3"
     },
     "dependencies": {
         "material-design-icons-iconfont": "^3.0.3",
+        "path": "^0.12.7",
+        "replace-in-file": "^3.4.3",
         "vue-json-tree-view": "^2.1.4",
         "vue-swatches": "^1.0.2",
         "vuelidate": "^0.7.4",
