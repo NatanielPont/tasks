@@ -3,11 +3,14 @@ namespace Tests\Feature;
 use App\Photo;
 use App\User;
 use Illuminate\Http\UploadedFile;
+//use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use File;
+//use Event;
+//use Event;
 class UserPhotoControllerTest extends TestCase
 {
     use RefreshDatabase;

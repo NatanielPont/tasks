@@ -57,7 +57,7 @@
             </v-card-title>
             <v-data-table
                     :headers="headers"
-                    :items="dataTasks"
+                    :items="filteredTasks"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi han dades disponibles"
@@ -69,11 +69,11 @@
 
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-                <template slot="items" slot-scope="{item: task}"  >
+                <template  slot="items" slot-scope="{item: task}"  >
                     <tr >
                         <td>{{ task.id }}</td>
                         <td>
-                            <span :title="task.description">{{ task.name }}</span>
+                            <span :title="task.description">{{ task.name}} | {{ task.completed}} </span>
                         </td>
                         <td>
                             <v-avatar :title="task.user_name">
@@ -81,8 +81,8 @@
                                 <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
                             </v-avatar>
                         </td>
-                        <td>
-                            <toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
+                        <td >
+                            <toggle :value="task.completed" uri="/api/v1/completed_task" @change="refresh(false)" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="refresh(true)" ></tasks-tags>
@@ -103,7 +103,7 @@
                 </template>
             </v-data-table>
             <v-data-iterator class="hidden-lg-and-up"
-                             :items="dataTasks"
+                             :items="filteredTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
                              no-data-text="No hi han dades disponibles"
@@ -144,7 +144,44 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
+var filters = {
 
+  Totes: function (tasks) {
+    // this.filter = ''
+    return tasks
+  },
+  Completades: function (tasks) {
+    return tasks.filter(function (task) {
+      // console.log('holaCompletades ' + task)
+      // this.filter = ''
+
+      return task.completed
+      // NO CAL
+      // if (task.completed) return true
+      // else return false
+    })
+  },
+  Pendents: function (tasks) {
+    // this.filter = ''
+
+    return tasks.filter(function (task) {
+      // console.log('holaPendents ' + task)
+      return !task.completed
+    })
+  }
+
+}
+// var filtersUser = {
+//   '':function (tasks) {
+//     return tasks.filter(function (task) {
+//       return task.user_id == this.user.id
+//       // NO CAL
+//       // if (task.completed) return true
+//       // else return false
+//     })
+//   }
+//
+// }
 export default {
   name: 'TasksList',
   data () {
@@ -155,9 +192,9 @@ export default {
       dataUsers: this.users,
       filter: 'Totes',
       filters: [
-        'Totes',
         'Completades',
-        'Pendents'
+        'Pendents',
+        'Totes'
       ],
       search: '',
       pagination: {
@@ -201,27 +238,22 @@ export default {
     }
   },
   computed: {
-    filteredPeople: function () {
-      var vm = this
-      var category = vm.filter
-
-      if (category === 'Totes') {
-        return vm.dataTasks
-      } else if (category === 'Completades') {
-        return vm.dataTasks.filter(function (task) {
-          return task.completed === 1
-        })
-      } else if (category === 'Pendents') {
-        return vm.dataTasks.filter(function (task) {
-          return task.completed === 0
-        })
-      }
+    filteredTasks () {
+      // Segons el filtre actiu
+      // Alternativa switch/case -> array associatiu
+      // return this.dataTasks=this.dataTasks.map(()=>{
+      //
+      // })
+      // this.dataTasks=(filters[this.filter](this.dataTasks))
+      // let ids = []
+      // this.selectedTags.map((task) => {
+      //   if (task.completed) {
+      //     ids.push(task)
+      //   }
+      // })
+      return filters[this.filter](this.dataTasks)
     }
-    // filteredTasks () {
-    //   // Segons el filtre actiu
-    //   // Alternativa switch/case -> array associatiu
-    //   return filters[this.filter](this.dataTasks)
-    // }
+
   },
   watch: {
     tasks (newTasks) {
@@ -234,6 +266,9 @@ export default {
     //   // Alternativa switch/case -> array associatiu
     //   return filters[this.filter](this.dataTasks)
     // },
+    // setFilter (newFilter) {
+    //   this.filter = newFilter
+    // },
 
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
@@ -242,7 +277,7 @@ export default {
     },
     updateTask (task) {
       // console.log(task)
-      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+      // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // this.tasks = this.dataTasks
       self.location.reload()
       // this.dataTags.splice(this.dataTags.indexOf(tag), 1, tag)

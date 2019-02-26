@@ -15,7 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <title>@yield('title','Put your title here')</title>
+    <title>@yield('title','Tasques Nataniel Pont')</title>
     <style>
         [v-cloak] {display: none}
     </style>
@@ -24,6 +24,7 @@
 <div id="app" v-cloak>
     <v-app>
         <snackbar></snackbar>
+        <service-worker></service-worker>
         <v-navigation-drawer
                 v-model="drawer"
                 fixed
@@ -32,7 +33,9 @@
                 dark
                 class="grey darken-1"
         >
-            <v-list dense>
+        {{--<navigation v-model="drawer"></navigation>--}}
+
+        <v-list dense>
                 <template v-for="item in items">
                     <v-layout
                             v-if="item.heading"
@@ -146,6 +149,8 @@
             <v-toolbar-side-icon class="white--text" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title class="white--text">Application</v-toolbar-title>
             <v-spacer></v-spacer>
+            <notifications-widget></notifications-widget>
+
             <v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
             </v-avatar>

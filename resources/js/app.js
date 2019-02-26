@@ -26,13 +26,26 @@ import Tema from './components/Tema.vue'
 import Profile from './components/Profile'
 import ServiceWorker from './components/ServiceWorker'
 import Changelog from './components/changelog/ChangelogComponent.vue'
-
+import Notifications from './components/notifications/Notifications'
+import NotificationsWidget from './components/notifications/NotificationsWidget'
+import UserSelectComponent from './components/users/UsersSelectComponent'
+import Navigation from './components/Navigation'
+import TreeView from 'vue-json-tree-view'
+// import VueTimeago from 'vue-timeago'
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED' // '#2680C2'
 window.Vue = Vue
 window.Vuetify = Vuetify
+// window.Vue.use(VueTimeago, {
+//   locale: 'ca', // Default locale
+//   locales: {
+//     'ca': require('date-fns/locale/ca')
+//   }
+// })
+
+window.Vue.use(TreeView)
 
 window.Vue.use(window.Vuetify, {
   theme: {
@@ -132,8 +145,15 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
-// window.Vue.component('changelog', Changelog)
+window.Vue.component('changelog', Changelog)
+window.Vue.component('navigation', Navigation)
 window.Vue.component('service-worker', ServiceWorker)
+// window.Vue.component('service-worker', ServiceWorker)
+// Notifications
+window.Vue.component('notifications', Notifications)
+window.Vue.component('notifications-widget', NotificationsWidget)
+window.Vue.component('user-select-component', UserSelectComponent)
+
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)
 

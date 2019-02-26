@@ -16,7 +16,9 @@ export default {
         { icon: 'donut_large', text: 'Tags', url: '/tags' },
         { icon: 'donut_large', text: 'Perfil', url: '/profile' },
         { icon: 'account_circle', text: 'Contact', url: '/contact' },
-        { icon: 'donut_large', text: 'About', url: '/about' }
+        { icon: 'donut_large', text: 'About', url: '/about' },
+        { icon: 'assessment', text: 'Changelog', url: '/changelog' },
+        { icon: 'notifications', text: 'Notifications', url: '/notifications' }
         // { icon: 'chat_bubble', text: 'Send feedback' },
         // { icon: 'help', text: 'Help' }
         // { icon: 'phonelink', text: 'App downloads' },
