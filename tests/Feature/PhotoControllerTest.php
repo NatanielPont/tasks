@@ -23,7 +23,7 @@ class PhotoControllerTest extends TestCase
         ]);
         $response->assertRedirect();
         Storage::disk('local')->assertExists($photoUrl = 'photos/' . $user->id . '.jpg');
-//        Storage::disk('google')->assertExists('/' . $user->id . '.jpg');
+        Storage::disk('google')->assertExists('/' . $user->id . '.jpg');
         $photo = Photo::first();
         $this->assertEquals($photoUrl, $photo->url);
         $this->assertNotNull($photo->user);

@@ -142,8 +142,8 @@ class User extends Authenticatable
      */
     protected function hashedKey()
     {
-//        $hashids = new \Hashids\Hashids(config('tasks.salt'));
-//        return $hashids->encode($this->getKey());
+        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+        return $hashids->encode($this->getKey());
     }
     /**
      * Get the photo path prefix.
