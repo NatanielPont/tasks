@@ -47,9 +47,12 @@ export default {
     }
   },
   watch: {
-    // task (task) {
-    //   this.updateUser(task)
-    // }
+    task (task) {
+      this.updateUser(task)
+      this.name = task.name
+      this.completed = task.completed
+      this.description = task.description
+    }
   },
   methods: {
     updateUser (task) {

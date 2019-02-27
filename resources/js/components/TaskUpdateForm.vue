@@ -52,6 +52,9 @@ export default {
   watch: {
     task (task) {
       this.updateUser(task)
+      this.name = task.name
+      this.description = this.task.description
+      this.completed = this.task.completed
     }
   },
   methods: {
@@ -77,7 +80,6 @@ export default {
         this.$snackbar.showError(error)
         this.working = false
       })
-
     }
   },
   created () {

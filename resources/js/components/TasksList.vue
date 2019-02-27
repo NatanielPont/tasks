@@ -73,7 +73,7 @@
                     <tr >
                         <td>{{ task.id }}</td>
                         <td>
-                            <span :title="task.description">{{ task.name}} | {{ task.completed}} </span>
+                            <span :title="task.description">{{ task.name}} </span>
                         </td>
                         <td>
                             <v-avatar :title="task.user_name">
@@ -82,7 +82,7 @@
                             </v-avatar>
                         </td>
                         <td >
-                            <toggle :value="task.completed" uri="/api/v1/completed_task" @change="refresh(false)" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
+                            <toggle :value="task.completed" uri="/api/v1/completed_task" @change="refresh(false)" active-text="Completada" unactive-text="Pendent" :task="task"></toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="refresh(true)" ></tasks-tags>
@@ -102,7 +102,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <data-iterator-tasks :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users=users :uri=uri :tasks=filteredTasks class="hidden-lg-and-up"></data-iterator-tasks>
+            <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users=users :uri=uri :tasks=filteredTasks class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
@@ -250,7 +250,7 @@ export default {
       // console.log(task)
       // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // this.tasks = this.dataTasks
-      self.location.reload()
+      // self.location.reload()
       // this.dataTags.splice(this.dataTags.indexOf(tag), 1, tag)
       this.refresh(false)
     },

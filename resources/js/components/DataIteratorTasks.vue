@@ -4,6 +4,7 @@
                 :items="tasks"
                 :rows-per-page-items="rowsPerPageItems"
                 :pagination.sync="pagination"
+                :search="search"
                 content-tag="v-layout"
                 hide-actions
                 row
@@ -36,7 +37,17 @@
                         <v-list-tile>
                             <v-list-tile-content>Nom:</v-list-tile-content>
                             <v-list-tile-content class="align-end">{{ props.item.name }}</v-list-tile-content>
-                        </v-list-tile> <v-list-tile>
+                        </v-list-tile>
+                        <v-list-tile>
+                            <v-list-tile-content>User:</v-list-tile-content>
+                            <v-avatar :title="props.item.user_name">
+                                <img v-if="props.item.user_gravatar" :src="props.item.user_gravatar" alt="avatar">
+                                <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
+                            </v-avatar>
+                            <!--<v-list-tile-content class="align-end">{{ props.item.name }}</v-list-tile-content>-->
+                        </v-list-tile>
+
+                        <v-list-tile>
                             <v-list-tile-content>Descripció:</v-list-tile-content>
                             <v-list-tile-content class="align-end">{{ props.item.description }}</v-list-tile-content>
                         </v-list-tile>
@@ -44,7 +55,7 @@
                         <v-list-tile>
                             <v-list-tile-content>Estat:</v-list-tile-content>
                             <v-list-tile-content class="align-end">
-                                <toggle :value="props.item.completed" uri="/api/v1/completed_task"  active-text="Completada" unactive-text="Pendent" :resource="props.item"></toggle>
+                                <toggle :value="props.item.completed" uri="/api/v1/completed_task"  active-text="Completada" unactive-text="Pendent" :task="props.item"></toggle>
                             </v-list-tile-content>
                         </v-list-tile>
 
@@ -110,6 +121,10 @@ export default {
     }
   },
   props: {
+    search: {
+      type: String,
+      required: true
+    },
 
     tasks: {
       type: Array,
