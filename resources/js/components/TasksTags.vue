@@ -109,6 +109,7 @@ export default {
       }
     },
     async removeTag (tag) {
+      console.log('hola remove tag doble click')
       let result
       // if (this.task.tags != null) {
       if ((tag == null || this.task.tags == null)) {
