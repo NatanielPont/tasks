@@ -102,38 +102,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up"
-                             :items="filteredTasks"
-                             :search="search"
-                             no-results-text="No s'ha trobat cap registre coincident"
-                             no-data-text="No hi han dades disponibles"
-                             rows-per-page-text="Tasques per pàgina"
-                             :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                             :loading="loading"
-                             :pagination.sync="pagination"
-            >
-                <v-flex
-                        slot="item"
-                        slot-scope="{item:task}"
-                        xs12
-                        sm6
-                        md4
-                >
-                    <v-card class="mb-1">
-                        <v-card-title v-text="task.name"></v-card-title>
-                        <v-list dense>
-                            <v-list-tile>
-                                <v-list-tile-content>Completed:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                                <v-list-tile-content>User:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
-                    </v-card>
-                </v-flex>
-            </v-data-iterator>
+            <data-iterator-tasks :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users=users :uri=uri :tasks=filteredTasks class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
@@ -144,6 +113,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
+import DataIteratorTasks from './DataIteratorTasks'
 var filters = {
 
   Totes: function (tasks) {
@@ -213,6 +183,7 @@ export default {
     }
   },
   components: {
+    DataIteratorTasks,
     'toggle': Toggle,
     'task-destroy': TaskDestroy,
     'task-update': TaskUpdate,
