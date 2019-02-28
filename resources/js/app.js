@@ -5,10 +5,10 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
-import Tasks from './components/Tasks.vue'
-import Tags from './components/Tags.vue'
-import TasksTailwind from './components/TasksTailwind.vue'
-import Tasques from './components/Tasques.vue'
+import Tasks from './components/tasques/vue/Tasks.vue'
+import Tags from './components/tags/Tags.vue'
+import TasksTailwind from './components/tasques/tailwind/TasksTailwind.vue'
+import Tasques from './components/tasques/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
@@ -31,8 +31,9 @@ import NotificationsWidget from './components/notifications/NotificationsWidget'
 import UserSelectComponent from './components/users/UsersSelectComponent'
 import Navigation from './components/Navigation'
 import TreeView from 'vue-json-tree-view'
-import DataIteratorTasks from './components/DataIteratorTasks'
-import DataTableTasks from './components/DataTableTasks'
+import DataIteratorTasks from './components/tasques/DataIteratorTasks'
+import DataTableTasks from './components/tasques/DataTableTasks'
+import DataIteratorTags from './components/tags/DataIteratorTags'
 // import VueTimeago from 'vue-timeago'
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
@@ -157,6 +158,7 @@ window.Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('user-select-component', UserSelectComponent)
 window.Vue.component('data-iterator-tasks', DataIteratorTasks)
 window.Vue.component('data-table-tasks', DataTableTasks)
+window.Vue.component('data-iterator-tags', DataIteratorTags)
 
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)

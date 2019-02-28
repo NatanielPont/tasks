@@ -30,5 +30,11 @@ export default {
       this.dataTags.push(tag)
     }
   }
+  // watch: {
+  //   tasks (tags) {
+  //     this.dataTags = tags
+  //   }
+  //
+  // }
 }
 </script>

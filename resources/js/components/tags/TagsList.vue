@@ -81,38 +81,41 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up"
-                             :items="dataTags"
-                             :search="search"
-                             no-results-text="No s'ha trobat cap registre coincident"
-                             no-data-text="No hi han dades disponibles"
-                             rows-per-page-text="Etiquetes per pàgina"
-                             :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                             :loading="loading"
-                             :pagination.sync="pagination"
-            >
-                <v-flex
-                        slot="item"
-                        slot-scope="{item:tag}"
-                        xs12
-                        sm6
-                        md4
-                >
-                    <v-card class="mb-1">
-                        <v-card-title v-text="tag.name"></v-card-title>
-                        <v-list dense>
-                            <v-list-tile>
-                                <v-list-tile-content>Completed:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ tag.completed }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                                <v-list-tile-content>User:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>
-                            </v-list-tile>
-                        </v-list>
-                    </v-card>
-                </v-flex>
-            </v-data-iterator>
+            <data-iterator-tags @updated="updateTag" @removed="removeTag" class="hidden-lg-and-up" :tags="dataTags" :search="search" :loading="loading" >
+
+            </data-iterator-tags>
+            <!--<v-data-iterator class="hidden-lg-and-up"-->
+                             <!--:items="dataTags"-->
+                             <!--:search="search"-->
+                             <!--no-results-text="No s'ha trobat cap registre coincident"-->
+                             <!--no-data-text="No hi han dades disponibles"-->
+                             <!--rows-per-page-text="Etiquetes per pàgina"-->
+                             <!--:rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"-->
+                             <!--:loading="loading"-->
+                             <!--:pagination.sync="pagination"-->
+            <!--&gt;-->
+                <!--<v-flex-->
+                        <!--slot="item"-->
+                        <!--slot-scope="{item:tag}"-->
+                        <!--xs12-->
+                        <!--sm6-->
+                        <!--md4-->
+                <!--&gt;-->
+                    <!--<v-card class="mb-1">-->
+                        <!--<v-card-title v-text="tag.name"></v-card-title>-->
+                        <!--<v-list dense>-->
+                            <!--<v-list-tile>-->
+                                <!--<v-list-tile-content>Completed:</v-list-tile-content>-->
+                                <!--<v-list-tile-content class="align-end">{{ tag.completed }}</v-list-tile-content>-->
+                            <!--</v-list-tile>-->
+                            <!--<v-list-tile>-->
+                                <!--<v-list-tile-content>User:</v-list-tile-content>-->
+                                <!--<v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>-->
+                            <!--</v-list-tile>-->
+                        <!--</v-list>-->
+                    <!--</v-card>-->
+                <!--</v-flex>-->
+            <!--</v-data-iterator>-->
         </v-card>
     </span>
 </template>
@@ -121,6 +124,8 @@
 import TagDestroy from './TagDestroy'
 import TagUpdate from './TagUpdate'
 import TagShow from './TagShow'
+import DataIteratorTags from './DataIteratorTags'
+
 export default {
   name: 'TagsList',
   data () {
@@ -149,7 +154,9 @@ export default {
   components: {
     'tag-destroy': TagDestroy,
     'tag-update': TagUpdate,
-    'tag-show': TagShow
+    'tag-show': TagShow,
+    'data-iterator-tags': DataIteratorTags
+
   },
   props: {
     tags: {

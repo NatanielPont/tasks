@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Toggle from './Toggle'
+import Toggle from '../Toggle'
 import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'

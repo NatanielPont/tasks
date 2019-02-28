@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     updated (tag) {
+
       this.$emit('updated', tag)
     }
   }

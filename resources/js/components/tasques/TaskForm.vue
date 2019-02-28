@@ -43,7 +43,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
-import UserSelect from './UserSelect'
+import UserSelect from '../UserSelect'
 export default {
   name: 'TaskForm',
   mixins: [validationMixin],
@@ -80,9 +80,6 @@ export default {
       !this.$v.name.required && errors.push('El camp name és obligatori.')
       return errors
     }
-  },
-  watch: {
-
   },
   methods: {
     selectLoggedUser () {

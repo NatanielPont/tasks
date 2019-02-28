@@ -37,10 +37,30 @@ export default {
       required: true
     }
   },
+  watch: {
+    tag (tag) {
+      this.name = tag.name
+      this.color = tag.color
+      this.description = tag.description
+    }
+  },
   methods: {
     update () {
       this.working = true
       this.tag.color = this.color
+      if (this.name.length > 0) { this.tag.name = this.name }
+      if (this.description.length > 0) { this.tag.description = this.description }
+      // window.axios.put(this.uri + '/' + this.tag.id, this.tag).then(() => {
+      //   // this.editTag(this.tagBeingEdited)
+      //   // this.$snackbar.showMessage('Se ha editado correctamente la etiqueta')
+      //   this.refresh()
+      //   this.editing = false
+      //   this.editDialog = false
+      // }).catch((error) => {
+      //   this.$snackbar.showError(error)
+      //   this.editing = false
+      //   this.editDialog = false
+      // })
 
       window.axios.put('/api/v1/tags/' + this.tag.id, this.tag).then((response) => {
         this.$emit('updated', response.data)
