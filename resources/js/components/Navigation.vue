@@ -46,7 +46,7 @@
                             :href="child.url"
                     >
                         <v-list-tile-action v-if="child.icon">
-                            <v-icon>{{ child.icon }}</v-icon>
+                            <v-icon color="white">{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
                             <v-list-tile-title>
@@ -57,7 +57,7 @@
                 </v-list-group>
                 <v-list-tile v-else :key="item.text" :href="item.url" class="white--text">
                     <v-list-tile-action>
-                        <v-icon>{{ item.icon }}</v-icon>
+                        <v-icon color="white">{{ item.icon }}</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title>
