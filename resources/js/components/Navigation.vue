@@ -5,6 +5,7 @@
             app
             clipped
             class="grey darken-1"
+
     >
         <v-list dense>
             <template v-for="item in items">
@@ -13,6 +14,7 @@
                         :key="item.heading"
                         row
                         align-center
+
                 >
                     <v-flex xs6>
                         <v-subheader v-if="item.heading">
@@ -29,6 +31,7 @@
                         :key="item.text"
                         :prepend-icon="item.model ? item.icon : item['icon-alt']"
                         append-icon=""
+                        class="white--text"
                 >
                     <v-list-tile slot="activator" :href="item.url">
                         <v-list-tile-content>
@@ -52,7 +55,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :key="item.text" :href="item.url">
+                <v-list-tile v-else :key="item.text" :href="item.url" class="white--text">
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-tile-action>
@@ -84,7 +87,9 @@ export default {
           model: true,
           children: [
             { icon: 'build', text: 'Tasques amb PHP', url: '/tasks' },
-            { icon: 'build', text: 'Tasques tailwind', url: '/tasks_vue' },
+            { icon: 'build', text: 'Tasques tailwind', url: '/tasks_tailwind' },
+            { icon: 'build', text: 'Tasks Vue', url: '/tasks_vue' },
+
             { icon: 'build', text: 'Tasques', url: '/tasques' },
             { icon: 'build', text: 'Tags', url: '/tags' }
           ]
