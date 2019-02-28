@@ -31,9 +31,9 @@ export default {
       completed: this.task.completed,
       description: this.task.description,
       dataUsers: this.users,
-      user: this.user = this.users.find((user) => {
-        return parseInt(user.id) === parseInt(this.task.user_id)
-      })
+      // user: this.user = this.users.find((user) => {
+      //   return parseInt(user.id) === parseInt(this.task.user_id)
+      // })
     }
   },
   props: {

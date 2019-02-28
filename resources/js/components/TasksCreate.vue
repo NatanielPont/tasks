@@ -61,6 +61,7 @@ export default {
   methods: {
     created (task) {
       this.$emit('created', task)
+
     }
   }
 }

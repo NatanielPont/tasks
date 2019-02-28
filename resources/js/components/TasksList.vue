@@ -55,65 +55,22 @@
                     </v-flex>
                 </v-layout>
             </v-card-title>
-            <v-data-table
-                    :headers="headers"
-                    :items="filteredTasks"
-                    :search="search"
-                    no-results-text="No s'ha trobat cap registre coincident"
-                    no-data-text="No hi han dades disponibles"
-                    rows-per-page-text="Tasques per pàgina"
-                    :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                    :loading="loading"
-                    :pagination.sync="pagination"
-                    class="hidden-md-and-down"
+            <data-table-tasks @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
 
-            >
-                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-                <template  slot="items" slot-scope="{item: task}"  >
-                    <tr >
-                        <td>{{ task.id }}</td>
-                        <td>
-                            <span :title="task.description">{{ task.name}} </span>
-                        </td>
-                        <td>
-                            <v-avatar :title="task.user_name">
-                                <img v-if="task.user_gravatar" :src="task.user_gravatar" alt="avatar">
-                                <img v-else src="https://www.gravatar.com/avatar/" alt="avatar">
-                            </v-avatar>
-                        </td>
-                        <td >
-                            <toggle :value="task.completed" uri="/api/v1/completed_task" @change="refresh(false)" active-text="Completada" unactive-text="Pendent" :task="task"></toggle>
-                        </td>
-                        <td>
-                            <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)" @removed="refresh(true)" ></tasks-tags>
-                            <!--<tasks-tags :task="task" :tags="tags" @removed="refresh" @added="refresh"></tasks-tags>-->
-                        </td>
-                        <td>
-                            <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
-                        </td>
-                        <td>
-                            <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
-                        </td>
-                        <td>
-                            <task-show :users="users" :task="task"></task-show>
-                            <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
-                            <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
-                        </td>
-                    </tr>
-                </template>
-            </v-data-table>
+            </data-table-tasks>
             <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users=users :uri=uri :tasks=filteredTasks class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
 
 <script>
-import Toggle from './Toggle'
-import TaskDestroy from './TaskDestroy'
-import TaskUpdate from './TaskUpdate'
-import TaskShow from './TaskShow'
-import TasksTags from './TasksTags'
+// import Toggle from './Toggle'
+// import TaskDestroy from './TaskDestroy'
+// import TaskUpdate from './TaskUpdate'
+// import TaskShow from './TaskShow'
+// import TasksTags from './TasksTags'
 import DataIteratorTasks from './DataIteratorTasks'
+import DataTableTasks from './DataTableTasks'
 var filters = {
 
   Totes: function (tasks) {
@@ -141,17 +98,6 @@ var filters = {
   }
 
 }
-// var filtersUser = {
-//   '':function (tasks) {
-//     return tasks.filter(function (task) {
-//       return task.user_id == this.user.id
-//       // NO CAL
-//       // if (task.completed) return true
-//       // else return false
-//     })
-//   }
-//
-// }
 export default {
   name: 'TasksList',
   data () {
@@ -166,29 +112,17 @@ export default {
         'Pendents',
         'Totes'
       ],
-      search: '',
-      pagination: {
-        rowsPerPage: 25
-      },
-      headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'User', value: 'user_id' },
-        { text: 'Completat', value: 'completed' },
-        { text: 'Etiquetes', value: 'tags' },
-        { text: 'Creat', value: 'created_at_timestamp' },
-        { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false, value: 'full_search' }
-      ]
+      search: ''
     }
   },
   components: {
     DataIteratorTasks,
-    'toggle': Toggle,
-    'task-destroy': TaskDestroy,
-    'task-update': TaskUpdate,
-    'task-show': TaskShow,
-    'tasks-tags': TasksTags
+    'data-table-tasks': DataTableTasks
+    // 'toggle': Toggle,
+    // 'task-destroy': TaskDestroy,
+    // 'task-update': TaskUpdate,
+    // 'task-show': TaskShow,
+    // 'tasks-tags': TasksTags
   },
   props: {
     tasks: {

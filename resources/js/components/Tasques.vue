@@ -37,9 +37,17 @@ export default {
       required: true
     }
   },
+  watch: {
+    tasks (tasks) {
+      this.dataTasks = tasks
+    }
+
+  },
   methods: {
+
     add (task) {
       this.dataTasks.push(task)
+      // self.location.reload()
     }
   }
 }

@@ -81,6 +81,9 @@ export default {
       return errors
     }
   },
+  watch: {
+
+  },
   methods: {
     selectLoggedUser () {
       if (window.laravel_user) {
@@ -97,28 +100,32 @@ export default {
     },
     add () {
       this.loading = true
-      const task = {
+      let task = {
         'name': this.name,
         'description': this.description,
         'completed': this.completed,
-        'user_id': this.user.id
+        'user_id': this.user == null ? '' : this.user.id
       }
       // this.reset()
       window.axios.post(this.uri, task).then(response => {
         this.$snackbar.showMessage('Tasca creada correctament')
         this.reset()
-        this.loading = false
         this.$emit('created', response.data)
         this.$emit('close')
-        self.location.reload()
+        this.loading = false
 
+        // response.data = null
+        // task = null
+        // self.location.reload()
       }).catch(error => {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
     }
   },
+
   created () {
+    // this.reset()
     this.selectLoggedUser()
   }
 }

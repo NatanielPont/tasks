@@ -32,6 +32,7 @@ import UserSelectComponent from './components/users/UsersSelectComponent'
 import Navigation from './components/Navigation'
 import TreeView from 'vue-json-tree-view'
 import DataIteratorTasks from './components/DataIteratorTasks'
+import DataTableTasks from './components/DataTableTasks'
 // import VueTimeago from 'vue-timeago'
 
 const PRIMARY_COLOR_KEY = 'primary_color_key'
@@ -155,6 +156,7 @@ window.Vue.component('notifications', Notifications)
 window.Vue.component('notifications-widget', NotificationsWidget)
 window.Vue.component('user-select-component', UserSelectComponent)
 window.Vue.component('data-iterator-tasks', DataIteratorTasks)
+window.Vue.component('data-table-tasks', DataTableTasks)
 
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)
