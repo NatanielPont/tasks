@@ -44,43 +44,46 @@
                     </v-flex>
                 </v-layout>
             </v-card-title>
-            <v-data-table
-                    :headers="headers"
-                    :items="dataTags"
-                    :search="search"
-                    no-results-text="No s'ha trobat cap registre coincident"
-                    no-data-text="No hi han dades disponibles"
-                    rows-per-page-text="Etiquetes per pàgina"
-                    :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                    :loading="loading"
-                    :pagination.sync="pagination"
-                    class="hidden-md-and-down"
-            >
-                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-                <template slot="items" slot-scope="{item: tag}">
-                    <tr>
-                        <td>{{ tag.id }}</td>
-                        <td>
-                            <span :title="tag.description">{{ tag.name }}</span>
-                        </td>
-                        <td>
-                            <v-icon x-large :color="tag.color">memory</v-icon>
-                        </td>
+            <data-table-tags class="hidden-md-and-down" :tags="dataTags" :search="search" :loading="loading" @updated="updateTag" @removed="removeTag" >
 
-                        <td>
-                            <span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>
-                        </td>
-                        <td>
-                            <span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>
-                        </td>
-                        <td>
-                            <tag-show :tag="tag"></tag-show>
-                            <tag-update :tag="tag" @updated="updateTag"></tag-update>
-                            <tag-destroy :tag="tag" @removed="removeTag"></tag-destroy>
-                        </td>
-                    </tr>
-                </template>
-            </v-data-table>
+            </data-table-tags>
+            <!--<v-data-table-->
+                    <!--:headers="headers"-->
+                    <!--:items="dataTags"-->
+                    <!--:search="search"-->
+                    <!--no-results-text="No s'ha trobat cap registre coincident"-->
+                    <!--no-data-text="No hi han dades disponibles"-->
+                    <!--rows-per-page-text="Etiquetes per pàgina"-->
+                    <!--:rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"-->
+                    <!--:loading="loading"-->
+                    <!--:pagination.sync="pagination"-->
+                    <!--class="hidden-md-and-down"-->
+            <!--&gt;-->
+                <!--<v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>-->
+                <!--<template slot="items" slot-scope="{item: tag}">-->
+                    <!--<tr>-->
+                        <!--<td>{{ tag.id }}</td>-->
+                        <!--<td>-->
+                            <!--<span :title="tag.description">{{ tag.name }}</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<v-icon x-large :color="tag.color">memory</v-icon>-->
+                        <!--</td>-->
+
+                        <!--<td>-->
+                            <!--<span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<tag-show :tag="tag"></tag-show>-->
+                            <!--<tag-update :tag="tag" @updated="updateTag"></tag-update>-->
+                            <!--<tag-destroy :tag="tag" @removed="removeTag"></tag-destroy>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</template>-->
+            <!--</v-data-table>-->
             <data-iterator-tags @updated="updateTag" @removed="removeTag" class="hidden-lg-and-up" :tags="dataTags" :search="search" :loading="loading" >
 
             </data-iterator-tags>
@@ -125,6 +128,7 @@ import TagDestroy from './TagDestroy'
 import TagUpdate from './TagUpdate'
 import TagShow from './TagShow'
 import DataIteratorTags from './DataIteratorTags'
+import DataTableTags from './DataTableTags'
 
 export default {
   name: 'TagsList',
@@ -137,25 +141,16 @@ export default {
       filters: [
         'Totes'
       ],
-      search: '',
-      pagination: {
-        rowsPerPage: 25
-      },
-      headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Name', value: 'name' },
-        { text: 'Color', value: 'color' },
-        { text: 'Creat', value: 'created_at_timestamp' },
-        { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false, value: 'full_search' }
-      ]
+      search: ''
+
     }
   },
   components: {
     'tag-destroy': TagDestroy,
     'tag-update': TagUpdate,
     'tag-show': TagShow,
-    'data-iterator-tags': DataIteratorTags
+    'data-iterator-tags': DataIteratorTags,
+    'data-table-tags': DataTableTags
 
   },
   props: {
