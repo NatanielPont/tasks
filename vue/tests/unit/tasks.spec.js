@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import { mount } from '@vue/test-utils'
 import moxios from 'moxios'
-import Tasks from '../../../resources/js/components/Tasks.vue'
+import Tasks from '../../../resources/js/components/tasques/vue/Tasks.vue'
 
 let exampleTasks = [
   {

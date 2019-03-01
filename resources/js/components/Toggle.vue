@@ -13,6 +13,8 @@ export default {
   data () {
     return {
       dataValue: this.value,
+      dataTask: this.task,
+      // oldValue: this.value.completed,
       loading: false
     }
   },
@@ -33,23 +35,29 @@ export default {
       type: Boolean,
       required: true
     },
-    resource: {
+    task: {
       type: Object,
       required: true
     }
   },
   watch: {
-    dataValue (dataValue, oldDataValue) {
-      if (dataValue !== oldDataValue) {
+    dataValue (dataValue) {
+      if (dataValue !== this.dataTask.completed) {
         if (dataValue) this.completeTask()
         else this.uncompleteTask()
       }
+    },
+    task (task) {
+      this.dataTask = task
+    },
+    value (value) {
+      this.dataValue = value
     }
   },
   methods: {
     completeTask () {
       this.loading = true
-      window.axios.post(this.uri + '/' + this.resource.id).then(() => {
+      window.axios.post(this.uri + '/' + this.task.id).then(() => {
         this.loading = false
         this.$emit('change')
       }).catch(error => {
@@ -59,7 +67,7 @@ export default {
     },
     uncompleteTask () {
       this.loading = true
-      window.axios.delete(this.uri + '/' + this.resource.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.task.id).then(() => {
         this.loading = false
         this.$emit('change')
       }).catch(error => {
