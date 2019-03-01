@@ -12,8 +12,8 @@
 <body>
 <div id="app" v-cloak>
     <v-app light>
-        <v-toolbar class="grey darken-3">
-            <v-toolbar-title class="white--text"> Tasques </v-toolbar-title>
+        <v-toolbar >
+            <v-toolbar-title > Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="success" href="/login">Login</v-btn>
             <v-btn color="success" href="/register">Register</v-btn>
