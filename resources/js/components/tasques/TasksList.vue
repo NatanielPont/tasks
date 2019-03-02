@@ -34,8 +34,8 @@
           <div>Filtres</div>
         </template>
         <v-card>
-                <v-layout row wrap>
-        <v-flex md2 class="mr-2">
+                <!--<v-layout row wrap>-->
+        <v-flex sm5 md4 class="mr-2">
                         <v-select
                                 label="Estat"
                                 :items="filters"
@@ -45,7 +45,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex md2 class="mr-2">
+                    <v-flex sm6 md5 class="mr-2">
                         <v-select
                                 label="User"
                                 :items="dataUsers"
@@ -54,14 +54,14 @@
                                 clearable>
                         </v-select>
                     </v-flex>
-                    <v-flex md2 >
+                    <v-flex sm6 md5 >
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
-                </v-layout>
+                <!--</v-layout>-->
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
