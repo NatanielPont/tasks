@@ -25,10 +25,50 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+
+            <v-expansion-panel class="hidden-lg-and-up">
+      <v-expansion-panel-content
+
+      >
+        <template v-slot:header>
+          <div>Filtres</div>
+        </template>
+        <v-card>
+                <v-layout row>
+        <v-flex md3 class="mr-2">
+                        <v-select
+                                label="Estat"
+                                :items="filters"
+                                v-model="filter"
+                                item-text="name"
+                                outline
+                        >
+                        </v-select>
+                    </v-flex>
+                    <v-flex md3 class="mr-2">
+                        <v-select
+                                label="User"
+                                :items="dataUsers"
+                                v-model="user"
+                                item-text="name"
+                                clearable>
+                        </v-select>
+                    </v-flex>
+                    <v-flex md3 >
+                        <v-text-field
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+                <v-layout row wrap class="hidden-md-and-down">
                     <v-flex lg2 class="mr-2">
                         <v-select
-                                label="Filtres"
+                                label="Estat"
                                 :items="filters"
                                 v-model="filter"
                                 item-text="name"
@@ -102,6 +142,8 @@ export default {
   name: 'TasksList',
   data () {
     return {
+      currSection: 0,
+
       user: '',
       loading: false,
       dataTasks: this.tasks,
