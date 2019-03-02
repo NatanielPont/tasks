@@ -25,7 +25,35 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
+                 <v-expansion-panel class="hidden-lg-and-up">
+      <v-expansion-panel-content
+
+      >
+        <template v-slot:header>
+          <div>Filtres</div>
+        </template>
+        <v-card>
                 <v-layout row wrap>
+        <v-flex  class="mr-2">
+                        <v-select
+                                :items="filters"
+                                v-model="filter"
+                                item-text="name"
+                        >
+                        </v-select>
+                    </v-flex>
+                    <v-flex >
+                        <v-text-field
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+                <v-layout  row wrap class="hidden-md-and-down">
                     <v-flex lg3 class="mr-2">
                         <v-select
                                 label="Filtres"
@@ -45,80 +73,9 @@
                 </v-layout>
             </v-card-title>
             <data-table-tags class="hidden-md-and-down" :tags="dataTags" :search="search" :loading="loading" @updated="updateTag" @removed="removeTag" >
-
             </data-table-tags>
-            <!--<v-data-table-->
-                    <!--:headers="headers"-->
-                    <!--:items="dataTags"-->
-                    <!--:search="search"-->
-                    <!--no-results-text="No s'ha trobat cap registre coincident"-->
-                    <!--no-data-text="No hi han dades disponibles"-->
-                    <!--rows-per-page-text="Etiquetes per pàgina"-->
-                    <!--:rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"-->
-                    <!--:loading="loading"-->
-                    <!--:pagination.sync="pagination"-->
-                    <!--class="hidden-md-and-down"-->
-            <!--&gt;-->
-                <!--<v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>-->
-                <!--<template slot="items" slot-scope="{item: tag}">-->
-                    <!--<tr>-->
-                        <!--<td>{{ tag.id }}</td>-->
-                        <!--<td>-->
-                            <!--<span :title="tag.description">{{ tag.name }}</span>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<v-icon x-large :color="tag.color">memory</v-icon>-->
-                        <!--</td>-->
-
-                        <!--<td>-->
-                            <!--<span :title="tag.created_at_formatted">{{ tag.created_at_human}}</span>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<span :title="tag.updated_at_formatted">{{ tag.updated_at_human}}</span>-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<tag-show :tag="tag"></tag-show>-->
-                            <!--<tag-update :tag="tag" @updated="updateTag"></tag-update>-->
-                            <!--<tag-destroy :tag="tag" @removed="removeTag"></tag-destroy>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                <!--</template>-->
-            <!--</v-data-table>-->
             <data-iterator-tags @updated="updateTag" @removed="removeTag" class="hidden-lg-and-up" :tags="dataTags" :search="search" :loading="loading" >
-
             </data-iterator-tags>
-            <!--<v-data-iterator class="hidden-lg-and-up"-->
-                             <!--:items="dataTags"-->
-                             <!--:search="search"-->
-                             <!--no-results-text="No s'ha trobat cap registre coincident"-->
-                             <!--no-data-text="No hi han dades disponibles"-->
-                             <!--rows-per-page-text="Etiquetes per pàgina"-->
-                             <!--:rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"-->
-                             <!--:loading="loading"-->
-                             <!--:pagination.sync="pagination"-->
-            <!--&gt;-->
-                <!--<v-flex-->
-                        <!--slot="item"-->
-                        <!--slot-scope="{item:tag}"-->
-                        <!--xs12-->
-                        <!--sm6-->
-                        <!--md4-->
-                <!--&gt;-->
-                    <!--<v-card class="mb-1">-->
-                        <!--<v-card-title v-text="tag.name"></v-card-title>-->
-                        <!--<v-list dense>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>Completed:</v-list-tile-content>-->
-                                <!--<v-list-tile-content class="align-end">{{ tag.completed }}</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                            <!--<v-list-tile>-->
-                                <!--<v-list-tile-content>User:</v-list-tile-content>-->
-                                <!--<v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>-->
-                            <!--</v-list-tile>-->
-                        <!--</v-list>-->
-                    <!--</v-card>-->
-                <!--</v-flex>-->
-            <!--</v-data-iterator>-->
         </v-card>
     </span>
 </template>

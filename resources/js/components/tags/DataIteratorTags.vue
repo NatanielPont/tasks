@@ -10,15 +10,15 @@
                 row
                 wrap
         >
-            <v-toolbar
-                    slot="header"
-                    class="mb-2"
-                    color="primary darken-4"
-                    dark
-                    flat
-            >
-                <v-toolbar-title >Tags</v-toolbar-title>
-            </v-toolbar>
+            <!--<v-toolbar-->
+                    <!--slot="header"-->
+                    <!--class="mb-2"-->
+                    <!--color="primary darken-4"-->
+                    <!--dark-->
+                    <!--flat-->
+            <!--&gt;-->
+                <!--<v-toolbar-title >Tags</v-toolbar-title>-->
+            <!--</v-toolbar>-->
 
             <v-flex
                     slot="item"
@@ -77,16 +77,16 @@
                 </v-card>
             </v-flex>
 
-            <v-toolbar
-                    slot="footer"
-                    class="mt-2"
-                    color="grey darken-1"
-                    dark
-                    dense
-                    flat
-            >
-                <v-toolbar-title class="subheading">Nataniel Pont Tasks</v-toolbar-title>
-            </v-toolbar>
+            <!--<v-toolbar-->
+                    <!--slot="footer"-->
+                    <!--class="mt-2"-->
+                    <!--color="grey darken-1"-->
+                    <!--dark-->
+                    <!--dense-->
+                    <!--flat-->
+            <!--&gt;-->
+                <!--<v-toolbar-title class="subheading">Nataniel Pont Tasks</v-toolbar-title>-->
+            <!--</v-toolbar>-->
         </v-data-iterator>
     </v-container>
 </template>
