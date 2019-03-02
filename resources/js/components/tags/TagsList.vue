@@ -33,8 +33,8 @@
           <div>Filtres</div>
         </template>
         <v-card>
-                <v-layout row wrap>
-        <v-flex  class="mr-2">
+                <!--<v-layout row wrap>-->
+        <v-flex sm6  md5 class="mr-2">
                         <v-select
                                 :items="filters"
                                 v-model="filter"
@@ -42,14 +42,14 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex >
+                    <v-flex sm6 md5 >
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
-                </v-layout>
+                <!--</v-layout>-->
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
