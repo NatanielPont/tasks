@@ -34,8 +34,8 @@
           <div>Filtres</div>
         </template>
         <v-card>
-                <v-layout row>
-        <v-flex md3 class="mr-2">
+                <v-layout row wrap>
+        <v-flex md2 class="mr-2">
                         <v-select
                                 label="Estat"
                                 :items="filters"
@@ -45,7 +45,7 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-flex md3 class="mr-2">
+                    <v-flex md2 class="mr-2">
                         <v-select
                                 label="User"
                                 :items="dataUsers"
@@ -54,7 +54,7 @@
                                 clearable>
                         </v-select>
                     </v-flex>
-                    <v-flex md3 >
+                    <v-flex md2 >
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
