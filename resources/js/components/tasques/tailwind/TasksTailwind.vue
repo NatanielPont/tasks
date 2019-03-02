@@ -209,6 +209,7 @@ export default {
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
         name: text,
+        completed: task.completed,
         _method: 'put'
       })
         .then((response) => {
