@@ -208,7 +208,7 @@ export default {
       console.log('textname ' + task.name)
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
-        data: text,
+        name: text,
         _method: 'put'
       })
         .then((response) => {
