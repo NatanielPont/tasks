@@ -3,6 +3,7 @@
             v-model="dataValue"
             :label="dataValue ? activeText : unactiveText"
             :loading="loading"
+            class="mt-0"
     >
     </v-switch>
 </template>

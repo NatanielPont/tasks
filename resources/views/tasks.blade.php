@@ -102,7 +102,7 @@
                         <?php endforeach;?>
 
 
-                        <form action="/tasks" method="POST" align="center">
+                        <form action="/tasks" method="POST" align="center" class="mb-5">
                             @csrf
                             <input name="name" type="text"  placeholder="Nova tasca (max. 25 ctrs)" required>
                             <v-btn color="primary">

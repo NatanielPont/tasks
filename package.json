@@ -36,8 +36,10 @@
         "material-design-icons-iconfont": "^3.0.3",
         "path": "^0.12.7",
         "replace-in-file": "^3.4.3",
+        "timeline-vuejs": "^1.0.3",
         "vue-json-tree-view": "^2.1.4",
         "vue-swatches": "^1.0.2",
+        "vue-timeago": "^5.0.0",
         "vuelidate": "^0.7.4",
         "vuetify": "^1.2.8"
     }

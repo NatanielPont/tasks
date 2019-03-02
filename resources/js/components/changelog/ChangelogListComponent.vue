@@ -46,7 +46,7 @@
                           v-model="search"
                           class="mb-2"
                   ></v-text-field>
-                <v-timeline dense clipped>
+                       <v-timeline dense clipped>
                     <!--<v-slide-x-transition group> // TODO NO VA!! -->
                         <v-data-iterator
                                 :search="search"
@@ -107,7 +107,7 @@
                         </v-layout>
                     </v-timeline-item>
                  </v-data-iterator>
-                    <!--</v-slide-x-transition>-->
+                           <!--</v-slide-x-transition>-->
                 </v-timeline>
               </v-container>
         </v-card>
@@ -120,9 +120,12 @@ import JsonDialogComponent from '../ui/JsonDialogComponent'
 import CompareValuesComponent from '../ui/CompareValuesComponent'
 import ChangelogSettings from './ChangelogSettingsComponent'
 import UserAvatar from '../ui/UserAvatarComponent'
+import Timeline from 'timeline-vuejs'
+
 export default {
   name: 'ChangelogList',
   components: {
+    Timeline,
     'fullscreen-dialog': FullScreenDialog,
     'json-dialog-component': JsonDialogComponent,
     'compare-values': CompareValuesComponent,
