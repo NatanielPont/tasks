@@ -229,7 +229,7 @@ export default {
       console.log('textname ' + task.name)
       // response.data = text;
       window.axios.post('/api/v1/tasks/' + task.id, {
-        data: text,
+        name: text,
         _method: 'put'
       })
         .then((response) => {
@@ -242,6 +242,7 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
+      // console.log('hola no vaig')
       // window.axios.put('/api/v1/tasks/' + task.id).then((response) => {
       //   console.log('jardin' + text)
       //   task.name = text
