@@ -66,6 +66,7 @@
                                             <v-switch
                                                     :input-value="task.completed==1" @change="task.completed = $event"
                                                     color="grey lighten-1"
+                                                      class="mt-0"
                                             ></v-switch>
 
                                     </v-btn>
