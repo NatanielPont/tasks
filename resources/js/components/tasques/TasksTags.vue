@@ -149,14 +149,12 @@ export default {
               ids.push(tag)
             }
           })
-          return tag.id
         } else {
           this.taskTags.map((tago) => {
             if (tago.name === tag.name) {
               ids.push(tag)
             }
           })
-          return tag.name
         }
       })
       // console.log(ids)
