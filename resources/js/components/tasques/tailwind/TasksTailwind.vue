@@ -1,19 +1,6 @@
 <template>
     <div class="container mx-auto ">
-        <!--<div class="flex flex-col ">-->
         <div class=" w-full  rounded overflow-hidden shadow-lg grey darken-4">
-            <!--<img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">-->
-            <!--<div class="px-6 py-4">-->
-                <!--<div class="font-bold text-xl mb-2">The Coldest Sunset</div>-->
-                <!--<p class="text-grey-darker text-base">-->
-                    <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.-->
-                <!--</p>-->
-            <!--</div>-->
-            <!--<div class="px-6 py-4">-->
-                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#photography</span>-->
-                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#travel</span>-->
-                <!--<span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#winter</span>-->
-            <!--</div>-->
                             <span class="title text-center white--text flex justify-center mb-3 mt-3 ">Tasques ({{total}})</span>
         </div>
             <div class="max-w-sm rounded  overflow-hidden shadow-lg">
@@ -43,12 +30,7 @@
 
                     </ul>
                 </div>
-                <!--<div class="flex-1 border-2 border-blue text-center rounded-full  px-4 py-2 m-3">-->
-
                 <div class="flex justify-center" v-if="filter=='all'">
-                    <!--<button class="bg-grey-light hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded-l">-->
-                        <!--Prev-->
-                    <!--</button>-->
                     <button @click="completeTask(task)" class=" hover:bg-orange text-grey-darkest   font-bold rounded-l mr-2 w-1/3" >
                         <div v-if="task.completed==0" class="focus:outline-none focus:shadow-outline ">
 
@@ -92,8 +74,6 @@
 
                             </span>
         </div>
-
-        <!--</div>-->
 
     </div>
 
@@ -160,31 +140,20 @@ export default {
     }
   },
   methods: {
-    // toggleSwitch (task) {
-    //   return task.completed
-    //   // if (!task.completed) {
-    //   //   this.completeTask(task)
-    //   // }
-    // },
     dateSelectedInChild (currentText) {
       console.log(currentText + 'jkhakjhakjha')
+      console.log('todo')
     },
     completeTask (task) {
       console.log(task)
       if (task.completed) {
-        console.log('hola' + task.completed)
         this.uncompleteTask(task)
       } else {
-        console.log('hola2 ' + task.completed)
         window.axios.post('/api/v1/completed_task/' + task.id, {
           _method: 'post'
         })
-          .then((response) => {
-          // response.data = text;
-          // task.name = text
+          .then(() => {
             task.completed = true
-            console.log('jardin' + task.completed)
-          //   this.dataTasks = null
           })
           .catch(function (error) {
             console.log(error)
@@ -213,8 +182,6 @@ export default {
         _method: 'put'
       })
         .then((response) => {
-          // response.data = text;
-
           console.log(response.data)
           console.log('jardin' + text)
           task.name = text
@@ -239,7 +206,6 @@ export default {
       })
     },
     remove (task) {
-      // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       window.axios.delete('/api/v1/tasks/' + task.id).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       }).catch((error) => {

@@ -5,13 +5,9 @@
                 <v-card dark>
                     <v-card-title class="justify-center">
                         <v-toolbar color="grey darken-4" class="toolTitle">
-                            <!--<v-toolbar-side-icon></v-toolbar-side-icon>-->
-
                             <v-toolbar-title>
                                 <span class="title">Tasques ({{total}})</span>
                             </v-toolbar-title>
-
-                            <!--<v-toolbar-title>Settings</v-toolbar-title>-->
                         </v-toolbar>
 
                     </v-card-title>
@@ -59,7 +55,6 @@
                                 </v-container>
 
                                 <v-flex v-if="filter=='all'" xs7>
-                                    <!--<v-card dark color="blue" >-->
                                     <v-btn-toggle >
 
                                     <v-btn id="button_complete" @click="completeTask(task)" small flat>
@@ -70,10 +65,8 @@
                                             ></v-switch>
 
                                     </v-btn>
-                                    <!--<v-btn id="buttonEdit" @click="editName(task, task.name)" small><v-icon color="orange">edit</v-icon></v-btn>-->
                                     <v-btn id="button_remove_task" @click="remove(task)" small flat><v-icon color="error darken-3">delete</v-icon></v-btn>
                                     </v-btn-toggle>
-                                    <!--</v-card>-->
                                 </v-flex>
                             </v-list-tile>
                         </v-list>
@@ -82,11 +75,11 @@
                                     label="nova tasca (max. 25 ctrs)"
                                     type="text"
                                     v-model="newTask"
-                                    @keyup.native.enter="add"
+                                    @keypress.enter="add"
                                     name="name"
                                     required>
-                            </v-text-field>
 
+                            </v-text-field>
                             <v-btn class="mt-0" id="button_add_task" @click="add">Afegir</v-btn>
                         </form>
                             <v-card color="grey lighten-1" class="mt-5">
@@ -197,14 +190,12 @@ export default {
     completeTask (task) {
       console.log(task)
       if (!task.completed) {
-        console.log('hola' + task.completed)
         this.uncompleteTask(task)
       } else {
-        console.log('hola2' + task.completed)
         window.axios.post('/api/v1/completed_task/' + task.id, {
           _method: 'post'
         })
-          .then((response) => {
+          .then(() => {
             task.completed = true
           })
           .catch(function (error) {
@@ -216,7 +207,7 @@ export default {
       window.axios.post('/api/v1/completed_task/' + task.id, {
         _method: 'delete'
       })
-        .then((response) => {
+        .then(() => {
           task.completed = false
         })
         .catch(function (error) {
@@ -237,26 +228,16 @@ export default {
           // response.data = text;
 
           console.log(response.data)
-          console.log('jardin' + text)
           task.name = text
         })
         .catch(function (error) {
           console.log(error)
         })
-      // console.log('hola no vaig')
-      // window.axios.put('/api/v1/tasks/' + task.id).then((response) => {
-      //   console.log('jardin' + text)
-      //   task.name = text
-      //   // this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
     },
     setFilter (newFilter) {
       this.filter = newFilter
     },
     add () {
-      // console.log('hola')
       // function f (e) {
       //   if (e.keyCode === 13) {
       //   }
