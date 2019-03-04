@@ -70,18 +70,17 @@
                                 </v-flex>
                             </v-list-tile>
                         </v-list>
-                        <form v-if="filter=='all'">
+                        <div v-if="filter=='all'">
                             <v-text-field
+                                    name="name"
                                     label="nova tasca (max. 25 ctrs)"
-                                    type="text"
                                     v-model="newTask"
                                     @keypress.enter="add"
-                                    name="name"
                                     required>
 
                             </v-text-field>
                             <v-btn class="mt-0" id="button_add_task" @click="add">Afegir</v-btn>
-                        </form>
+                        </div>
                             <v-card color="grey lighten-1" class="mt-5">
                         <span id="filters" v-show="total > 0" >
                                  <v-card-title color="primary" class="justify-center">
