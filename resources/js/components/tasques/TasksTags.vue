@@ -1,7 +1,6 @@
 <template>
     <span>
         <v-chip v-for="tag in this.taskTags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)"></v-chip>
-        <!--<v-chip v-for="tag in task.tags" :key="tag.id" v-text="tag.name" :color="tag.color" @dblclick="removeTag(tag)" ></v-chip>-->
         <v-btn icon @click="dialog = true"><v-icon>add</v-icon></v-btn>
         <v-btn icon @click="dialogRemove = true"><v-icon>remove</v-icon></v-btn>
                 <v-dialog v-model="dialogRemove" width="500">
@@ -140,7 +139,6 @@ export default {
       }
     },
     addTag () {
-      // this.task.tags = this.selectedTags
       let ids = []
       this.selectedTags.map((tag) => {
         if (tag.id) {
@@ -157,13 +155,9 @@ export default {
           })
         }
       })
-      // console.log(ids)
       for (var id in ids) {
         this.selectedTags = this.selectedTags.filter(function (e) { return e != ids[id] })
       }
-      // if (this.s)
-
-      // console.log(this.selectedTags.map(tag => tag.id))
       this.loading = true
       window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
         tags: this.selectedTags.map((tag) => {
@@ -176,7 +170,7 @@ export default {
         this.dialog = false
         this.loading = false
         this.$emit('change', this.selectedTags)
-      }).catch(error => {
+      }).catch(() => {
         this.$snackbar.showError('Error, seleccioni o crei un tag no existent ja en la tasca')
         this.loading = false
       })
