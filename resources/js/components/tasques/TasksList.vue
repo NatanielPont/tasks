@@ -77,20 +77,23 @@
                                 <!--value="{{filter}}"-->
                         </v-select>
                     </v-flex>
-                    <v-flex lg4 class="mr-2">
-                        <v-select
-                                label="User"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                clearable>
-                        </v-select>
+                    <v-flex  lg4 >
+                        <user-select @refresh="refresh(false)"  @cleared="user = null" v-model="user" :users="dataUsers"  label="Usuari" class="py-0"></user-select>
+
+                        <!--<v-select-->
+                                <!--label="User"-->
+                                <!--:items="dataUsers"-->
+                                <!--v-model="user"-->
+                                <!--item-text="name"-->
+                                <!--clearable>-->
+                        <!--</v-select>-->
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
                                 append-icon="search"
                                 label="Buscar"
                                 v-model="search"
+                                class="py-3"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -98,7 +101,7 @@
             <data-table-tasks @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
 
             </data-table-tasks>
-            <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users=users :uri=uri :tasks=filteredTasks class="hidden-lg-and-up"></data-iterator-tasks>
+            <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
@@ -112,9 +115,7 @@
 import DataIteratorTasks from './DataIteratorTasks'
 import DataTableTasks from './DataTableTasks'
 var filters = {
-
   Totes: function (tasks) {
-    // this.filter = ''
     return tasks
   },
   Completades: function (tasks) {
@@ -144,7 +145,7 @@ export default {
     return {
       currSection: 0,
 
-      user: '',
+      user: null,
       loading: false,
       dataTasks: this.tasks,
       dataUsers: this.users,
@@ -186,19 +187,30 @@ export default {
   },
   computed: {
     filteredTasks () {
-      // Segons el filtre actiu
-      // Alternativa switch/case -> array associatiu
-      // return this.dataTasks=this.dataTasks.map(()=>{
-      //
-      // })
-      // this.dataTasks=(filters[this.filter](this.dataTasks))
-      // let ids = []
-      // this.selectedTags.map((task) => {
-      //   if (task.completed) {
-      //     ids.push(task)
-      //   }
-      // })
-      return filters[this.filter](this.dataTasks)
+      if (this.user != null) {
+        return this.filteredUsers
+      } else {
+        return filters[this.filter](this.dataTasks)
+        // this.finalizeUser()
+      }
+    },
+    filteredUsers () {
+      let tasks = []
+      if (this.user !== null) {
+        this.dataTasks.map((task) => {
+          if (this.user instanceof Object) {
+            if (task.user_id == this.user.id) {
+              tasks.push(task)
+            }
+          } else {
+            if (task.user_name == this.user) {
+              tasks.push(task)
+            }
+          }
+        })
+      }
+      this.finalizeUser()
+      return tasks
     }
 
   },
@@ -206,17 +218,15 @@ export default {
     tasks (newTasks) {
       this.dataTasks = newTasks
     }
+
   },
   methods: {
-    // filteredTasks () {
-    //   // Segons el filtre actiu
-    //   // Alternativa switch/case -> array associatiu
-    //   return filters[this.filter](this.dataTasks)
-    // },
-    // setFilter (newFilter) {
-    //   this.filter = newFilter
-    // },
-
+    finalizeUser () {
+      this.user = null
+      this.dataTasks.map((task) => {
+        console.log('task map ' + task.id)
+      })
+    },
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // TODO improve refresh()
@@ -239,6 +249,7 @@ export default {
         this.$emit('change', this.dataTasks)
 
         if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
+        // this.user = null
       }).catch(error => {
         console.log(error)
         this.loading = false

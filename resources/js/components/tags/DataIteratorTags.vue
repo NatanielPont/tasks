@@ -6,88 +6,154 @@
                 :pagination.sync="pagination"
                 :search="search"
                 content-tag="v-layout"
-                hide-actions
                 row
                 wrap
         >
-            <!--<v-toolbar-->
-                    <!--slot="header"-->
-                    <!--class="mb-2"-->
-                    <!--color="primary darken-4"-->
-                    <!--dark-->
-                    <!--flat-->
-            <!--&gt;-->
-                <!--<v-toolbar-title >Tags</v-toolbar-title>-->
-            <!--</v-toolbar>-->
-
-            <v-flex
-                    slot="item"
-                    slot-scope="props"
-                    xs12
-                    sm6
-                    md4
-                    lg3
-            >
-                <v-card>
+            <template v-slot:item="props">
+                <v-flex
+                        xs12
+                        sm6
+                        md4
+                        lg3
+                >
+                    <v-card>
                     <v-card-title class="subheading font-weight-bold primary">{{ props.item.name }}</v-card-title>
 
                     <v-divider></v-divider>
 
                     <v-list dense>
-                        <v-list-tile>
-                            <v-list-tile-content>Nom:</v-list-tile-content>
-                            <v-list-tile-content class="align-end">{{ props.item.name }}</v-list-tile-content>
-                        </v-list-tile>
+                    <v-list-tile>
+                    <v-list-tile-content>Nom:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ props.item.name }}</v-list-tile-content>
+                    </v-list-tile>
 
-                        <v-list-tile>
-                            <v-list-tile-content>Id:</v-list-tile-content>
-                            {{props.item.id}}
+                    <v-list-tile>
+                    <v-list-tile-content>Id:</v-list-tile-content>
+                    {{props.item.id}}
 
-                        </v-list-tile>
+                    </v-list-tile>
 
-                        <v-list-tile>
-                            <v-list-tile-content>Descripció:</v-list-tile-content>
-                            <v-list-tile-content class="align-end">{{ props.item.description }}</v-list-tile-content>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-content>Color:</v-list-tile-content>
-                            <v-icon x-large :color="props.item.color">memory</v-icon>
-                        </v-list-tile>
+                    <v-list-tile>
+                    <v-list-tile-content>Descripció:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ props.item.description }}</v-list-tile-content>
+                    </v-list-tile>
+                    <v-list-tile>
+                    <v-list-tile-content>Color:</v-list-tile-content>
+                    <v-icon x-large :color="props.item.color">memory</v-icon>
+                    </v-list-tile>
 
-                        <v-list-tile>
-                            <v-list-tile-content>Creat:</v-list-tile-content>
-                            <v-list-tile-content class="align-end">{{ props.item.created_at_human }}</v-list-tile-content>
-                        </v-list-tile>
+                    <v-list-tile>
+                    <v-list-tile-content>Creat:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ props.item.created_at_human }}</v-list-tile-content>
+                    </v-list-tile>
 
-                        <v-list-tile>
-                            <v-list-tile-content>Actualitzat:</v-list-tile-content>
-                            <v-list-tile-content class="align-end">{{ props.item.updated_at_human }}</v-list-tile-content>
-                        </v-list-tile>
-                        <v-list-tile>
-                            <v-list-tile-content>Acccions:</v-list-tile-content>
-                            <!--<v-list-tile-content class="align-end">-->
-                            <tag-show :tag="props.item"></tag-show>
-                            <tag-update :tag="props.item" @updated="update"></tag-update>
-                            <tag-destroy :tag="props.item" @removed="remove"></tag-destroy>
-                            <!--</v-list-tile-content>-->
+                    <v-list-tile>
+                    <v-list-tile-content>Actualitzat:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ props.item.updated_at_human }}</v-list-tile-content>
+                    </v-list-tile>
+                    <v-list-tile>
+                    <v-list-tile-content>Acccions:</v-list-tile-content>
+                    <!--<v-list-tile-content class="align-end">-->
+                    <tag-show :tag="props.item"></tag-show>
+                    <tag-update :tag="props.item" @updated="update"></tag-update>
+                    <tag-destroy :tag="props.item" @removed="remove"></tag-destroy>
+                    <!--</v-list-tile-content>-->
 
-                        </v-list-tile>
+                    </v-list-tile>
 
                     </v-list>
-                </v-card>
-            </v-flex>
-
-            <!--<v-toolbar-->
-                    <!--slot="footer"-->
-                    <!--class="mt-2"-->
-                    <!--color="grey darken-1"-->
-                    <!--dark-->
-                    <!--dense-->
-                    <!--flat-->
-            <!--&gt;-->
-                <!--<v-toolbar-title class="subheading">Nataniel Pont Tasks</v-toolbar-title>-->
-            <!--</v-toolbar>-->
+                    </v-card>
+                </v-flex>
+            </template>
         </v-data-iterator>
+        <!--<v-data-iterator-->
+                <!--:items="tags"-->
+                <!--:rows-per-page-items="rowsPerPageItems"-->
+                <!--:pagination.sync="pagination"-->
+                <!--:search="search"-->
+                <!--content-tag="v-layout"-->
+                <!--hide-actions-->
+                <!--row-->
+                <!--wrap-->
+        <!--&gt;-->
+            <!--&lt;!&ndash;<v-toolbar&ndash;&gt;-->
+                    <!--&lt;!&ndash;slot="header"&ndash;&gt;-->
+                    <!--&lt;!&ndash;class="mb-2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;color="primary darken-4"&ndash;&gt;-->
+                    <!--&lt;!&ndash;dark&ndash;&gt;-->
+                    <!--&lt;!&ndash;flat&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<v-toolbar-title >Tags</v-toolbar-title>&ndash;&gt;-->
+            <!--&lt;!&ndash;</v-toolbar>&ndash;&gt;-->
+
+            <!--<v-flex-->
+                    <!--slot="item"-->
+                    <!--slot-scope="props"-->
+                    <!--xs12-->
+                    <!--sm6-->
+                    <!--md4-->
+                    <!--lg3-->
+            <!--&gt;-->
+                <!--<v-card>-->
+                    <!--<v-card-title class="subheading font-weight-bold primary">{{ props.item.name }}</v-card-title>-->
+
+                    <!--<v-divider></v-divider>-->
+
+                    <!--<v-list dense>-->
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Nom:</v-list-tile-content>-->
+                            <!--<v-list-tile-content class="align-end">{{ props.item.name }}</v-list-tile-content>-->
+                        <!--</v-list-tile>-->
+
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Id:</v-list-tile-content>-->
+                            <!--{{props.item.id}}-->
+
+                        <!--</v-list-tile>-->
+
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Descripció:</v-list-tile-content>-->
+                            <!--<v-list-tile-content class="align-end">{{ props.item.description }}</v-list-tile-content>-->
+                        <!--</v-list-tile>-->
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Color:</v-list-tile-content>-->
+                            <!--<v-icon x-large :color="props.item.color">memory</v-icon>-->
+                        <!--</v-list-tile>-->
+
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Creat:</v-list-tile-content>-->
+                            <!--<v-list-tile-content class="align-end">{{ props.item.created_at_human }}</v-list-tile-content>-->
+                        <!--</v-list-tile>-->
+
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Actualitzat:</v-list-tile-content>-->
+                            <!--<v-list-tile-content class="align-end">{{ props.item.updated_at_human }}</v-list-tile-content>-->
+                        <!--</v-list-tile>-->
+                        <!--<v-list-tile>-->
+                            <!--<v-list-tile-content>Acccions:</v-list-tile-content>-->
+                            <!--&lt;!&ndash;<v-list-tile-content class="align-end">&ndash;&gt;-->
+                            <!--<tag-show :tag="props.item"></tag-show>-->
+                            <!--<tag-update :tag="props.item" @updated="update"></tag-update>-->
+                            <!--<tag-destroy :tag="props.item" @removed="remove"></tag-destroy>-->
+                            <!--&lt;!&ndash;</v-list-tile-content>&ndash;&gt;-->
+
+                        <!--</v-list-tile>-->
+
+                    <!--</v-list>-->
+                <!--</v-card>-->
+            <!--</v-flex>-->
+
+            <!--&lt;!&ndash;<v-toolbar&ndash;&gt;-->
+                    <!--&lt;!&ndash;slot="footer"&ndash;&gt;-->
+                    <!--&lt;!&ndash;class="mt-2"&ndash;&gt;-->
+                    <!--&lt;!&ndash;color="grey darken-1"&ndash;&gt;-->
+                    <!--&lt;!&ndash;dark&ndash;&gt;-->
+                    <!--&lt;!&ndash;dense&ndash;&gt;-->
+                    <!--&lt;!&ndash;flat&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<v-toolbar-title class="subheading">Nataniel Pont Tasks</v-toolbar-title>&ndash;&gt;-->
+            <!--&lt;!&ndash;</v-toolbar>&ndash;&gt;-->
+        <!--</v-data-iterator>-->
     </v-container>
 </template>
 

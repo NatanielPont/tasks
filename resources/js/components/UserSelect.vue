@@ -32,52 +32,58 @@
 </template>
 
 <script>
-  export default {
-    name: 'UserSelect',
-    data () {
-      return {
-        dataUsers: this.users,
-        selectedUser: this.user
+export default {
+  name: 'UserSelect',
+  data () {
+    return {
+      dataUsers: this.users,
+      selectedUser: this.user
+    }
+  },
+  model: {
+    prop: 'user',
+    event: 'selected'
+  },
+  props: {
+    readOnly: {
+      type: Boolean,
+      default: false
+    },
+    itemValue: {
+      type: String,
+      default: 'id'
+    },
+    user: {
+      type: Object,
+      default: function () {
+        return {}
       }
     },
-    model: {
-      prop: 'user',
-      event: 'selected'
+    users: {
+      type: Array,
+      required: true
     },
-    props: {
-      readOnly: {
-        type: Boolean,
-        default: false
-      },
-      itemValue: {
-        type: String,
-        default: 'id'
-      },
-      user: {
-        type: Object,
-        default: function () {
-          return {}
-        }
-      },
-      users: {
-        type: Array,
-        required: true
-      },
-      label: {
-        type: String,
-        default: 'Usuaris'
+    label: {
+      type: String,
+      default: 'Usuaris'
+    }
+  },
+  watch: {
+    user (user) {
+      // console.log('user ' + user)
+      let bool = false
+      if (this.selectedUser == null && !bool) {
+        this.$emit('refresh')
+        bool = true
       }
+      this.selectedUser = user
     },
-    watch: {
-      user (user) {
-        this.selectedUser = user
-      },
-      selectedUser (newValue) {
-        this.$emit('selected', newValue)
-      },
-      users () {
-        this.dataUsers = this.users
-      }
+    selectedUser (newValue) {
+      this.$emit('selected', newValue)
+    },
+    users () {
+      this.dataUsers = this.users
     }
   }
+}
 </script>

@@ -2,7 +2,7 @@
     <v-container fluid grid-list-md>
         <v-data-table
                 :headers="headers"
-                :items="tasks"
+                :items="dataTasks"
                 :search="search"
                 no-results-text="No s'ha trobat cap registre coincident"
                 no-data-text="No hi han dades disponibles"
@@ -62,6 +62,7 @@ export default {
   data () {
     return {
       // search: '',
+      dataTasks: this.tasks,
       pagination: {
         rowsPerPage: 25
       },
@@ -102,6 +103,11 @@ export default {
     loading: {
       type: Boolean,
       required: true
+    }
+  },
+  watch: {
+    tasks (tasks) {
+      this.dataTasks = tasks
     }
   },
   components: {
