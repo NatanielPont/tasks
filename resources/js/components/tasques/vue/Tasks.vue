@@ -23,7 +23,7 @@
 
                                     </v-list-tile-title>
                                 </v-list-tile-content>
-                                <v-flex v-if="filter=='all'" xs8 >
+                                <v-flex  v-if="filter=='all'" xs8 >
                                     <v-card dark color="primary">
                                         <span :id="'task' + task.id" :class="{ strike: task.completed==1 }">
                                         <editable-text
@@ -38,7 +38,7 @@
                                 <v-container v-if="filter!='all'" grid-list text-xs-center ma-0>
                                     <v-layout >
                                     <v-flex  xs10 offset-xs1  >
-                                        <v-card dark color="primary" >
+                                        <v-card  dark color="primary" >
                                         <span :id="'task' + task.id" :class="{ strike: task.completed==1 }" >
                                         <editable-text
                                                 :text="task.name"
