@@ -30,6 +30,7 @@ import Notifications from './components/notifications/Notifications'
 import NotificationsWidget from './components/notifications/NotificationsWidget'
 import UserSelectComponent from './components/users/UsersSelectComponent'
 import Navigation from './components/Navigation'
+import NavigationRight from './components/NavigationRigt'
 
 import DataIteratorTasks from './components/tasques/DataIteratorTasks'
 import DataTableTasks from './components/tasques/DataTableTasks'
@@ -163,6 +164,7 @@ window.Vue.component('tema', Tema)
 window.Vue.component('profile', Profile)
 window.Vue.component('changelog', Changelog)
 window.Vue.component('navigation', Navigation)
+window.Vue.component('navigation-right', NavigationRight)
 window.Vue.component('service-worker', ServiceWorker)
 // window.Vue.component('service-worker', ServiceWorker)
 // Notifications

@@ -74,19 +74,10 @@
                                 item-text="name"
                                 outline
                         >
-                                <!--value="{{filter}}"-->
                         </v-select>
                     </v-flex>
                     <v-flex  lg4 >
                         <user-select @refresh="refresh(false)"  @cleared="user = null" v-model="user" :users="dataUsers"  label="Usuari" class="py-0"></user-select>
-
-                        <!--<v-select-->
-                                <!--label="User"-->
-                                <!--:items="dataUsers"-->
-                                <!--v-model="user"-->
-                                <!--item-text="name"-->
-                                <!--clearable>-->
-                        <!--</v-select>-->
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -107,11 +98,6 @@
 </template>
 
 <script>
-// import Toggle from './Toggle'
-// import TaskDestroy from './TaskDestroy'
-// import TaskUpdate from './TaskUpdate'
-// import TaskShow from './TaskShow'
-// import TasksTags from './TasksTags'
 import DataIteratorTasks from './DataIteratorTasks'
 import DataTableTasks from './DataTableTasks'
 var filters = {
