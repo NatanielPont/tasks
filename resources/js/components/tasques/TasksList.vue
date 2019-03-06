@@ -28,13 +28,11 @@
 
             <v-expansion-panel class="hidden-lg-and-up">
       <v-expansion-panel-content
-
       >
         <template v-slot:header>
           <div>Filtres</div>
         </template>
         <v-card>
-                <!--<v-layout row wrap>-->
         <v-flex sm5 md4 class="mr-2">
                         <v-select
                                 label="Estat"
@@ -46,13 +44,7 @@
                         </v-select>
                     </v-flex>
                     <v-flex sm6 md5 class="mr-2">
-                        <v-select
-                                label="User"
-                                :items="dataUsers"
-                                v-model="user"
-                                item-text="name"
-                                clearable>
-                        </v-select>
+                      <user-select @refresh="refresh(false)"  @cleared="user = null" v-model="user" :users="dataUsers"  label="Usuari" class="py-0"></user-select>
                     </v-flex>
                     <v-flex sm6 md5 >
                         <v-text-field
@@ -61,7 +53,6 @@
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
-                <!--</v-layout>-->
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -90,7 +81,6 @@
                 </v-layout>
             </v-card-title>
             <data-table-tasks @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
-
             </data-table-tasks>
             <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
@@ -147,11 +137,6 @@ export default {
   components: {
     DataIteratorTasks,
     'data-table-tasks': DataTableTasks
-    // 'toggle': Toggle,
-    // 'task-destroy': TaskDestroy,
-    // 'task-update': TaskUpdate,
-    // 'task-show': TaskShow,
-    // 'tasks-tags': TasksTags
   },
   props: {
     tasks: {
@@ -174,22 +159,18 @@ export default {
   computed: {
     filteredTasks () {
       if (this.user != null) {
-        return this.filteredUsers
+        return this.filteredTasksUsers
       } else {
         return filters[this.filter](this.dataTasks)
         // this.finalizeUser()
       }
     },
-    filteredUsers () {
+    filteredTasksUsers () {
       let tasks = []
       if (this.user !== null) {
         this.dataTasks.map((task) => {
           if (this.user instanceof Object) {
             if (task.user_id == this.user.id) {
-              tasks.push(task)
-            }
-          } else {
-            if (task.user_name == this.user) {
               tasks.push(task)
             }
           }
