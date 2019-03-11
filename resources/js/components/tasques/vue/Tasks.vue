@@ -4,7 +4,7 @@
             <v-flex xs12>
                 <v-card dark>
                     <v-card-title class="justify-center">
-                        <v-toolbar color="grey darken-4" class="toolTitle">
+                        <v-toolbar color="grey darken-2" class="toolTitle">
                             <v-toolbar-title>
                                 <span class="title">Tasques ({{total}})</span>
                             </v-toolbar-title>

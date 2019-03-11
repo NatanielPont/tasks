@@ -65,6 +65,7 @@ export default {
     }
   },
   methods: {
+
     send () {
       this.sending = true
       window.axios.post('/api/v1/simple_notifications', {

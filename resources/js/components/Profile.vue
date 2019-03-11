@@ -12,7 +12,7 @@
                     md8
             >
                 <v-card>
-                    <v-toolbar color="grey darken-4">
+                    <v-toolbar color="grey darken-2">
                         <v-toolbar-title class="white--text">Perfil</v-toolbar-title>
                         <v-spacer></v-spacer>
                     </v-toolbar>

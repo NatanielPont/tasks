@@ -65,11 +65,9 @@
                     </v-list-tile>
                     <v-list-tile>
                     <v-list-tile-content>Acccions:</v-list-tile-content>
-                    <!--<v-list-tile-content class="align-end">-->
                     <task-show :users="users" :task="props.item"></task-show>
                     <task-update :users="users" :task="props.item" @updated="update" :uri="uri"></task-update>
                     <task-destroy :task="props.item" @removed="remove" :uri="uri"></task-destroy>
-                    <!--</v-list-tile-content>-->
 
                     </v-list-tile>
 
@@ -123,6 +121,7 @@ export default {
       type: String,
       required: true
     }
+
   },
   components: {
     'toggle': Toggle,

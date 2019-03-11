@@ -42,46 +42,50 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        Versió: <a href="#" click="dialog=true" class="white--text" @click="dialog = true">{{ dataGit.commit_short }}</a>
+        <!--<v-layout  row wrap>-->
+                         <v-btn small color="grey darken-4" class="white--text" @click="dialog = true">Versió: {{ dataGit.commit_short }} </v-btn>
+
+        <!--<a href="#" click="dialog=true" class="white&#45;&#45;text" @click="dialog = true">{{ dataGit.commit_short }}</a>-->
+          <!--</v-layout>-->
     </span>
 </template>
 
 <script>
-  export default {
-    name: 'GitInfoComponent',
-    data () {
-      return {
-        dialog: false,
-        dataGit: this.git
-      }
-    },
-    props: {
-      git: {
-        type: Object,
-        required: false
-      }
-    },
-    methods: {
-      githubUri () {
-        return this.dataGit.origin.split(':')[1].split('.')[0]
-      },
-      githubURL () {
-        return 'https://github.com/' + this.githubUri()
-      },
-      githubURLIssues () {
-        return this.githubURL() + '/commits/master'
-      },
-      refresh () {
-        window.axios.get('/api/v1/git/info').then(response => {
-          this.$snackbar.showMessage('Dades actualitzades correctament')
-          this.dataGit = response.data
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      }
-    },
-    created () {
-      if (!this.git) this.dataGit = window.git
+export default {
+  name: 'GitInfoComponent',
+  data () {
+    return {
+      dialog: false,
+      dataGit: this.git
     }
+  },
+  props: {
+    git: {
+      type: Object,
+      required: false
+    }
+  },
+  methods: {
+    githubUri () {
+      return this.dataGit.origin.split(':')[1].split('.')[0]
+    },
+    githubURL () {
+      return 'https://github.com/' + this.githubUri()
+    },
+    githubURLIssues () {
+      return this.githubURL() + '/commits/master'
+    },
+    refresh () {
+      window.axios.get('/api/v1/git/info').then(response => {
+        this.$snackbar.showMessage('Dades actualitzades correctament')
+        this.dataGit = response.data
+      }).catch(error => {
+        this.$snackbar.showError(error)
+      })
+    }
+  },
+  created () {
+    if (!this.git) this.dataGit = window.git
   }
+}
 </script>

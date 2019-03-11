@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto ">
-        <div class=" w-full  rounded overflow-hidden shadow-lg grey darken-4">
+        <div class=" w-full  rounded overflow-hidden shadow-lg grey darken-2">
                             <span class="title text-center white--text flex justify-center mb-3 mt-3 ">Tasques ({{total}})</span>
         </div>
             <div class="max-w-sm rounded  overflow-hidden shadow-lg">
