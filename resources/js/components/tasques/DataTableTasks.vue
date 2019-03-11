@@ -61,7 +61,6 @@ export default {
   name: 'DataTableTasks',
   data () {
     return {
-      // search: '',
       dataTasks: this.tasks,
       pagination: {
         rowsPerPage: 25

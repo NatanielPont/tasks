@@ -1,22 +1,11 @@
-<html>
-<head>
-    <title>Vuetify Parallax Starter</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
-    <style>
-        [v-cloak] {display: none}
-    </style>
-</head>
-<body>
-<div id="app" v-cloak>
+@extends('layouts.landing')
+@section('content')
     <v-app light>
-        <v-toolbar >
-            <v-toolbar-title > Tasques </v-toolbar-title>
+        <v-toolbar class="grey darken-1">
+            <v-toolbar-title class="white--text"> Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="success" href="/login">Login</v-btn>
-            <v-btn color="success" href="/register">Register</v-btn>
+            <v-btn color="grey darken-4" class="white--text" href="/login">Login</v-btn>
+            <v-btn color="grey darken-4" class="white--text" href="/register">Register</v-btn>
         </v-toolbar>
         <v-content>
             <section>
@@ -197,18 +186,5 @@
             </v-footer>
         </v-content>
     </v-app>
-</div>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
-<script>
-  new Vue({
-    el: '#app',
-    data () {
-      return {
-        title: 'Your Logo'
-      }
-    }
-  })
-</script>
-</body>
-</html>
+@endsection
+

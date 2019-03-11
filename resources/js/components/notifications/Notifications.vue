@@ -15,32 +15,45 @@
 </template>
 
 <script>
-  import UserNotificationsList from './UserNotificationsList'
-  import SimpleNotificationSendCard from './SimpleNotificationSendCard'
-  import NotificationsList from './NotificationsList'
-  export default {
-    name: 'Notifications',
-    data () {
-      return {
-        forceRefresh: false
-      }
+import UserNotificationsList from './UserNotificationsList'
+import SimpleNotificationSendCard from './SimpleNotificationSendCard'
+import NotificationsList from './NotificationsList'
+export default {
+  name: 'Notifications',
+  data () {
+    return {
+      forceRefresh: false
+    }
+  },
+  components: {
+    'user-notifications-list': UserNotificationsList,
+    'simple-notification-send-card': SimpleNotificationSendCard,
+    'notifications-list': NotificationsList
+  },
+  props: {
+    notifications: {
+      type: Array
     },
-    components: {
-      'user-notifications-list': UserNotificationsList,
-      'simple-notification-send-card': SimpleNotificationSendCard,
-      'notifications-list': NotificationsList
+    userNotifications: {
+      type: Array,
+      required: true
     },
-    props: {
-      notifications: {
-        type: Array
-      },
-      userNotifications: {
-        type: Array,
-        required: true
-      },
-      users: {
-        type: Array
-      }
+    users: {
+      type: Array
+    }
+  },
+  methods: {
+    refresh (message = false) {
+      this.loading = true
+      window.axios.get('/api/v1/user/unread_notifications/').then((response) => {
+        this.dataNotifications = response.data
+        this.loading = false
+        if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
+      }).catch(error => {
+        this.loading = false
+        this.$snackbar.showError(error)
+      })
     }
   }
+}
 </script>

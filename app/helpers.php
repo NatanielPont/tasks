@@ -154,48 +154,7 @@ if (!function_exists('create_example_tasks_with_tags')) {
         $comprarpa->addTag($tag1);
     }
 }
-//if (!function_exists('create_example_tasks')) {
-//    function create_example_tasks() {
-//        $user1= factory(User::class)->create();
-//        Task::create([
-//            'name' => 'comprar pa',
-//            'completed' => false,
-//            'description' => 'Bla bla bla',
-//            'user_id' => $user1->id
-//        ]);
-//        Task::create([
-//            'name' => 'comprar llet',
-//            'completed' => false,
-//            'description' => 'Bla bla bla',
-//            'user_id' => $user1->id
-//        ]);
-//        Task::create([
-//            'name' => 'Estudiar PHP',
-//            'completed' => true,
-//            'description' => 'JORL JORL JORL',
-//            'user_id' => $user1->id
-//        ]);
-//        $user1= factory(User::class)->create();
-//        Task::create([
-//            'name' => 'comprar pa',
-//            'completed' => false,
-//            'description' => 'Bla bla bla',
-//            'user_id' => $user1->id
-//        ]);
-//        Task::create([
-//            'name' => 'comprar llet',
-//            'completed' => false,
-//            'description' => 'Bla bla bla',
-//            'user_id' => $user1->id
-//        ]);
-//        Task::create([
-//            'name' => 'Estudiar PHP',
-//            'completed' => true,
-//            'description' => 'JORL JORL JORL',
-//            'user_id' => $user1->id
-//        ]);
-//    }
-//}
+
 if (!function_exists('create_mysql_database')) {
     function create_mysql_database($name) {
         // PDO
@@ -335,14 +294,12 @@ if (!function_exists('initialize_roles')) {
             'user.tags.uncomplete',
             'user.tags.destroy'
         ];
-        $permissions = array_merge($taskManagerPermissions, $userTaskPermissions, $tagsManagerPermissions, $userTagsPermissions,$notificationsManagerPermissions);
-//        $permissions = array_merge(
-//            $taskManagerPermissions,
-//            $userTaskPermissions,
-//            $tagsManagerPermissions,
-//            $userTagsPermissions,
-//            $notificationsManagerPermissions
-//        );
+        $permissions = array_merge($taskManagerPermissions,
+            $userTaskPermissions,
+            $tagsManagerPermissions,
+            $userTagsPermissions,
+            $notificationsManagerPermissions);
+;
 
         foreach ($permissions as $permission) {
             create_permission($permission);

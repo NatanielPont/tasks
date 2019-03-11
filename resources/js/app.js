@@ -39,7 +39,7 @@ import DataTableTags from './components/tags/DataTableTags'
 import TreeView from 'vue-json-tree-view'
 import VueTimeago from 'vue-timeago'
 import '../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
-import MainToolbarComponent from './components/MainToolbarComponent.vue'
+import MainToolbar from './components/MainToolbar'
 
 // import Timeline from 'timeline-vuejs'
 
@@ -176,7 +176,7 @@ window.Vue.component('data-iterator-tasks', DataIteratorTasks)
 window.Vue.component('data-table-tasks', DataTableTasks)
 window.Vue.component('data-iterator-tags', DataIteratorTags)
 window.Vue.component('data-table-tags', DataTableTags)
-window.Vue.component('main-toolbar', MainToolbarComponent)
+window.Vue.component('main-toolbar', MainToolbar)
 
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)

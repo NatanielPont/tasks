@@ -2,9 +2,9 @@
 @section('title')
     Tasques
 @endsection
-<style>
-    [v-cloak] {display: none}
-</style>
+{{--<style>--}}
+    {{--[v-cloak] {display: none}--}}
+{{--</style>--}}
 @section('content')
     <v-container grid-list-md text-xs-center id="tasks" class="tasks" fill-height >
         <v-layout row wrap>
@@ -13,9 +13,9 @@
             <v-card v-cloak>
 
 
-            <v-toolbar color="grey darken-4" dark class="toolTitle" >
+            <v-toolbar color="grey darken-2"  class="toolTitle" >
 
-                <v-toolbar-title >Tasques</v-toolbar-title>
+                <v-toolbar-title class="white--text">Tasques</v-toolbar-title>
             </v-toolbar>
             {{--<v-layout row wrap>--}}
                 {{--<v-flex >--}}
@@ -123,11 +123,11 @@
 
 @endsection
 
-<style>
-    .toolTitle > div.v-toolbar__content {
-        display: block;
-        padding-top: 15px;
-        text-align: center;
-    }
-</style>
+{{--<style>--}}
+    {{--.toolTitle > div.v-toolbar__content {--}}
+        {{--display: block;--}}
+        {{--padding-top: 15px;--}}
+        {{--text-align: center;--}}
+    {{--}--}}
+{{--</style>--}}
 

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar class="grey darken-4">
+        <v-toolbar class="grey darken-2">
             <v-menu>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -68,7 +68,7 @@
                         </v-select>
                     </v-flex>
                     <v-flex  lg4 >
-                        <user-select @refresh="refresh(false)"  @cleared="user = null" v-model="user" :users="dataUsers"  label="Usuari" class="py-0"></user-select>
+                        <user-select @cleared="user = null" v-model="user" :users="dataUsers"  label="Usuari" class="py-0"></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -80,9 +80,9 @@
                     </v-flex>
                 </v-layout>
             </v-card-title>
-            <data-table-tasks @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
+            <data-table-tasks :user="this.user" @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
             </data-table-tasks>
-            <data-iterator-tasks :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
+            <data-iterator-tasks :user="this.user"  :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
@@ -158,32 +158,51 @@ export default {
   },
   computed: {
     filteredTasks () {
-      if (this.user != null) {
-        return this.filteredTasksUsers
-      } else {
+      // if (this.user != null) {
+      //   return this.filteredTasksUsers
+      // } else {
+      if (!this.user) {
         return filters[this.filter](this.dataTasks)
-        // this.finalizeUser()
+      } else {
+        return filters[this.filter](this.filteredTasksUsers)
+
       }
+      // this.finalizeUser()
+      // }
     },
     filteredTasksUsers () {
       let tasks = []
+      console.log('this. user ' + this.user)
       if (this.user !== null) {
         this.dataTasks.map((task) => {
-          if (this.user instanceof Object) {
-            if (task.user_id == this.user.id) {
-              tasks.push(task)
-            }
+          // if (this.dataUser instanceof Object) {
+          if (task.user_id == this.user.id) {
+            tasks.push(task)
           }
+          // }
         })
-      }
-      this.finalizeUser()
-      return tasks
-    }
+        return tasks
+      } else {
+        // this.finalizeUser()
 
+        this.dataTasks.map((task) => {
+          // if (this.dataUser instanceof Object) {
+          if (task) {
+            tasks.push(task)
+          }
+          // }
+        })
+        return tasks
+      }
+    }
   },
   watch: {
     tasks (newTasks) {
       this.dataTasks = newTasks
+      // this.dataTasks = this.filteredTasksUsers()
+    },
+    user (user) {
+      if (user == null) { this.user = null }
     }
 
   },
@@ -216,7 +235,8 @@ export default {
         this.$emit('change', this.dataTasks)
 
         if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
-        // this.user = null
+        // if (this.message === 5) {
+        // }
       }).catch(error => {
         console.log(error)
         this.loading = false
@@ -224,5 +244,6 @@ export default {
     }
 
   }
+
 }
 </script>

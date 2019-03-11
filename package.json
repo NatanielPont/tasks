@@ -34,6 +34,7 @@
     },
     "dependencies": {
         "material-design-icons-iconfont": "^3.0.3",
+        "md5": "^2.2.1",
         "path": "^0.12.7",
         "replace-in-file": "^3.4.3",
         "timeline-vuejs": "^1.0.3",

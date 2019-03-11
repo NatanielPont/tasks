@@ -1,6 +1,6 @@
 <template>
     <v-form action="/login" method="POST">
-        <v-toolbar dark color="primary">
+        <v-toolbar dark color="grey darken-1">
             <v-toolbar-title>Login form</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
@@ -29,13 +29,13 @@
             ></v-text-field>
         </v-card-text>
         <v-card-actions>
-            <v-btn color="primary"  href="/password/reset/" >Forgot your password?
+            <v-btn color="grey darken-4" class="white--text" href="/password/reset/" >Forgot your password?
             </v-btn>
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="primary" type="submit"  :disabled="$v.$invalid">Login</v-btn>
+            <v-btn color="grey darken-4" class="white--text" type="submit"  :disabled="$v.$invalid">Login</v-btn>
         </v-card-actions>
 
     </v-form>
