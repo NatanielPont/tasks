@@ -41,6 +41,7 @@ import TreeView from 'vue-json-tree-view'
 import VueTimeago from 'vue-timeago'
 import '../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
 import MainToolbar from './components/MainToolbar'
+import Clock from './components/clock/Clock'
 
 // import Timeline from 'timeline-vuejs'
 
@@ -179,6 +180,7 @@ window.Vue.component('data-iterator-tags', DataIteratorTags)
 // window.Vue.component('data-iterator-changelog', DataIteratorChangelog)
 window.Vue.component('data-table-tags', DataTableTags)
 window.Vue.component('main-toolbar', MainToolbar)
+window.Vue.component('clock', Clock)
 
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)

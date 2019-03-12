@@ -13,6 +13,7 @@
 
 
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
@@ -78,6 +79,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
 
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
+
+    //clock
+    Route::get('/clock', '\\' . ClockController::class . '@index');
 
 
 

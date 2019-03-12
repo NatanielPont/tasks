@@ -29,14 +29,15 @@ mix.js('resources/js/app.js', 'public/js').then(() => {
   })
 }).sourceMaps(false)
   .sass('resources/sass/app.scss', 'public/css')
+  .extract()
+
 mix.webpackConfig({
   plugins: [
-
+    // Options: https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
     new workboxPlugin.InjectManifest({
       swSrc: 'public/src-sw.js', // more control over the caching
-      swDest: 'sw.js', // the service-worker file name
+      swDest: 'service-worker.js', // the service-worker file name
       importsDirectory: 'service-worker' // have a dedicated folder for sw files
-
     })
   ]
 })

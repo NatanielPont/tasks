@@ -1,109 +1,49 @@
-(() => {
-  'use strict'
+importScripts("/service-worker/precache-manifest.c0c59a5da9d8dc08ef4db65d5b446e46.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
-  const AddToHomeScreen = {
-    init () {
-      self.addEventListener('fetch', function (event) {
-        console.log('WORKER: fetch event in progress.')
-      })
-    }
+workbox.skipWaiting()
+workbox.clientsClaim()
+
+// workbox.routing.registerRoute(
+//   new RegExp('https://hacker-news.firebaseio.com'),
+//   workbox.strategies.staleWhileRevalidate()
+// );
+
+// TODO cal utilitzar PushManager al registrar el service worker
+self.addEventListener('push', (event) => {
+  const title = 'TODO CANVIAR TITOL'
+  const options = {
+    body: event.data.text()
   }
+  event.waitUntil(self.registration.showNotification(title, options))
+})
 
-  const WebPush = {
-    init () {
-      self.addEventListener('push', this.notificationPush.bind(this))
-      self.addEventListener('notificationclick', this.notificationClick.bind(this))
-      self.addEventListener('notificationclose', this.notificationClose.bind(this))
-    },
+workbox.precaching.precacheAndRoute(self.__precacheManifest)
+// workbox.precaching.precacheAndRoute([]) També funciona i workbox substitueix pel que pertoca -> placeholder
 
-    /**
-     * Handle notification push event.
-     *
-     * https://developer.mozilla.org/en-US/docs/Web/Events/push
-     *
-     * @param {NotificationEvent} event
-     */
-    notificationPush (event) {
-      console.log(event)
-      if (!(self.Notification && self.Notification.permission === 'granted')) {
-        return
-      }
+// static
+// workbox.routing.registerRoute(
+//   new RegExp('.(?:ico)$'),
+//   workbox.strategies.networkFirst({
+//     cacheName: 'icons'
+//   })
+// )
 
-      // https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData
-      if (event.data) {
-        event.waitUntil(
-          this.sendNotification(event.data.json())
-        )
-      }
-    },
-
-    /**
-     * Handle notification click event.
-     *
-     * https://developer.mozilla.org/en-US/docs/Web/Events/notificationclick
-     *
-     * @param {NotificationEvent} event
-     */
-    notificationClick (event) {
-      // console.log(event.notification)
-
-      if (event.action === 'some_action') {
-        // Do something...
-        // self.clients.openWindow(event.action)
-      } else {
-        self.clients.openWindow('/')
-      }
-    },
-
-    /**
-     * Handle notification close event (Chrome 50+, Firefox 55+).
-     *
-     * https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/onnotificationclose
-     *
-     * @param {NotificationEvent} event
-     */
-    notificationClose (event) {
-      self.registration.pushManager.getSubscription().then(subscription => {
-        if (subscription) {
-          this.dismissNotification(event, subscription)
-        }
+// images
+workbox.routing.registerRoute(
+  new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 20,
+        purgeOnQuotaError: true
       })
-    },
+    ]
+  })
+)
 
-    /**
-     * Send notification to the user.
-     *
-     * https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
-     *
-     * @param {PushMessageData|Object} data
-     */
-    sendNotification (data) {
-      return self.registration.showNotification(data.title, data)
-    },
+workbox.routing.registerRoute(
+  '/',
+  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+)
 
-    /**
-     * Send request to server to dismiss a notification.
-     *
-     * @param  {NotificationEvent} event
-     * @param  {String} subscription.endpoint
-     * @return {Response}
-     */
-    dismissNotification ({ notification }, { endpoint }) {
-      if (!notification.data || !notification.data.id) {
-        return
-      }
-
-      const data = new FormData()
-      data.append('endpoint', endpoint)
-
-      // Send a request to the server to mark the notification as read.
-      fetch(`/notifications/${notification.data.id}/dismiss`, {
-        method: 'POST',
-        body: data
-      })
-    }
-  }
-
-  WebPush.init()
-  AddToHomeScreen.init()
-})()
