@@ -1,4 +1,6 @@
 <template>
+    <span>
+
     <v-toolbar
             color="grey darken-1"
 
@@ -20,9 +22,12 @@
         </v-avatar>
         <span class="hidden-xs-only" v-role="'SuperAdmin'"><git-info></git-info></span>
         <v-form action="logout" method="POST">
+
+            <input type="hidden" name="_token" :value="csrfToken">
             <v-btn small color="grey darken-4" class="white--text" type="submit">Logout</v-btn>
         </v-form>
     </v-toolbar>
+    </span>
 </template>
 
 <script>
@@ -33,6 +38,11 @@ export default {
   components: {
     'notifications-widget': NotificationsWidget,
     'git-info': GitInfoComponent
+  },
+  props:{
+    csrfToken: {
+      Type: String
+    }
   },
   data () {
     return {
