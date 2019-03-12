@@ -120,12 +120,14 @@ import JsonDialogComponent from '../ui/JsonDialogComponent'
 import CompareValuesComponent from '../ui/CompareValuesComponent'
 import ChangelogSettings from './ChangelogSettingsComponent'
 import UserAvatar from '../ui/UserAvatarComponent'
-import Timeline from 'timeline-vuejs'
+// import Timeline from 'timeline-vuejs/src/components/Timeline'
+// import TimelineItem from 'timeline-vuejs/src/components/TimelineItem'
 
 export default {
   name: 'ChangelogList',
   components: {
-    Timeline,
+    // 'v-timeline': Timeline,
+    // 'v-timeline-item': TimelineItem,
     'fullscreen-dialog': FullScreenDialog,
     'json-dialog-component': JsonDialogComponent,
     'compare-values': CompareValuesComponent,
