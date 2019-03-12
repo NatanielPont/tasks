@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
 
@@ -31,7 +32,8 @@
         <navigation v-model="drawer"></navigation>
         <navigation-right v-model="drawerRight" csrf-token="{{ csrf_token()}}"></navigation-right>
         <main-toolbar @toggle-right="drawerRight=!drawerRight"
-                      @toggle-left="drawer=!drawer">
+                      @toggle-left="drawer=!drawer"
+                      csrf-token="{{ csrf_token()}}">
         </main-toolbar>
 
         <v-content>
