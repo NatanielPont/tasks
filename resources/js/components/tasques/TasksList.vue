@@ -165,7 +165,6 @@ export default {
         return filters[this.filter](this.dataTasks)
       } else {
         return filters[this.filter](this.filteredTasksUsers)
-
       }
       // this.finalizeUser()
       // }
@@ -173,27 +172,16 @@ export default {
     filteredTasksUsers () {
       let tasks = []
       console.log('this. user ' + this.user)
-      if (this.user !== null) {
-        this.dataTasks.map((task) => {
-          // if (this.dataUser instanceof Object) {
-          if (task.user_id == this.user.id) {
-            tasks.push(task)
-          }
-          // }
-        })
-        return tasks
-      } else {
-        // this.finalizeUser()
-
-        this.dataTasks.map((task) => {
-          // if (this.dataUser instanceof Object) {
-          if (task) {
-            tasks.push(task)
-          }
-          // }
-        })
-        return tasks
-      }
+      // if (this.user !== null) {
+      this.dataTasks.map((task) => {
+        // if (this.dataUser instanceof Object) {
+        if (task.user_id == this.user.id) {
+          tasks.push(task)
+        }
+        // }
+      })
+      // }
+      return tasks
     }
   },
   watch: {

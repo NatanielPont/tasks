@@ -11,12 +11,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Changelog\ListChangelog;
 use App\Log;
 use App\User;
+use Illuminate\Http\Request;
+
 /**
  * Class ChangelogController.
  *
  * @package App\Http\Controllers\Tenant\Web
  */
-class ChangelogController extends Controller
+class ClockController extends Controller
 {
     /**
      * Index.
@@ -24,8 +26,9 @@ class ChangelogController extends Controller
      * @param ListChangelog $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(ListChangelog $request)
+    public function index(Request $request)
     {
-        dd('hola');
+//        dd('hola');
+        return view('clock.index');
     }
 }
