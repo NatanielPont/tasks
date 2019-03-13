@@ -26,12 +26,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::bind('hashuser', function($value, $route)
-{
-    $hashids = new Hashids\Hashids(config('scool.salt'));
-    $id = $hashids->decode($value)[0];
-    return User::findOrFail($id);
-});
+//Route::bind('hashuser', function($value, $route)
+//{
+//    $hashids = new Hashids\Hashids(config('task.salt'));
+//    $id = $hashids->decode($value)[0];
+//    return User::findOrFail($id);
+//});
 
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');
@@ -85,9 +85,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    // User photos
-    Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
-    Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
+//    // User photos
+//    Route::get('/user/{hashuser}/photo','\\' . UserPhotoController::class . '@show')->name('user.photo.show');
+//    Route::get('/user/{hashuser}/photo/download', '\\' . UserPhotoController::class . '@download')->name('user.photo.download');
 
 });
 Route::get('/', function () {
