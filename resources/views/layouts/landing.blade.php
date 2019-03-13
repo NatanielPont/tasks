@@ -31,6 +31,7 @@
 <body>
 
 <v-app id="app" v-cloak>
+
     <v-content>
         <v-container fluid fill-height>
             <v-layout
