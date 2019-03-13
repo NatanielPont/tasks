@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 importScripts("/service-worker/precache-manifest.b71607970869caf04d09fa9eb7cad4aa.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 =======
 importScripts("/service-worker/precache-manifest.930a3bc7a586bb1d3f1ca205adae8bcf.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+>>>>>>> master
+=======
+importScripts("/service-worker/precache-manifest.8470e1389634330da3ce50d706a84c18.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 >>>>>>> master
 
 workbox.skipWaiting()

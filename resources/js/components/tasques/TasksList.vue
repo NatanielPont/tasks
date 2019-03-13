@@ -172,15 +172,11 @@ export default {
     filteredTasksUsers () {
       let tasks = []
       console.log('this. user ' + this.user)
-      // if (this.user !== null) {
       this.dataTasks.map((task) => {
-        // if (this.dataUser instanceof Object) {
         if (task.user_id == this.user.id) {
           tasks.push(task)
         }
-        // }
       })
-      // }
       return tasks
     }
   },
