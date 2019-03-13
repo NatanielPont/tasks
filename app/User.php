@@ -103,6 +103,7 @@ class User extends Authenticatable
             'hash_id' => $this->hash_id
 
         ];
+        dd('hola');
     }
 
     public function mapSimple()
@@ -142,8 +143,8 @@ class User extends Authenticatable
      */
     protected function hashedKey()
     {
-//        $hashids = new \Hashids\Hashids(config('tasks.salt'));
-//        return $hashids->encode($this->getKey());
+        $hashids = new \Hashids\Hashids(config('tasks.salt'));
+        return $hashids->encode($this->getKey());
     }
     /**
      * Get the photo path prefix.
