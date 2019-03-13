@@ -1,6 +1,8 @@
 @extends('layouts.landing')
 @section('content')
     <v-app light>
+        <service-worker></service-worker>
+
         <v-toolbar class="grey darken-1">
             <v-toolbar-title class="white--text"> Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
