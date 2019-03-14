@@ -75,7 +75,6 @@ export default {
   },
   methods: {
     principalDefault () {
-      console.log('hola')
       window.localStorage.setItem('PRIMARY_COLOR_KEY', this.finalColorPrincipal)
       this.$vuetify.theme.primary = this.finalColorPrincipal
       window.localStorage.setItem('GREY_COLOR_KEY', this.finalColorGrey)
