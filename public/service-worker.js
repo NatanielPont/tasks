@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 importScripts("/service-worker/precache-manifest.1bd9c376a06bdd1b30b711695039d0ef.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+=======
+importScripts("/service-worker/precache-manifest.5d65a7d69da3b65a47921d9c683ec604.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+>>>>>>> master
 
 workbox.skipWaiting()
 workbox.clientsClaim()

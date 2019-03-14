@@ -86,6 +86,7 @@
                             </v-layout>
                         </v-card-actions>
                     </v-card>
+                    <tema></tema>
                 </v-flex>
             </v-layout>
         </v-card>
@@ -126,8 +127,13 @@
 </template>
 
 <script>
+import Tema from './Tema'
+
 export default {
   name: 'NavigationRight',
+  components: {
+    'tema': Tema
+  },
   data () {
     return {
       dataDrawer: this.drawerRight

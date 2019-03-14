@@ -50,8 +50,13 @@ import Clock from './components/clock/Clock'
 window.Vue = Vue
 window.Vuetify = Vuetify
 const PRIMARY_COLOR_KEY = 'primary_color_key'
-
+const GREY_COLOR_KEY = 'grey_color_key'
+const ACCENT_COLOR_KEY = 'accent_color_key'
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#2BB0ED' // '#2680C2'
+// const FinalprimaryColor = window.localStorage.getItem(FINAL_PRIMARY_COLOR_KEY) || '#2BB0ED' // '#2680C2'
+const greyColor = window.localStorage.getItem(GREY_COLOR_KEY) || '#627D98' // '#2680C2'
+const accentColor = window.localStorage.getItem(ACCENT_COLOR_KEY) || '#DA127D' // '#2680C2'
+// const FinalgreyColor = window.localStorage.getItem(FINAL_GREY_COLOR_KEY) || '#334E68' // '#2680C2'
 // window.Vue.use(VueTimeago, {
 //   locale: 'ca', // Default locale
 //   locales: {
@@ -94,7 +99,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#1F2933'
     },
     accent: {
-      base: '#DA127D',
+      base: accentColor,
       lighten1: '#E8368F',
       lighten2: '#F364A2',
       lighten3: '#FF8CBA',
@@ -131,7 +136,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#014D40'
     },
     grey: {
-      base: '#627D98',
+      base: greyColor,
       lighten1: '#829AB1',
       lighten2: '#9FB3C8',
       lighten3: '#BCCCDC',

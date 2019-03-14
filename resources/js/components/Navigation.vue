@@ -78,7 +78,7 @@ export default {
       dataDrawer: this.drawer,
       items: [
         { icon: 'home', text: 'Welcome', url: '/' },
-        { icon: 'home', text: 'Home', url: '/home' },
+        // { icon: 'home', text: 'Home', url: '/home' },
         { icon: 'notifications', text: 'Notificacions', url: '/notifications' },
         {
           icon: 'keyboard_arrow_up',
@@ -94,12 +94,21 @@ export default {
             { icon: 'build', text: 'Tags', url: '/tags' }
           ]
         },
-        { icon: 'help', text: 'Profile', url: '/profile' },
-        // { icon: 'help', text: 'Telescope', url: '/telescope' },
-        { icon: 'help', text: 'Changelog', url: '/changelog' },
-        { icon: 'help', text: 'Contact', url: '/contact' },
-        { icon: 'public', text: 'About', url: '/about' },
-        { icon: 'public', text: 'Clock', url: '/clock' }
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Gestió',
+          model: true,
+          children: [
+            { icon: 'help', text: 'Profile', url: '/profile' },
+            // { icon: 'help', text: 'Telescope', url: '/telescope' },
+            { icon: 'help', text: 'Changelog', url: '/changelog' },
+            { icon: 'help', text: 'Contact', url: '/contact' },
+            { icon: 'public', text: 'About', url: '/about' },
+            { icon: 'public', text: 'Clock', url: '/clock' }
+          ]
+        }
+
       ]
     }
   },
