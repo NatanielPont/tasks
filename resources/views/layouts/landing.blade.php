@@ -45,9 +45,9 @@
         </v-container>
     </v-content>
     <service-worker></service-worker>
-    <v-footer color="indigo" app>
-        <span class="white--text">Created by Nataniel Pont Castells, &copy; 2018 All rights reserved</span>
-    </v-footer>
+    {{--<v-footer color="indigo" app>--}}
+        {{--<span class="white--text">Created by Nataniel Pont Castells, &copy; 2018 All rights reserved</span>--}}
+    {{--</v-footer>--}}
 </v-app>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar dark color="primary">
+        <v-toolbar dark color="accent">
             <v-btn icon dark @click.native="$emit('close')">
                 <v-icon>close</v-icon>
             </v-btn>

@@ -35,7 +35,7 @@ import NavigationRight from './components/NavigationRigt'
 import DataIteratorTasks from './components/tasques/DataIteratorTasks'
 import DataTableTasks from './components/tasques/DataTableTasks'
 import DataIteratorTags from './components/tags/DataIteratorTags'
-// import DataIteratorChangelog from './components/changelog/DataIteratorChangelog'
+import DataIteratorChangelog from './components/changelog/DataIteratorChangelogMobile'
 import DataTableTags from './components/tags/DataTableTags'
 import TreeView from 'vue-json-tree-view'
 import VueTimeago from 'vue-timeago'
@@ -182,7 +182,7 @@ window.Vue.component('user-select-component', UserSelectComponent)
 window.Vue.component('data-iterator-tasks', DataIteratorTasks)
 window.Vue.component('data-table-tasks', DataTableTasks)
 window.Vue.component('data-iterator-tags', DataIteratorTags)
-// window.Vue.component('data-iterator-changelog', DataIteratorChangelog)
+window.Vue.component('data-iterator-changelog', DataIteratorChangelog)
 window.Vue.component('data-table-tags', DataTableTags)
 window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('clock', Clock)

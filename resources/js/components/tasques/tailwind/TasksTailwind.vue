@@ -67,9 +67,9 @@
 
                                     <span class="font-sans italic text-lg mr-3 border-b-4 border-blue-dark hover:bg-green-light">Filtres: [{{ filter }}]</span>
                      <ul class="list-reset inline-flex mt-5">
-                <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('all')">Totes</button></li>
-                <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('completed')">Completades</button></li>
-                <li><button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('active')">Pendents</button></li>
+                <li><button class="primary hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('all')">Totes</button></li>
+                <li><button class="primary hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('completed')">Completades</button></li>
+                <li><button class="primary hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" @click="setFilter('active')">Pendents</button></li>
             </ul>
 
                             </span>
