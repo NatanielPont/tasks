@@ -4,7 +4,7 @@
         <service-worker></service-worker>
 
         <v-toolbar class="grey darken-1">
-            <v-toolbar-title class="white--text"> Tasques </v-toolbar-title>
+            <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp" class="white--text"> Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn color="grey darken-4" class="white--text" href="/login">Login</v-btn>
             <v-btn color="grey darken-4" class="white--text" href="/register">Register</v-btn>
@@ -18,11 +18,12 @@
                             justify-center
                             class="white--text"
                     >
-                        <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
-                        <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
+                        <img src="img/icons/android-chrome-512x512.png" alt="application tasks" height="200">
+                        {{--<img src="img/vuetify.png" alt="Vuetify.js" height="200">--}}
+                        <h1 class="white--text mb-2 display-1 text-xs-center">Application tasks Nataniel</h1>
+                        <div class="subheading mb-3 text-xs-center">Powered by Ies Ebre</div>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary"
                                 dark
                                 large
                                 href="/tasques"
@@ -108,7 +109,7 @@
                         <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
                         <em>Kick-start your application today</em>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary"
                                 dark
                                 large
                                 href="/tasques"

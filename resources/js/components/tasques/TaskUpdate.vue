@@ -24,7 +24,7 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <v-btn v-if="$can('tasks.update',task)" icon color="success" flat title="Canviar la tasca"
+        <v-btn v-if="$can('tasks.update',task)" icon color="accent" flat title="Canviar la tasca"
                @click="dialog=true">
             <v-icon>edit</v-icon>
         </v-btn>
