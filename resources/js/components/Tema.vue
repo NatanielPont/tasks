@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card >
         <v-card-title class="grey darken-2"><h4>Tema</h4></v-card-title>
         <v-expansion-panel >
             <v-expansion-panel-content

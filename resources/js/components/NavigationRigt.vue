@@ -86,8 +86,8 @@
                             </v-layout>
                         </v-card-actions>
                     </v-card>
-                    <tema></tema>
                 </v-flex>
+                    <tema></tema>
             </v-layout>
         </v-card>
         <v-card >
