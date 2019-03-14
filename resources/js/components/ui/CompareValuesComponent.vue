@@ -9,7 +9,7 @@
                 v-text="name"
         ></v-btn>
         <v-card>
-            <v-toolbar dark color="primary">
+            <v-toolbar dark color="grey darken-2">
                 <v-btn icon dark @click.native="dialog = false">
                     <v-icon>close</v-icon>
                 </v-btn>

@@ -43,9 +43,9 @@
         <v-content>
             @yield('content')
         </v-content>
-        <v-footer color="indigo" app>
-            <span class="white--text">&copy; Nataniel Pont Tasks 2017</span>
-        </v-footer>
+        {{--<v-footer color="indigo" app>--}}
+            {{--<span class="white--text">&copy; Nataniel Pont Tasks 2017</span>--}}
+        {{--</v-footer>--}}
     </v-app>
 </div>
 </body>

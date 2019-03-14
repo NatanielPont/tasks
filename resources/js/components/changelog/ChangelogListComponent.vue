@@ -46,7 +46,10 @@
                           v-model="search"
                           class="mb-2"
                   ></v-text-field>
-                       <v-timeline dense clipped>
+                        <data-iterator-changelog class="hidden-lg-and-up" :logs="logs" :users="users" :search="search" :timeline="this.timeline" :realTime="realTime">
+
+                        </data-iterator-changelog>
+                       <v-timeline dense clipped class="hidden-md-and-down">
                     <!--<v-slide-x-transition group> // TODO NO VA!! -->
                         <v-data-iterator
                                 :search="search"
