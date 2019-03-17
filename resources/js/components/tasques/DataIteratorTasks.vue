@@ -17,7 +17,7 @@
                         md4
                         lg3
                 >
-                    <v-card>
+                    <v-card >
                     <v-card-title class="subheading font-weight-bold primary">{{ props.item.name }}</v-card-title>
 
                     <v-divider></v-divider>
