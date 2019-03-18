@@ -1,6 +1,5 @@
-<template xmlns:v-touch="http://www.w3.org/1999/XSL/Transform">
+<template >
     <v-container fluid grid-list-md>
-            <span v-touch:swipe.left="swipeHandler">Swipe Here</span>
         <v-data-table
                 :headers="headers"
                 :items="dataTasks"
@@ -16,7 +15,8 @@
         >
             <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
 
-            <template  slot="items" slot-scope="{item: task}" v-touch:swipe.left="swipeHandler" >
+            <template  slot="items" slot-scope="{item: task}" >
+
                 <tr  >
                     <td>{{ task.id }}</td>
                     <td>
@@ -122,9 +122,10 @@ export default {
   methods: {
     swipeHandler (direction) {
       console.log(direction)
+      console.log('hola' + direction)
     },
     remove (task) {
-      console.log('hola remove ')
+      // console.log('hola remove ')
       this.$emit('removed', task)
     },
     update (task) {

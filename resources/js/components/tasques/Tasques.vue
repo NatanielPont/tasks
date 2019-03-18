@@ -1,6 +1,6 @@
 <template>
     <span>
-        <tasks-list :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
+        <tasks-list @change="killEventBus" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
     </span>
 </template>
@@ -8,6 +8,8 @@
 <script>
 import TasksCreate from './TasksCreate'
 import TasksList from './TasksList'
+// import EventBus from './../../eventBus'
+
 export default {
   name: 'Tasques',
   components: {
@@ -44,6 +46,9 @@ export default {
 
   },
   methods: {
+    killEventBus () {
+      // EventBus.$off()
+    },
 
     add (task) {
       this.dataTasks.push(task)
