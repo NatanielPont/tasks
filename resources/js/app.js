@@ -33,6 +33,7 @@ import Navigation from './components/Navigation'
 import NavigationRight from './components/NavigationRigt'
 
 import DataIteratorTasks from './components/tasques/DataIteratorTasks'
+import SwipeComponent from './components/tasques/SwipeComponent'
 import DataTableTasks from './components/tasques/DataTableTasks'
 import DataIteratorTags from './components/tags/DataIteratorTags'
 import DataIteratorChangelog from './components/changelog/DataIteratorChangelogMobile'
@@ -42,6 +43,8 @@ import VueTimeago from 'vue-timeago'
 import '../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/clock/Clock'
+
+// import Vue2TouchEvents from 'vue2-touch-events'
 
 // import Timeline from 'timeline-vuejs'
 
@@ -186,6 +189,9 @@ window.Vue.component('data-iterator-changelog', DataIteratorChangelog)
 window.Vue.component('data-table-tags', DataTableTags)
 window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('clock', Clock)
+window.Vue.component('swipe-component', SwipeComponent)
+
+// Vue.use(Vue2TouchEvents)
 
 // Changelog
 // window.Vue.component('reset-password-form', ResetPasswordForm)

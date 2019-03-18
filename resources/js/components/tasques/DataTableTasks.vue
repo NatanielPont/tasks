@@ -1,4 +1,4 @@
-<template>
+<template >
     <v-container fluid grid-list-md>
         <v-data-table
                 :headers="headers"
@@ -14,8 +14,10 @@
 
         >
             <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-            <template  slot="items" slot-scope="{item: task}"  >
-                <tr >
+
+            <template  slot="items" slot-scope="{item: task}" >
+
+                <tr  >
                     <td>{{ task.id }}</td>
                     <td>
                         <span :title="task.description">{{ task.name}} </span>
@@ -118,7 +120,12 @@ export default {
 
   },
   methods: {
+    swipeHandler (direction) {
+      console.log(direction)
+      console.log('hola' + direction)
+    },
     remove (task) {
+      // console.log('hola remove ')
       this.$emit('removed', task)
     },
     update (task) {
