@@ -14,8 +14,10 @@
     >
         <v-subheader>Swipe Direction</v-subheader>
         {{ 'Direction: '+swipeDirection }}
-        <divider></divider>
-        {{ 'Left to remove task'+this.task.name }}
+        <v-spacer></v-spacer>
+        {{ '( <-- ) Left to remove task'}}
+        <v-spacer></v-spacer>
+        {{ 'Task:  '+this.task.name }}
     </v-layout>
 </template>
 
@@ -44,7 +46,8 @@ export default {
     swipe (direction) {
       if (direction == 'Left') {
         console.log('task from swipe component ' + this.task.name)
-        if (this.task.name) { EventBus.$emit('destroy', this.task)
+        if (this.task.name) {
+          EventBus.$emit('destroy', this.task)
           this.$emit('removed', this.task)
         }
       }

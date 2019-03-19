@@ -1,6 +1,7 @@
 <template>
     <span>
-        <tasks-list @change="killEventBus" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
+        <tasks-list v-show="dataTasks.length>0" @change="killEventBus" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></tasks-list>
+        <no-data-component v-show="dataTasks.length==0" @change="killEventBus" :users="users" :uri="uri" :tasks="dataTasks" :tags="tags"></no-data-component>
         <tasks-create :users="users" :uri="uri" @created="add" ></tasks-create>
     </span>
 </template>
