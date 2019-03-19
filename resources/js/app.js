@@ -34,6 +34,7 @@ import NavigationRight from './components/NavigationRigt'
 
 import DataIteratorTasks from './components/tasques/DataIteratorTasks'
 import SwipeComponent from './components/tasques/SwipeComponent'
+import NoDataComponent from './components/tasques/NoDataComponent'
 import DataTableTasks from './components/tasques/DataTableTasks'
 import DataIteratorTags from './components/tags/DataIteratorTags'
 import DataIteratorChangelog from './components/changelog/DataIteratorChangelogMobile'
@@ -190,6 +191,7 @@ window.Vue.component('data-table-tags', DataTableTags)
 window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('clock', Clock)
 window.Vue.component('swipe-component', SwipeComponent)
+window.Vue.component('no-data-component', NoDataComponent)
 
 // Vue.use(Vue2TouchEvents)
 
