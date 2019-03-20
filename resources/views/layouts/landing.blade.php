@@ -44,7 +44,10 @@
             </v-layout>
         </v-container>
     </v-content>
+    <share-fab></share-fab>
+
     <service-worker></service-worker>
+    {{--<service-worker></service-worker>--}}
     {{--<v-footer color="indigo" app>--}}
         {{--<span class="white--text">Created by Nataniel Pont Castells, &copy; 2018 All rights reserved</span>--}}
     {{--</v-footer>--}}
