@@ -82,7 +82,7 @@
             </v-card-title>
             <data-table-tasks :user="this.user" @refresh="refresh" @updated="updateTask" @removed="removeTask" class="hidden-md-and-down" :loading="loading" :tags="tags" :uri="uri" :users="users" :tasks="filteredTasks" :search="search" >
             </data-table-tasks>
-            <data-iterator-tasks  @call="call" :user="this.user"  :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
+            <data-iterator-tasks :user="this.user"  :search="search" :tags="tags" @refresh="refresh"  @updated="updateTask" @removed="removeTask" :users="users" :uri="uri" :tasks="filteredTasks" class="hidden-lg-and-up"></data-iterator-tasks>
         </v-card>
     </span>
 </template>
@@ -193,33 +193,6 @@ export default {
 
   },
   methods: {
-    call (object) {
-      // console.log('hola call ')
-      // let task0
-      // console.log('hola call action ' + action)
-      // console.log('hola call object ' + object.name)
-      // console.log('task from taskslist ' + object.name)
-
-      // console.log('hola call object ' + EventBus)
-      // this.dataTasks.map((task) => {
-      //   if (object.name==task.name) {
-      //     task0
-      //   }
-      //   console.log(task.name)
-      // })
-      // EventBus.$emit('destroy', object)
-    },
-    // call (object) {
-    //   console.log('hola call ')
-    //   // console.log('hola call action ' + action)
-    //   console.log('hola call object ' + object.name)
-    //   console.log('hola call object ' + EventBus)
-    //   // EventBus.$emit('destroy', object)
-    //   console.log('hola call object hola' + EventBus)
-    // },
-    // call (action, object) {
-    //   EventBus.$emit('touch-' + action, object)
-    // },
     finalizeUser () {
       this.user = null
       this.dataTasks.map((task) => {
@@ -233,6 +206,8 @@ export default {
 
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // TODO improve refresh()
+      this.refresh(false)
+
       console.log(task)
       // this.refresh()
     },

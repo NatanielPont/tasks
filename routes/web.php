@@ -15,6 +15,7 @@
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\MobileController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -71,7 +72,10 @@ Route::middleware(['auth'])->group(function () {
 
     //TAGS
     Route::get('/tags','\\'. TagsController::class . '@index');
+
+
     Route::get('/profile', '\\'. ProfileController::class . '@show');
+    Route::get('/mobile', '\\'. MobileController::class . '@index');
     Route::post('/photo', '\\'. PhotoController::class . '@store');
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 
