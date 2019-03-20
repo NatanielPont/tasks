@@ -37,9 +37,9 @@
           return
         }
         navigator.share({
-          title: 'Aplicación de tareas',
+          title: 'Aplicació de tasques',
           text: 'Aplicacion de gestion de tareas',
-          url: 'https://tasks.mirokshi.scool.cat'
+          url: 'https://tasks.natanielpont.scool.cat'
         })
           .then(response => {
             console.log('Successful share')
