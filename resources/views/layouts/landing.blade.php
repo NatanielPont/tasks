@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="manifest" href="/manifest.json">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user" content="{{ logged_user() }}">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
@@ -18,7 +20,7 @@
     <meta name="msapplication-TileColor" content="#5bbad5">
     <meta name="theme-color" content="#5bbad5">
     {{--<meta property="og:image" content="/img/shareImg.jpeg">--}}
-    <meta property="og:image" content="/img/shareImage.jpeg">
+    <meta property="og:image" href="/img/shareImage.jpeg">
     <meta property="og:image:width" content="439">
     <meta property="og:image:height" content="659">
     <meta property="og:title" content="Application Tasks">
