@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#2680C2"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <meta property="og:image" href="/img/shareImg.jpg">
+    <meta property="og:image" content="/img/shareImg.jpg">
     <meta property="og:image:width" content="439">
     <meta property="og:image:height" content="659">
     <meta property="og:title" content="Application Tasks">
