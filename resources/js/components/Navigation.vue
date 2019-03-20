@@ -90,8 +90,7 @@ export default {
             { icon: 'build', text: 'Tailwind', url: '/tasks_tailwind' },
             { icon: 'build', text: 'Vue', url: '/tasks_vue' },
 
-            { icon: 'build', text: 'Tasques', url: '/tasques' },
-            { icon: 'build', text: 'Tags', url: '/tags' }
+            { icon: 'build', text: 'Tasques', url: '/tasques' }
           ]
         },
         {
