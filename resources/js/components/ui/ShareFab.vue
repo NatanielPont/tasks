@@ -18,38 +18,38 @@
 </template>
 
 <script>
-  export default {
-    name: 'ShareFab',
-    data () {
-      return {
-        fab: false,
-        loading: false
-      }
+export default {
+  name: 'ShareFab',
+  data () {
+    return {
+      fab: false,
+      loading: false
+    }
+  },
+  methods: {
+    show () {
+      if (('share' in navigator)) return true
+      return false
     },
-    methods: {
-      show () {
-        if (('share' in navigator)) return true
-        return false
-      },
-      share () {
-        if (!('share' in navigator)) {
-          this.loading = true
-          return
-        }
-        navigator.share({
-          title: 'Aplicació de tasques',
-          text: 'Aplicacion de gestion de tareas',
-          url: 'https://tasks.natanielpont.scool.cat'
-        })
-          .then(response => {
-            console.log('Successful share')
-            console.log(response)
-            this.loading = false
-          }).catch(error => {
+    share () {
+      if (!('share' in navigator)) {
+        this.loading = true
+        return
+      }
+      navigator.share({
+        title: 'Aplicació de tasques',
+        text: 'Gestiona les teves tasques',
+        url: 'https://tasks.natanielpont.scool.cat'
+      })
+        .then(response => {
+          console.log('Successful share')
+          console.log(response)
+          this.loading = false
+        }).catch(error => {
           console.log('Error sharing:', error)
           this.loading = false
         })
-      }
     }
   }
+}
 </script>
