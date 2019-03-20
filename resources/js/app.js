@@ -45,6 +45,12 @@ import '../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/clock/Clock'
 import Mobile from './components/mobile/Mobile'
+import Memory from './components/mobile/Memory'
+import Battery from './components/mobile/Battery'
+import NetworkAndSpeed from './components/mobile/NetworkAndSpeed'
+import OnlineState from './components/mobile/OnlineState'
+import Geolocation from './components/mobile/Geolocation'
+import DevicePosition from './components/mobile/DevicePosition'
 
 // import Vue2TouchEvents from 'vue2-touch-events'
 
@@ -194,6 +200,12 @@ window.Vue.component('clock', Clock)
 window.Vue.component('swipe-component', SwipeComponent)
 window.Vue.component('no-data-component', NoDataComponent)
 window.Vue.component('mobile', Mobile)
+window.Vue.component('memory', Memory)
+window.Vue.component('battery', Battery)
+window.Vue.component('network-speed', NetworkAndSpeed)
+window.Vue.component('online-state', OnlineState)
+window.Vue.component('geolocation', Geolocation)
+window.Vue.component('device-position', DevicePosition)
 
 // Vue.use(Vue2TouchEvents)
 
