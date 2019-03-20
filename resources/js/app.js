@@ -44,6 +44,7 @@ import VueTimeago from 'vue-timeago'
 import '../../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
 import MainToolbar from './components/MainToolbar'
 import Clock from './components/clock/Clock'
+import Mobile from './components/mobile/Mobile'
 
 // import Vue2TouchEvents from 'vue2-touch-events'
 
@@ -192,6 +193,7 @@ window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('clock', Clock)
 window.Vue.component('swipe-component', SwipeComponent)
 window.Vue.component('no-data-component', NoDataComponent)
+window.Vue.component('mobile', Mobile)
 
 // Vue.use(Vue2TouchEvents)
 

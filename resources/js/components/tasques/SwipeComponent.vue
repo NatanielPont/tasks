@@ -35,20 +35,32 @@ export default {
     task: {
       type: Object,
       required: true
+    },
+    tasks: {
+      type: Array,
+      required: true
+
     }
   },
   watch: {
     task (task) {
       this.task = task
+    },
+    tasks (tasks) {
+      this.tasks = tasks
     }
   },
   methods: {
     swipe (direction) {
+      // let once = false
       if (direction == 'Left') {
         console.log('task from swipe component ' + this.task.name)
         if (this.task.name) {
-          EventBus.$emit('destroy', this.task)
-          this.$emit('removed', this.task)
+          // if (this.tasks.length>0) {
+            EventBus.$emit('destroy', this.task)
+            // once = true
+          // this.$emit('removed', this.task)
+          // }
         }
       }
       this.swipeDirection = direction

@@ -26,7 +26,7 @@
 
                             >
                     <v-card-title class="subheading font-weight-bold primary">{{ task.name }}</v-card-title>
-                        <swipe-component :task="task" >
+                        <swipe-component :tasks="tasks" :task="task" >
 
                         </swipe-component>
                     <v-divider></v-divider>
@@ -76,7 +76,7 @@
                     <v-list-tile-content>Acccions:</v-list-tile-content>
                     <task-show :users="users" :task="task"></task-show>
                     <task-update :users="users" :task="task" @updated="update" :uri="uri"></task-update>
-                    <task-destroy  @refresh="refresh" @removedWithTouchLeft="refreshONTouch"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
+                    <task-destroy :tasks="tasks" @refresh="refresh" @removedWithTouchLeft="refreshONTouch"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
 
                     </v-list-tile>
 
@@ -97,7 +97,7 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 // import EventBus from '../../eventBus'
-// import EventBus from './../../eventBus'
+import EventBus from './../../eventBus'
 
 export default {
   name: 'DataIteratorTasks',
@@ -147,6 +147,10 @@ export default {
   watch: {
     tasks (tasks) {
       this.dataTasks = tasks
+      if (this.dataTasks.length === 0) {
+        // EventBus.$off('destroy')
+        console.log('ultima tasca')
+      }
       console.log('watch ' + this.dataTasks.map((task) => {
         console.log(task.name)
       }))
@@ -158,11 +162,11 @@ export default {
       this.$emit('refresh')
     },
     call2 (tasks) {
-      this.tasks=tasks
+      this.tasks = tasks
     },
     refreshONTouch () {
       // this.$off('call')
-      // EventBus.$off('destroy')
+      if (this.dataTasks == 0) { EventBus.$off('destroy') }
 
       // self.location.reload()
     },

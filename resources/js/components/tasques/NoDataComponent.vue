@@ -9,7 +9,7 @@
             <v-flex xs12 md4 offset-md4 class="mt-3">
                 <h1 class="display-1 grey--text text--darken-2">No hi ha tasca a mostrar.</h1>
                 <h2 class="display-1 red--text text--darken-2">Creant alguna!</h2>
-                <tasks-create  :users="users" :uri="uri" :tags="tags" @created="add" ></tasks-create>
+                <tasks-create  :users="dataUsers" :uri="dataUri" :tags="dataTags" @created="add" ></tasks-create>
             </v-flex>
         </v-layout>
     </v-container>
@@ -21,11 +21,34 @@ export default {
   name: 'NoDataComponent',
   data () {
     return {
-      value: ''
+      value: '',
+      dataUsers: this.users,
+      dataTags: this.tags,
+      dataUri: this.uri
     }
   },
   Components: {
     'tasks-create': TasksCreate
+  },
+  props: {
+    tags: {
+      type: Array,
+      required: true
+    },
+    users: {
+      type: Array,
+      required: true
+    },
+    uri: {
+      type: String,
+      required: true
+    }
+
+  },
+  methods: {
+    add (task) {
+      this.$emit('add', task)
+    }
   }
 }
 </script>

@@ -84,11 +84,11 @@ export default {
           icon: 'keyboard_arrow_up',
           'icon-alt': 'keyboard_arrow_down',
           text: 'Tasques',
-          model: true,
+          model: false,
           children: [
-            { icon: 'build', text: 'Tasques amb PHP', url: '/tasks' },
-            { icon: 'build', text: 'Tasques tailwind', url: '/tasks_tailwind' },
-            { icon: 'build', text: 'Tasks Vue', url: '/tasks_vue' },
+            { icon: 'build', text: 'PHP', url: '/tasks' },
+            { icon: 'build', text: 'Tailwind', url: '/tasks_tailwind' },
+            { icon: 'build', text: 'Vue', url: '/tasks_vue' },
 
             { icon: 'build', text: 'Tasques', url: '/tasques' },
             { icon: 'build', text: 'Tags', url: '/tags' }
@@ -97,15 +97,41 @@ export default {
         {
           icon: 'keyboard_arrow_up',
           'icon-alt': 'keyboard_arrow_down',
-          text: 'Gestió',
-          model: true,
+          text: 'Tags',
+          model: false,
           children: [
-            { icon: 'help', text: 'Profile', url: '/profile' },
+            { icon: 'build', text: 'Tags', url: '/tags' }
+          ]
+        },
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Gestió',
+          model: false,
+          children: [
             // { icon: 'help', text: 'Telescope', url: '/telescope' },
             { icon: 'help', text: 'Changelog', url: '/changelog' },
             { icon: 'help', text: 'Contact', url: '/contact' },
-            { icon: 'public', text: 'About', url: '/about' },
             { icon: 'public', text: 'Clock', url: '/clock' }
+          ]
+        },
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Perfil',
+          model: false,
+          children: [
+            { icon: 'help', text: 'Profile', url: '/profile' },
+            { icon: 'public', text: 'About', url: '/about' }
+          ]
+        },
+        {
+          icon: 'keyboard_arrow_up',
+          'icon-alt': 'keyboard_arrow_down',
+          text: 'Mobile',
+          model: false,
+          children: [
+            { icon: 'build', text: 'Mobile', url: '/mobile' }
           ]
         }
 
