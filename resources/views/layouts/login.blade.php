@@ -7,12 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:image" href="/img/shareImg.jpg">
+    <meta property="og:image:width" content="439">
+    <meta property="og:image:height" content="659">
+    <meta property="og:title" content="Application Tasks">
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Description tasks">
+    <meta property="og:url" content="https://tasks.natanielpont.scool.cat/">
 
     <link rel="manifest" href="/manifest.json">
+    @stack('beforeScripts')
+
 
     <script defer src="{{ mix('/js/manifest.js') }}"></script>
     <script defer src="{{ mix('/js/vendor.js') }}"></script>
     <script defer src="{{ mix('/js/app.js') }}"></script>
+    @stack('afterScripts')
+
 
     <title>@yield('title','Put your title here')</title>
     <style>
