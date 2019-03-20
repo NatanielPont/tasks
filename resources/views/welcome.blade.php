@@ -1,9 +1,7 @@
 @extends('layouts.landing')
 @section('content')
     <v-app light>
-        <share-fab></share-fab>
 
-        <service-worker></service-worker>
 
         <v-toolbar class="grey darken-1">
             <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp" class="white--text"> Tasques </v-toolbar-title>
