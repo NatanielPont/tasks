@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta property="og:image" href="/img/shareImg.jpg">
+    <meta property="og:image" content="/img/shareImg.jpg">
     <meta property="og:image:width" content="439">
     <meta property="og:image:height" content="659">
     <meta property="og:title" content="Application Tasks">
