@@ -17,7 +17,7 @@
     <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#5bbad5">
     <meta name="theme-color" content="#5bbad5">
-    <meta property="og:image" content="/img/shareImg.jpeg">
+    <meta property="og:image" content="img/shareImg.jpeg">
     <meta property="og:image:width" content="439">
     <meta property="og:image:height" content="659">
     <meta property="og:title" content="Application Tasks">
