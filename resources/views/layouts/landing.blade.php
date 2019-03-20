@@ -19,8 +19,8 @@
     <meta name="theme-color" content="#5bbad5">
     {{--<meta property="og:image" content="/img/shareImg.jpeg">--}}
     <meta property="og:image" content="/img/shareImage.jpeg">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="1100">
+    <meta property="og:image:width" content="439">
+    <meta property="og:image:height" content="659">
     <meta property="og:title" content="Application Tasks">
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="Description tasks">
