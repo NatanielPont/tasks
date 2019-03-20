@@ -51,6 +51,7 @@ import NetworkAndSpeed from './components/mobile/NetworkAndSpeed'
 import OnlineState from './components/mobile/OnlineState'
 import Geolocation from './components/mobile/Geolocation'
 import DevicePosition from './components/mobile/DevicePosition'
+import ShareFab from './components/ui/ShareFab'
 
 // import Vue2TouchEvents from 'vue2-touch-events'
 
@@ -206,6 +207,7 @@ window.Vue.component('network-speed', NetworkAndSpeed)
 window.Vue.component('online-state', OnlineState)
 window.Vue.component('geolocation', Geolocation)
 window.Vue.component('device-position', DevicePosition)
+window.Vue.component('share-fab', ShareFab)
 
 // Vue.use(Vue2TouchEvents)
 

@@ -1,6 +1,8 @@
 @extends('layouts.landing')
 @section('content')
     <v-app light>
+        <share-fab></share-fab>
+
         <service-worker></service-worker>
 
         <v-toolbar class="grey darken-1">
