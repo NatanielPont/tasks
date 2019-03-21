@@ -76,7 +76,7 @@
                     <v-list-tile-content>Acccions:</v-list-tile-content>
                     <task-show :users="users" :task="task"></task-show>
                     <task-update :users="users" :task="task" @updated="update" :uri="uri"></task-update>
-                    <task-destroy :tasks="tasks" @refresh="refresh" @removedWithTouchLeft="refreshONTouch"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
+                    <task-destroy :tasks="tasks" @refresh="refresh" @removedWithTouchLeft="refresh"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
 
                     </v-list-tile>
 
@@ -166,7 +166,7 @@ export default {
     },
     refreshONTouch () {
       // this.$off('call')
-      if (this.dataTasks == 0) { EventBus.$off('destroy') }
+      // if (this.dataTasks == 0) { EventBus.$off('destroy') }
 
       // self.location.reload()
     },

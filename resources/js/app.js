@@ -10,6 +10,8 @@ import Tags from './components/tags/Tags.vue'
 import TasksTailwind from './components/tasques/tailwind/TasksTailwind.vue'
 import Tasques from './components/tasques/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
+import Chat from './components/chat/Chat'
+
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
 import RegisterForm from './components/RegisterForm.vue'
@@ -208,6 +210,7 @@ window.Vue.component('online-state', OnlineState)
 window.Vue.component('geolocation', Geolocation)
 window.Vue.component('device-position', DevicePosition)
 window.Vue.component('share-fab', ShareFab)
+window.Vue.component('chat', Chat)
 
 // Vue.use(Vue2TouchEvents)
 

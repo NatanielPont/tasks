@@ -12,7 +12,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TasquesControllerTest extends TestCase
+class MobileControllerTestControllerTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
     /**

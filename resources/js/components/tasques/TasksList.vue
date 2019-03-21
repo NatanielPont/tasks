@@ -206,7 +206,7 @@ export default {
 
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       // TODO improve refresh()
-      this.refresh(false)
+      // this.refresh(false)
 
       console.log(task)
       // this.refresh()

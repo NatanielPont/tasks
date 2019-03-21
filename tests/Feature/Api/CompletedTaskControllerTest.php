@@ -1,8 +1,12 @@
 <?php
 namespace Tests\Feature\Api;
 
+use App\Events\TaskCompletedEvent;
+use App\Events\TaskUncompletedEvent;
+use App\Events\TaskUpdateEvent;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
@@ -25,10 +29,15 @@ class CompletedTaskControllerTest extends TestCase {
             'name' => 'comprar pa',
             'completed' => false
         ]);
+        Event::fake();
+
         $response = $this->json('POST','/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         $task = $task->fresh();
         $this->assertEquals($task->completed, true);
+        Event::assertDispatched(TaskCompletedEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test
@@ -50,11 +59,16 @@ class CompletedTaskControllerTest extends TestCase {
             'name' => 'comprar pa',
             'completed' => true
         ]);
+        Event::fake();
+
         //2
         $response = $this->json('DELETE','/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         $task = $task->fresh();
         $this->assertEquals((boolean) $task->completed, false);
+        Event::assertDispatched(TaskUncompletedEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test

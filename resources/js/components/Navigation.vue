@@ -105,11 +105,12 @@ export default {
         {
           icon: 'keyboard_arrow_up',
           'icon-alt': 'keyboard_arrow_down',
-          text: 'Gestió',
+          text: 'Extres',
           model: false,
           children: [
             // { icon: 'help', text: 'Telescope', url: '/telescope' },
             { icon: 'help', text: 'Changelog', url: '/changelog' },
+            { icon: 'help', text: 'Chat', url: '/chat' },
             { icon: 'help', text: 'Contact', url: '/contact' },
             { icon: 'public', text: 'Clock', url: '/clock' }
           ]
