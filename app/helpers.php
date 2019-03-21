@@ -594,5 +594,145 @@ if (! function_exists('map_simple_collection')) {
     }
 }
 
+if (! function_exists('initialize_sample_chat_channels')) {
+    function initialize_sample_chat_channels($user = null)	{
+        create_tenant_admin_user();
+        if(!$user) $user = get_admin_user();
+        Channel::create(add_random_timestamps([
+            'name' => 'Pepe Pardo Jeans',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Bla bla bla'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Pepa Parda Jeans',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Carles Puigdemont',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Sant Esteve de les Roures',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 1',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 2',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 3',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 4',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 5',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 6',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 7',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 8',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 9',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 10',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 11',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 12',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 13',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 14',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 15',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 16',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 17',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 18',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 19',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+        Channel::create(add_random_timestamps([
+            'name' => 'Channel 20',
+            'image' => 'http://i.pravatar.cc/300',
+            'last_message' => 'Hey que tal...'
+        ]))->addUser($user);
+    }
+}
+if (! function_exists('create_tenant_admin_user')) {
+    function create_tenant_admin_user()
+    {
+        if (! App\User::where('email')->first()) {
+            User::forceCreate([
+                'name' => config('tenant'),
+                'email' => config('tenant.email'),
+                'password' => is_sha1($password = config('tasks.admin_username_password_on_tenant')) ? $password : sha1($password),
+                'admin' => true
+            ]);
+        }
+    }
+}
+
 
 

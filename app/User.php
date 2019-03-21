@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+//use NotificationChannels\WebPush\HasPushSubscriptions;
+
 
 class User extends Authenticatable
 {

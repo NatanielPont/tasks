@@ -1,8 +1,11 @@
 <?php
 namespace App\Listeners;
+use App\Events\TaskCompletedEvent;
+use App\Mail\TaskCompleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-class AddRolesToRegisterUser
+use Illuminate\Support\Facades\Mail;
+class SendMailTaskCompleted implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -21,7 +24,9 @@ class AddRolesToRegisterUser
      */
     public function handle($event)
     {
-        $event->user->assignRole('Tasks');
-        $event->user->assignRole('Tags');
+        $subject = $event->task->subject();
+        Mail::to($event->task->user)
+            ->cc(config('tasks.manager_email'))
+            ->send((new TaskCompletedEvent($event->task))->subject($subject));
     }
 }

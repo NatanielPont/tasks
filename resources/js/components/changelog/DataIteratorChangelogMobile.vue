@@ -109,7 +109,6 @@ export default {
       settingsDialog: false,
       refreshing: false,
       dataLogs: this.logs,
-      realTime: true,
       rowsPerPageItems: [ 10, 25, 50, 100, 500, 1000, { 'text': 'Tots', 'value': -1 } ],
       pagination: {
         rowsPerPage: 10
@@ -117,6 +116,10 @@ export default {
     }
   },
   props: {
+    realTime: {
+      type: Boolean,
+      required: true
+    },
 
     search: {
       type: String,
@@ -159,6 +162,9 @@ export default {
   watch: {
     tasks (tasks) {
       this.dataTasks = tasks
+    },
+    realTime (newValue) {
+      newValue ? this.activeRealTime() : this.disableRealTime()
     }
 
   },
@@ -179,7 +185,20 @@ export default {
     },
     refresh () {
       this.$emit('refresh', true)
+    },
+    activeRealTime () {
+      // TODO NOTIFICATIONs
+      // window.Echo.private(this.channel)
+      //   .listen('LogCreated', (e) => {
+      //     this.dataLogs.push(e.log)
+      //   })
+    },
+    disableRealTime () {
+      window.Echo.leave(this.channel)
     }
+  },
+  created () {
+    if (this.realTime) this.activeRealTime()
   }
 }
 </script>

@@ -34,23 +34,29 @@ class TasksController extends Controller
         $task->completed = $request->completed ? true : false ;
         $task->user_id = $request->user_id;
         $task->save();
+        //  HOOK -> EVENT
+        event(new \App\Events\TaskCreateEvent($task));
         return $task->map();
     }
     public function update(TasksUpdate $request, Task $task)
     {
 //        dd('hola');
-
+        $taskOld=$task;
         $task->name = $request->name;
         $task->completed = $request->completed;
         $task->description = $request->description;
         $task->user_id = $request->user;
 
         $task->save();
+        //  HOOK -> EVENT
+        event(new \App\Events\TaskUpdateEvent($taskOld,$task));
         return $task->map();
     }
     public function destroy(TasksDestroy $request, Task $task)
     {
         $task->delete();
+        event(new \App\Events\TaskDestroyEvent($task));
+        //  HOOK -> EVENT
         return $task;
     }
 

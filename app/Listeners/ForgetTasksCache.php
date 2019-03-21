@@ -1,8 +1,10 @@
 <?php
 namespace App\Listeners;
+use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-class AddRolesToRegisterUser
+use Illuminate\Support\Facades\Cache;
+class ForgetTasksCache
 {
     /**
      * Create the event listener.
@@ -21,7 +23,6 @@ class AddRolesToRegisterUser
      */
     public function handle($event)
     {
-        $event->user->assignRole('Tasks');
-        $event->user->assignRole('Tags');
+        Cache::forget(Task::TASKS_CACHE_KEY);
     }
 }

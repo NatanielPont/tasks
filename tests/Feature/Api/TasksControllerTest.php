@@ -9,10 +9,12 @@
 namespace Tests\Feature\Api;
 
 
+use App\Events\TaskDestroyEvent;
 use App\Tag;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
@@ -74,11 +76,16 @@ class TasksControllerTest extends TestCase
     {
         $this->loginAsTaskManager('api');
         $task = factory(Task::class)->create();
+        Event::fake();
+
         $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $this->assertEquals($result->name, $task->name);
         $this->assertNull(Task::find($task->id));
+        Event::assertDispatched(TaskDestroyEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test
@@ -87,11 +94,16 @@ class TasksControllerTest extends TestCase
     {
         $this->loginAsSuperAdmin('api');
         $task = factory(Task::class)->create();
+        Event::fake();
+
         $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
         $this->assertEquals($result->name, $task->name);
         $this->assertNull(Task::find($task->id));
+        Event::assertDispatched(TaskDestroyEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test
@@ -123,6 +135,8 @@ class TasksControllerTest extends TestCase
     public function superadmin_can_create_task()
     {
         $this->loginAsSuperAdmin('api');
+        Event::fake();
+
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa',
             'description' => 'Bla bla bla',
