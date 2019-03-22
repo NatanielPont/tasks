@@ -90,15 +90,7 @@ export default {
             { icon: 'build', text: 'Tailwind', url: '/tasks_tailwind' },
             { icon: 'build', text: 'Vue', url: '/tasks_vue' },
 
-            { icon: 'build', text: 'Tasques', url: '/tasques' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Tags',
-          model: false,
-          children: [
+            { icon: 'build', text: 'Tasques', url: '/tasques' },
             { icon: 'build', text: 'Tags', url: '/tags' }
           ]
         },
@@ -112,7 +104,8 @@ export default {
             { icon: 'help', text: 'Changelog', url: '/changelog' },
             { icon: 'help', text: 'Chat', url: '/chat' },
             { icon: 'help', text: 'Contact', url: '/contact' },
-            { icon: 'public', text: 'Clock', url: '/clock' }
+            { icon: 'public', text: 'Clock', url: '/clock' },
+            { icon: 'build', text: 'Mobile', url: '/mobile' }
           ]
         },
         {
@@ -123,15 +116,6 @@ export default {
           children: [
             { icon: 'help', text: 'Profile', url: '/profile' },
             { icon: 'public', text: 'About', url: '/about' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Mobile',
-          model: false,
-          children: [
-            { icon: 'build', text: 'Mobile', url: '/mobile' }
           ]
         }
 
