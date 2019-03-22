@@ -102,10 +102,9 @@ export default {
           children: [
             // { icon: 'help', text: 'Telescope', url: '/telescope' },
             { icon: 'help', text: 'Changelog', url: '/changelog' },
-            { icon: 'help', text: 'Chat', url: '/chat' },
-            { icon: 'help', text: 'Contact', url: '/contact' },
+            { icon: 'build', text: 'Mobile', url: '/mobile' },
             { icon: 'public', text: 'Clock', url: '/clock' },
-            { icon: 'build', text: 'Mobile', url: '/mobile' }
+            { icon: 'help', text: 'Chat', url: '/chat' }
           ]
         },
         {
@@ -115,6 +114,7 @@ export default {
           model: false,
           children: [
             { icon: 'help', text: 'Profile', url: '/profile' },
+            { icon: 'help', text: 'Contact', url: '/contact' },
             { icon: 'public', text: 'About', url: '/about' }
           ]
         }
