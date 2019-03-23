@@ -8,7 +8,7 @@
 
 <script>
 import EventBus from './../../eventBus'
-var taskEvent
+// var taskEvent
 export default {
   'name': 'TaskDestroy',
   data () {
@@ -80,8 +80,6 @@ export default {
           })
         }
         window.axios.delete(this.uri + '/' + task.id).then(() => {
-          taskEvent = task
-
           this.removing = false
           this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
           // if (this.touchFunction) {
@@ -107,26 +105,33 @@ export default {
     },
     eventBusOn () {
       var self = this
+      var count = 0
       if (this.touchFunction) {
         EventBus.$on('destroy', (task) => {
+          count += 1
+          console.log('---------')
+          console.log('--- count ' + count)
           console.log('---------')
           // console.log('eventbus ')
           // console.log('eventbus event name ' + task.name)
           console.log('eventbus task name from task destroy' + this.task.name)
+          console.log('eventbus task name from task destroy' + this.task.id)
           console.log('---------')
-          console.log('tasca captured from eventbus1 ' + task.name)
+          // console.log('tasca captured from eventbus1 ' + task.name)
+          // console.log('tasca captured from eventbus1 ' + task.id)
           // this.$emit('removed', task)
 
-          if (this.tasks) {
-            if (task.id === this.task.id && this.touchFunction) {
-              // taskEvent = task
-              console.log('tasca captured from eventbus2 ' + task.name)
-              console.log('hola')
-              self.destroy(task)
-              console.log('hola2')
+          // if (this.tasks) {
+          if (task.id === this.task.id && this.touchFunction) {
+            // taskEvent = task
+            console.log('tasca captured from eventbus2 ' + task.name)
+            console.log('tasca captured from eventbus2 ' + task.id)
+            console.log('hola')
+            self.destroy(task)
+            console.log('hola2')
             // this.$emit('removedWithTouchLeft')
-            }
           }
+          // }
           // EventBus.$off()
         })
       }
@@ -138,11 +143,16 @@ export default {
   },
   destroyed () {
     // taskEvent = null
-    if (this.touchFunction) {
-      // EventBus.$off('destroy')
-
-      // this.$emit('removed', this.taskEvent)
-      // this.eventBusOn()
+    // if (this.touchFunction) {
+    //   EventBus.$off('destroy')
+    //
+    //   // this.$emit('removed', this.taskEvent)
+    //   this.eventBusOn()
+    // }
+  },
+  beforeDestroy () {
+    if (this.tasks != null) {
+      if (this.tasks.length == 0) { EventBus.$off('destroy') }
     }
   }
   // }

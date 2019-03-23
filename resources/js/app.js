@@ -11,6 +11,8 @@ import TasksTailwind from './components/tasques/tailwind/TasksTailwind.vue'
 import Tasques from './components/tasques/Tasques.vue'
 import LoginForm from './components/LoginForm.vue'
 import Chat from './components/chat/Chat'
+import Newsletter from './components/newsletters/Newsletters'
+import NewsletterSubscriptionCard from './components/newsletters/NewslettersSubscriptionCard'
 
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
@@ -211,6 +213,8 @@ window.Vue.component('geolocation', Geolocation)
 window.Vue.component('device-position', DevicePosition)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('chat', Chat)
+window.Vue.component('newsletters', Newsletter)
+window.Vue.component('newsletters-subscription-card', NewsletterSubscriptionCard)
 
 // Vue.use(Vue2TouchEvents)
 
