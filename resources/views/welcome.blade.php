@@ -104,6 +104,14 @@
             </section>
 
             <section>
+                <v-parallax src="img/background.webp" height="380">
+                    <v-layout column align-center justify-center>
+                        <newsletters-subscription-card></newsletters-subscription-card>
+                    </v-layout>
+                </v-parallax>
+            </section>
+
+            <section>
                 <v-parallax src="img/section.jpg" height="380">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>

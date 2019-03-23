@@ -56,11 +56,11 @@ export default {
       if (direction == 'Left') {
         console.log('task from swipe component ' + this.task.name)
         if (this.task.name) {
-          // if (this.tasks.length>0) {
+          if (this.tasks.length > 0) {
             EventBus.$emit('destroy', this.task)
-            // once = true
+          // once = true
           // this.$emit('removed', this.task)
-          // }
+          }
         }
       }
       this.swipeDirection = direction

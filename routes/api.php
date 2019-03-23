@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\LoggedUserTasksController;
+use App\Http\Controllers\Api\NewslettersController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
@@ -97,5 +98,7 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
 
 });
+Route::post('/v1/newsletter', '\\' . NewslettersController::class . '@store');
+
 
 

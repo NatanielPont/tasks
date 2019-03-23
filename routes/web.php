@@ -17,6 +17,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\MobileController;
+use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -91,6 +92,9 @@ Route::middleware(['auth'])->group(function () {
     //chat
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
+
+    //Newsletters
+    Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
 
 
 

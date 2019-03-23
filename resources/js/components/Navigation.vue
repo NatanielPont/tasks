@@ -104,7 +104,8 @@ export default {
             { icon: 'help', text: 'Changelog', url: '/changelog' },
             { icon: 'build', text: 'Mobile', url: '/mobile' },
             { icon: 'public', text: 'Clock', url: '/clock' },
-            { icon: 'help', text: 'Chat', url: '/chat' }
+            { icon: 'help', text: 'Chat', url: '/chat' },
+            { icon: 'help', text: 'Newsletters', url: '/newsletters' }
           ]
         },
         {
