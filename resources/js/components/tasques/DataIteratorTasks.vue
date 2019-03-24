@@ -74,6 +74,7 @@
                     </v-list-tile>
                     <v-list-tile>
                     <v-list-tile-content>Acccions:</v-list-tile-content>
+                        <share-task></share-task>
                     <task-show :users="users" :task="task"></task-show>
                     <task-update :users="users" :task="task" @updated="update" :uri="uri"></task-update>
                     <task-destroy :tasks="tasks" @refresh="refresh" @removedWithTouchLeft="refresh"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
@@ -97,7 +98,7 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 // import EventBus from '../../eventBus'
-import EventBus from './../../eventBus'
+import ShareTask from '../ui/ShareTask'
 
 export default {
   name: 'DataIteratorTasks',
@@ -141,7 +142,8 @@ export default {
     'task-destroy': TaskDestroy,
     'task-update': TaskUpdate,
     'task-show': TaskShow,
-    'tasks-tags': TasksTags
+    'tasks-tags': TasksTags,
+    'share-task': ShareTask
 
   },
   watch: {

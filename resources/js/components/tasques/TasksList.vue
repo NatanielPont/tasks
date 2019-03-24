@@ -91,7 +91,6 @@
 import DataIteratorTasks from './DataIteratorTasks'
 import DataTableTasks from './DataTableTasks'
 // import EventBus from './../../eventBus'
-
 var filters = {
   Totes: function (tasks) {
     return tasks
