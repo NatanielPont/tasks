@@ -35,7 +35,7 @@ export default {
   methods: {
     share () {
       navigator.share({
-        title: 'Tarea ' + this.task.name,
+        title: 'Tasca ' + this.task.name,
         text: this.task.description,
         url: 'https://tasks.natanielpont.scool.cat/tasques/' + this.task.id
       })
