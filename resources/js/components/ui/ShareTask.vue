@@ -37,7 +37,7 @@ export default {
       navigator.share({
         title: 'Tasca ' + this.task.name,
         text: this.task.description,
-        url: 'https://tasks.natanielpont.scool.cat/tasques/' + this.task.id
+        url: 'https://tasks.natanielpont.scool.cat/tasques'
       })
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing:', error))
