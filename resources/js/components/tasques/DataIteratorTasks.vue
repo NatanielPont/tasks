@@ -74,7 +74,7 @@
                     </v-list-tile>
                     <v-list-tile>
                     <v-list-tile-content>Acccions:</v-list-tile-content>
-                        <share-task></share-task>
+                        <share-task :task="task"></share-task>
                     <task-show :users="users" :task="task"></task-show>
                     <task-update :users="users" :task="task" @updated="update" :uri="uri"></task-update>
                     <task-destroy :tasks="tasks" @refresh="refresh" @removedWithTouchLeft="refresh"  :touchFunction="true" :task="task" @removed="remove" :uri="uri"></task-destroy>
