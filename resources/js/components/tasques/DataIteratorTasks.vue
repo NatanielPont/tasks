@@ -98,7 +98,7 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 // import EventBus from '../../eventBus'
-import ShareTask from '../ui/ShareTask'
+import ShareTask from './ui/ShareTask'
 
 export default {
   name: 'DataIteratorTasks',

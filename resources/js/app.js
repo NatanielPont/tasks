@@ -13,7 +13,8 @@ import LoginForm from './components/LoginForm.vue'
 import Chat from './components/chat/Chat'
 import Newsletter from './components/newsletters/Newsletters'
 import NewsletterSubscriptionCard from './components/newsletters/NewslettersSubscriptionCard'
-import ShareTask from './components/ui/ShareTask'
+import ShareTask from './components/tasques/ui/ShareTask'
+import ShowTask from './components/tasques/ui/ShowTask'
 
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
@@ -217,6 +218,7 @@ window.Vue.component('chat', Chat)
 window.Vue.component('newsletters', Newsletter)
 window.Vue.component('newsletters-subscription-card', NewsletterSubscriptionCard)
 window.Vue.component('share-task', ShareTask)
+window.Vue.component('show-task', ShowTask)
 
 // Vue.use(Vue2TouchEvents)
 

@@ -6,6 +6,8 @@ class Task extends Model
 {
     use FormattedDates;
     protected $guarded = [];
+    const TASKS_CACHE_KEY= 'tasks.natanielpont.scool.cat' ;
+
     /**
      * The attributes that should be hidden for arrays.
      *

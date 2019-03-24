@@ -23,6 +23,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UserPhotoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasks_vue', 'TasksVueController@index');
     Route::get('/tasks_tailwind', 'TasksTailwindController@index');
     Route::get('/tasques', 'TasquesController@index');
+    Route::get('/tasques/{id}','\\'.TasquesController::class.'@show');
     Route::get('/home', 'TasksVueController@index');
 // USER TASKS
     Route::get('/user/tasks', 'LoggedUserTasksController@index');
@@ -74,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
 
     //TAGS
     Route::get('/tags','\\'. TagsController::class . '@index');
+
 
 
     Route::get('/profile', '\\'. ProfileController::class . '@show');
