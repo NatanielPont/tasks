@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
+use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
@@ -96,6 +97,9 @@ Route::middleware('auth:api')->group(function() {
 
     //Changelog
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
+    //online users
+    Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
 
 });
 Route::post('/v1/newsletter', '\\' . NewslettersController::class . '@store');

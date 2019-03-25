@@ -6,6 +6,7 @@ use App\Avatar;
 use App\Photo;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -139,12 +140,15 @@ class UserTest extends TestCase
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
         ]);
+        Cache::shouldReceive('has')
+            ->andReturn(true);
         $mappedUser = $user->map();
         $this->assertEquals($mappedUser['id'],1);
         $this->assertEquals($mappedUser['name'],'Pepe Pardo Jeans');
         $this->assertEquals($mappedUser['email'],'pepepardo@jeans.com');
         $this->assertEquals($mappedUser['gravatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
         $this->assertEquals($mappedUser['admin'],false);
+        $this->assertEquals($mappedUser['online'],true);
         $this->assertCount(0,$mappedUser['roles']);
         $this->assertCount(0,$mappedUser['permissions']);
         $user->admin = true;
@@ -175,6 +179,20 @@ class UserTest extends TestCase
         $this->assertEquals($mappedUser['permissions'][0],'Permission1');
         $this->assertEquals($mappedUser['permissions'][1],'Permission2');
     }
+
+    /**
+     * @test
+     */
+    public function mapOnline()
+    {
+        $this->withoutExceptionHandling();
+        $user = factory(User::class)->create();
+        Cache::shouldReceive('has')
+            ->andReturn(true);
+        $mappedUser = $user->map();
+        $this->assertEquals(true, $mappedUser['online']);
+    }
+
     /** @test */
     public function regulars()
     {
