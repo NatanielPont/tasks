@@ -29,24 +29,9 @@ mix.js('resources/js/app.js', 'public/js').then(() => {
   })
 })
   .sass('resources/sass/app.scss', 'public/css')
-  .copy('resources/img/*.*', 'public/img/')
+  .copy('resources/img/', 'public/img/')
   .sourceMaps(false) // no source maps in production
   .extract() // manifest, vendor (llibreries [no s'actualitza == package.json]), app (our code si que cambia),
-
-//
-// mix.js('resources/js/app.js', 'public/js').then(() => {
-//   replace.sync({
-//     // SEE: https://github.com/JeffreyWay/laravel-mix/issues/1717
-//     // FIXME:   Workaround for laravel-mix placeing '//*.js' at the begining of JS filesystem
-//
-//     files: path.normalize(`${publicDir}/service-worker/precache-manifest.*.js`),
-//     from: /\/\//gu,
-//     to: '/'
-//   })
-// }).sourceMaps(false)
-//   .sass('resources/sass/app.scss', 'public/css')
-//   .copy('resources/img/.', 'public/img/')
-//   .extract()
 
 if (mix.inProduction()) {
   mix.version()

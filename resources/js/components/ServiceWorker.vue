@@ -29,7 +29,7 @@ export default {
           console.log('Registration successful, scope is.', registration.scope)
         })
         .catch(function (error) {
-          console.log('Service worker registration failed, error', error)
+          console.log('Service worker registration failed, error hh', error)
         })
     }
   },
