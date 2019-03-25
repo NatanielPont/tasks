@@ -15,7 +15,7 @@
             <v-list class="pb-3 pb-3">
                 <v-list-tile>
                     <v-list-tile-content>
-                        <toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendiente" :resource="task"></toggle>
+                        <toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></toggle>
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>

@@ -26,7 +26,6 @@
                                     <v-flex xs>
                                         <div class="font-weight-medium grey--text text--lighten-1">{{ user.email }}</div>
                                     </v-flex>
-
                                     <v-flex xs>
                                         <v-chip class="m-0" outline label color="green" v-if="user.admin">Admin</v-chip>
                                         <v-chip outline label color="grey" v-else>Regular</v-chip>
