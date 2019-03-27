@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use http\Url;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -42,7 +44,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     /**
-     * Redirect the user to the Facebook authentication page.
+     * Redirect the user to the GitHub authentication page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -53,20 +55,47 @@ class LoginController extends Controller
     /**
      * Obtain the user information from GitHub.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return Redirect::to('auth/github');
+            return Redirect::to('auth/'.$provider);
         }
         $authUser = $this->findOrCreateUser($user);
         $authUser->assignRole('Tasks');
         Auth::login($authUser, true);
         return Redirect::to('home');
     }
+
+//    /**
+//     * Redirect the user to the Facebook authentication page.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function redirectToProvider(Request $request, $provider)
+//    {
+//        return Socialite::driver($provider)->redirect();
+//    }
+//    /**
+//     * Obtain the user information from GitHub.
+//     *
+//     * @return Response
+//     */
+//    public function handleProviderCallback()
+//    {
+//        try {
+//            $user = Socialite::driver('github')->user();
+//        } catch (Exception $e) {
+//            return Redirect::to('auth/github');
+//        }
+//        $authUser = $this->findOrCreateUser($user);
+//        $authUser->assignRole('Tasks');
+//        Auth::login($authUser, true);
+//        return Redirect::to('home');
+//    }
     /**
      * Return user if exists; create and return if doesn't
      *

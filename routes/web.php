@@ -12,6 +12,7 @@
 */
 
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
@@ -40,6 +41,10 @@ Auth::routes();
 
 Route::post('/login_alt', 'Auth\LoginAltController@login');
 Route::post('/register_alt', 'Auth\RegisterAltController@register');
+
+//Login with Social's Network
+Route::get('/auth/{provider}','\\'.LoginController::class.'@redirectToProvider');
+Route::get('/auth/{provider}/callback', '\\'. LoginController::class . '@handleProviderCallback');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/tasks','\\'. TasksController::class . '@index');
