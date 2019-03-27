@@ -6,8 +6,21 @@
         <v-toolbar class="grey darken-1">
             <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp" class="white--text"> Tasques </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn color="grey darken-4" class="white--text" href="/login">Login</v-btn>
-            <v-btn color="grey darken-4" class="white--text" href="/register">Register</v-btn>
+            @if(empty(Auth::user()->email))
+                <v-btn color="grey darken-4" class="white--text" href="/login">Login</v-btn>
+                <v-btn color="grey darken-4" class="white--text" href="/register">Register</v-btn>
+            @else
+                <v-btn icon @click="" href="/profile">
+                    <v-avatar>
+                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+                    </v-avatar>
+                </v-btn>
+                <v-form action="/logout" method="POST">
+                    @csrf
+                    <v-btn class="grey darken-4 white--text" type="submit" v-if="$vuetify.breakpoint.mdAndUp">Cerrar Sesion</v-btn>
+                </v-form>
+            @endif
+
         </v-toolbar>
         <v-content>
             <section>
@@ -22,6 +35,8 @@
                         {{--<img src="img/vuetify.png" alt="Vuetify.js" height="200">--}}
                         <h1 class="white--text mb-2 display-1 text-xs-center">Application tasks Nataniel</h1>
                         <div class="subheading mb-3 text-xs-center">Powered by Ies Ebre</div>
+                        <div class="title mb-3 "> Mode: {{ config('app.env') }}</div>
+
                         <v-btn
                                 class="primary"
                                 dark
