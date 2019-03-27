@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 
 class LoginController extends Controller
 {
