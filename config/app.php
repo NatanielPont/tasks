@@ -163,7 +163,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
         App\Providers\GoogleDriveServiceProvider::class,
-//        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
 
