@@ -86,4 +86,8 @@ class Task extends Model
         $useremail = optional($this->user)->email;
         return "$this->id $this->name $this->description $state $username $useremail";
     }
+    public function subject()
+    {
+        return ellipsis('Cambios en la aplicación de Tasks (' . $this->id . '): ' . $this->name, 80);
+    }
 }

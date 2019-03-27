@@ -173,6 +173,10 @@ class User extends Authenticatable
     {
         return $this->isOnline();
     }
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
 
 
 

@@ -1,6 +1,5 @@
 <?php
 namespace App\Listeners;
-use App\Events\TaskCreateEvent;
 use App\Mail\TaskCreate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
@@ -26,6 +25,6 @@ class SendMailTaskCreate implements ShouldQueue
         $subject = $event->task->subject();
         Mail::to($event->task->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskCreateEvent($event->task))->subject($subject));
+            ->send((new TaskCreate($event->task))->subject($subject));
     }
 }

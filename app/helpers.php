@@ -1,5 +1,6 @@
 <?php
 
+use App\Channel;
 use App\Log;
 use App\Notifications\SimpleNotification;
 use App\Tag;
@@ -17,6 +18,8 @@ use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Role as ScoolRole;
+
 
 if (!function_exists('create_primary_user')){
     function create_primary_user() {
@@ -594,15 +597,46 @@ if (! function_exists('map_simple_collection')) {
     }
 }
 
+if (! function_exists('get_admin_user')) {
+    function get_admin_user() {
+        return User::where('email',config('tasks.admin_user_email'))->first();
+    }
+}
+if (! function_exists('add_random_timestamps')) {
+    function add_random_timestamps($array)
+    {
+        return array_merge($array,get_random_timestamps());
+    }
+}
+if (! function_exists('get_random_timestamps')) {
+    function get_random_timestamps($backwardDays = null)
+    {
+        if ( is_null($backwardDays) )
+        {
+            $backwardDays = -800;
+        }
+        $backwardCreatedDays = rand($backwardDays, 0);
+        $backwardUpdatedDays = rand($backwardCreatedDays + 1, 0);
+        return [
+            'created_at' => \Carbon\Carbon::now()->addDays($backwardCreatedDays)->addMinutes(rand(0,
+                60 * 23))->addSeconds(rand(0, 60)),
+            'updated_at' => \Carbon\Carbon::now()->addDays($backwardUpdatedDays)->addMinutes(rand(0,
+                60 * 23))->addSeconds(rand(0, 60))
+        ];
+    }
+}
 if (! function_exists('initialize_sample_chat_channels')) {
     function initialize_sample_chat_channels($user = null)	{
-        create_tenant_admin_user();
+        create_admin_user();
         if(!$user) $user = get_admin_user();
         Channel::create(add_random_timestamps([
             'name' => 'Pepe Pardo Jeans',
             'image' => 'http://i.pravatar.cc/300',
             'last_message' => 'Bla bla bla'
         ]))->addUser($user);
+//        dump(Channel::all());
+//        dump($user->name);
+//        dd('user_channels '.$user->channels);
         Channel::create(add_random_timestamps([
             'name' => 'Pepa Parda Jeans',
             'image' => 'http://i.pravatar.cc/300',
@@ -720,17 +754,52 @@ if (! function_exists('initialize_sample_chat_channels')) {
         ]))->addUser($user);
     }
 }
-if (! function_exists('create_tenant_admin_user')) {
-    function create_tenant_admin_user()
+if (! function_exists('is_sha1')) {
+    function is_sha1($str) {
+        return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
+    }
+}
+if (! function_exists('create_admin_user')) {
+    function create_admin_user()
     {
-        if (! App\User::where('email')->first()) {
+        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
             User::forceCreate([
-                'name' => config('tenant'),
-                'email' => config('tenant.email'),
-                'password' => is_sha1($password = config('tasks.admin_username_password_on_tenant')) ? $password : sha1($password),
+                'name' => config('tasks.admin_user_name'),
+                'email' => config('tasks.admin_user_email'),
+                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
                 'admin' => true
             ]);
         }
+    }
+}
+
+if (!function_exists('initialize_chat_role')) {
+    function initialize_chat_role()
+    {
+        $role = Role::firstOrCreate(['name' => ScoolRole::CHAT['name']]);
+        $permissions = chat_permissions();
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+            $role->givePermissionTo($permission);
+        }
+    }
+}
+
+if (!function_exists('chat_permissions')) {
+    function chat_permissions()
+    {
+        return [
+            'chat.index',
+            'chat.store',
+            'chat.destroy'
+        ];
+    }
+}
+if (!function_exists('ellipsis')) {
+    function ellipsis($text, $max = 50)
+    {
+        $ellipted = strlen($text) > $max ? substr($text, 0, $max) . "..." : $text;
+        return $ellipted;
     }
 }
 

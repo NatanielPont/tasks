@@ -27,6 +27,6 @@ class SendMailTaskCompleted implements ShouldQueue
         $subject = $event->task->subject();
         Mail::to($event->task->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskCompletedEvent($event->task))->subject($subject));
+            ->send((new TaskCompleted($event->task))->subject($subject));
     }
 }
