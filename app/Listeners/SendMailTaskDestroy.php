@@ -27,6 +27,6 @@ class SendMailTaskDestroy implements ShouldQueue
         $user = User::find($event->task['user_id']);
         Mail::to($user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskDestroyEvent($event->task))->subject("Tarea ". $event->task['name']. " borrada"));
+            ->send((new TaskDestroy($event->task))->subject("Tasca ". $event->task['name']. " borrada"));
     }
 }

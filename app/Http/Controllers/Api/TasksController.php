@@ -12,6 +12,7 @@ use App\Tag;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -35,7 +36,7 @@ class TasksController extends Controller
         $task->user_id = $request->user_id;
         $task->save();
         //  HOOK -> EVENT
-        event(new \App\Events\TaskCreateEvent($task));
+        event(new \App\Events\TaskCreateEvent($task,Auth::user()));
         return $task->map();
     }
     public function update(TasksUpdate $request, Task $task)
@@ -54,8 +55,8 @@ class TasksController extends Controller
     }
     public function destroy(TasksDestroy $request, Task $task)
     {
-        $task->delete();
         event(new \App\Events\TaskDestroyEvent($task));
+        $task->delete();
         //  HOOK -> EVENT
         return $task;
     }

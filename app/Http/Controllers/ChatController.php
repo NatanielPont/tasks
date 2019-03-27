@@ -17,7 +17,7 @@ class ChatController extends Controller
     public function index(ChatIndex $request)
     {
         $channels = $request->user()->channels;
-//        dd($channels);
+//        dd($request->user()->channels);
         return view('chat.index', compact('channels'));
     }
 }
