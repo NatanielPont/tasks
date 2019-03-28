@@ -2,8 +2,9 @@
     <v-form action="/login" method="POST">
         <v-toolbar dark color="grey darken-1">
             <v-toolbar-title>Login form</v-toolbar-title>
-            <v-btn href="/auth/facebook" icon><i class="fab fa-facebook fa-3x primary" ></i></v-btn>
-            <!--<v-btn href="/auth/github" icon ><i class="fab fa-github-square fa-3x"></i></v-btn>-->
+
+            <!--<v-btn href="/auth/facee" icon ><i class="fab fa-github-square fa-3x"></i></v-btn>-->
+
         </v-toolbar>
         <v-card-text>
             <input type="hidden" name="_token" :value="csrfToken">
@@ -33,9 +34,8 @@
         <v-card-actions>
             <v-btn color="grey darken-4" class="white--text" href="/password/reset/" >Forgot your password?
             </v-btn>
-        </v-card-actions>
-        <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn href="/auth/facebook" icon><i class="fab fa-facebook fa-3x" style="color:#3b5998;"></i></v-btn>
 
             <v-btn color="grey darken-4" class="white--text" type="submit"  :disabled="$v.$invalid">Login</v-btn>
         </v-card-actions>
