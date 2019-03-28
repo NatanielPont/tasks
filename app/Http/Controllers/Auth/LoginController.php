@@ -44,8 +44,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the $provider authentication page.
      *
+     * @param Request $request
+     * @param $provider
      * @return \Illuminate\Http\Response
      */
     public function redirectToProvider(Request $request, $provider)
@@ -55,14 +57,16 @@ class LoginController extends Controller
     /**
      * Obtain the user information from GitHub.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
-            $user = Socialite::driver($provider)->user();
+            $user = Socialite::driver($provider)->stateless()->user();
         } catch (Exception $e) {
-            return Redirect::to('auth/'.$provider);
+            return Redirect::to('auth/' . $provider);
         }
         $authUser = $this->findOrCreateUser($user);
         $authUser->assignRole('Tasks');
