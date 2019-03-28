@@ -51,6 +51,7 @@ class LoginController extends Controller
     public function redirectToProvider(Request $request, $provider)
     {
         return Socialite::driver($provider)->redirect();
+
     }
     /**
      * Obtain the user information from GitHub.
@@ -62,9 +63,8 @@ class LoginController extends Controller
     public function handleProviderCallback(Request $request, $provider)
     {
         try {
-//            $user = Socialite::driver($provider)->user();
-            $user = Socialite::with($provider)->user();
-
+            $user = Socialite::driver($provider)->user();
+//        dd($user);
         } catch (Exception $e) {
             return Redirect::to('auth/' . $provider);
         }
