@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use http\Url;
+use http\Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -53,6 +52,7 @@ class LoginController extends Controller
     public function redirectToProvider(Request $request, $provider)
     {
         return Socialite::driver($provider)->redirect();
+
     }
     /**
      * Obtain the user information from GitHub.
@@ -65,6 +65,7 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver($provider)->user();
+//        dd($user);
         } catch (Exception $e) {
             return Redirect::to('auth/' . $provider);
         }

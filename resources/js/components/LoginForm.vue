@@ -2,7 +2,7 @@
     <v-form action="/login" method="POST">
         <v-toolbar dark color="grey darken-1">
             <v-toolbar-title>Login form</v-toolbar-title>
-            <v-btn href="/auth/facebook" icon><i class="fab fa-facebook fa-3x" style="color:#3b5998;"></i></v-btn>
+            <v-btn href="/auth/facebook" icon><i class="fab fa-facebook fa-3x primary" ></i></v-btn>
             <!--<v-btn href="/auth/github" icon ><i class="fab fa-github-square fa-3x"></i></v-btn>-->
         </v-toolbar>
         <v-card-text>
