@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN', 'https://tasks.natanielpont.scool.cat/'),
 
     /*
     |--------------------------------------------------------------------------
