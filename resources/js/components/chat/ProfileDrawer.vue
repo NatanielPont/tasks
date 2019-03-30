@@ -3,6 +3,7 @@
             v-model="drawer"
             absolute
             temporary
+            width="450"
     >
 
             <v-toolbar color="primary">
@@ -27,17 +28,17 @@
                 </v-layout>
 
             </v-toolbar>
-        <v-layout justify-center align-center row>
-
-            <v-card-title primary-title class="text-xs-center">
-
-                <v-layout align-center justify-start column>
-                    <v-flex>
-                        <material-card class="v-card-profile">
+        <!--<v-container grid-list text-xs-center fill-height >-->
+        <!--<v-layout row wrap fill-height>-->
+            <!--<v-flex fill-height>-->
+        <!--<v-layout justify-center align-center row wrap>-->
+                <v-layout  v-bind="binding" >
+                    <v-flex class="text-xs-center ">
+                        <material-card class="v-card-profile mb-0">
                             <v-avatar
                                     slot="offset"
                                     class="mx-auto d-block"
-                                    size="130"
+                                    size="100"
                             >
                                 <img
                                         src="/user/photo"
@@ -52,53 +53,62 @@
                             </v-card-text>
                         </material-card>
                     </v-flex>
-                </v-layout>
-                <v-layout column >
-                    <v-flex xs  class="mb-2">
-                        <p class="primary white--text">Name</p>
+                    <v-flex class="text-xs-center">
+                        <v-card color="primary">
+
+                        <p class="white--text ">Name</p>
+                        </v-card>
                         <h3 class="headline font-weight-light grey--text">{{ user.name }}</h3>
                     </v-flex>
-
-                    <v-flex xs class="mb-3">
-                        <p class="primary white--text">Email</p>
+                    <v-flex class="mb-2 text-xs-center">
+                        <v-card color="primary">
+                        <p class=" white--text">Email</p>
+                        </v-card>
                         <div class=" font-weight-light grey--text">{{ user.email }}</div>
+
                     </v-flex>
-                    <v-flex xs  class="mb-2">
-                        <p class="primary white--text">Account type</p>
+                    <v-flex class="text-xs-center"  >
+                        <v-card color="primary">
+                        <p class=" white--text">Account type</p>
+                        </v-card>
                         <v-chip class="m-0" outline label color="green" v-if="user.admin">Admin</v-chip>
                         <v-chip outline label color="grey" v-else>Regular</v-chip>
+
+                        <v-list dense class="scroll-y" >
+                            <v-list-group v-ripple prepend-icon="account_circle" no-action>
+                                <v-list-tile slot="activator">
+                                    <v-list-tile-content>Rols</v-list-tile-content>
+                                </v-list-tile>
+
+                                <v-list-tile v-for="rol in user.roles" :key="rol" no-data-text="No te cap rol.">
+                                    <v-list-tile-content>
+                                        <v-list-tile-title>{{ rol }}</v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </v-list-group>
+                            <v-list-group v-ripple prepend-icon="lock" no-action  >
+                                <v-list-tile slot="activator">
+                                    <v-list-tile-content>Permissos</v-list-tile-content>
+                                </v-list-tile>
+
+                                <v-list-tile v-for="permis in user.permissions" :key="permis" no-data-text="No te cap permís.">
+                                    <v-list-tile-content>
+                                        <v-list-tile-title>{{ permis }}</v-list-tile-title>
+                                    </v-list-tile-content>
+                                </v-list-tile>
+                            </v-list-group>
+                        </v-list>
                     </v-flex>
+                    <!--<v-flex >-->
 
+                    <!--</v-flex>-->
                 </v-layout>
+            <!--</v-flex>-->
 
-                <v-layout align-center justify-start column>
-                    <v-list >
-                        <v-list-group v-ripple prepend-icon="account_circle" no-action>
-                            <v-list-tile slot="activator">
-                                <v-list-tile-content>Rols</v-list-tile-content>
-                            </v-list-tile>
+        <!--</v-layout>-->
+        <!--</v-container>-->
 
-                            <v-list-tile v-for="rol in user.roles" :key="rol" no-data-text="No te cap rol.">
-                                <v-list-tile-content>
-                                    <v-list-tile-title>{{ rol }}</v-list-tile-title>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                        </v-list-group>
-                        <v-list-group v-ripple prepend-icon="lock" no-action >
-                            <v-list-tile slot="activator">
-                                <v-list-tile-content>Permissos</v-list-tile-content>
-                            </v-list-tile>
-
-                            <v-list-tile v-for="permis in user.permissions" :key="permis" no-data-text="No te cap permís.">
-                                <v-list-tile-content>
-                                    <v-list-tile-title>{{ permis }}</v-list-tile-title>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                        </v-list-group>
-                    </v-list>
-                </v-layout>
-            </v-card-title>
-        </v-layout>
+        <!--</v-layout>-->
     </v-navigation-drawer>
 </template>
 
@@ -141,6 +151,16 @@ export default {
   },
   components: {
     'material-card': MaterialCard
+  },
+  computed: {
+    binding () {
+      const binding = {}
+
+      // if (this.$vuetify.breakpoint.mdAndUp) binding.column = true
+      binding.column = true
+
+      return binding
+    }
   }
 }
 </script>
