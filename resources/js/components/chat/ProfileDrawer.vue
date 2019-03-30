@@ -28,8 +28,10 @@
                 </v-layout>
 
             </v-toolbar>
-        <v-layout row wrap fill-height >
-            <v-flex >
+
+        <!--scroll, layout, + flex, sols vista mobil-->
+        <!--<v-layout row wrap fill-height >-->
+            <!--<v-flex >-->
 
         <v-layout  v-bind="binding">
                     <v-flex class="text-xs-center ">
@@ -99,9 +101,10 @@
                         </v-list>
                     </v-flex>
                 </v-layout>
-            </v-flex>
+        <!--scroll, end tags-->
+            <!--</v-flex>-->
 
-        </v-layout>
+        <!--</v-layout>-->
 
     </v-navigation-drawer>
 </template>
