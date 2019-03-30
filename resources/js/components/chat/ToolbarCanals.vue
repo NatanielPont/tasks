@@ -15,7 +15,7 @@
         </v-tooltip>
         <menu-canals></menu-canals>
     </v-toolbar>
-        <new-chat-drawer :chatDrawer="chatDrawer" @drawerNull="chatDrawer=!chatDrawer"></new-chat-drawer>
+        <new-chat-drawer :chatDrawer="chatDrawer" @drawerNull="chatDrawer=!chatDrawer" ></new-chat-drawer>
 
         <profile-drawer :profileDrawer="profileDrawer" :user="user" @drawerNull="profileDrawer = !profileDrawer">
 
