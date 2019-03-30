@@ -10,7 +10,7 @@
           <v-list class="pa-1">
             <v-list-tile avatar>
               <v-list-tile-avatar>
-                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                  <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
               </v-list-tile-avatar>
 
               <v-list-tile-content>
@@ -22,27 +22,17 @@
           <v-list class="pt-0" dense>
             <v-divider></v-divider>
 
-            <v-list-tile >
+            <v-list-tile @click="">
               <v-list-tile-action>
-                <v-icon>close</v-icon>
+                <v-icon>clse</v-icon>
               </v-list-tile-action>
 
               <v-list-tile-content>
-                <v-list-tile-title>Prova asd asdsa asd asd asd asd as dasd asd as dasd asd as <d></d></v-list-tile-title>
+                <v-list-tile-title>Prova asd asdsa asd asd asd asd as dasd asd as dasd asd as </v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
 
-              <v-list-tile >
-              <v-list-tile-action>
-                <v-icon>close</v-icon>
-              </v-list-tile-action>
-
-              <v-list-tile-content>
-                <v-list-tile-title>Prova</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-
-              <v-list-tile >
+              <v-list-tile @click="">
               <v-list-tile-action>
                 <v-icon>clse</v-icon>
               </v-list-tile-action>
@@ -52,7 +42,17 @@
               </v-list-tile-content>
             </v-list-tile>
 
-              <v-list-tile >
+              <v-list-tile @click="">
+              <v-list-tile-action>
+                <v-icon>clse</v-icon>
+              </v-list-tile-action>
+
+              <v-list-tile-content>
+                <v-list-tile-title>Prova</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
+              <v-list-tile @click="">
               <v-list-tile-action>
                 <v-icon>clse</v-icon>
               </v-list-tile-action>
@@ -64,8 +64,15 @@
           </v-list>
         </v-navigation-drawer>
 
+        <profile-drawer :profileDrawer="profileDrawer" :user="user" @drawerNull="profileDrawer = !profileDrawer">
+
+        </profile-drawer>
+
         <v-toolbar color="primary">
-            <user-avatar :user="user" size="52px" @click="$emit('toggleright')"></user-avatar>
+            <v-avatar :title="user.name" @click.stop="profileDrawer = !profileDrawer">
+                <v-img v-if="user.gravatar" :src="user.gravatar" alt="avatar"></v-img>
+                <v-img v-else src="https://www.gravatar.com/avatar/" alt="avatar"></v-img>
+            </v-avatar>
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -82,7 +89,7 @@
             </v-tooltip>
         </v-toolbar>
         <v-container fluid text-xs-center class="ma-0 pa-0">
-          <v-layout row wrap>
+          <v-layout row wrap class="mx-0">
             <v-flex xs12 style="height: 64px;">
               <v-card dark color="cyan" style="height: 64px;">
                 <v-card-text class="px-0">TODO activar notificacions d'escriptori</v-card-text>
@@ -103,7 +110,7 @@
                             @click="$emit('input',channel)"
                     >
                       <v-list-tile-avatar>
-                        <img :src="channel.avatar">
+                          <v-img :src="channel.image"></v-img>
                       </v-list-tile-avatar>
 
                       <v-list-tile-content>
@@ -122,15 +129,12 @@
 </template>
 
 <script>
-import UserAvatar from '../ui/UserAvatarComponent'
 export default {
   name: 'ChatChannels',
-  components: {
-    'user-avatar': UserAvatar
-  },
   data () {
     return {
       prova: false,
+      profileDrawer: false,
       dataChannels: this.channels
     }
   },
@@ -146,7 +150,7 @@ export default {
     channel: {}
   },
   created () {
-    this.user = window.user
+    this.user = window.laravel_user
   }
 }
 </script>

@@ -13,11 +13,19 @@ class CreateChannelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chat_messages', function (Blueprint $table) {
+        Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('channel_id')->nullable();
-            $table->string('text');
+            $table->text('name');
+            $table->string('image');
+            $table->string('last_message');
             $table->timestamps();
+        });
+        Schema::create('channel_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('channel_id')->nullable();
+            $table->timestamps();
+            $table->unique(['user_id', 'channel_id']);
         });
     }
     /**
@@ -27,6 +35,7 @@ class CreateChannelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat_messages');
+        Schema::dropIfExists('channels');
+        Schema::dropIfExists('channel_user');
     }
 }
