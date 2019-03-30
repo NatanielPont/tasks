@@ -9,7 +9,7 @@
 
                 <v-layout row>
                     <v-flex shrink pa-1>
-                            <v-btn class="ml-0" @click.stop="drawerNull" icon >
+                            <v-btn class="ml-0" @click.stop="drawer=!drawer" icon >
                                 <i class="fas fa-caret-left"></i>
                             </v-btn>
                     </v-flex>
@@ -19,7 +19,7 @@
                     </v-flex>
                     <v-flex shrink pa-1>
 
-                            <v-avatar :title="user.name" @click.stop="drawerNull">
+                            <v-avatar :title="user.name" @click.stop="drawer=!drawer">
                             <v-img v-if="user.gravatar" :src="user.gravatar" alt="avatar"></v-img>
                             <v-img v-else src="https://www.gravatar.com/avatar/" alt="avatar"></v-img>
                             </v-avatar>
@@ -128,13 +128,16 @@ export default {
   watch: {
     profileDrawer (profileDrawer) {
       this.drawer = profileDrawer
+      if (this.drawer == false) {
+        this.$emit('drawerNull')
+      }
     }
   },
   methods: {
-    drawerNull () {
-      this.drawer = !this.drawer
-      this.$emit('drawerNull')
-    }
+    // drawerNull () {
+    //   this.drawer = !this.drawer
+    //   // this.$emit('drawerNull')
+    // }
   },
   components: {
     'material-card': MaterialCard
