@@ -16,6 +16,9 @@ import NewsletterSubscriptionCard from './components/newsletters/NewslettersSubs
 import ShareTask from './components/tasques/ui/ShareTask'
 import ShowTask from './components/tasques/ui/ShowTask'
 import ProfileDrawer from './components/chat/ProfileDrawer'
+import ToolbarCanals from './components/chat/ToolbarCanals'
+import MenuCanals from './components/chat/MenuCanals'
+import NewChatDrawer from './components/chat/NewChatDrawer'
 
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
@@ -221,6 +224,9 @@ window.Vue.component('newsletters-subscription-card', NewsletterSubscriptionCard
 window.Vue.component('share-task', ShareTask)
 window.Vue.component('show-task', ShowTask)
 window.Vue.component('profile-drawer', ProfileDrawer)
+window.Vue.component('toolbar-canals', ToolbarCanals)
+window.Vue.component('menu-canals', MenuCanals)
+window.Vue.component('new-chat-drawer', NewChatDrawer)
 
 // Vue.use(Vue2TouchEvents)
 
