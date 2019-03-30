@@ -69,7 +69,6 @@ export default {
   name: 'NewChatDrawer',
   data () {
     return {
-      value: '',
       drawer: this.chatDrawer
 
     }

@@ -24,6 +24,9 @@
 </template>
 
 <script>
+import MenuCanals from './MenuCanals'
+import NewChatDrawer from './NewChatDrawer'
+import ProfileDrawer from './ProfileDrawer'
 export default {
   name: 'ToolbarCanals',
   data () {
@@ -31,7 +34,6 @@ export default {
       chatDrawer: false,
 
       profileDrawer: false,
-      value: ''
     }
   },
   props: {
@@ -41,6 +43,11 @@ export default {
       required: true
 
     }
+  },
+  components: {
+    'menu-canals': MenuCanals,
+    'new-chat-drawer': NewChatDrawer,
+    'profile-drawer': ProfileDrawer
   }
 }
 </script>
