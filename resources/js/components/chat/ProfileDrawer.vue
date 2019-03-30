@@ -28,11 +28,10 @@
                 </v-layout>
 
             </v-toolbar>
-        <!--<v-container grid-list text-xs-center fill-height >-->
-        <!--<v-layout row wrap fill-height>-->
-            <!--<v-flex fill-height>-->
-        <!--<v-layout justify-center align-center row wrap>-->
-                <v-layout  v-bind="binding" >
+        <v-layout row wrap fill-height >
+            <v-flex >
+
+        <v-layout  v-bind="binding">
                     <v-flex class="text-xs-center ">
                         <material-card class="v-card-profile mb-0">
                             <v-avatar
@@ -99,16 +98,11 @@
                             </v-list-group>
                         </v-list>
                     </v-flex>
-                    <!--<v-flex >-->
-
-                    <!--</v-flex>-->
                 </v-layout>
-            <!--</v-flex>-->
+            </v-flex>
 
-        <!--</v-layout>-->
-        <!--</v-container>-->
+        </v-layout>
 
-        <!--</v-layout>-->
     </v-navigation-drawer>
 </template>
 
