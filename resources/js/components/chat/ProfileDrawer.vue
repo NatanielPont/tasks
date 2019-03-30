@@ -5,7 +5,6 @@
             temporary
     >
 
-        <v-layout justify-center align-center row>
             <v-toolbar color="primary">
 
                 <v-layout row>
@@ -28,6 +27,7 @@
                 </v-layout>
 
             </v-toolbar>
+        <v-layout justify-center align-center row>
 
             <v-card-title primary-title class="text-xs-center">
 
