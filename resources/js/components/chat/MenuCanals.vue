@@ -32,7 +32,6 @@ export default {
   name: 'MenuCanals',
   data () {
     return {
-      value: '',
       items: [
         { title: 'Profile' },
         { title: 'Click Me2' },

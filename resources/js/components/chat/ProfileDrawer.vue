@@ -103,6 +103,8 @@
 </template>
 
 <script>
+
+import MaterialCard from '../ui/MaterialCard'
 export default {
   name: 'ProfileDrawer',
   data () {
@@ -133,6 +135,9 @@ export default {
       this.drawer = !this.drawer
       this.$emit('drawerNull')
     }
+  },
+  components: {
+    'material-card': MaterialCard
   }
 }
 </script>
