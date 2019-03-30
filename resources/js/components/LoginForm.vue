@@ -40,7 +40,9 @@
         </v-card-actions>
         <v-card-actions>
 
+            <v-btn color="grey darken-4" class="white--text" href="/register">Register</v-btn>
             <v-btn color="grey darken-4" class="white--text" type="submit"  :disabled="$v.$invalid">Login</v-btn>
+
         </v-card-actions>
 
     </v-form>

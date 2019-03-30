@@ -51,37 +51,15 @@
     </style>
 </head>
 <body>
-<div id="app" v-cloak>
-    <v-app id="app" v-cloak style="background: #F0F4F8;background: -webkit-linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);
+<v-app id="app" v-cloak style="background: #F0F4F8;background: -webkit-linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);
             background: linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);">
-        <snackbar></snackbar>
-        <service-worker></service-worker>
-        <v-content>
-            @yield('content')
-        </v-content>
-    </v-app>
-</div>
+    <snackbar></snackbar>
+    <service-worker></service-worker>
+    <v-content>
+        @yield('content')
+    </v-content>
+</v-app>
+
 </body>
 </html>
-
-{{--<v-toolbar--}}
-{{--color="grey darken-1"--}}
-
-{{--app--}}
-{{--clipped-left--}}
-{{--clipped-right--}}
-{{--fixed>--}}
-{{--<v-toolbar-side-icon class="white--text" @click.stop="drawer = !drawer"></v-toolbar-side-icon>--}}
-{{--<v-toolbar-title class="white--text">Application</v-toolbar-title>--}}
-{{--<v-spacer></v-spacer>--}}
-{{--<notifications-widget></notifications-widget>--}}
-
-{{--<v-avatar @click.stop="drawerRight = !drawerRight" title="{{ Auth::user()->name }} ( {{ Auth::user()->email }} )">--}}
-{{--<img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">--}}
-{{--</v-avatar>--}}
-{{--<v-form action="logout" method="POST">--}}
-{{--@csrf--}}
-{{--<v-btn color="grey darken-4" class="white--text" type="submit">Logout</v-btn>--}}
-{{--</v-form>--}}
-{{--</v-toolbar>--}}
 
