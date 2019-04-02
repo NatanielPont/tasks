@@ -14,15 +14,18 @@ class TaskDestroyEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $task;
+    public $user;
     /**
      * Create a new event instance.
      *
      * @param Task $task
      * @param User $user
      */
-    public function __construct(Task $task)
+    public function __construct(Task $task,User $user)
     {
         $this->task = $task;
+        $this->user = $user;
+
     }
     /**
      * Get the channels the event should broadcast on.
@@ -31,6 +34,9 @@ class TaskDestroyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('tasks');
+        return [
+            new PrivateChannel('App.User.'.$this->user->id),
+            new PrivateChannel('tasks')
+        ];
     }
 }

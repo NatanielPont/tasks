@@ -6,6 +6,7 @@ use App\Events\TaskCompletedEvent;
 use App\Events\TaskUncompletedEvent;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompletedTasksController
 {
@@ -16,7 +17,7 @@ class CompletedTasksController
 //        return redirect('/tasks');
 
         //  HOOK -> EVENT
-        event(new TaskUncompletedEvent($task));
+        event(new TaskUncompletedEvent($task,Auth::user()));
 
     }
     public function store(Request $request, Task $task)
@@ -25,7 +26,7 @@ class CompletedTasksController
         $task->save();
 
         //  HOOK -> EVENT
-        event(new TaskCompletedEvent($task));
+        event(new TaskCompletedEvent($task,Auth::user()));
 //        return redirect('/tasks');
 
     }
