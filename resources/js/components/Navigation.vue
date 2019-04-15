@@ -105,7 +105,8 @@ export default {
             { icon: 'build', text: 'Mobile', url: '/mobile' },
             { icon: 'public', text: 'Clock', url: '/clock' },
             { icon: 'help', text: 'Chat', url: '/chat' },
-            { icon: 'help', text: 'Newsletters', url: '/newsletters' }
+            { icon: 'help', text: 'Newsletters', url: '/newsletters' },
+            { icon: 'public', text: 'Users', url: '/users' }
           ]
         },
         {

@@ -3,13 +3,12 @@
             v-model="drawer"
             absolute
             temporary
-            clipped
             width="900"
     >
         <v-list class="pa-1">
             <v-list-tile avatar>
                 <v-list-tile-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+                    <v-img  src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
@@ -70,14 +69,12 @@ export default {
   data () {
     return {
       drawer: this.chatDrawer
-
     }
   },
   props: {
     chatDrawer: {
       type: Boolean,
       required: true
-
     }
   },
   watch: {
@@ -92,5 +89,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
