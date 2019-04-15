@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-class TaskCreateEvent
+class TaskCreateEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $task;
@@ -35,7 +35,7 @@ class TaskCreateEvent
         return[
 
         new PrivateChannel('App.User.' . $this->task->user_id),
-            new PrivateChannel('Tasques')
+            new PrivateChannel('tasks')
         ];
     }
 }

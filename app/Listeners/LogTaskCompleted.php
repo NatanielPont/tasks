@@ -29,7 +29,7 @@ class LogTaskCompleted
             'time' =>Carbon::now(),
             'action_type' => 'Completar',
             'module_type'=>'Tasques',
-            'icon' => 'lock',
+            'icon' => 'lock_open',
             'color' => 'green',
             'user_id' => $event->task->user_id,
             'loggable_id' => $event-> task->id,

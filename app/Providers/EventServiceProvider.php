@@ -9,6 +9,7 @@ use App\Events\TaskUncompletedEvent;
 use App\Events\TaskUpdateEvent;
 use App\Listeners\AddRolesToRegisterUser;
 use App\Listeners\ForgetTasksCache;
+use App\Listeners\LogNotification;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskCreate;
 use App\Listeners\LogTaskDestroy;
@@ -19,10 +20,12 @@ use App\Listeners\SendMailTaskCreate;
 use App\Listeners\SendMailTaskDestroy;
 use App\Listeners\SendMailTaskUncompleted;
 use App\Listeners\SendMailTaskUpdate;
+use App\Listeners\SendNotificationDatabaseStored;
 use App\Listeners\tasks\SendTaskStoredNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -62,6 +65,11 @@ class EventServiceProvider extends ServiceProvider
             LogTaskUpdate::class,
             SendMailTaskUpdate::class,
             ForgetTasksCache::class
+        ],
+
+        NotificationSent::class => [
+            LogNotification::class,
+            SendNotificationDatabaseStored::class
         ]
 
     ];

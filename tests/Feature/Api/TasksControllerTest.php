@@ -9,7 +9,9 @@
 namespace Tests\Feature\Api;
 
 
+use App\Events\TaskCreateEvent;
 use App\Events\TaskDestroyEvent;
+use App\Events\TaskUpdateEvent;
 use App\Tag;
 use App\Task;
 use App\User;
@@ -180,6 +182,8 @@ class TasksControllerTest extends TestCase
     public function superadmin_can_create_completed_task()
     {
         $this->loginAsSuperAdmin('api');
+        Event::fake();
+
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa',
             'description' => 'Bla bla bla',
@@ -194,6 +198,9 @@ class TasksControllerTest extends TestCase
         $this->assertEquals('Comprar pa',$task->name);
         $this->assertEquals('Bla bla bla',$task->description);
         $this->assertEquals(1,$task->completed);
+        Event::assertDispatched(TaskCreateEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test
@@ -201,6 +208,9 @@ class TasksControllerTest extends TestCase
     public function task_manager_can_create_task()
     {
         $this->loginAsTaskManager('api');
+        Event::fake();
+
+
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'
         ]);
@@ -209,6 +219,9 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($task = Task::find($result->id));
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse($result->completed);
+        Event::assertDispatched(TaskCreateEvent::class, function ($event) use ($task) {
+            return $event->task->is($task);
+        });
     }
     /**
      * @test
@@ -290,6 +303,7 @@ class TasksControllerTest extends TestCase
     public function superadmin_can_edit_task()
     {
         $this->loginAsSuperAdmin('api');
+        Event::fake();
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);
@@ -303,6 +317,9 @@ class TasksControllerTest extends TestCase
         $this->assertNotNull($newTask);
         $this->assertEquals('Comprar pa',$result->name);
         $this->assertFalse((boolean) $newTask->completed);
+//        Event::assertDispatched(TaskUpdateEvent::class, function ($event) use ($oldTask,$task,$user) {
+//            return $event->task->is($task);
+//        });
     }
     /**
      * @test
@@ -313,6 +330,8 @@ class TasksControllerTest extends TestCase
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
         ]);
+        Event::fake();
+
         // 2
         $response = $this->json('PUT','/api/v1/tasks/' . $oldTask->id, [
             'name' => 'Comprar pa'

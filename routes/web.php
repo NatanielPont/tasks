@@ -26,6 +26,7 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UserPhotoController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -100,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
     //chat
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
+    Route::get('/users','\\'.UsersController::class.'@index');
+
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');

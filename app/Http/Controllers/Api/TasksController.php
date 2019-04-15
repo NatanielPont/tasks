@@ -50,12 +50,12 @@ class TasksController extends Controller
 
         $task->save();
         //  HOOK -> EVENT
-        event(new \App\Events\TaskUpdateEvent($taskOld,$task));
+        event(new \App\Events\TaskUpdateEvent($taskOld,$task,Auth::user()));
         return $task->map();
     }
     public function destroy(TasksDestroy $request, Task $task)
     {
-        event(new \App\Events\TaskDestroyEvent($task));
+        event(new \App\Events\TaskDestroyEvent($task,Auth::user()));
         $task->delete();
         //  HOOK -> EVENT
         return $task;

@@ -19,6 +19,7 @@ import ProfileDrawer from './components/chat/ProfileDrawer'
 import ToolbarCanals from './components/chat/ToolbarCanals'
 import MenuCanals from './components/chat/MenuCanals'
 import NewChatDrawer from './components/chat/NewChatDrawer'
+import Users from './components/users/Users'
 
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'
@@ -227,6 +228,7 @@ window.Vue.component('profile-drawer', ProfileDrawer)
 window.Vue.component('toolbar-canals', ToolbarCanals)
 window.Vue.component('menu-canals', MenuCanals)
 window.Vue.component('new-chat-drawer', NewChatDrawer)
+window.Vue.component('users-list', Users)
 
 // Vue.use(Vue2TouchEvents)
 

@@ -19,7 +19,8 @@
         "spatie/laravel-backup": "^6.0",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-newsletter": "^4.3",
-        "spatie/laravel-permission": "^2.25"
+        "spatie/laravel-permission": "^2.25",
+      "ext-json": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
