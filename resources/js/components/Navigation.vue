@@ -106,7 +106,9 @@ export default {
             { icon: 'public', text: 'Clock', url: '/clock' },
             { icon: 'help', text: 'Chat', url: '/chat' },
             { icon: 'help', text: 'Newsletters', url: '/newsletters' },
-            { icon: 'public', text: 'Users', url: '/users' }
+            { icon: 'public', text: 'Users', url: '/users' },
+            { icon: 'public', text: 'Game', url: '/game' },
+            { icon: 'public', text: 'Multimedia', url: '/multimedia' }
           ]
         },
         {

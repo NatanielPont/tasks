@@ -16,8 +16,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\MobileController;
+use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
@@ -102,6 +104,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
     Route::get('/users','\\'.UsersController::class.'@index');
+    //Game
+    Route::get('/game','\\'.GameController::class.'@index');
+    Route::get('/multimedia','\\'.MultimediaController::class.'@index');
 
 
     //Newsletters
