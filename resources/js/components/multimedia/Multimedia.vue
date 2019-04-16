@@ -8,10 +8,13 @@
                 </v-card>
             </v-layout>
             <v-layout row justify-center>
-                <video id="video" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" preload="auto" controls></video>
+                <v-flex class="text-xs-center">
+                                    <video id="video" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" preload="auto" controls></video>
+
+                </v-flex>
             </v-layout>
             <v-layout row justify-center>
-                <v-btn @click="play('video')" small>
+                    <v-btn @click="play('video')" small>
                     Play
                 </v-btn>
                 <v-btn @click="pause('video')" small>
@@ -23,21 +26,25 @@
                 <v-btn @click="downVol('video')" small>
                     Vol -
                 </v-btn>
-                <v-btn @click="moveStart('video')" small>
+
+            </v-layout>
+            <v-layout row justify-center>
+                 <v-btn @click="moveStart('video')" small>
                     Start
                 </v-btn>
                 <v-btn @click="moveEnd('video')" small>
                     End
                 </v-btn>
-
-            </v-layout>
-            <v-layout row justify-center>
-                   <v-btn @click="moveBackward('video')" small>
+                       <v-btn @click="moveBackward('video')" small>
                     Backward
                 </v-btn>
                 <v-btn @click="moveForward('video')" small>
                     Forward
                 </v-btn>
+
+            </v-layout>
+            <v-layout row justify-center>
+
                    <v-btn @click="loopMoveBackward('video')" small>
                     Loop Backward
                 </v-btn>
@@ -75,20 +82,25 @@
                 <v-btn @click="downVol('audio')" small>
                     Vol -
                 </v-btn>
-                <v-btn @click="moveStart('audio')" small>
+
+                </v-layout>
+             <v-layout row justify-center>
+                 <v-btn @click="moveStart('audio')" small>
                     Start
                 </v-btn>
                 <v-btn @click="moveEnd('audio')" small>
                     End
                 </v-btn>
-                </v-layout>
-            <v-layout row justify-center>
-                   <v-btn @click="moveBackward('audio')" small>
+                       <v-btn @click="moveBackward('audio')" small>
                     Backward
                 </v-btn>
                 <v-btn @click="moveForward('audio')" small>
                     Forward
                 </v-btn>
+
+            </v-layout>
+            <v-layout row justify-center>
+
                    <v-btn @click="loopMoveBackward('audio')" small>
                     Loop Backward
                 </v-btn>
@@ -111,102 +123,102 @@
 </template>
 
 <script>
-  var videoIntervalBackward, audioIntervalBackward
+var videoIntervalBackward, audioIntervalBackward
 
-  export default {
+export default {
 
-    name: 'Multimedia',
-    data() {
-      return {
-        value: ''
+  name: 'Multimedia',
+  data () {
+    return {
+      value: ''
+    }
+  },
+  methods: {
+
+    play (type) {
+      var video = document.getElementsByTagName(type)[0]
+      video.play()
+    },
+    pause (type) {
+      var video = document.getElementsByTagName(type)[0]
+
+      video.pause()
+    },
+    upVol (type) {
+      var video = document.getElementsByTagName(type)[0]
+      if (video.volume + 0.1 >= 1) {
+        video.volume = 1
+      } else {
+        video.volume += 0.1
       }
     },
-    methods: {
-
-      play(type) {
-        var video = document.getElementsByTagName(type)[0]
-        video.play()
-      },
-      pause(type) {
-        var video = document.getElementsByTagName(type)[0]
-
-        video.pause()
-      },
-      upVol(type) {
-        var video = document.getElementsByTagName(type)[0]
-        if (video.volume + 0.1 >= 1) {
-          video.volume = 1
-        } else {
-          video.volume += 0.1
-        }
-      },
-      downVol(type) {
-        var video = document.getElementsByTagName(type)[0]
-        if (video.volume - 0.1 <= 0) {
-          video.volume = 0
-        } else {
-          video.volume -= 0.1
-        }
-      },
-      moveForward(type) {
-        var video = document.getElementsByTagName(type)[0]
-        if (video.currentTime + 3 >= video.duration) {
-          video.currentTime = video.duration
-        } else {
-          video.currentTime += 3
-        }
-      },
-      moveBackward(type) {
-        var video = document.getElementsByTagName(type)[0]
-        if (video.currentTime - 3 <= 0) {
-          video.currentTime = 0
-        } else {
-          video.currentTime -= 3
-        }
-      },
-      loopMoveForward(type) {
-        var video = document.getElementsByTagName(type)[0]
-        video.playbackRate = 4.0
-        // while (video.currentTime + 3 <= video.duration) {
-        //   video.currentTime += 3
-        // }
-        // video.currentTime = video.duration
-      },
-      loopMoveBackward(type) {
-        var video = document.getElementsByTagName(type)[0]
-        if (type == 'video') {
-          this.videoIntervalBackward = setInterval(function () {
-            video.currentTime -= 0.1
-          }, 30)
-        } else {
-          this.audioIntervalBackward = setInterval(function () {
-            video.currentTime -= 0.1
-          }, 70)
-        }
-      },
-      moveStart(type) {
-        var video = document.getElementsByTagName(type)[0]
-
-        video.currentTime = 0
-      },
-      moveEnd(type) {
-        var video = document.getElementsByTagName(type)[0]
-        video.currentTime = video.duration
-      },
-      stopBackward(type) {
-        if (type == 'video') {
-          clearInterval(this.videoIntervalBackward)
-        } else {
-          clearInterval(this.audioIntervalBackward)
-        }
-      },
-      stopForward(type) {
-        var video = document.getElementsByTagName(type)[0]
-        video.playbackRate = 1.0
+    downVol (type) {
+      var video = document.getElementsByTagName(type)[0]
+      if (video.volume - 0.1 <= 0) {
+        video.volume = 0
+      } else {
+        video.volume -= 0.1
       }
+    },
+    moveForward (type) {
+      var video = document.getElementsByTagName(type)[0]
+      if (video.currentTime + 3 >= video.duration) {
+        video.currentTime = video.duration
+      } else {
+        video.currentTime += 3
+      }
+    },
+    moveBackward (type) {
+      var video = document.getElementsByTagName(type)[0]
+      if (video.currentTime - 3 <= 0) {
+        video.currentTime = 0
+      } else {
+        video.currentTime -= 3
+      }
+    },
+    loopMoveForward (type) {
+      var video = document.getElementsByTagName(type)[0]
+      video.playbackRate = 4.0
+      // while (video.currentTime + 3 <= video.duration) {
+      //   video.currentTime += 3
+      // }
+      // video.currentTime = video.duration
+    },
+    loopMoveBackward (type) {
+      var video = document.getElementsByTagName(type)[0]
+      if (type == 'video') {
+        this.videoIntervalBackward = setInterval(function () {
+          video.currentTime -= 0.1
+        }, 30)
+      } else {
+        this.audioIntervalBackward = setInterval(function () {
+          video.currentTime -= 0.1
+        }, 70)
+      }
+    },
+    moveStart (type) {
+      var video = document.getElementsByTagName(type)[0]
 
+      video.currentTime = 0
+    },
+    moveEnd (type) {
+      var video = document.getElementsByTagName(type)[0]
+      video.currentTime = video.duration
+    },
+    stopBackward (type) {
+      if (type == 'video') {
+        clearInterval(this.videoIntervalBackward)
+      } else {
+        clearInterval(this.audioIntervalBackward)
+      }
+    },
+    stopForward (type) {
+      var video = document.getElementsByTagName(type)[0]
+      video.playbackRate = 1.0
     }
+
   }
+}
 </script>
 
 <style scoped>
