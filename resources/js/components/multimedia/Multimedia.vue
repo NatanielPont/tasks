@@ -48,16 +48,21 @@
                    <v-btn @click="loopMoveBackward('video')" small>
                     Loop Backward
                 </v-btn>
-                   <v-btn @click="stopBackward('video')" small>
-                    Stop Backward
-                </v-btn>
+
                 <v-btn @click="loopMoveForward('video')" small>
                     Loop Forward
                 </v-btn>
 
+
+            </v-layout>
+            <v-layout row justify-center>
+                 <v-btn @click="stopBackward('video')" small>
+                    Stop Backward
+                </v-btn>
                 <v-btn @click="stopForward('video')" small>
                     Stop Forward
                 </v-btn>
+
             </v-layout>
               <v-layout column justify-center class="mb-3 mt-3">
                 <v-card color="primary">
@@ -104,16 +109,21 @@
                    <v-btn @click="loopMoveBackward('audio')" small>
                     Loop Backward
                 </v-btn>
-                   <v-btn @click="stopBackward('audio')" small>
-                    Stop Backward
-                </v-btn>
+
                 <v-btn @click="loopMoveForward('audio')" small>
                     Loop Forward
                 </v-btn>
 
+
+            </v-layout>
+               <v-layout row justify-center>
+                 <v-btn @click="stopBackward('audio')" small>
+                    Stop Backward
+                </v-btn>
                 <v-btn @click="stopForward('audio')" small>
                     Stop Forward
                 </v-btn>
+
             </v-layout>
 
         </v-flex>
