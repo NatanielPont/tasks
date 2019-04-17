@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 //use NotificationChannels\WebPush\HasPushSubscriptions;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasRoles,Notifiable, HasApiTokens,Impersonate;
+    use HasRoles,Notifiable, HasApiTokens,Impersonate,HasPushSubscriptions;
     /**
      * The attributes that are mass assignable.
      *
