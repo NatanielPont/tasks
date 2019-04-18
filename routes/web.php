@@ -24,6 +24,7 @@ use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TasquesController;
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 //Route::bind('hashuser', function($value, $route)
 //{
 //    $hashids = new Hashids\Hashids(config('task.salt'));
@@ -111,6 +112,10 @@ Route::middleware(['auth'])->group(function () {
 
     //Newsletters
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    // Push Subscriptions
+    Route::post('subscriptions', '\\'.PushSubscriptionController::class.'@update');
+    Route::post('subscriptions/delete', '\\'.PushSubscriptionController::class.'@destroy');
 
 
 

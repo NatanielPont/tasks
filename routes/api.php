@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
+use App\Http\Controllers\Api\chat\ChatMessageController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\LoggedUserTasksController;
 use App\Http\Controllers\Api\NewslettersController;
@@ -103,6 +104,11 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
     //online users
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
+    Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@index');
+    Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@store');
+    Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessageController::class . '@destroy');
+
 
 
 });
