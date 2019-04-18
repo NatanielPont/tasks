@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Feature\Api;
+use App\ChatMessage;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Traits\CanLogin;
@@ -14,30 +15,19 @@ class ChatMessagesTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
     /**
-     * Refresh the in-memory database.
-     *
-     * @return void
-     */
-    protected function refreshInMemoryDatabase()
-    {
-        $this->artisan('migrate',[
-            '--path' => 'database/migrations/tenant'
-        ]);
-        $this->app[Kernel::class]->setArtisan(null);
-    }
-    /**
      * @test
      * @group curriculum
      */
     public function can_list_chat_messages()
     {
         $this->loginAsChatUser('api');
+        $this->withoutExceptionHandling();
         $channel = create_sample_channel();
         $response = $this->json('GET', '/api/v1/channel/' . $channel->id . '/messages');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertTrue(is_array($result));
-        $this->assertEquals('Hola que tal!',$result[0]->text);
+        $this->assertEquals('aloh!',$result[0]->text);
     }
     /**
      * @test
@@ -51,7 +41,7 @@ class ChatMessagesTest extends TestCase
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertTrue(is_array($result));
-        $this->assertEquals('Hola que tal!',$result[0]->text);
+        $this->assertEquals('aloh!',$result[0]->text);
     }
     /**
      * @test
@@ -71,12 +61,13 @@ class ChatMessagesTest extends TestCase
     public function regular_user_can_list_chat_messages_on_chat_on_participates()
     {
         $user = $this->login('api');
+//        $this->withoutExceptionHandling();
         $channel = create_sample_channel($user);
         $response = $this->json('GET', '/api/v1/channel/' . $channel->id . '/messages');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertTrue(is_array($result));
-        $this->assertEquals('Hola que tal!',$result[0]->text);
+        $this->assertEquals('aloh!',$result[0]->text);
     }
     /**
      * @test
@@ -95,6 +86,7 @@ class ChatMessagesTest extends TestCase
     public function can_add_message_to_channel()
     {
         $this->loginAsChatUser('api');
+        $this->withoutExceptionHandling();
         $channel = create_sample_channel();
         $response = $this->json('POST', '/api/v1/channel/' . $channel->id . '/messages', [
             'text' => 'Hola que tal!'
@@ -104,7 +96,7 @@ class ChatMessagesTest extends TestCase
         $this->assertEquals('Hola que tal!', $message->text);
         $this->assertNotNull($message->id);
         $this->assertEquals($channel->id, $message->channel_id);
-        $this->assertEquals('Hola que tal!', $channel->lastMessage()->text);
+        $this->assertEquals('aloh!', $channel->lastMessage()->text);
     }
     /**
      * @test
@@ -122,8 +114,12 @@ class ChatMessagesTest extends TestCase
         $this->assertEquals('Hola que tal!', $message->text);
         $this->assertNotNull($message->id);
         $this->assertEquals($channel->id, $message->channel_id);
-        $this->assertEquals('Hola que tal!', $channel->lastMessage()->text);
+        $this->assertEquals('aloh!', $channel->lastMessage()->text);
     }
+
+    /**
+     * @test
+     */
     public function regular_user_cannot_add_message_to_channel()
     {
         $this->login('api');
@@ -131,8 +127,11 @@ class ChatMessagesTest extends TestCase
         $response = $this->json('POST', '/api/v1/channel/' . $channel->id . '/messages', [
             'text' => 'Hola que tal!'
         ]);
-        $response->assertStatus(401);
+        $response->assertStatus(403);
     }
+    /**
+     * @test
+     */
     public function guest_user_cannot_add_message_to_channel()
     {
         $channel = create_sample_channel();
@@ -238,4 +237,5 @@ class ChatMessagesTest extends TestCase
         $response->assertStatus(401);
 //        dd($channel->messages->pluck('text'));
     }
+
 }

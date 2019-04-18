@@ -1,6 +1,7 @@
 <?php
 
 use App\Channel;
+use App\ChatMessage;
 use App\Log;
 use App\Notifications\SimpleNotification;
 use App\Tag;
@@ -235,6 +236,26 @@ if (!function_exists('initialize_gates')) {
         // Changelog
         Gate::define('changelog.list', function ($user) {
             return $user->hasRole('ChangelogManager');
+        });
+
+        //more gates
+        Gate::define('chat.index', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.store', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+        Gate::define('chat.destroy', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
         });
     }
 }
@@ -815,6 +836,43 @@ if (! function_exists('is_valid_uuid')) {
             return false;
         }
         return true;
+    }
+}
+
+if (! function_exists('create_sample_channel')) {
+    function create_sample_channel($user = null,$name = 'Pepe Pardo Jeans', $randomTimestamps = true) {
+        create_admin_user();
+        if(!$user) $user = get_admin_user();
+        if ($randomTimestamps) {
+            $channelData = add_random_timestamps([
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ]);
+        } else {
+            $channelData = [
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ];
+        }
+        $channel = Channel::create($channelData)->addUser($user);
+//        dd($channel);
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'aloh!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'wtfk?'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'like other thing happen!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'aqi dejo lo que aqui sembre'
+        ]));
+//        dd($channel);
+
+        return $channel;
     }
 }
 
