@@ -65,6 +65,7 @@ import OnlineState from './components/mobile/OnlineState'
 import Geolocation from './components/mobile/Geolocation'
 import DevicePosition from './components/mobile/DevicePosition'
 import ShareFab from './components/ui/ShareFab'
+import PushNotificationButton from './components/push_subscription/PushNotificationButton'
 
 // import Vue2TouchEvents from 'vue2-touch-events'
 
@@ -233,6 +234,7 @@ window.Vue.component('new-chat-drawer', NewChatDrawer)
 window.Vue.component('users-list', Users)
 window.Vue.component('game', Game)
 window.Vue.component('multimedia', Multimedia)
+window.Vue.component('push-notification-button', PushNotificationButton)
 
 // Vue.use(Vue2TouchEvents)
 
