@@ -57,8 +57,10 @@
                                             </v-list-tile>
                                         </v-list-group>
                                     </v-list>
+
                                 </v-layout>
                             </v-card-title>
+                            <push-notification-button></push-notification-button>
                         </v-layout>
 
                         <v-card-actions class="text-xs-center">
