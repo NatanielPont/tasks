@@ -235,6 +235,7 @@ window.Vue.component('users-list', Users)
 window.Vue.component('game', Game)
 window.Vue.component('multimedia', Multimedia)
 window.Vue.component('push-notification-button', PushNotificationButton)
+window.eventBus = new Vue()
 
 // Vue.use(Vue2TouchEvents)
 
