@@ -108,6 +108,9 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessageController::class . '@destroy');
+    // Push Subscriptions
+    Route::put('/v1/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/v1/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
 
 
 

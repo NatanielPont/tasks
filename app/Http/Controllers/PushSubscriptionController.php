@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 class PushSubscriptionController extends Controller
 {
     use ValidatesRequests;
-
     /**
      * Create a new controller instance.
      *
@@ -23,7 +22,6 @@ class PushSubscriptionController extends Controller
     public function __construct()
     {
     }
-
     /**
      * Update user's subscription.
      *
@@ -39,7 +37,6 @@ class PushSubscriptionController extends Controller
             $request->token
         );
     }
-
     /**
      * Delete the specified subscription.
      *

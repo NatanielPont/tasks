@@ -34,11 +34,12 @@
         "workbox-webpack-plugin": "^4.3.0"
     },
     "dependencies": {
-        "moment": "^2.24.0",
-        "pusher-js": "^4.4.0",
+        "laravel-echo": "^1.5.3",
         "material-design-icons-iconfont": "^3.0.3",
         "md5": "^2.2.1",
+        "moment": "^2.24.0",
         "path": "^0.12.7",
+        "pusher-js": "^4.4.0",
         "replace-in-file": "^3.4.4",
         "timeline-vuejs": "^1.0.3",
         "vue-json-tree-view": "^2.1.4",
