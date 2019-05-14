@@ -106,10 +106,6 @@
 
             </v-flex>
         </v-layout>
-        <!--scroll, end tags-->
-        <!--</v-flex>-->
-
-        <!--</v-layout>-->
 
     </v-navigation-drawer>
 </template>
