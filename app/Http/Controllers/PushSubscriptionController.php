@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Chat\ChatIndex;
+use App\Http\Requests\push_subscription\PushSubscriptionDestroy;
+use App\Http\Requests\push_subscription\PushSubscriptionUpdate;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
@@ -14,21 +16,7 @@ use Illuminate\Http\Request;
 class PushSubscriptionController extends Controller
 {
     use ValidatesRequests;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
-    /**
-     * Update user's subscription.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function update(PushSubscriptionUpdate $request)
     {
         $this->validate($request, ['endpoint' => 'required']);
         $request->user()->updatePushSubscription(
@@ -37,13 +25,7 @@ class PushSubscriptionController extends Controller
             $request->token
         );
     }
-    /**
-     * Delete the specified subscription.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+    public function destroy(PushSubscriptionDestroy $request)
     {
         $this->validate($request, ['endpoint' => 'required']);
         $request->user()->deletePushSubscription($request->endpoint);
