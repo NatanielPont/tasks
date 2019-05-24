@@ -11,10 +11,11 @@ use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
+use App\Http\Controllers\Api\push_subscription\PushSubscriptionController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
-use App\Http\Controllers\PushSubscriptionController;
+//use App\Http\Controllers\PushSubscriptionController;
 use App\Task;
 use Illuminate\Http\Request;
 

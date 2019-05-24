@@ -14,7 +14,8 @@ try {
   window.$ = window.jQuery = require('jquery')
 
   require('bootstrap')
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -52,8 +53,6 @@ if (vapidPublicKey) {
 let user = document.head.querySelector('meta[name="user"]')
 
 if (user) {
-  // TODO
-  console.log(user.content)
   window.laravel_user = JSON.parse(user.content)
 } else {
   console.error('CAUTION!: user not found at HTML meta')
@@ -66,11 +65,6 @@ if (gitHeader) if (gitHeader.content) window.git = JSON.parse(gitHeader.content)
 let impersonatedby = document.head.querySelector('meta[name="impersonatedBy"]')
 if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.parse(impersonatedby.content)
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
 window.Pusher = require('pusher-js')
 
 window.Echo = new Echo({
@@ -79,13 +73,3 @@ window.Echo = new Echo({
   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
   encrypted: true
 })
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
