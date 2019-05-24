@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Chat\ChatIndex;
+use App\Http\Requests\push_subscription\PushSubscriptionDestroy;
+use App\Http\Requests\push_subscription\PushSubscriptionUpdate;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
