@@ -1,5 +1,5 @@
 <template>
-    <v-container grid-list-md text-xs-center fluid >
+    <v-container grid-list-md text-xs-center>
         <v-layout row wrap fluid>
             <v-flex xs12>
                 <user-notifications-list :notifications="userNotifications"></user-notifications-list>
@@ -41,19 +41,19 @@ export default {
     users: {
       type: Array
     }
-  },
-  methods: {
-    refresh (message = false) {
-      this.loading = true
-      window.axios.get('/api/v1/user/unread_notifications/').then((response) => {
-        this.dataNotifications = response.data
-        this.loading = false
-        if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
-      }).catch(error => {
-        this.loading = false
-        this.$snackbar.showError(error)
-      })
-    }
   }
+  // methods: {
+  //   refresh (message = false) {
+  //     this.loading = true
+  //     window.axios.get('/api/v1/user/unread_notifications/').then((response) => {
+  //       this.dataNotifications = response.data
+  //       this.loading = false
+  //       if (message) this.$snackbar.showMessage('Notificacions actualitzades correctament')
+  //     }).catch(error => {
+  //       this.loading = false
+  //       this.$snackbar.showError(error)
+  //     })
+  //   }
+  // }
 }
 </script>

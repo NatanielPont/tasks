@@ -1,4 +1,3 @@
-
 <template>
     <v-autocomplete
             name="notificationNotifiableTypes"
@@ -13,37 +12,37 @@
 </template>
 
 <script>
-export default {
-  name: 'NotificationsFilterByNotifiableType',
-  data () {
-    return {
-      dataTypes: this.types,
-      dataType: this.type
-    }
-  },
-  model: {
-    prop: 'type',
-    event: 'input'
-  },
-  props: {
-    types: {
-      type: Array,
-      required: true
+  export default {
+    name: 'NotificationsFilterByNotifiableType',
+    data () {
+      return {
+        dataTypes: this.types,
+        dataType: this.type
+      }
     },
-    type: {}
-  },
-  watch: {
-    type (type) {
-      this.dataType = type
-    }
-  },
-  methods: {
-    input () {
-      this.$emit('input', this.dataType)
+    model: {
+      prop: 'type',
+      event: 'input'
     },
-    blur () {
-      this.$emit('blur', this.dataType)
+    props: {
+      types: {
+        type: Array,
+        required: true
+      },
+      type: {}
+    },
+    watch: {
+      type (type) {
+        this.dataType = type
+      }
+    },
+    methods: {
+      input () {
+        this.$emit('input', this.dataType)
+      },
+      blur () {
+        this.$emit('blur', this.dataType)
+      }
     }
   }
-}
 </script>
