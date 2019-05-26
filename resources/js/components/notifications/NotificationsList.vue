@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-toolbar color="grey darken-1" dense>
+        <v-toolbar color="primary" dense>
             <v-menu bottom>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
@@ -132,16 +132,16 @@
                             <span v-else>{{ formatBoolean(props.item.read_at) }}</span>
                         </v-tooltip>
                     </td>
-                    <td class="text-xs-left cell" :title="props.item.created_at_formatted">
+                    <td class="text-xs-left cell" :title="props.item.formatted_created_at">
                         <v-tooltip bottom>
-                            <span slot="activator">{{ props.item.created_at_human }}</span>
-                            <span>{{ props.item.created_at_formatted }}</span>
+                            <span slot="activator">{{ props.item.formatted_created_at_diff }}</span>
+                            <span>{{ props.item.formatted_created_at }}</span>
                         </v-tooltip>
                     </td>
-                    <td class="text-xs-left cell" :title="props.item.updated_at_formatted">
+                    <td class="text-xs-left cell" :title="props.item.formatted_updated_at">
                         <v-tooltip bottom>
-                            <span slot="activator">{{ props.item.updated_at_human }}</span>
-                            <span>{{ props.item.updated_at_formatted }}</span>
+                            <span slot="activator">{{ props.item.formatted_updated_at_diff }}</span>
+                            <span>{{ props.item.formatted_updated_at }}</span>
                         </v-tooltip>
                     </td>
                 </tr>
