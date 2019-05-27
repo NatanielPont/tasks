@@ -16,7 +16,11 @@ use App\Http\Controllers\Api\push_subscription\PushSubscriptionController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
+<<<<<<< HEAD
 //use App\Http\Controllers\Ap\PushSubscriptionController;
+=======
+//use App\Http\Controllers\PushSubscriptionController;
+>>>>>>> 27a6a83d7282ed2ff89f0aba5123118c06a53d98
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -97,6 +101,9 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/user/unread_notifications','\\' . UserUnreadNotificationsController::class . '@index');
     Route::delete('/v1/user/unread_notifications/all','\\' . UserUnreadNotificationsController::class . '@destroyAll');
     Route::delete('/v1/user/unread_notifications/{notification}','\\' . UserUnreadNotificationsController::class . '@destroy');
+
+    Route::post('/v1/unread_notifications/{notification}','\\' . UnreadNotificationsController::class . '@destroy');
+
     //hello notification
     Route::post('/v1/notifications/hello','\\' . HelloNotificationController::class . '@store');
 
@@ -104,6 +111,7 @@ Route::middleware('auth:api')->group(function() {
     // Simple notifications
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 //    Route::post('/v1/notifications/hello','\\' . HelloNotificationController::class . '@store');
+
 
 
     //Changelog
