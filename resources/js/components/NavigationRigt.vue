@@ -87,11 +87,10 @@
                         </v-card-actions>
                     </v-card>
                 </v-flex>
+                <push-notification-button></push-notification-button>
 
                 <tema></tema>
             </v-layout>
-            <push-notification-button></push-notification-button>
-
         </v-card>
         <v-card >
             <v-card-title dark class="grey darken-1 white--text " primary-title>
