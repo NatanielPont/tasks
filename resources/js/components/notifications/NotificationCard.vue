@@ -27,20 +27,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'NotificationCard',
-    data () {
-      return {
-        dataNotification: this.notification,
-        closed: false,
-        minified: false
-      }
-    },
-    props: {
-      notification: {
-        type: Object,
-        required: true
-      }
+export default {
+  name: 'NotificationCard',
+  data () {
+    return {
+      dataNotification: this.notification,
+      closed: false,
+      minified: false
+    }
+  },
+  props: {
+    notification: {
+      type: Object,
+      required: true
     }
   }
+}
 </script>

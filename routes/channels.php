@@ -18,3 +18,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('Tasques', function ($user) {
     return $user->isSuperAdmin() || $user->hasRole('TasksManager');
 });
+
+Broadcast::channel('App.Log', function () {
+    return true;
+});

@@ -8,12 +8,15 @@ use App\Http\Controllers\Api\NewslettersController;
 use App\Http\Controllers\Api\Notifications\HelloNotificationController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
+use App\Http\Controllers\Api\Notifications\UnreadNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
+use App\Http\Controllers\Api\push_subscription\PushSubscriptionController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
+//use App\Http\Controllers\Ap\PushSubscriptionController;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -97,8 +100,11 @@ Route::middleware('auth:api')->group(function() {
     //hello notification
     Route::post('/v1/notifications/hello','\\' . HelloNotificationController::class . '@store');
 
+
     // Simple notifications
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
+//    Route::post('/v1/notifications/hello','\\' . HelloNotificationController::class . '@store');
+
 
     //Changelog
     Route::get('/v1/changelog','\\' . ChangelogController::class . '@index');
@@ -108,6 +114,8 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessageController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessageController::class . '@destroy');
+
+    Route::post('/v1/unread_notifications/{notification}','\\' . UnreadNotificationsController::class . '@destroy');
     // Push Subscriptions
     Route::put('/v1/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/v1/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');

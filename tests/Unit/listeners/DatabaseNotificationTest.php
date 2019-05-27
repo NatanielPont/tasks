@@ -22,7 +22,7 @@ class DatabaseNotificationTest extends TestCase
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
         ]);
-        $user->notify(new SimpleNotification('Notificació exemple'));
+        $user->notify(new SimpleNotification('Notificació exemple','like2'));
         $notification = DatabaseNotification::first();
         $mappedNotification = $notification->mapSimple();
         $this->assertTrue(is_valid_uuid($mappedNotification['id']));
@@ -57,7 +57,7 @@ class DatabaseNotificationTest extends TestCase
             'name' => 'Pepe Pardo Jeans',
             'email' => 'pepepardo@jeans.com'
         ]);
-        $user->notify(new SimpleNotification('Notificació exemple'));
+        $user->notify(new SimpleNotification('Notificació exemple','like'));
         $notification = DatabaseNotification::first();
         $mappedNotification = $notification->map();
         $this->assertTrue(is_valid_uuid($mappedNotification['id']));
