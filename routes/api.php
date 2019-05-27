@@ -16,11 +16,8 @@ use App\Http\Controllers\Api\push_subscription\PushSubscriptionController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
-<<<<<<< HEAD
 //use App\Http\Controllers\Ap\PushSubscriptionController;
-=======
 //use App\Http\Controllers\PushSubscriptionController;
->>>>>>> 27a6a83d7282ed2ff89f0aba5123118c06a53d98
 use App\Task;
 use Illuminate\Http\Request;
 
