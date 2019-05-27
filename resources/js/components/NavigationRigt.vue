@@ -87,7 +87,7 @@
                         </v-card-actions>
                     </v-card>
                 </v-flex>
-                <!--<push-notification-button></push-notification-button>-->
+                <push-notification-button></push-notification-button>
 
                 <tema></tema>
             </v-layout>
