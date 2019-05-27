@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Unit;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use InvalidArgumentException;
 use Tests\TestCase;
 /**
@@ -9,6 +10,7 @@ use Tests\TestCase;
  */
 class ImgOptimizeTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * @test
      * @group slow

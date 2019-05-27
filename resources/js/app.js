@@ -22,6 +22,7 @@ import NewChatDrawer from './components/chat/NewChatDrawer'
 import Users from './components/users/Users'
 import Game from './components/game/Game'
 import Multimedia from './components/multimedia/Multimedia'
+// import PushNotificationButton from './components/push_subscription/PushNotificationButton'
 
 // import ResetPasswordForm from './components/ResetPasswordForm'
 // import EditableForm from './components/EditableForm'

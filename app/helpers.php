@@ -587,11 +587,12 @@ if (! function_exists('sample_logs')) {
     }
 }
 
-if (! function_exists('set_sample_notifications_to_user')) {
-    function set_sample_notifications_to_user($user) {
-        $user->notify(new SimpleNotification('Notification 1'));
-        $user->notify(new SimpleNotification('Notification 2'));
-        $user->notify(new SimpleNotification('Notification 3'));
+if (!function_exists('set_sample_notifications_to_user')) {
+    function set_sample_notifications_to_user($user)
+    {
+        $user->notify(new SimpleNotification('Notification 1','body1'));
+        $user->notify(new SimpleNotification('Notification 2','body2'));
+        $user->notify(new SimpleNotification('Notification 3','body3'));
     }
 }
 if (! function_exists('sample_notifications')) {
@@ -604,8 +605,8 @@ if (! function_exists('sample_notifications')) {
             'name' => 'Bart Simpson',
             'email' => 'bart@lossimpsons.com'
         ]);
-        $user1->notify(new SimpleNotification('Sample Notification 1'));
-        $user2->notify(new SimpleNotification('Sample Notification 2'));
+        $user1->notify(new SimpleNotification('Sample Notification 1','rr'));
+        $user2->notify(new SimpleNotification('Sample Notification 2','erer'));
     }
 }
 
@@ -873,6 +874,18 @@ if (! function_exists('create_sample_channel')) {
 //        dd($channel);
 
         return $channel;
+    }
+}
+
+if (!function_exists('initialize_user_default_image')) {
+    function initialize_user_default_image()
+    {
+        if (!Storage::disk('local')->exists('public/user_photo/default.png') && File::exists(base_path('tests/__fixtures__/photos/user/default.png')) ){
+            Storage::disk('local')->put(
+                'public/user_photo/default.png',
+                File::get(base_path('tests/__fixtures__/photos/user/default.png'))
+            );
+        }
     }
 }
 

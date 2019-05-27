@@ -60,7 +60,6 @@
 
                                 </v-layout>
                             </v-card-title>
-                            <push-notification-button></push-notification-button>
                         </v-layout>
 
                         <v-card-actions class="text-xs-center">
@@ -88,7 +87,9 @@
                         </v-card-actions>
                     </v-card>
                 </v-flex>
-                    <tema></tema>
+                <push-notification-button></push-notification-button>
+
+                <tema></tema>
             </v-layout>
         </v-card>
         <v-card >

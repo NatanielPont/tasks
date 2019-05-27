@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
-
 /**
  * Class SimpleNotification.
  *
@@ -50,13 +49,7 @@ class HelloNotification extends Notification
             'created' => Carbon::now()->toIso8601String()
         ];
     }
-    /**
-     * Get the web push representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @param mixed $notification
-     * @return \Illuminate\Notifications\Messages\DatabaseMessage
-     */
+
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)

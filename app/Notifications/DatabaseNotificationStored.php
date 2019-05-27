@@ -56,4 +56,5 @@ class DatabaseNotificationStored extends Notification
             'notification' => 'TODO'
         ];
     }
+
 }

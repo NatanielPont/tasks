@@ -114,8 +114,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
 
     // Push Subscriptions
-    Route::post('subscriptions', '\\'.PushSubscriptionController::class.'@update');
-    Route::post('subscriptions/delete', '\\'.PushSubscriptionController::class.'@destroy');
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
 
 
 

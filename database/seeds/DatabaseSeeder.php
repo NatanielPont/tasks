@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         sample_logs();
         create_sergi_user();
         sample_users_and_tasks();
+        initialize_user_default_image();
         //crear usuaris de proves
         //TODO rols per defecte en registrarse els usuaris
     }
