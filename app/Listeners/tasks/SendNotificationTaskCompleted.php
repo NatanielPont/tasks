@@ -26,6 +26,7 @@ class SendNotificationTaskCompleted
      */
     public function handle($event)
     {
-        $event->user->notify(new TaskCompleted($event->task));
+        $event->task->user->notify(new TaskCompleted($event->task));
+//        $event->user->notify(new TaskCompleted($event->task));
     }
 }

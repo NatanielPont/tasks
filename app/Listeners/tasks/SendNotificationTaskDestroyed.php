@@ -28,6 +28,7 @@ class SendNotificationTaskDestroyed
      */
     public function handle($event)
     {
-        $event->user->notify(new TaskDestroyed($event->task));
+        $event->task->user->notify(new TaskDestroyed($event->task));
+//        $event->user->notify(new TaskDestroyed($event->task));
     }
 }

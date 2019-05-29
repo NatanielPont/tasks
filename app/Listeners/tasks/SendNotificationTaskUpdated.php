@@ -27,6 +27,6 @@ class SendNotificationTaskUpdated
      */
     public function handle($event)
     {
-        $event->user->notify(new TaskUpdated($event->task));
+        $event->task->user->notify(new TaskUpdated($event->task));
     }
 }
