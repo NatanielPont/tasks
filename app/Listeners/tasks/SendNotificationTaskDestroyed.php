@@ -1,12 +1,15 @@
 <?php
 namespace App\Listeners\tasks;
 //use App\Notifications\TaskStored;
+//use App\Notifications\TaskCompleted;
+//use App\Notifications\TaskDestroyed;
+use App\Notifications\tasks\TaskDestroyed;
 use App\Notifications\tasks\TaskStored;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Cache;
-class SendTaskStoredNotification
+class SendNotificationTaskDestroyed
 {
     /**
      * Create the event listener.
@@ -25,6 +28,6 @@ class SendTaskStoredNotification
      */
     public function handle($event)
     {
-        $event->task->user->notify(new TaskStored($event->task));
+        $event->user->notify(new TaskDestroyed($event->task));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 use App\Avatar;
 use App\Events\TaskCreateEvent;
-use App\Listeners\tasks\SendTaskStoredNotification;
+use App\Listeners\tasks\SendNotificationTaskStored;
 use App\Notifications\tasks\TaskStored;
 use App\Task;
 use App\User;
@@ -28,7 +28,7 @@ class SendTaskStoredNotificationTest extends TestCase
 //        Notification::assertSentTo($user,TaskStored::class,function ($notification,$channels) use ($task){
 //            return $notification->task->id===$task->id;
 //        });
-        $listener = new SendTaskStoredNotification();
+        $listener = new SendNotificationTaskStored();
         $user = factory(User::class)->create();
         $task = Task::create([
             'name' => 'Pepito',

@@ -1,10 +1,13 @@
 <?php
 namespace App\Listeners;
+use App\Events\Changelog;
 use App\Log;
 use App\Task;
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
+
 class LogTaskCompleted
 {
     /**
@@ -24,7 +27,7 @@ class LogTaskCompleted
      */
     public function handle($event)
     {
-        Log::create([
+        $log=Log::create([
             'text' => "s'ha completat la tasca '".$event->task->name."'" ,
             'time' =>Carbon::now(),
             'action_type' => 'Completar',
@@ -37,5 +40,6 @@ class LogTaskCompleted
             'old_value' => false,
             'new_value' => true
         ]);
+        event(new Changelog($log, Auth::user()->map()));
     }
 }

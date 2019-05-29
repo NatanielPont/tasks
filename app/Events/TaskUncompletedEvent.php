@@ -10,8 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class TaskUncompletedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $task;
-    public $user;
+    public $task,$user;
 
     /**
      * Create a new event instance.

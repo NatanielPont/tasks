@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Events\TaskCompletedEvent;
 use App\Events\TaskUncompletedEvent;
 use App\Task;
 use Illuminate\Http\Request;
+//use Auth;
+
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
 
 class CompletedTasksController

@@ -57,6 +57,7 @@ class TasksController extends Controller
     {
         event(new \App\Events\TaskDestroyEvent($task,Auth::user()));
         $task->delete();
+//        dd($task);
         //  HOOK -> EVENT
         return $task;
     }
