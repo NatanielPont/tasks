@@ -28,6 +28,6 @@ class SendNotificationTaskUncompleted
     public function handle($event)
     {
 //        dd($event);
-        $event->user->notify(new TaskUncompleted($event->task));
+        $event->task->user->notify(new TaskUncompleted($event->task));
     }
 }
