@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\tasks;
 
 use App\Task;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class TaskUncompleted extends Notification
+
+class TaskUncompleted extends Notification implements ShouldQueue
 {
     use Queueable;
     public $task;

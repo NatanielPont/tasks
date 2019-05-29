@@ -2,7 +2,7 @@
 use App\Avatar;
 use App\DatabaseNotification;
 use App\Events\TaskCreateEvent;
-use App\Listeners\tasks\SendTaskStoredNotification;
+use App\Listeners\tasks\SendNotificationTaskStored;
 use App\Notifications\SimpleNotification;
 use App\Notifications\tasks\TaskStored;
 use App\Task;

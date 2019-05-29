@@ -183,6 +183,7 @@ export default {
   },
   watch: {
     tasks (newTasks) {
+      // console.log('superlike');
       this.dataTasks = newTasks
       // this.dataTasks = this.filteredTasksUsers()
     },
@@ -235,6 +236,53 @@ export default {
       })
     }
 
+  },
+  created () {
+    console.log('hola tasks list');
+    if (window.laravel_user.admin) {
+      console.log('hola tasks list23');
+
+      window.Echo.private('Tasques')
+        .listen('TaskUncompleted', (e) => {
+          console.log('hola taska uncompleta')
+
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          console.log('hola taska completa')
+
+          this.refresh()
+        })
+        .listen('TaskUpdate', (e) => {
+          this.refresh()
+        })
+        .listen('TaskStored', (e) => {
+          this.refresh()
+        })
+        .listen('TaskDeleted', (e) => {
+          this.refresh()
+        })
+    } else {
+      console.log('hola tasks list09');
+
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .listen('TaskUncompleted', (e) => {
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          console.log('hola taska uncompleta')
+          this.refresh()
+        })
+        .listen('TaskUpdate', (e) => {
+          this.refresh()
+        })
+        .listen('TaskStored', (e) => {
+          this.refresh()
+        })
+        .listen('TaskDeleted', (e) => {
+          this.refresh()
+        })
+    }
   }
 
 }

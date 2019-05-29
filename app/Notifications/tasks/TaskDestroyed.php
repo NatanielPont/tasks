@@ -1,19 +1,24 @@
 <?php
 
-namespace App\Notifications;
-
+namespace App\Notifications\tasks;
 use App\Task;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
 
-class TaskCompleted extends Notification
+/**
+ * Class TaskStored.
+ *
+ * @package App\Notifications
+ */
+class TaskDestroyed extends Notification implements ShouldQueue
 {
     use Queueable;
     public $task;
+
     /**
      * SimpleNotification constructor.
      * @param $task
@@ -22,6 +27,7 @@ class TaskCompleted extends Notification
     {
         $this->task = $task;
     }
+
     /**
      * Get the notification's delivery channels.
      *
@@ -32,6 +38,7 @@ class TaskCompleted extends Notification
     {
         return ['database', WebPushChannel::class];
     }
+
     /**
      * Get the array representation of the notification.
      *
@@ -41,28 +48,22 @@ class TaskCompleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'title' => "S'ha completat una tasca: " . $this->task->name,
+            'title' => "S'ha esborrat una tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'assignment',
             'iconColor' => 'primary',
             'task' => $this->task->map()
         ];
     }
-    /**
-     * Get the web push representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @param mixed $notification
-     * @return WebPushMessage
-     */
+
+
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('Tasca completada!')
+            ->title('Tasca esborrada!')
             ->icon('/notification-icon.png')
             ->body('Has completat la tasca: ' . $this->task->name)
             ->action('Visualitza la tasca', 'open_url')
             ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
-
 }

@@ -1,10 +1,13 @@
 <?php
 namespace App\Listeners;
+use App\Events\Changelog;
 use App\Log;
 use App\Task;
 use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
+
 class LogTaskCreate
 {
     /**
@@ -24,7 +27,7 @@ class LogTaskCreate
      */
     public function handle($event)
     {
-        Log::create([
+        $log=Log::create([
             'text' => "S'ha creat la tasca '".$event->task->name."'" ,
             'time' =>Carbon::now(),
             'action_type' => 'Crear',
@@ -36,5 +39,7 @@ class LogTaskCreate
             'loggable_type' => Task::class,
             'new_value' => $event->task->name
         ]);
+        event(new Changelog($log, Auth::user()->map()));
+
     }
 }
