@@ -5,6 +5,7 @@ use App\Notifications\tasks\TaskStored;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SendNotificationTaskStored
 {
@@ -25,6 +26,13 @@ class SendNotificationTaskStored
      */
     public function handle($event)
     {
-        $event->task->user->notify(new TaskStored($event->task));
+
+        if ($event->task->user){
+            $user=$event->task->user;
+        } else{
+            $user=Auth::user();
+        }
+        $user->user->notify(new TaskStored($event->task));
+//        $event->task->user->notify(new TaskStored($event->task));
     }
 }

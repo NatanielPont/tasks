@@ -7,6 +7,7 @@ use App\Notifications\tasks\TaskUpdated;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SendNotificationTaskUpdated
 {
@@ -27,6 +28,11 @@ class SendNotificationTaskUpdated
      */
     public function handle($event)
     {
-        $event->task->user->notify(new TaskUpdated($event->task));
+        if ($event->task->user){
+            $user=$event->task->user;
+        } else{
+            $user=Auth::user();
+        }
+        $user->notify(new TaskUpdated($event->task));
     }
 }

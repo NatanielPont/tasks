@@ -66,11 +66,17 @@ export default {
     update () {
       console.log(this.completed)
       this.working = true
+      let idUser
+      if (this.user) {
+        idUser = this.user.id
+      } else {
+        idUser = window.laravel_user.id
+      }
       const newTask = {
         name: this.name,
         description: this.description,
         completed: this.completed,
-        user: this.user.id
+        user: idUser
       }
       window.axios.put(this.uri + '/' + this.task.id, newTask).then((response) => {
         this.$emit('updated', response.data)

@@ -62,7 +62,7 @@ class TaskUpdated extends Notification implements ShouldQueue
         return (new WebPushMessage)
             ->title('Tasca actualitzada!')
             ->icon('/notification-icon.png')
-            ->body('Has completat la tasca: ' . $this->task->name)
+            ->body('Has actualitzat la tasca: ' . $this->task->name)
             ->action('Visualitza la tasca', 'open_url')
             ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }

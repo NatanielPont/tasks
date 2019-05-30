@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 importScripts("/service-worker/precache-manifest.99e11fa09af7cee6c8b483a323f6ecd3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+=======
+importScripts("/service-worker/precache-manifest.1443d875f02fbc21b17446bb35e367aa.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+>>>>>>> master
 
 workbox.setConfig({
   debug: true

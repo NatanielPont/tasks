@@ -27,6 +27,7 @@ use App\Listeners\tasks\SendNotificationTaskCompleted;
 use App\Listeners\tasks\SendNotificationTaskDestroyed;
 use App\Listeners\tasks\SendNotificationTaskUncompleted;
 use App\Listeners\tasks\SendNotificationTaskStored;
+use App\Listeners\tasks\SendNotificationTaskUpdated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -74,7 +75,7 @@ class EventServiceProvider extends ServiceProvider
         TaskUpdateEvent::class => [
             LogTaskUpdate::class,
             SendMailTaskUpdate::class,
-            SendNotificationTaskDestroyed::class,
+            SendNotificationTaskUpdated::class,
             ForgetTasksCache::class
         ],
 

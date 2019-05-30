@@ -40,9 +40,13 @@ class TasquesController extends Controller
     public function show(UserTasksShow $request)
     {
         // MVC
-        $task = Task::where('id', '=', $request->id )->with('user')->first()->toJson();
-        $tags = map_collection(Tag::all());
-        return view('tasks.user.show', compact('task', 'tags'));
+        if ($task = Task::where('id', '=', $request->id )->with('user')->exists()){
+            $task=Task::where('id', '=', $request->id )->with('user')->first()->toJson();
+            $tags = map_collection(Tag::all());
+            return view('tasks.user.show', compact('task', 'tags'));
+        }
+        return redirect()->back();
+//        $task = Task::where('id', '=', $request->id )->with('user')->first()->toJson();
     }
 
 //    public function addTagTask(Request $request){

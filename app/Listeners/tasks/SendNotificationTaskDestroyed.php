@@ -8,6 +8,7 @@ use App\Notifications\tasks\TaskStored;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SendNotificationTaskDestroyed
 {
@@ -28,7 +29,13 @@ class SendNotificationTaskDestroyed
      */
     public function handle($event)
     {
-        $event->task->user->notify(new TaskDestroyed($event->task));
+        if ($event->task->user){
+            $user=$event->task->user;
+        } else{
+            $user=Auth::user();
+        }
+        $user->notify(new TaskDestroyed($event->task));
+//        $event->task->user->notify(new TaskDestroyed($event->task));
 //        $event->user->notify(new TaskDestroyed($event->task));
     }
 }

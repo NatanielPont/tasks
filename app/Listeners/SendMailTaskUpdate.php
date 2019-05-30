@@ -4,6 +4,7 @@ use App\Events\TaskUpdateEvent;
 use App\Mail\TaskUpdate;
 use App\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 class SendMailTaskUpdate implements ShouldQueue
 {
@@ -25,7 +26,11 @@ class SendMailTaskUpdate implements ShouldQueue
     public function handle($event)
     {
         $subject = $event->task->subject();
-        Mail::to($event->task->user)
+        $user = User::find($event->task['user_id']);
+        if (!$user){
+            $user=Auth::user();
+        }
+        Mail::to($user)
             ->cc(config('tasks.manager_email'))
             ->send((new TaskUpdate($event->oldTask, $event->task))->subject($subject));
     }
