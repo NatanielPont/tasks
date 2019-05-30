@@ -40,6 +40,7 @@ class LogTaskCompleted
             'old_value' => false,
             'new_value' => true
         ]);
-        event(new Changelog($log, Auth::user()->map()));
+//        dd($event->user);
+        event(new Changelog($log, $event->user->map()));
     }
 }

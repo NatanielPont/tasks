@@ -40,7 +40,7 @@ class LogTaskUpdate
             'old_value' => $event->oldTask,
             'new_value' => $event->task
         ]);
-        event(new Changelog($log, Auth::user()->map()));
+        event(new Changelog($log, $event->user->map()));
 
     }
 }

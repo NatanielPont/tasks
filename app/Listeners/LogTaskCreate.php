@@ -39,7 +39,7 @@ class LogTaskCreate
             'loggable_type' => Task::class,
             'new_value' => $event->task->name
         ]);
-        event(new Changelog($log, Auth::user()->map()));
+        event(new Changelog($log, $event->user->map()));
 
     }
 }
