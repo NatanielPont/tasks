@@ -32,7 +32,7 @@ class SendNotificationTaskStored
         } else{
             $user=Auth::user();
         }
-        $user->user->notify(new TaskStored($event->task));
+        $user->notify(new TaskStored($event->task));
 //        $event->task->user->notify(new TaskStored($event->task));
     }
 }
