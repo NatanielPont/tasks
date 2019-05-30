@@ -6,6 +6,7 @@ use App\Notifications\tasks\TaskStored;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SendNotificationTaskCompleted
 {
@@ -26,7 +27,12 @@ class SendNotificationTaskCompleted
      */
     public function handle($event)
     {
-        $event->task->user->notify(new TaskCompleted($event->task));
-//        $event->user->notify(new TaskCompleted($event->task));
+        if ($event->task->user){
+            $user=$event->task->user;
+        } else{
+            $user=Auth::user();
+        }
+        $user->notify(new TaskCompleted($event->task));
+//        Auth::user()->notify(new TaskCompleted($event->task));
     }
 }

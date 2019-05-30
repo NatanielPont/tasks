@@ -13,7 +13,7 @@
         <v-toolbar-side-icon class="white--text" @click.stop="$emit('toggle-left')"></v-toolbar-side-icon>
         <v-toolbar-title > Application </v-toolbar-title>
         <v-spacer></v-spacer>
-
+        <users-online-widget></users-online-widget>
         <notifications-widget></notifications-widget>
 
         <v-avatar @click="$emit('toggle-right')" :title="user.name">
@@ -33,11 +33,13 @@
 <script>
 import NotificationsWidget from './notifications/NotificationsWidget.vue'
 import GitInfoComponent from './git/GitInfoComponent.vue'
+import UsersOnlineWidget from './users/UsersOnlineWidget'
 export default {
   name: 'MainToolbar',
   components: {
     'notifications-widget': NotificationsWidget,
-    'git-info': GitInfoComponent
+    'git-info': GitInfoComponent,
+    'users-online-widget': UsersOnlineWidget
   },
   props:{
     csrfToken: {

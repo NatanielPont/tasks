@@ -20,6 +20,7 @@ import ToolbarCanals from './components/chat/ToolbarCanals'
 import MenuCanals from './components/chat/MenuCanals'
 import NewChatDrawer from './components/chat/NewChatDrawer'
 import Users from './components/users/Users'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget'
 import Game from './components/game/Game'
 import Multimedia from './components/multimedia/Multimedia'
 // import PushNotificationButton from './components/push_subscription/PushNotificationButton'
@@ -233,6 +234,7 @@ window.Vue.component('toolbar-canals', ToolbarCanals)
 window.Vue.component('menu-canals', MenuCanals)
 window.Vue.component('new-chat-drawer', NewChatDrawer)
 window.Vue.component('users-list', Users)
+window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('game', Game)
 window.Vue.component('multimedia', Multimedia)
 window.Vue.component('push-notification-button', PushNotificationButton)

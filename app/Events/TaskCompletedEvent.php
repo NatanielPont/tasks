@@ -7,6 +7,8 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Support\Facades\Auth;
+
 class TaskCompletedEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -30,8 +32,13 @@ class TaskCompletedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        if (strlen($this->task->user_id)==0){
+            $userID=$this->task->user_id;
+        } else {
+            $userID=Auth::user()->getAuthIdentifier();
+        }
         return[
-            new PrivateChannel('App.User.' . $this->task->user_id),
+            new PrivateChannel('App.User.' . $userID),
             new PrivateChannel('Tasques'),
             new PrivateChannel('App.Log')
         ];

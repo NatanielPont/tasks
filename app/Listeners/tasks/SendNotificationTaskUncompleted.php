@@ -7,6 +7,7 @@ use App\Notifications\tasks\TaskUncompleted;
 use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 class SendNotificationTaskUncompleted
 {
@@ -28,6 +29,11 @@ class SendNotificationTaskUncompleted
     public function handle($event)
     {
 //        dd($event);
-        $event->task->user->notify(new TaskUncompleted($event->task));
+        if ($event->task->user){
+            $user=$event->task->user;
+        } else{
+            $user=Auth::user();
+        }
+        $user->notify(new TaskUncompleted($event->task));
     }
 }
