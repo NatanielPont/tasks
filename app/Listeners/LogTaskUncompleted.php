@@ -40,7 +40,7 @@ class LogTaskUncompleted implements ShouldQueue
             'old_value' => true,
             'new_value' => false
         ]);
-        event(new Changelog($log, Auth::user()->map()));
+        event(new Changelog($log, $event->user->map()));
 
     }
 }
