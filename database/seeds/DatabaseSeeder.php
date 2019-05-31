@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         create_primary_user();
         sample_logs();
         create_sergi_user();
+        create_miro_user();
         sample_users_and_tasks();
         initialize_user_default_image();
         //crear usuaris de proves

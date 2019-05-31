@@ -1,9 +1,8 @@
 <template>
     <span>
     <v-toolbar color="primary">
-        <v-avatar :title="user.name" @click.stop="profileDrawer = !profileDrawer">
-            <v-img v-if="user.gravatar" :src="user.gravatar" alt="avatar"></v-img>
-            <v-img v-else src="https://www.gravatar.com/avatar/" alt="avatar"></v-img>
+        <v-avatar size="52px" @click.stop="$emit('toggleDrawer')">
+                <img :src="user.gravatar ? user.gravatar : user.avatar" alt="avatar">
         </v-avatar>
         <v-toolbar-title>Channels</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -15,11 +14,7 @@
         </v-tooltip>
         <menu-canals></menu-canals>
     </v-toolbar>
-        <new-chat-drawer :chatDrawer="chatDrawer" @drawerNull="chatDrawer=!chatDrawer" ></new-chat-drawer>
-
-        <profile-drawer :profileDrawer="profileDrawer" :user="user" @drawerNull="profileDrawer = !profileDrawer">
-
-         </profile-drawer>
+        <new-chat-drawer :value="chatDrawer" @close="chatDrawer = false"></new-chat-drawer>
     </span>
 </template>
 
@@ -40,7 +35,7 @@ export default {
 
     user: {
       type: Object,
-      required: true
+      required: false
 
     }
   },

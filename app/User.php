@@ -102,6 +102,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'email_verified_at' => $this->email_verified_at,
+            'mobile' => $this->mobile,
+            'mobile_verified_at' => $this->mobile_verified_at,
+            'mobile_verification_code' =>$this->mobile_verification_code,
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
@@ -123,7 +127,6 @@ class User extends Authenticatable implements MustVerifyEmail
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
             'online' => $this->online
-
         ];
     }
 

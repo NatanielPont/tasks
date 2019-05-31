@@ -30,6 +30,7 @@ if (!function_exists('create_primary_user')){
                 'name'=>'Nataniel Pont',
                 'email'=>'npontcastells@gmail.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456')),
+                'mobile' => '34654993913'
             ]);
             $user->admin=true;
             $user->save();
@@ -39,22 +40,30 @@ if (!function_exists('create_primary_user')){
 
 if (!function_exists('create_sergi_user')){
     function create_sergi_user() {
-        $user = User::where('email', 'sergiturbadenas@gmail.com')->first();
-        if (!$user) {
-            $sergitur = factory(User::class)->create([
+
+            $sergitur = User::create([
                 'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
-                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456'))
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456')),
+                'mobile' => '34679525437'
             ]);
             $sergitur->admin = true;
             $sergitur->save();
-            Task::create([
-                'name' => 'Tasca Sergi Tur',
-                'completed' => false,
-                'description' => 'Descripció de prova',
-                'user_id' => $sergitur->id
+
+    }
+}
+if (!function_exists('create_miro_user')){
+    function create_miro_user() {
+
+            $miro = User::create([
+                'name' => 'Mirokshi Rojas',
+                'email' => 'mirokshirojas@iesebre.com',
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', '123456')),
+                'mobile' => '34656445154'
             ]);
-        }
+            $miro->admin = true;
+            $miro->save();
+
     }
 }
 if (!function_exists('create_example_tasks')){
