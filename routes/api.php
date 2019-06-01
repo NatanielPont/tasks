@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\push_subscription\PushSubscriptionController;
+use App\Http\Controllers\Api\SMS\VerifyMobileController;
 use App\Http\Controllers\Api\TagsController;
 use App\Http\Controllers\Api\TasksController;
 use App\Http\Controllers\Api\TasksTagsController;
@@ -125,6 +126,8 @@ Route::middleware('auth:api')->group(function() {
     Route::put('/v1/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/v1/subscriptions/delete', '\\' . PushSubscriptionController::class . '@destroy');
 
+    Route::post('/v1/users/{user}/verify_mobile', '\\' . VerifyMobileController::class . '@store');
+    Route::post('/v1/users/{user}/send_mobile_verification', '\\' . VerifyMobileController::class .'@send');
 
 
 });

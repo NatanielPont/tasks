@@ -1,11 +1,11 @@
 <template>
     <v-menu>
-        <!--<v-tooltip bottom>-->
             <template #activator="{ on: menu }">
                 <v-tooltip bottom>
                     <template #activator="{ on: tooltip }">
                         <v-btn
                                 flat
+                                icon
                                 v-on="{ ...tooltip, ...menu }"
                         >
                             <v-icon>more_vert</v-icon>
@@ -33,10 +33,12 @@ export default {
   data () {
     return {
       items: [
-        { title: 'Profile' },
-        { title: 'Click Me2' },
-        { title: 'Click Me3' },
-        { title: 'Click Me4' }
+        { title: 'Nou grup' },
+        { title: 'Perfil' },
+        { title: 'Arxivar' },
+        { title: 'Destacat' },
+        { title: 'Configuració' },
+        { title: 'Tancar Sessió' }
       ]
     }
   }

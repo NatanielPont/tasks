@@ -1,11 +1,2 @@
-# Task Nataniel Pont 
-Make toolbar canals
-## Toolbar de Canals
-### Components
-- Main Component -> ToolbarCanals
-- Child Components(1) -> ProfileDrawer
-- Child Components(2) -> NewChatDrawer
-- Child Components(3) -> MenuCanals
-
-## Utility
-Show a toolbarcanals where you can view the profile, send a new chat, and choose between several options.
+Per a importar el meu component, al principi del ChatChannels.vue, dins del span cal ficar el component NewChatDrawer, amb  @close="drawer = !drawer" :value="drawer"
+Apart d'aixó, cal copiar el codi del botó de Nova Conversació (està al principi del codi)
