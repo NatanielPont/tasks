@@ -38,7 +38,7 @@ class TaskCompletedEvent implements ShouldBroadcast
             $userID=Auth::user()->getAuthIdentifier();
         }
         return[
-            new PrivateChannel('App.User.' . $this->task->user_id),
+            new PrivateChannel('App.User.' . $userID),
             new PrivateChannel('Tasques'),
             new PrivateChannel('App.Log')
         ];
