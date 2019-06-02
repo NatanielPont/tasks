@@ -64,6 +64,7 @@ export default {
       window.axios.post('/api/v1/users/' + this.user.id + '/send_mobile_verification').then((response) => {
         this.loading = false
         this.$snackbar.showMessage('SMS enviado')
+
       }).catch(() => {
         this.loading = false
       })
@@ -71,4 +72,4 @@ export default {
   }
 }
 </script>
-đ
+
