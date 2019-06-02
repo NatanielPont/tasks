@@ -38,6 +38,7 @@ class VerifyMobileController extends Controller
         $user->save();
 
         $user->notify(new VerifyMobile($code));
+//        dd($user);
 
     }
 }
