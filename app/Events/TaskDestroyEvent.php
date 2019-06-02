@@ -35,8 +35,11 @@ class TaskDestroyEvent implements ShouldBroadcast
     public function broadcastOn()
     {
         return [
-            new PrivateChannel('App.User.'.$this->user->id),
-            new PrivateChannel('tasks')
+//            new PrivateChannel('App.User.'.$this->user->id),
+//            new PrivateChannel('tasks'),
+            new PrivateChannel('App.User.' . $this->user->id),
+            new PrivateChannel('Tasques'),
+            new PrivateChannel('App.Log')
         ];
     }
 }
