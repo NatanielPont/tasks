@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
 
-class LogTaskDestroy
+class LogTaskDestroy implements ShouldQueue
 {
     /**
      * Create the event listener.
