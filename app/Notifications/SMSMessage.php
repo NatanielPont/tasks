@@ -3,10 +3,11 @@
 namespace App\Notifications\SMS;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
-class SMSMessage extends Notification
+class SMSMessage extends Notification implements ShouldQueue
 {
     use Queueable;
 

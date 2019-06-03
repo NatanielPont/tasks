@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class VerifyMobile extends Notification
+class VerifyMobile extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,7 +34,7 @@ class VerifyMobile extends Notification
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage)
-            ->content('Ets lo puto amo. El teu code es: ' . $this->code . '. Verificat aqui: ' . env('APP_URL') . '/verificar_mobil   .');
+            ->content('Ets un crack. El teu code es: ' . $this->code . '. Verificat aqui: ' . env('APP_URL') . '/verificar_mobil   .');
     }
 
 }

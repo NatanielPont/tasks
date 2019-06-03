@@ -26,19 +26,19 @@ class VerifyMobileController extends Controller
             $user->mobile_verification_code = null;
             $user->save();
         }
-        else abort(422,'El codi proporcionat no és correcte');
+        else abort(422,'Codi incorrecte');
     }
-
     public function send(Request $request, User $user)
     {
-        Log::debug('DEBUG');
-        Log::debug(json_encode($user));
+//        Log::debug('DEBUG');
+//        Log::debug('USER_____');
+//
+//        Log::debug(json_encode($user));
+//        Log::debug('REQUEST_____');
+//        Log::debug(json_encode($request));
         $code = MobileCodesGenerator::generate();
         $user->mobile_verification_code = $code;
         $user->save();
-
         $user->notify(new VerifyMobile($code));
-//        dd($user);
-
     }
 }
